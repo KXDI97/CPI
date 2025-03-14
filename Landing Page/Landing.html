@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPI - Control & Projection of Imports</title>
+    <link rel="icon" type="image/png" href="../Images/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white font-montserrat">
+    <header class="flex justify-between items-center px-6 py-4 bg-gray-800">
+        <div class="flex items-center">
+            <img src="../Images/Logo - CPI.png" alt="Mi Logo" class="w-12 h-12 object-contain">
+            <div class="text-white font-bold text-lg ml-2">CPI</div>
+        </div>
+        <nav class="flex gap-10 items-center">
+            <a href="Landing.html" class="relative text-white font-bold flex flex-col items-center">
+                Home
+                <span
+                    class="absolute left-1/2 -bottom-2 w-[130%] h-[4px] bg-gradient-to-r from-indigo-600 to-purple-600 rounded-md transform -translate-x-1/2"></span>
+            </a>
+            <a href="Pricing.html" class="relative text-gray-400 hover:text-white flex flex-col items-center">
+                Pricing
+            </a>
+            <a href="About Us.html" class="relative text-gray-400 hover:text-white flex flex-col items-center">
+                About Us
+            </a>
+            <a href="#" class="relative text-gray-400 hover:text-white flex flex-col items-center">
+                Contact
+            </a>
+        </nav>
+        <div class="hidden md:flex space-x-4">
+            <a href="Login.html"
+                class="px-4 py-2 rounded-xl shadow-md border-2 border-gray-500 opacity-90 hover:opacity-100">
+                Log in</a>
+            <a href="SignUp.html"
+                class="bg-gradient-to-b from-[#9069F9] to-[#54F1B7] px-4 py-2 rounded-xl hover:opacity-90">
+                Sign up</a>
+        </div>
+        <button class="md:hidden text-white focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="flex flex-col lg:flex-row items-center justify-center text-center lg:text-left py-20 px-6">
+        <img src="../Images/Landing.jpeg" alt="Import management"
+            class="w-80 sm:w-96 h-auto rounded-xl shadow-lg border-4 border-gray-700 transition-transform duration-300 hover:scale-105">
+        <div class="max-w-xl lg:ml-10 mt-6 lg:mt-0">
+            <h2 class="text-3xl sm:text-4xl font-bold">Control & Projection of Imports</h2>
+            <p class="mt-4 text-gray-400">CPI is an app dedicated to providing a service where importers can manage
+                their imports for different industries.</p>
+            <div class="mt-6 space-x-4">
+                <button
+                    class="px-6 py-2 bg-gradient-to-b from-[#9069F9] to-[#54F1B7] rounded-md transition-all duration-300">
+                    Try it Now!
+                </button>
+                <button class="px-6 py-2 rounded-xl shadow-lg border-2 border-gray-500 hover:shadow-2xl">
+                    See how it works
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-12 px-6 bg-gray-800">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center">
+            <div>
+                <h3 class="text-xl font-semibold">Real-time Tracking</h3>
+                <p class="mt-2 text-gray-400">Monitor your shipments and imports instantly.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold">Data Analytics</h3>
+                <p class="mt-2 text-gray-400">Measure your import performance with advanced analytics.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold">Secure & Reliable</h3>
+                <p class="mt-2 text-gray-400">We ensure your data is protected with top security measures.</p>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,616 @@
+body {
+    background-color: #121826;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten en la pantalla */
+    width: 100%;
+    overflow-x: hidden;
+}
+/*Plantilla de header y slider*/
+
+.header {
+    background-color: #1F2937;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 4px 0px #282727;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: aliceblue;
+}
+
+/* Contenedor principal */
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #121826;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+/* Información del usuario */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.username {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Botón de perfil */
+.profile-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.profile-button ion-icon {
+    font-size: 24px;
+    color: #9069F9;
+    transition: transform 0.2s;
+}
+
+.profile-button:hover ion-icon {
+    transform: scale(1.1);
+    color: #54F1B8;
+}
+
+/* Notificación */
+.notification {
+    position: relative;
+}
+
+/* Botón de notificación */
+.notification-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Icono de notificación */
+.notification-button ion-icon {
+    font-size: 24px;
+    color: #9069F9;
+    transition: color 0.3s, transform 0.3s ease-in-out;
+}
+
+/* Efecto al pasar el mouse */
+.notification-button:hover ion-icon {
+    color: #54F1B8; /* Color resaltado */
+    transform: scale(1.2);
+}
+
+/* Punto rojo de notificación */
+.notification-dot {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite alternate;
+}
+
+/* Animación de pulso para el punto rojo */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.3);
+        opacity: 0.7;
+    }
+}
+
+/* Botón de logout */
+.logout-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+}
+
+.logout-button ion-icon {
+    font-size: 22px;
+    color: #9069F9;
+    transition: transform 0.2s;
+}
+
+.logout-button:hover ion-icon {
+    transform: scale(1.3);
+    color: #ff4d4d;
+}
+
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    height: 87vh; /* Usa toda la altura de la pantalla */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #121826;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px; /* Evita que el contenido desborde */
+}
+
+
+/* Contenedor de los botones de navegación */
+.nav-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaciado entre botones */
+}
+
+/* Botones de navegación */
+.nav-buttons button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 12px 15px; /* Espaciado uniforme */
+    text-align: left;
+    cursor: pointer;
+    width: 100%; /* Que ocupen toda la sidebar */
+    display: flex;
+    align-items: center; /* Alineación vertical correcta */
+    gap: 12px; /* Espaciado entre icono y texto */
+    transition: background 0.3s, transform 0.2s;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.nav-buttons button:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Efecto de fondo suave */
+    transform: scale(1.05); /* Ligero aumento al pasar el mouse */
+    border: 2px solid aquamarine; /* Borde aguamarina */
+}
+
+/* Íconos en los botones */
+.nav-buttons button ion-icon {
+    font-size: 20px; /* Tamaño adecuado */
+    color: #ffffff; /* Color de los íconos */
+    transition: color 0.3s;
+}
+
+
+/* Cambiar color de iconos en hover y cuando el botón está activo */
+.nav-buttons .active ion-icon, 
+.nav-buttons button:hover ion-icon {
+    color: #9069F9; /* Color resaltado */
+}
+
+/* Botones dentro de .account-details */
+.account-details button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 12px 15px; /* Espaciado uniforme */
+    text-align: left;
+    cursor: pointer;
+    width: 100%; /* Que ocupen toda la sección */
+    display: flex;
+    align-items: center; /* Alineación vertical correcta */
+    gap: 12px; /* Espaciado entre icono y texto */
+    transition: background 0.3s, transform 0.2s;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* Efecto al pasar el mouse */
+.account-details button:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Efecto de fondo suave */
+    transform: scale(1.05); /* Ligero aumento */
+    border: 2px solid #9069F9; /* Borde aguamarina */
+}
+
+/* Íconos en los botones */
+.account-details button ion-icon {
+    font-size: 20px; /* Tamaño adecuado */
+    color: #ffffff; /* Color de los íconos */
+    transition: color 0.3s;
+}
+
+/* Cambiar color de iconos en hover */
+.account-details button:hover ion-icon {
+    color: #54F1B8; /* Color resaltado */
+}
+
+/* Separador de secciones */
+.account-details {
+    margin-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: left;
+}
+.account-details h1 {
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    margin: 0 auto; /* Centra horizontalmente */
+    display: flex;
+    justify-content: center; /* Centra el texto */
+    align-items: center; /* Centra verticalmente */
+    width: 100%;
+    padding: 10px 0; /* Ajusta el espacio */
+}
+
+/* Sección de ayuda */
+.help-section {
+    background-color: #1F2937;
+    width: 80%;
+    max-width: none;
+    padding: 2px; /* Reduce el espacio interno */
+    border-radius: 8px; /* Esquinas menos redondeadas */
+    text-align: center;
+    font-size: 12px; /* Texto más pequeño */
+    margin-top: 5px;
+    
+}
+
+.help-section button {
+    background-color: #333;
+    border: none;
+    padding: 8px 12px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.help-section button:hover {
+    background-color: #555;
+}
+
+/* FIN DE PLANTILLA*/
+
+/*INICIO DE STYLOS SETTINGS*/
+
+.container-settings {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 80px;
+    background: #1F2937;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+.container-settings h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+    font-size: 35px;
+}
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.setting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    background: #636f7f;
+    transition: all 0.3s ease;
+}
+.setting:hover {
+    background: #475f77;
+}
+.setting:hover .icon ion-icon {
+    color: #121826;
+}
+.settings-container button {
+    background:none;
+    color: #1F2937;
+    font-size: 16px;
+    padding: 12px 15px;
+    text-align: left;
+    cursor: pointer;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.3s, transform 0.2s;
+    border-radius: 8px;
+    font-weight: bold;
+}
+.settings-container button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #54F1B8;
+    transform: scale(1.05);
+    color: #9069F9;
+}
+.container-settings ion-icon {
+    font-size: 32px; /* Tamaño más grande del icono */
+    color: #333; /* Color oscuro para mejor visibilidad */
+    margin-right: 15px; /* Espacio entre el icono y el texto */
+}
+.setting span {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    color: #333;
+}
+
+/* INICIO STYLOS STORAGE*/
+
+.content-Storage {
+    flex: 1;
+    padding: 20px;
+    margin-left: 260px;
+    padding-top: 80px;
+    margin-right: 180px;
+    background-color: #121826;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Controles superiores */
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Espaciado entre elementos */
+    margin-bottom: 15px;
+}
+
+/* Estilos base para los botones */
+.btn-1 {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaciado entre icono y texto */
+    background-color: #1F2937;
+    color: white;
+    border: 2px solid transparent;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Íconos con degradado sólido */
+.btn-1 ion-icon {
+    font-size: 18px;
+}
+
+/* Hover para los botones */
+.btn-1:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #54F1B8;
+}
+
+/* Hover para los íconos (ligera escala) */
+.btn-1:hover ion-icon {
+    transform: scale(1.1);
+    color: #9069F9;
+}
+
+.btn-2 {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaciado entre icono y texto */
+    background-color: #1F2937;
+    color: white;
+    border: 2px solid transparent;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Íconos con degradado sólido */
+.btn-2 ion-icon {
+    font-size: 18px;
+}
+
+/* Hover para los botones */
+.btn-2:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #9069F9;
+}
+
+/* Hover para los íconos (ligera escala) */
+.btn-2:hover ion-icon {
+    transform: scale(1.1);
+    color: #54F1B8;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaciado entre elementos */
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Alinea el contenido a la derecha */
+    width: 250px; /* Ajusta el tamaño */
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    padding: 8px;
+    position: relative;
+    margin-left: auto;
+}
+
+.search-bar:focus-within {
+    border-color: #54F1B8; /* Cambia el borde a dorado cuando está activo */
+    box-shadow: 0 0 8px #54F1B8;
+}
+
+.search-bar input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 14px;
+    padding: 5px 10px;
+    outline: none;
+}
+
+.search-bar ion-icon {
+    font-size: 18px;
+    color: #9069F9;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+/* Contenedor de la tabla */
+.table-container {
+    background-color: #1F2937;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    max-width: 1200px;
+    margin: auto;
+    color: white;
+}
+
+/* Estilo del título */
+.table-container h2 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+/* Estilos de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Encabezados de la tabla */
+thead th {
+    text-align: left;
+    padding: 12px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Celdas de la tabla */
+td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+}
+
+/* Última fila sin borde */
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Íconos dentro de la tabla */
+td ion-icon {
+    font-size: 18px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+/* Íconos de acción (editar, eliminar) */
+.icon {
+    font-size: 22px;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.3s;
+}
+
+/* Estilo de los iconos en la columna Actions */
+.icon.edit:hover {
+    color: #4caf50; /* Verde */
+}
+
+.icon.delete:hover {
+    color: #e53935; /* Rojo */
+}
+
+/* Hover sobre los iconos de acción */
+.icon:hover {
+    transform: scale(1.2);
+}
+
+/* Fondo de las filas */
+tbody tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Paginación */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+.pagination a:hover {
+    color: #888;
+}

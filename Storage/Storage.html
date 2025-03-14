@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage CPI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+            <img src="Images/logo.png" alt="Logo de la página">
+            <span class="logo-text">CPI</span>
+        </div>
+        <div class="user-actions">
+            <div class="user-info">
+                <button><ion-icon name="person"> class="profile-icon"></ion-icon></button>
+                <span class="username">Bryams Solórzano</span>
+            </div>
+            <div class="notification">
+                <button><ion-icon name="notifications-outline"></ion-icon></button>
+                <span class="notification-dot"></span>
+            </div>
+            <button><ion-icon name="exit-sharp"></ion-icon></button>
+        </div>
+    </div>
+    <div class="sidebar">
+        <div class="nav-buttons">
+            <button>
+                <ion-icon name="home-outline"></ion-icon> Dashboard
+            </button>
+            <button href="Storage.html">
+                <ion-icon name="archive-outline"></ion-icon> Storage
+            </button>
+            <button href="http://127.0.0.7:5500/Purchase/purchases.html">
+                <ion-icon name="storefront-outline"></ion-icon> Purchases
+            </button>
+            <button>
+                <ion-icon name="journal-outline"></ion-icon> Savings
+            </button>
+            <button>
+                <ion-icon name="stats-chart-outline"></ion-icon> Stats
+            </button>
+        </div>
+        <div class="account-details">
+            <h1>account-details</h1>
+            <button>
+                <ion-icon name="person-outline"></ion-icon> Profile
+            </button>
+            <button>
+                <ion-icon name="settings-outline"></ion-icon> Settings
+            </button>
+            <button>
+                <ion-icon name="enter-outline"></ion-icon> Sign out
+            </button>
+        </div>
+        <div class="help-section">
+            <p>Need help?</p>
+            <p>Check out our help center & forums</p>
+            <button>Learn more</button>
+        </div>
+    </div>
+    <div class="content-Storage">
+        <h1>Storage Dashboard</h1>
+        <div class="controls">
+            <button class="btn"><ion-icon name="add-circle"></ion-icon> Add stock</button>
+            <button class="btn"><ion-icon name="add-circle"></ion-icon> Add product</button>
+            <div class="search-bar">
+                <input type="text" placeholder="Search product..." >
+                <ion-icon name="search-outline"></ion-icon>
+            </div>
+        </div>
+        <div class="table-container">
+            <h2>Current Storage</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Provider</th>
+                        <th>Quantity</th>
+                        <th>Pending</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
+                        <td>Mar 14</td>
+                        <td>Additive</td>
+                        <td>Qualiprint</td>
+                        <td>24</td>
+                        <td>12</td>
+                        <td>$2,320.00</td>
+                        <td>
+                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
+                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><ion-icon name="color-fill-outline"></ion-icon> LA 0056</td>
+                        <td>Mar 12</td>
+                        <td>Ink</td>
+                        <td>Qualiprint</td>
+                        <td>34</td>
+                        <td>0</td>
+                        <td>$1,450.00</td>
+                        <td>
+                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
+                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><ion-icon name="radio-outline"></ion-icon> TVSA 33x700</td>
+                        <td>Mar 10</td>
+                        <td>Tape</td>
+                        <td>Qualiprint</td>
+                        <td>10</td>
+                        <td>5</td>
+                        <td>$576.00</td>
+                        <td>
+                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
+                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
+                        <td>Mar 09</td>
+                        <td>Device</td>
+                        <td>Qualiprint</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>$15,000.00</td>
+                        <td>
+                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
+                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>        
+        <div class="pagination">
+            <a href="#">«</a> <a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">6</a> <a href="#">»</a>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

@@ -1,0 +1,433 @@
+body {
+    background-color: #121826;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.header {
+    background-color: #121826;
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    padding: 5px 0px ;
+    box-shadow: 0 4px 0px #282727;
+    position: fixed ; 
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; 
+}
+.logo {
+    font-size: 50px;
+    font-weight: bold;
+    background-color: #121826;
+}
+.logo img{
+    height: 40px; 
+    width:auto;
+    vertical-align: middle;
+}
+.logo-text {
+    
+    font-size: 20px; 
+    font-weight: normal; 
+    vertical-align: middle; 
+}
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Contenedor de la información del usuario */
+user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Botones generales */
+.user-actions button {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Efecto hover en botones */
+.user-actions button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+/* Iconos con degradado sólido */
+.user-actions ion-icon {
+    font-size: 22px;
+    color: #9069F9;
+}
+
+/* Icono de perfil más grande */
+.profile-icon {
+    font-size: 26px;
+}
+
+/* Nombre de usuario */
+.username {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Notificación */
+.notification {
+    position: relative;
+}
+
+/* Punto rojo de notificación */
+.notification-dot {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+/* Efecto hover en iconos */
+.user-actions button:hover ion-icon {
+    transform: scale(1.1);
+}
+.sidebar {
+    width: 200px;
+    height: 80vh; /* Usa toda la altura de la pantalla */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #121826;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Contenedor de los botones de navegación */
+.nav-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaciado entre botones */
+}
+
+/* Botones de navegación */
+.nav-buttons button, .account-details button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 12px 15px; /* Espaciado uniforme */
+    text-align: left;
+    cursor: pointer;
+    width: 100%; /* Que ocupen toda la sidebar */
+    display: flex;
+    align-items: center; /* Alineación vertical correcta */
+    gap: 12px; /* Espaciado entre icono y texto */
+    transition: background 0.3s, transform 0.2s;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* Íconos en los botones */
+.nav-buttons button ion-icon, .account-details button ion-icon {
+    font-size: 20px; /* Tamaño adecuado */
+    color: #ffffff; /* Color de los íconos */
+    transition: color 0.3s;
+}
+
+/* Estilos para botones activos o en hover */
+.nav-buttons .active, .nav-buttons button:hover {
+    background-color: #121826;
+    transform: scale(1.05);
+}
+
+/* Cambiar color de iconos en hover y cuando el botón está activo */
+.nav-buttons .active ion-icon, 
+.nav-buttons button:hover ion-icon {
+    color: #9069F9; /* Color resaltado */
+}
+
+/* Separador de secciones */
+.account-details {
+    margin-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: left;
+}
+.account-details h1{
+    font-size: 12px;
+    padding: 1px;
+}
+
+/* Sección de detalles de cuenta */
+.account-details {
+    margin-top: auto;
+    padding: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: left;
+}
+
+/* Título de la sección */
+.account-details h1 {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Estilos de los botones */
+.account-details button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaciado más compacto */
+    transition: background 0.3s, transform 0.2s;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/* Íconos con degradado sólido */
+.account-details button ion-icon {
+    font-size: 18px;
+    color: #9069F9;
+    
+}
+
+/* Cambio de tamaño del icono al pasar el mouse */
+.account-details button:hover ion-icon {
+    transform: scale(1.1);
+}
+
+/* Efecto de hover en el botón */
+.account-details button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.03);
+}
+/* Sección de ayuda */
+.help-section {
+    background-color: #1a1a1a;
+    padding: 2px; /* Reduce el espacio interno */
+    border-radius: 8px; /* Esquinas menos redondeadas */
+    text-align: center;
+    font-size: 12px; /* Texto más pequeño */
+    margin-top: 5px; /* Menos separación superior */
+}
+
+.help-section button {
+    background-color: #333;
+    border: none;
+    padding: 8px 12px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.help-section button:hover {
+    background-color: #555;
+}
+
+
+.help-box {
+    background: #262626;
+    padding: 5px 10px 20px 20px;
+    border-radius: 10px;
+    margin-top: 120px;
+    text-align: left;
+}
+
+.help-box p {
+    font-size: 13px;
+    color: #AAA;
+    padding: 0px 30px 0px 0px;
+}
+
+.help-box button {
+    background: #3A3A3A;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.content {
+    position: fixed;
+    flex-grow: 1;
+    width: 1298px;
+    padding:20px;
+    color: white;
+    background-color: #121826;
+    top: 50px;
+    left:250px ;
+    height: 90vh;
+
+}
+.content h6{
+    font-size: 35px;    
+}
+.add-btn, .show-more, .filters button {
+    background-color: #171717;
+    border: none;
+    padding: 10px 30px 10px 10px;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    justify-content: left; 
+    align-items: center; 
+    text-align: left;
+    display: flex;
+    gap: 10px;
+}
+
+.add-btn{
+    font-size: 20px;
+    align-items: left;  
+    justify-content: left; 
+    align-items: left; 
+    text-align: left;
+    display: flex;
+}
+.add-btn svg{
+    background: linear-gradient(135deg, #4BE1EC, #74E680);
+    
+}
+.filters {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    padding: 15px 0px 0px 0px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px 0px 0px 0px;
+}
+
+.card {
+    background-color: #000000;
+    padding: 10px;
+    border-radius: 10px;
+    gap: 5px;
+}
+p {
+    margin: 2px 0; 
+}
+.show-more {
+    display: block; 
+    margin: 20px auto; 
+    position: absolute; 
+    left: 50%;
+    transform: translateX(-50%); 
+    bottom: 20px; 
+    background-color:#7D5DF5 ;
+}
+.tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: #1f1f1f;
+    color: white;
+    padding: 7px 10px 7px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.tag .close {
+    margin-left: 8px;
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.tag .close:hover {
+    color: #ff6666;
+}
+.image {
+    height: 100px;
+    background-color: #444;
+    border-radius: 5px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    display: flex;
+    gap: 20px;
+}
+
+.dropdown-button {
+    background-color: #6a0dad;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    
+}
+.dropdown-button:hover{
+    background: linear-gradient(135deg, #4BE1EC, #74E680);
+    fill:white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1f1f1f;
+    min-width: 150px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1;
+    overflow: hidden;
+    top: 100%; /* Lo coloca justo debajo del botón */
+    left: 1%; /* Alinea el menú con el botón */
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #530c9b;
+}
+
+/* Mostrar el menú cuando tiene la clase 'show' */
+.show {
+    display: block;
+}
+
