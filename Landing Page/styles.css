@@ -184,6 +184,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding-bottom: 20px; /* Evita que el contenido desborde */
+    box-shadow: 4px 0 10px rgba(255, 255, 255, 0.1);
 }
 
 
@@ -327,14 +328,14 @@ body {
     max-width: 800px;
     margin: auto;
     margin-top: 80px;
-    background: #1F2937;
-    padding: 40px;
+    background: #1F2937; /* Fondo más oscuro */
+    padding: 35px;
     border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
 .container-settings h2 {
-    text-align: center;
-    color: white;
+    text-align: left;
+    color: #FFFFFF;
     margin-bottom: 20px;
     font-size: 35px;
 }
@@ -347,49 +348,44 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px;
+    padding: 15px;
     border-radius: 8px;
-    background: #636f7f;
+    background: #384152; /* Color de fondo de los elementos */
     transition: all 0.3s ease;
 }
 .setting:hover {
-    background: #475f77;
+    background: #121826 /* Efecto hover azul */
 }
 .setting:hover .icon ion-icon {
-    color: #121826;
+    color: #54F1B8;
 }
 .settings-container button {
-    background:none;
-    color: #1F2937;
+    background: #9069F9; /* Botones con azul */
+    color: white;
     font-size: 16px;
     padding: 12px 15px;
-    text-align: left;
+    text-align: center;
     cursor: pointer;
     width: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: background 0.3s, transform 0.2s;
     border-radius: 8px;
     font-weight: bold;
+    border: none;
+    transition: background 0.3s, transform 0.2s;
 }
 .settings-container button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: #54F1B8;
+    background-color: #384152; /* Efecto hover en botones */
     transform: scale(1.05);
-    color: #9069F9;
 }
 .container-settings ion-icon {
-    font-size: 32px; /* Tamaño más grande del icono */
-    color: #333; /* Color oscuro para mejor visibilidad */
-    margin-right: 15px; /* Espacio entre el icono y el texto */
+    font-size: 32px;
+    color: #FFFFFF; /* Iconos en blanco */
+    margin-right: 15px;
 }
 .setting span {
     display: flex;
     align-items: center;
     font-size: 22px;
-    color: #333;
+    color: #E0E0E0; /* Texto más claro */
 }
 
 /* INICIO STYLOS STORAGE*/
@@ -613,4 +609,174 @@ tbody tr:nth-child(odd) {
 
 .pagination a:hover {
     color: #888;
+}
+
+/*MODAL JS*/
+
+/*PRUEBA*/
+
+/* Fondo borroso */
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    z-index: 998;
+}
+
+/* Modal */
+.modal-add-stock {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    background: #121826;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    z-index: 999;
+}
+
+/* Ocultar modal por defecto */
+.hidden {
+    display: none;
+}
+
+/* Estilos del contenido */
+.modal-content h2 {
+    color: #fff;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.modal-content h3 {
+    color: #bbb;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* Inputs */
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 15px;
+}
+
+.input-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+input, select {
+    width: 90%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: none;
+    background: #384152;
+    color: white;
+}
+
+/* Checkbox mejor alineado */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #bbb;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Ajuste del checkbox */
+.checkbox-container input {
+    width: 18px;
+    height: 18px;
+    accent-color: #7A5AF8;
+}
+
+/* Botones */
+.button-group {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.modal-add-product {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: #121826;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    padding: 25px;
+    border-radius: 10px;
+    z-index: 999;
+    box-shadow: 0px 4px 10px rgba(69, 47, 47, 0.1);
+}
+
+.modal-add-product .modal-content2 {
+    background: #181818; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+    padding: 20px;
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos de los títulos */
+.modal-add-product.modal-content h2 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.modal-add-product .modal-content h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Estilos de los grupos de formularios */
+.modal-add-product .form-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.modal-add-product .form-field {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+/* Inputs y selects */
+.modal-add-product input, select, textarea {
+    background: #384152;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.modal-add-product textarea {
+    height: 60px;
+    resize: none;
+}
+
+/* Para el campo de descripción que ocupa todo el ancho */
+.modal-add-product .full-width {
+    width: 100%;
+}
+
+.modal-add-product .form-buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
 }
