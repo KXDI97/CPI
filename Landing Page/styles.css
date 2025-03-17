@@ -184,6 +184,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding-bottom: 20px; /* Evita que el contenido desborde */
+    box-shadow: 4px 0 10px rgba(255, 255, 255, 0.1);
 }
 
 /* Contenedor de los botones de navegación */
