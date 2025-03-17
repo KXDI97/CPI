@@ -1,20 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var swiper = new Swiper(".mySwiper-2", {
-        slidersPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        autoplay: {  // 🔹 Agrega esto para que se mueva automáticamente
-            delay: 3000, // Tiempo en milisegundos entre cada movimiento
-            disableOnInteraction: false,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        breakpoints: {
-            0: { slidersPerView: 1 },
-            520: { slidersPerView: 2 },
-            950: { slidersPerView: 3 }
-        }
-    });
+   var swiper = new Swiper(".mySwiper-2", {
+    slidesPerView: 3, // Ajusta el número de productos visibles al mismo tiempo
+    spaceBetween: 20, // Espaciado entre productos
+    loop: true, // Hace que el carrusel sea infinito
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    breakpoints: {
+        320: { slidesPerView: 1 }, // Móvil
+        768: { slidesPerView: 2 }, // Tablet
+        1024: { slidesPerView: 4 } // Escritorio
+    }
 });
+});
+

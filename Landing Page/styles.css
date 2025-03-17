@@ -780,44 +780,64 @@ input, select {
 }
 
 /*INICIO DE PURCHASE*/
-.content-Purchase{
+.content-Purchase {
     flex: 1;
-    padding: 20px;
-    margin-left: 260px;
-    padding-top: 80px;
-    margin-right: 80px;
+    padding: 8px;
+    margin-left: 220px; /* Espacio del sidebar */
+    margin-right: 180px;
+    padding-top: 100px; /* Ajusta para que no lo cubra el header */
     background-color: #121826;
 }
-.content-Purchase h1{
-    font-size: 40px;
 
+/* Títulos */
+h1 {
+    font-size: 32px;
+    text-align: left;
+    margin-bottom: 20px;
 }
-.content-Purchase h2{
-    font-size: 27px;
+.content-Purchase h2 {
+    font-size: 22px;
 }
-/*Filtros de busqueda*/
+
+/* Filtros de búsqueda */
 .Filtros {
     display: flex;
-    align-items: center; /* Alinea los elementos verticalmente */
-    gap: 12px; /* Espaciado entre elementos */
-    margin-bottom: 15px;
-    justify-content: flex-end; /* Alinea los elementos a la derecha */
+    align-items: center;
+    justify-content: space-between; 
+    width: 80%;
+    padding: 10px;
+    flex-wrap: wrap; /* Permite que los elementos se acomoden si no hay espacio */
+}
+.Filtros-left h1 {
+    font-size: 40px;
+    margin: 0;
+}
+.Filtros-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    gap: 12px; 
+    flex-wrap: nowrap;
+    max-width: 600px; /* Evita que se expanda demasiado */
+    margin-left: 200px; /* Alinea correctamente a la derecha */
+    overflow: hidden; /* Evita que los elementos salgan de la pantalla */
 }
 
+/* Barra de búsqueda */
 .search-bar_p {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    width: 250px;
+    justify-content: flex-end; /* Alinea el contenido a la derecha */
+    width: 220px; /* Ajusta el tamaño */
     background-color: #1a1a1a;
     border-radius: 8px;
     padding: 8px;
     position: relative;
+    margin-left: auto;
 }
-
 .search-bar_p:focus-within {
-    border-color: #54F1B8;
-    box-shadow: 0 0 8px #54F1B8;
+    border-color: #54F1B8; /* Cambia el borde a dorado cuando está activo */
+    box-shadow: 0 0  9px #54F1B8;
 }
 
 .search-bar_p input {
@@ -837,108 +857,218 @@ input, select {
     cursor: pointer;
 }
 
+/* Botón de filtro */
 .btn-p {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #1f293700;
+    background-color: transparent;
     color: white;
     border: 2px solid transparent;
-    padding: 10px 15px;
+    padding: 8px 12px;
     border-radius: 8px;
-    font-size: 30px;
+    font-size: 22px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
-
 .btn-p:hover {
     background-color: #374151;
 }
-/*RESULTADOS*/
-.swiper-slider{
-    padding: 0 80px 50px 80px;
+.modal-overlay_p {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Oscurece el fondo */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Estilos del modal */
+.modal-content_p{
+    background: #121826;
+    padding: 20px;
+    border-radius: 12px;
+    width: 800px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+/* Botón para cerrar el modal */
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #493628;
+    background: none;
+    border: none;
+}
+.filters-container {
+    background-color: #121826 !important; /* Asegura que el fondo del contenedor sea correcto */
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: start; /* Alinea los elementos al inicio */
+    gap: 10px; /* Espaciado entre los filtros */
+}
+.filter-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: #171717;
+    color: white;
+    border-radius: 20px;
+}
+.filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    background-color: #121826;
+   
+}
+
+.filter-btn {
+    background-color: #171717;
+    color: #F2F2F2;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.filter-btn:hover {
+    background-color: #384152;
+}
+
+.category-btn {
+    background: linear-gradient(to right, #54F1B8, #9069F9);
+    color: black;
+    font-weight: bold;
+}
+
+
+
+.close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #EF4444;
+}
+/* Swiper - Productos */
+.mySwiper-2 {
+    width: 100%;
+    overflow: hidden; /* Evita desbordes */
+    padding: 20px 0;
+    padding: 10px;
+}
+.swiper-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alinea a la izquierda */
+}
+.swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.products-container{
-    max-width: 1400px;
+    width: auto !important;
     margin: 0 auto;
+    position: relative;
 }
-.swiper-button-prev::after{
-    font-size: 25px;
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    width: 80%;
+    padding: 10px;
 }
-.swiper-button-next::after{
-    font-size: 25px;
-}
+
+/* Botones Swiper */
 .swiper-button-prev,
 .swiper-button-next {
-    z-index: 10; /* Los envía detrás del contenido */
-    opacity: 0.5; /* Hace que sean semitransparentes */
-    transition: opacity 0.3s ease-in-out;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
     width: 50px;
     height: 50px;
-    display: flex; /* Asegura que sean visibles */
+    border-radius: 50%;
+    display: flex;
     align-items: center;
     justify-content: center;
+    transition: background 0.3s, opacity 0.3s;
 }
-
+.swiper-button-prev {
+    left: -10px;
+}
+.swiper-button-next {
+    right: -10px;
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    font-size: 20px;
+    color: white;
+}
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
-    opacity: 1; /* Se vuelven visibles cuando pasas el mouse */
+    opacity: 1;
 }
 
-.swiper-button-prev{
-    color: #FEFFFF;
+/* Paginación Swiper */
+.swiper-pagination-bullet {
+    background-color: #9898a1;
+    width: 8px;
+    height: 8px;
+}
+.swiper-pagination-bullet-active {
+    background-color: #6e458a;
 }
 
-.swiper-button-next{
-    color: #FEFFFF;
-}
-.swiper-pagination-bullet{
-    background-color: #9898a1 ;
-}
-.swiper-pagination-bullet-active{
-    background-color: #6e458a ;
-}
-.product img{
-    width: 150px;
-    margin-bottom: 15px;
-}
-.products{
-    padding: 50px 0;
-}
-.product{
+/* Tarjetas de producto */
+.product {
     text-align: center;
-    background-color:#1F2937 ;
-    border-radius: 8px;
-    padding: 20px;
+    background-color: #1F2937;
+    border-radius: 6px;
+    padding: 12px;
+    width: 180px;
+    min-height: 350px;
 }
-.product-txt h3{
-    font-size:18px;
+.product img {
+    width: 100px;
+    margin-bottom: 8px;
+}
+.product-txt h3 {
+    font-size: 14px;
     color: #FEFFFF;
-    margin-bottom: 15px;
-    
+    margin-bottom: 8px;
 }
-.product-txt p{
-    color:#69696c;
+.product-txt p {
+    color: #69696c;
     font-size: 16px;
     margin-bottom: 15px;
 }
-.precio{
-    color: #FEFFFF  important;
-}
-.btn-3{
+.btn-3 {
     display: inline-block;
-    padding: 10px 25px;
-    font-size: 14px;
-    color:#FEFFFF;
-    border: 1px solid #7270ec ;
-    border-radius: 25px;
-    margin-top: 15px;
-
+    padding: 8px 18px;
+    font-size: 12px;
+    color: #FEFFFF;
+    border: 1px solid #7270ec;
+    border-radius: 20px;
+    margin-top: 10px;
 }
-.btn-3:hover{
-    background-color:#7270ec ;
+.btn-3:hover {
+    background-color: #7270ec;
 }

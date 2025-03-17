@@ -70,21 +70,57 @@
         </div>
     </div>
     <div class="content-Purchase">
-        <h1>Purchase</h1>
         <div class="Filtros">
-            <button class="btn-p"><ion-icon name="options-outline"></ion-icon></button>
-          
-            <div class="search-bar_p">
-                <input type="text" placeholder="Search product..." >
-                <ion-icon name="search-outline"></ion-icon>
+            <div class="Filtros-left">
+                <h1>Purchase</h1>
+            </div>
+            
+            <div class="Filtros-right">
+                <button id="openPModal" class="btn-p"><ion-icon name="options-outline"></ion-icon></button>
+                <div class="modal-overlay_p" id="modal">
+                    <div class="modal-content_p">
+                        <button class="close-modal" onclick="closeModal()">✖</button>
+                        <div class="filters">
+                            <div class="filters-container">
+                                
+                                    <button class="filter-btn">Sort by ⌄</button>
+                                    <button class="filter-btn category-btn">Category</button>
+                                    <button class="filter-btn">Date ⌄</button>
+                                    <button class="filter-btn">Amount ⌄</button>
+                                    <button class="filter-btn">Provider ⌄</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <script>
+                    // Obtiene el botón e identifica el modal
+                    const openButton = document.getElementById("openPModal");
+                    const modal = document.getElementById("modal");
+            
+                    // Función para abrir el modal
+                    openButton.addEventListener("click", function () {
+                        modal.style.display = "flex";
+                    });
+            
+                    // Función para cerrar el modal
+                    function closeModal() {
+                        modal.style.display = "none";
+                    }
+                </script>
+                <div class="search-bar_p">
+                    <input type="text" placeholder="Search product...">
+                    <ion-icon name="search-outline"></ion-icon>
+                </div>
             </div>
         </div>
         
+        <h2>Results: " "</h2>
         <section class="products-container" id="lista-2">
-            <h2>Results: " "</h2>
+            
             <div class="swiper mySwiper-2">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slider">
+                    <div class="swiper-slide">
 
                         <div class="product">
                             <img src="../Images/ph1.png" alt="">
@@ -98,7 +134,7 @@
                         </div>
 
                     </div>
-                    <div class="swiper-slider">
+                    <div class="swiper-slide">
 
                         <div class="product">
                             <img src="../Images/ph2.png" alt="">
@@ -112,7 +148,7 @@
                         </div>
 
                     </div>
-                    <div class="swiper-slider">
+                    <div class="swiper-slide">
 
                         <div class="product">
                             <img src="../Images/ph3.png" alt="">
@@ -126,7 +162,7 @@
                         </div>
 
                     </div>
-                    <div class="swiper-slider">
+                    <div class="swiper-slide">
 
                         <div class="product">
                             <img src="../Images/ph4.png" alt="">
@@ -138,8 +174,21 @@
                                 <a href="" class="agregar-carrito btn-3" data-id="4">Add</a>
                             </div>
                         </div>
-
                     </div>
+                    <div class="swiper-slide">
+
+                        <div class="product">
+                            <img src="../Images/ph4.png" alt="">
+                            <div class="product-txt">
+                                <h3>Purchase order</h3>
+                                <p>Category: Ink, Devices, Tapes</p>
+                                <p>Date: May 12, 2024</p>
+                                <p class="precio">$625</p>
+                                <a href="" class="agregar-carrito btn-3" data-id="5">Add</a>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -148,8 +197,8 @@
         
         
     </div>
+    <script src="Modal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-
     <script src="script.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
