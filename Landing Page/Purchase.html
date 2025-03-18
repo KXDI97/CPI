@@ -82,13 +82,65 @@
                         <button class="close-modal" onclick="closeModal()">✖</button>
                         <div class="filters">
                             <div class="filters-container">
-                                
-                                    <button class="filter-btn">Sort by ⌄</button>
-                                    <button class="filter-btn category-btn">Category</button>
-                                    <button class="filter-btn">Date ⌄</button>
-                                    <button class="filter-btn">Amount ⌄</button>
-                                    <button class="filter-btn">Provider ⌄</button>
+                                <div class="dropdown">
+                                    <button class="filter-btn" onclick="toggleDropdown('sortDropdown')">Sort by ⌄</button>
+                                    <div id="sortDropdown" class="dropdown-content">
+                                        <a href="#">Ascending</a>
+                                        <a href="#">Descending</a>
+                                    </div>
+                                </div>
+                        
+                                <div class="dropdown">
+                                    <button class="filter-btn" onclick="toggleDropdown('categoryDropdown')">Category ⌄</button>
+                                    <div id="categoryDropdown" class="dropdown-content">
+                                        <a href="#">Electronics</a>
+                                        <a href="#">Clothing</a>
+                                        <a href="#">Furniture</a>
+                                    </div>
+                                </div>
+                        
+                                <div class="dropdown">
+                                    <button class="filter-btn" onclick="toggleDropdown('dateDropdown')">Date ⌄</button>
+                                    <div id="dateDropdown" class="dropdown-content">
+                                        <a href="#">Newest</a>
+                                        <a href="#">Oldest</a>
+                                    </div>
+                                </div>
+                        
+                                <div class="dropdown">
+                                    <button class="filter-btn" onclick="toggleDropdown('amountDropdown')">Amount ⌄</button>
+                                    <div id="amountDropdown" class="dropdown-content">
+                                        <a href="#">Low to High</a>
+                                        <a href="#">High to Low</a>
+                                    </div>
+                                </div>
+                        
+                                <div class="dropdown">
+                                    <button class="filter-btn" onclick="toggleDropdown('providerDropdown')">Provider ⌄</button>
+                                    <div id="providerDropdown" class="dropdown-content">
+                                        <a href="#">Amazon</a>
+                                        <a href="#">eBay</a>
+                                        <a href="#">AliExpress</a>
+                                    </div>
+                                </div>
                             </div>
+                            <script>
+                                function toggleDropdown(id) {
+                                    document.getElementById(id).classList.toggle("show");
+                                }
+                        
+                                // Cierra el menú si el usuario hace clic fuera de él
+                                window.onclick = function(event) {
+                                    if (!event.target.matches('.filter-btn')) {
+                                        let dropdowns = document.querySelectorAll(".dropdown-content");
+                                        dropdowns.forEach(dropdown => {
+                                            if (dropdown.classList.contains('show')) {
+                                                dropdown.classList.remove('show');
+                                            }
+                                        });
+                                    }
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>

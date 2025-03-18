@@ -784,7 +784,7 @@ input, select {
 .content-Purchase {
     flex: 1;
     padding: 8px;
-    margin-left: 220px; /* Espacio del sidebar */
+    margin-left: 270px; /* Espacio del sidebar */
     margin-right: 180px;
     padding-top: 100px; /* Ajusta para que no lo cubra el header */
     background-color: #121826;
@@ -805,7 +805,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-between; 
-    width: 80%;
+    width: 110%;
     padding: 10px;
     flex-wrap: wrap; /* Permite que los elementos se acomoden si no hay espacio */
 }
@@ -829,16 +829,17 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: flex-end; /* Alinea el contenido a la derecha */
-    width: 220px; /* Ajusta el tamaño */
+    width: 250px; /* Ajusta el tamaño */
     background-color: #1a1a1a;
     border-radius: 8px;
     padding: 8px;
     position: relative;
     margin-left: auto;
 }
+
 .search-bar_p:focus-within {
     border-color: #54F1B8; /* Cambia el borde a dorado cuando está activo */
-    box-shadow: 0 0  9px #54F1B8;
+    box-shadow: 0 0 8px #54F1B8;
 }
 
 .search-bar_p input {
@@ -941,7 +942,7 @@ h1 {
     color: #F2F2F2;
     border: none;
     padding: 10px 15px;
-    border-radius: 20px;
+    border-radius: 15px;
     cursor: pointer;
     font-size: 14px;
     display: flex;
@@ -958,9 +959,6 @@ h1 {
     color: black;
     font-weight: bold;
 }
-
-
-
 .close-btn {
     background: none;
     border: none;
@@ -968,9 +966,39 @@ h1 {
     font-weight: bold;
     color: #EF4444;
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #E4E0E1;
+    min-width: 150px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #493628;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: #D6C0B3;
+}
+
+.show {
+    display: block;
+}
 /* Swiper - Productos */
 .mySwiper-2 {
-    width: 100%;
+    width: 110%;
     overflow: hidden; /* Evita desbordes */
     padding: 20px 0;
     padding: 10px;
@@ -993,7 +1021,7 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
-    width: 80%;
+    width: 110%;
     padding: 10px;
 }
 
@@ -1004,8 +1032,8 @@ h1 {
     top: 50%;
     transform: translateY(-50%);
     z-index: 10;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1020,7 +1048,7 @@ h1 {
 }
 .swiper-button-prev::after,
 .swiper-button-next::after {
-    font-size: 20px;
+    font-size: 30px;
     color: white;
 }
 .swiper-button-prev:hover,
