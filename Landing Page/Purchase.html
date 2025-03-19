@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,251 +8,302 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="container">
         <div class="header">
             <div class="logo">
-            <img src="../Images/Logo - CPI.png" alt="Logo de la página">
-            <span class="logo-text">CPI</span>
-        </div>
-        <div class="user-actions">
-            <div class="user-info">
-                <button class="profile-button">
-                    <ion-icon name="person-outline" class="profile-icon"></ion-icon>
+                <img src="../Images/Logo - CPI.png" alt="Logo de la página">
+                <span class="logo-text">CPI</span>
+            </div>
+            <div class="user-actions">
+                <div class="user-info">
+                    <button class="profile-button">
+                        <ion-icon name="person-outline" class="profile-icon"></ion-icon>
+                    </button>
+                    <span class="username">Bryams Solórzano</span>
+                </div>
+                <div class="notification">
+                    <button class="notification-button">
+                        <ion-icon name="notifications-outline"></ion-icon>
+                        <span class="notification-dot"></span>
+                    </button>
+                </div>
+                <button class="logout-button" onclick="window.location.href='Landing.html'">
+                    <ion-icon name="log-out-outline"></ion-icon>
                 </button>
-                <span class="username">Bryams Solórzano</span>
             </div>
-            <div class="notification">
-                <button class="notification-button">
-                    <ion-icon name="notifications-outline"></ion-icon>
-                    <span class="notification-dot"></span>
+        </div>
+        <div class="sidebar">
+            <div class="nav-buttons">
+                <button>
+                    <ion-icon name="home-outline"></ion-icon> Dashboard
+                </button>
+                <button onclick="window.location.href='Storage.html'">
+                    <ion-icon name="archive-outline"></ion-icon> Storage
+                </button>
+                <button onclick="window.location.href='Purchase.html'">
+                    <ion-icon name="storefront-outline"></ion-icon> Purchases
+                </button>
+                <button>
+                    <ion-icon name="journal-outline"></ion-icon> Savings
+                </button>
+                <button>
+                    <ion-icon name="stats-chart-outline"></ion-icon> Stats
                 </button>
             </div>
-            <button class="logout-button" onclick="window.location.href='Landing.html'">
-                <ion-icon name="log-out-outline"></ion-icon>
-            </button>
-        </div>
-    </div>
-    <div class="sidebar">
-        <div class="nav-buttons">
-            <button>
-                <ion-icon name="home-outline"></ion-icon> Dashboard
-            </button>
-            <button onclick="window.location.href='Storage.html'">
-                <ion-icon name="archive-outline"></ion-icon> Storage
-            </button>
-            <button onclick="window.location.href='Purchase.html'">
-                <ion-icon name="storefront-outline"></ion-icon> Purchases
-            </button>
-            <button>
-                <ion-icon name="journal-outline"></ion-icon> Savings
-            </button>
-            <button>
-                <ion-icon name="stats-chart-outline"></ion-icon> Stats
-            </button>
-        </div>
-        <div class="account-details">
-            <h1>account-details</h1>
-            <button>
-                <ion-icon name="person-outline"></ion-icon> Profile
-            </button>
-            <button onclick="window.location.href='Settings.html'">
-                <ion-icon name="settings-outline"></ion-icon> Settings
-            </button>
-            <button onclick="window.location.href='Landing.html'">
-                <ion-icon name="enter-outline"></ion-icon> Sign out
-            </button>
-        </div>
-        <div class="help-section">
-            <p>Need help?</p>
-            <p>Check out our help</p>
-            <p>center & forums</p>
-            <button>Learn more</button>
-        </div>
-    </div>
-    <div class="content-Purchase">
-        <div class="Filtros">
-            <div class="Filtros-left">
-                <h1>Purchase</h1>
+            <div class="account-details">
+                <h1>account-details</h1>
+                <button>
+                    <ion-icon name="person-outline"></ion-icon> Profile
+                </button>
+                <button onclick="window.location.href='Settings.html'">
+                    <ion-icon name="settings-outline"></ion-icon> Settings
+                </button>
+                <button onclick="window.location.href='Landing.html'">
+                    <ion-icon name="enter-outline"></ion-icon> Sign out
+                </button>
             </div>
-            
-            <div class="Filtros-right">
-                <button id="openPModal" class="btn-p"><ion-icon name="options-outline"></ion-icon></button>
-                <div class="modal-overlay_p" id="modal">
-                    <div class="modal-content_p">
-                        <button class="close-modal" onclick="closeModal()">✖</button>
-                        <div class="filters">
-                            <div class="filters-container">
-                                <div class="dropdown">
-                                    <button class="filter-btn" onclick="toggleDropdown('sortDropdown')">Sort by ⌄</button>
-                                    <div id="sortDropdown" class="dropdown-content">
-                                        <a href="#">Ascending</a>
-                                        <a href="#">Descending</a>
+            <div class="help-section">
+                <p>Need help?</p>
+                <p>Check out our help</p>
+                <p>center & forums</p>
+                <button>Learn more</button>
+            </div>
+        </div>
+        <div class="content-Purchase">
+            <div class="Filtros">
+                <div class="Filtros-left">
+                    <h1>Purchase</h1>
+                </div>
+
+                <div class="Filtros-right">
+                    <button id="openPModal" class="btn-p"><ion-icon name="options-outline"></ion-icon></button>
+                    <div class="modal-overlay_p" id="modal">
+                        <div class="modal-content_p">
+                            <button class="close-modal" onclick="closeModal()">✖</button>
+                            <div class="filters">
+                                <div class="filters-container">
+                                    <div class="dropdown">
+                                        <button id="sortButton" class="filter-btn"
+                                            onclick="toggleDropdown('sortDropdown')">Sort by ⌄</button>
+                                        <div id="sortDropdown" class="dropdown-content">
+                                            <a href="#" onclick="selectOption('sortButton', 'Ascending')">Ascending</a>
+                                            <a href="#"
+                                                onclick="selectOption('sortButton', 'Descending')">Descending</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <button id="categoryButton" class="filter-btn"
+                                            onclick="toggleDropdown('categoryDropdown')">Category ⌄</button>
+                                        <div id="categoryDropdown" class="dropdown-content">
+                                            <a href="#"
+                                                onclick="selectOption('categoryButton', 'Electronics')">Electronics</a>
+                                            <a href="#"
+                                                onclick="selectOption('categoryButton', 'Clothing')">Clothing</a>
+                                            <a href="#"
+                                                onclick="selectOption('categoryButton', 'Furniture')">Furniture</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <button id="dateButton" class="filter-btn"
+                                            onclick="toggleDropdown('dateDropdown')">Date ⌄</button>
+                                        <div id="dateDropdown" class="dropdown-content">
+                                            <a href="#" onclick="selectOption('dateButton', 'Newest')">Newest</a>
+                                            <a href="#" onclick="selectOption('dateButton', 'Oldest')">Oldest</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <button id="amountButton" class="filter-btn"
+                                            onclick="toggleDropdown('amountDropdown')">Amount ⌄</button>
+                                        <div id="amountDropdown" class="dropdown-content">
+                                            <a href="#" onclick="selectOption('amountButton', 'Low to High')">Low to
+                                                High</a>
+                                            <a href="#" onclick="selectOption('amountButton', 'High to Low')">High to
+                                                Low</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown">
+                                        <button id="providerButton" class="filter-btn"
+                                            onclick="toggleDropdown('providerDropdown')">Provider ⌄</button>
+                                        <div id="providerDropdown" class="dropdown-content">
+                                            <a href="#" onclick="selectOption('providerButton', 'Amazon')">Amazon</a>
+                                            <a href="#" onclick="selectOption('providerButton', 'eBay')">eBay</a>
+                                            <a href="#"
+                                                onclick="selectOption('providerButton', 'AliExpress')">AliExpress</a>
+                                        </div>
                                     </div>
                                 </div>
-                        
-                                <div class="dropdown">
-                                    <button class="filter-btn" onclick="toggleDropdown('categoryDropdown')">Category ⌄</button>
-                                    <div id="categoryDropdown" class="dropdown-content">
-                                        <a href="#">Electronics</a>
-                                        <a href="#">Clothing</a>
-                                        <a href="#">Furniture</a>
-                                    </div>
-                                </div>
-                        
-                                <div class="dropdown">
-                                    <button class="filter-btn" onclick="toggleDropdown('dateDropdown')">Date ⌄</button>
-                                    <div id="dateDropdown" class="dropdown-content">
-                                        <a href="#">Newest</a>
-                                        <a href="#">Oldest</a>
-                                    </div>
-                                </div>
-                        
-                                <div class="dropdown">
-                                    <button class="filter-btn" onclick="toggleDropdown('amountDropdown')">Amount ⌄</button>
-                                    <div id="amountDropdown" class="dropdown-content">
-                                        <a href="#">Low to High</a>
-                                        <a href="#">High to Low</a>
-                                    </div>
-                                </div>
-                        
-                                <div class="dropdown">
-                                    <button class="filter-btn" onclick="toggleDropdown('providerDropdown')">Provider ⌄</button>
-                                    <div id="providerDropdown" class="dropdown-content">
-                                        <a href="#">Amazon</a>
-                                        <a href="#">eBay</a>
-                                        <a href="#">AliExpress</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <script>
-                                function toggleDropdown(id) {
-                                    document.getElementById(id).classList.toggle("show");
-                                }
-                        
-                                // Cierra el menú si el usuario hace clic fuera de él
-                                window.onclick = function(event) {
-                                    if (!event.target.matches('.filter-btn')) {
-                                        let dropdowns = document.querySelectorAll(".dropdown-content");
-                                        dropdowns.forEach(dropdown => {
-                                            if (dropdown.classList.contains('show')) {
-                                                dropdown.classList.remove('show');
+                                <script>
+                                    function toggleDropdown(id) {
+                                        let dropdown = document.getElementById(id);
+                                        let modal = document.querySelector(".modal-content_p");
+
+                                        // Cierra otros dropdowns antes de abrir el nuevo
+                                        document.querySelectorAll(".dropdown-content").forEach(menu => {
+                                            if (menu !== dropdown) {
+                                                menu.classList.remove("show");
                                             }
                                         });
+
+                                        // Muestra u oculta el dropdown
+                                        dropdown.classList.toggle("show");
+
+                                        // Ajusta la altura del modal solo si el dropdown se expande
+                                        if (dropdown.classList.contains("show")) {
+                                            let dropdownHeight = dropdown.scrollHeight; // Altura del dropdown
+                                            let modalHeight = modal.scrollHeight; // Altura actual del modal
+                                            modal.style.height = `${modalHeight + dropdownHeight}px`; // Ajusta el tamaño
+                                        } else {
+                                            modal.style.height = ""; // Restablece si se cierra
+                                        }
                                     }
-                                }
-                            </script>
+
+                                    // Actualiza el botón con la opción seleccionada
+                                    function selectOption(buttonId, value) {
+                                        document.getElementById(buttonId).innerHTML = `${value} ⌄`;
+
+                                        // Cierra todos los dropdowns después de seleccionar
+                                        document.querySelectorAll(".dropdown-content").forEach(dropdown => {
+                                            dropdown.classList.remove("show");
+                                        });
+
+                                        // Restablece el tamaño del modal cuando se cierran los dropdowns
+                                        let modal = document.querySelector(".modal-content_p");
+                                        modal.style.height = "";
+                                    }
+
+                                    // Cierra el menú si el usuario hace clic fuera de él
+                                    window.onclick = function (event) {
+                                        if (!event.target.matches('.filter-btn')) {
+                                            document.querySelectorAll(".dropdown-content").forEach(dropdown => {
+                                                dropdown.classList.remove("show");
+                                            });
+
+                                            // Restablece el tamaño del modal cuando se cierran los dropdowns
+                                            let modal = document.querySelector(".modal-content_p");
+                                            modal.style.height = "";
+                                        }
+                                    };
+                                </script>
+                            </div>
                         </div>
                     </div>
+
+
+                    <script>
+                        // Obtiene el botón e identifica el modal
+                        const openButton = document.getElementById("openPModal");
+                        const modal = document.getElementById("modal");
+
+                        // Función para abrir el modal
+                        openButton.addEventListener("click", function () {
+                            modal.style.display = "flex";
+                        });
+
+                        // Función para cerrar el modal
+                        function closeModal() {
+                            modal.style.display = "none";
+                        }
+                    </script>
+
                 </div>
-            
-                <script>
-                    // Obtiene el botón e identifica el modal
-                    const openButton = document.getElementById("openPModal");
-                    const modal = document.getElementById("modal");
-            
-                    // Función para abrir el modal
-                    openButton.addEventListener("click", function () {
-                        modal.style.display = "flex";
-                    });
-            
-                    // Función para cerrar el modal
-                    function closeModal() {
-                        modal.style.display = "none";
-                    }
-                </script>
                 <div class="search-bar_p">
                     <input type="text" placeholder="Search product...">
                     <ion-icon name="search-outline"></ion-icon>
                 </div>
+                <h2>Results: " "</h2>
+                <section class="products-container" id="lista-2">
+
+                    <div class="swiper mySwiper-2">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+
+                                <div class="product">
+                                    <img src="../Images/Cartuchos .avif" alt="">
+                                    <div class="product-txt">
+                                        <h3>Purchase order</h3>
+                                        <p>Category: Ink, Devices, Tapes</p>
+                                        <p>Date: May 12, 2024</p>
+                                        <p class="precio">$625</p>
+                                        <a href="" class="agregar-carrito btn-3" data-id="1">Add</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="swiper-slide">
+
+                                <div class="product">
+                                    <img src="../Images/cartucho2.png" alt="">
+                                    <div class="product-txt">
+                                        <h3>Purchase order</h3>
+                                        <p>Category: Ink, Devices, Tapes</p>
+                                        <p>Date: May 12, 2024</p>
+                                        <p class="precio">$625</p>
+                                        <a href="" class="agregar-carrito btn-3" data-id="2">Add</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="swiper-slide">
+
+                                <div class="product">
+                                    <img src="../Images/Cartuchos .avif" alt="">
+                                    <div class="product-txt">
+                                        <h3>Purchase order</h3>
+                                        <p>Category: Ink, Devices, Tapes</p>
+                                        <p>Date: May 12, 2024</p>
+                                        <p class="precio">$625</p>
+                                        <a href="" class="agregar-carrito btn-3" data-id="3">Add</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="swiper-slide">
+
+                                <div class="product">
+                                    <img src="../Images/cartucho2.png" alt="">
+                                    <div class="product-txt">
+                                        <h3>Purchase order</h3>
+                                        <p>Category: Ink, Devices, Tapes</p>
+                                        <p>Date: May 12, 2024</p>
+                                        <p class="precio">$625</p>
+                                        <a href="" class="agregar-carrito btn-3" data-id="4">Add</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+
+                                <div class="product">
+                                    <img src="../Images/Cartuchos .avif" alt="">
+                                    <div class="product-txt">
+                                        <h3>Purchase order</h3>
+                                        <p>Category: Ink, Devices, Tapes</p>
+                                        <p>Date: May 12, 2024</p>
+                                        <p class="precio">$625</p>
+                                        <a href="" class="agregar-carrito btn-3" data-id="5">Add</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </section>
+            </div>
+            <div class="pagination">
+                <a href="#">«</a> <a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">6</a> <a href="#">»</a>
             </div>
         </div>
-        
-        <h2>Results: " "</h2>
-        <section class="products-container" id="lista-2">
-            
-            <div class="swiper mySwiper-2">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-
-                        <div class="product">
-                            <img src="../Images/ph1.png" alt="">
-                            <div class="product-txt">
-                                <h3>Purchase order</h3>
-                                <p>Category: Ink, Devices, Tapes</p>
-                                <p>Date: May 12, 2024</p>
-                                <p class="precio">$625</p>
-                                <a href="" class="agregar-carrito btn-3" data-id="1">Add</a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="swiper-slide">
-
-                        <div class="product">
-                            <img src="../Images/ph2.png" alt="">
-                            <div class="product-txt">
-                                <h3>Purchase order</h3>
-                                <p>Category: Ink, Devices, Tapes</p>
-                                <p>Date: May 12, 2024</p>
-                                <p class="precio">$625</p>
-                                <a href="" class="agregar-carrito btn-3" data-id="2">Add</a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="swiper-slide">
-
-                        <div class="product">
-                            <img src="../Images/ph3.png" alt="">
-                            <div class="product-txt">
-                                <h3>Purchase order</h3>
-                                <p>Category: Ink, Devices, Tapes</p>
-                                <p>Date: May 12, 2024</p>
-                                <p class="precio">$625</p>
-                                <a href="" class="agregar-carrito btn-3" data-id="3">Add</a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="swiper-slide">
-
-                        <div class="product">
-                            <img src="../Images/ph4.png" alt="">
-                            <div class="product-txt">
-                                <h3>Purchase order</h3>
-                                <p>Category: Ink, Devices, Tapes</p>
-                                <p>Date: May 12, 2024</p>
-                                <p class="precio">$625</p>
-                                <a href="" class="agregar-carrito btn-3" data-id="4">Add</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-
-                        <div class="product">
-                            <img src="../Images/ph4.png" alt="">
-                            <div class="product-txt">
-                                <h3>Purchase order</h3>
-                                <p>Category: Ink, Devices, Tapes</p>
-                                <p>Date: May 12, 2024</p>
-                                <p class="precio">$625</p>
-                                <a href="" class="agregar-carrito btn-3" data-id="5">Add</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-        </section>
-        
-        
-    </div>
-    <script src="Modal.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="Modal.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+        <script src="script.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

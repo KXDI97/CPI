@@ -820,7 +820,7 @@ h1 {
     gap: 12px; 
     flex-wrap: nowrap;
     max-width: 600px; /* Evita que se expanda demasiado */
-    margin-left: 200px; /* Alinea correctamente a la derecha */
+    margin-left: 750px; /* Alinea correctamente a la derecha */
     overflow: hidden; /* Evita que los elementos salgan de la pantalla */
 }
 
@@ -829,12 +829,12 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: flex-end; /* Alinea el contenido a la derecha */
-    width: 250px; /* Ajusta el tamaño */
+    width: 240px; /* Ajusta el tamaño */
     background-color: #1a1a1a;
     border-radius: 8px;
     padding: 8px;
     position: relative;
-    margin-left: auto;
+    
 }
 
 .search-bar_p:focus-within {
@@ -891,14 +891,17 @@ h1 {
 }
 
 /* Estilos del modal */
-.modal-content_p{
+.modal-content_p {
     background: #121826;
     padding: 20px;
     border-radius: 12px;
-    width: 800px;
+    width: 600px;
     text-align: center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    position: relative;
+    position: relative; /* Para que los dropdowns no lo afecten */
+    max-height: 20vh;
+    overflow: visible; /* Permite que los dropdowns se vean */
+    transition: height 0.3s ease-in-out;
 }
 
 /* Botón para cerrar el modal */
@@ -915,11 +918,13 @@ h1 {
 .filters-container {
     background-color: #121826 !important; /* Asegura que el fondo del contenedor sea correcto */
     border-radius: 12px;
-    padding: 10px;
+    padding: 10px 15px; /* Reduce el padding */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: start; /* Alinea los elementos al inicio */
     gap: 10px; /* Espaciado entre los filtros */
+    align-items: center;
+    justify-content: space-between; /* Asegura que todo se distribuya bien */
 }
 .filter-item {
     display: flex;
@@ -971,28 +976,36 @@ h1 {
     position: relative;
     display: inline-block;
 }
+
 .dropdown-content {
     display: none;
-    position: absolute;
-    background-color: #E4E0E1;
+    position: absolute; /* Antes era absolute */
+    top: 100%; /* Coloca el menú debajo del botón */
+    left: 0;
+    background-color: #171717;
     min-width: 150px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    z-index: 1;
+    z-index: 10;
+    overflow: hidden;
 }
 
 .dropdown-content a {
-    color: #493628;
+    color: #F2F2F2;
     padding: 10px;
     text-decoration: none;
     display: block;
     transition: background 0.3s;
 }
 
-.dropdown-content a:hover {
-    background-color: #D6C0B3;
+.dropdown-content a:focus-within  {
+    border-color: #54F1B8; /* Cambia el borde a dorado cuando está activo */
+    box-shadow: 0 0 8px #54F1B8;
 }
 
+
+
+/* Clase para mostrar el menú */
 .show {
     display: block;
 }
@@ -1000,14 +1013,14 @@ h1 {
 .mySwiper-2 {
     width: 110%;
     overflow: hidden; /* Evita desbordes */
-    padding: 20px 0;
-    padding: 10px;
-}
+    max-width: 100vw; /* Asegura que no se pase del viewport */
+    }
 .swiper-wrapper {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Alinea a la izquierda */
+    /*left: 315px;*/ /*infinito*/
 }
+
 .swiper-slide {
     display: flex;
     justify-content: center;
