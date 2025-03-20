@@ -784,7 +784,7 @@ input, select {
 .content-Purchase {
     flex: 1;
     padding: 20px;
-    margin-left: 250px; /* Espacio del sidebar */
+    margin-left: 220px; /* Espacio del sidebar */
     margin-right: 180px;
     padding-top: 100px; /* Ajusta para que no lo cubra el header */
     background-color: #121826;

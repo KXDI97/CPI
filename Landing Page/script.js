@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
    var swiper = new Swiper(".mySwiper-2", {
-    slidesPerView: 3, // Ajusta el número de productos visibles al mismo tiempo
+    slidesPerView: 1, // Ajusta el número de productos visibles al mismo tiempo
     spaceBetween: 20, // Espaciado entre productos
     loop: true, // Hace que el carrusel sea infinito
     loopFillGroupWithBlank: true, // 🔥 Esto evita el hueco
