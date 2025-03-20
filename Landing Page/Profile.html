@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+            <img src="../Images/Logo - CPI.png" alt="Logo de la página">
+            <span class="logo-text">CPI</span>
+        </div>
+        <div class="user-actions">
+            <div class="user-info">
+                <button class="profile-button">
+                    <ion-icon name="person-outline" class="profile-icon"></ion-icon>
+                </button>
+                <span class="username">Bryams Solórzano</span>
+            </div>
+            <div class="notification">
+                <button class="notification-button">
+                    <ion-icon name="notifications-outline"></ion-icon>
+                    <span class="notification-dot"></span>
+                </button>
+            </div>
+            <button class="logout-button" onclick="window.location.href='Landing.html'">
+                <ion-icon name="log-out-outline"></ion-icon>
+            </button>
+        </div>
+    </div>
+    <div class="sidebar">
+        <div class="nav-buttons">
+            <button>
+                <ion-icon name="home-outline"></ion-icon> Dashboard
+            </button>
+            <button onclick="window.location.href='Storage.html'">
+                <ion-icon name="archive-outline"></ion-icon> Storage
+            </button>
+            <button onclick="window.location.href='Purchase.html'">
+                <ion-icon name="storefront-outline"></ion-icon> Purchases
+            </button>
+            <button>
+                <ion-icon name="journal-outline"></ion-icon> Savings
+            </button>
+            <button>
+                <ion-icon name="stats-chart-outline"></ion-icon> Stats
+            </button>
+        </div>
+        <div class="account-details">
+            <h1>account-details</h1>
+            <button onclick="window.location.href='Profile.html'">
+                <ion-icon name="person-outline"></ion-icon> Profile
+            </button>
+            <button onclick="window.location.href='Settings.html'">
+                <ion-icon name="settings-outline"></ion-icon> Settings
+            </button>
+            <button onclick="window.location.href='Landing.html'">
+                <ion-icon name="enter-outline"></ion-icon> Sign out
+            </button>
+        </div>
+        <div class="help-section">
+            <p>Need help?</p>
+            <p>Check out our help</p>
+            <p>center & forums</p>
+            <button>Learn more</button>
+        </div>
+    </div>
+    <div class="profile-wrapper">
+        <main class="profile-main">
+            <div class="profile-header">
+                <h1 class="profile-header-title">Ajustes de Cuenta</h1>
+                <p class="profile-header-description">Administra tus datos personales y preferencias</p>
+            </div>
+
+            <div class="profile-tabs-navigation">
+                <button class="profile-tab-btn">Información Personal</button>
+                <button class="profile-tab-btn">Notificaciones</button>
+                <button class="profile-tab-btn">Seguridad</button>
+                <button class="profile-tab-btn">Facturación</button>
+                <button class="profile-tab-btn">Preferencias</button>
+                <button class="profile-tab-btn">Conexiones API</button>
+            </div>
+
+            <div class="profile-content-box">
+                <h2 class="profile-section-title">Información Personal</h2>
+
+                <div class="profile-avatar-container">
+                    <div class="profile-avatar">JD</div>
+                    <div class="profile-avatar-controls">
+                        <button class="profile-btn profile-btn-primary">Cambiar Imagen</button>
+                        <button class="profile-btn profile-btn-danger">Eliminar</button>
+                    </div>
+                </div>
+
+                <form class="profile-form">
+                    <div class="profile-form-row">
+                        <div class="profile-form-group">
+                            <label class="profile-form-label" for="profile-firstname">Nombre</label>
+                            <input type="text" id="profile-firstname" class="profile-form-control" value="Juan">
+                        </div>
+                        <div class="profile-form-group">
+                            <label class="profile-form-label" for="profile-lastname">Apellido</label>
+                            <input type="text" id="profile-lastname" class="profile-form-control" value="Díaz">
+                        </div>
+                    </div>
+
+                    <div class="profile-form-group">
+                        <label class="profile-form-label" for="profile-email">Correo Electrónico</label>
+                        <input type="email" id="profile-email" class="profile-form-control" value="juan.diaz@ejemplo.com">
+                    </div>
+
+                    <div class="profile-form-group">
+                        <label class="profile-form-label" for="profile-company">Empresa</label>
+                        <input type="text" id="profile-company" class="profile-form-control" value="Exportaciones Globales S.A.">
+                    </div>
+
+                    <div class="profile-form-row">
+                        <div class="profile-form-group">
+                            <label class="profile-form-label" for="profile-phone">Teléfono</label>
+                            <input type="tel" id="profile-phone" class="profile-form-control" value="+123456789">
+                        </div>
+                        <div class="profile-form-group">
+                            <label class="profile-form-label" for="profile-country">País</label>
+                            <input type="text" id="profile-country" class="profile-form-control" value="España">
+                        </div>
+                    </div>
+
+                    <div class="profile-form-group">
+                        <label class="profile-form-label" for="profile-address">Dirección</label>
+                        <input type="text" id="profile-address" class="profile-form-control" value="Calle Comercio 123, Barcelona">
+                    </div>
+
+                    <div class="profile-form-group">
+                        <button type="submit" class="profile-btn profile-btn-success">Guardar Cambios</button>
+                    </div>
+                </form>
+
+                <div class="profile-section-separator"></div>
+
+                <h2 class="profile-section-title">Estadísticas de Exportación</h2>
+                
+                <div class="profile-stats">
+                    <div class="profile-stat-card">
+                        <h3 class="profile-stat-number">42</h3>
+                        <p class="profile-stat-label">Exportaciones Totales</p>
+                    </div>
+                    <div class="profile-stat-card">
+                        <h3 class="profile-stat-number">12</h3>
+                        <p class="profile-stat-label">Países Destino</p>
+                    </div>
+                    <div class="profile-stat-card">
+                        <h3 class="profile-stat-number">€120K</h3>
+                        <p class="profile-stat-label">Volumen Total</p>
+                    </div>
+                </div>
+
+                <div class="profile-section-separator"></div>
+
+                <h2 class="profile-section-title">Notificaciones</h2>
+
+                <div class="profile-notification-setting">
+                    <div class="profile-notification-info">
+                        <h4 class="profile-notification-title">Alertas de Exportación</h4>
+                        <p class="profile-notification-description">Recibe notificaciones sobre el estado de tus envíos</p>
+                    </div>
+                    <label class="profile-toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="profile-slider"></span>
+                    </label>
+                </div>
+
+                <div class="profile-notification-setting">
+                    <div class="profile-notification-info">
+                        <h4 class="profile-notification-title">Actualizaciones de Mercado</h4>
+                        <p class="profile-notification-description">Noticias y tendencias del mercado de exportación</p>
+                    </div>
+                    <label class="profile-toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="profile-slider"></span>
+                    </label>
+                </div>
+
+                <div class="profile-notification-setting">
+                    <div class="profile-notification-info">
+                        <h4 class="profile-notification-title">Boletín Mensual</h4>
+                        <p class="profile-notification-description">Resumen mensual de actividades y estadísticas</p>
+                    </div>
+                    <label class="profile-toggle-switch">
+                        <input type="checkbox">
+                        <span class="profile-slider"></span>
+                    </label>
+                </div>
+
+                <div class="profile-section-separator"></div>
+
+                <h2 class="profile-section-title">Seguridad</h2>
+
+                <div class="profile-security-item">
+                    <div class="profile-security-info">
+                        <h4 class="profile-security-title">Contraseña</h4>
+                        <p class="profile-security-description">Actualizada hace 3 meses</p>
+                    </div>
+                    <button class="profile-btn profile-btn-primary">Cambiar</button>
+                </div>
+
+                <div class="profile-security-item">
+                    <div class="profile-security-info">
+                        <h4 class="profile-security-title">Autenticación de dos factores</h4>
+                        <p class="profile-security-description">Añade una capa extra de seguridad</p>
+                    </div>
+                    <span class="profile-badge profile-badge-success">Activado</span>
+                </div>
+
+                <div class="profile-security-item">
+                    <div class="profile-security-info">
+                        <h4 class="profile-security-title">Sesiones Activas</h4>
+                        <p class="profile-security-description">Dispositivos conectados a tu cuenta</p>
+                    </div>
+                    <button class="profile-btn profile-btn-primary">Ver Detalles</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Popup example (hidden by default, would be shown via JavaScript) -->
+        <div class="profile-popup-overlay" style="display: none;"></div>
+        <div class="profile-popup" style="display: none;">
+            <div class="profile-popup-header">
+                <h3 class="profile-popup-title">Cambiar Contraseña</h3>
+                <button class="profile-popup-close">&times;</button>
+            </div>
+            <form class="profile-form">
+                <div class="profile-form-group">
+                    <label class="profile-form-label" for="profile-current-password">Contraseña Actual</label>
+                    <input type="password" id="profile-current-password" class="profile-form-control">
+                </div>
+                <div class="profile-form-group">
+                    <label class="profile-form-label" for="profile-new-password">Nueva Contraseña</label>
+                    <input type="password" id="profile-new-password" class="profile-form-control">
+                </div>
+                <div class="profile-form-group">
+                    <label class="profile-form-label" for="profile-confirm-password">Confirmar Contraseña</label>
+                    <input type="password" id="profile-confirm-password" class="profile-form-control">
+                </div>
+                <div class="profile-popup-footer">
+                    <button type="button" class="profile-btn profile-btn-danger">Cancelar</button>
+                    <button type="submit" class="profile-btn profile-btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
