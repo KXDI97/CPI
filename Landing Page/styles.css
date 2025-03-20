@@ -783,8 +783,8 @@ input, select {
 /*INICIO DE PURCHASE*/
 .content-Purchase {
     flex: 1;
-    padding: 8px;
-    margin-left: 270px; /* Espacio del sidebar */
+    padding: 20px;
+    margin-left: 250px; /* Espacio del sidebar */
     margin-right: 180px;
     padding-top: 100px; /* Ajusta para que no lo cubra el header */
     background-color: #121826;
@@ -805,7 +805,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-between; 
-    width: 110%;
+    width: 100%;
     padding: 10px;
     flex-wrap: wrap; /* Permite que los elementos se acomoden si no hay espacio */
 }
@@ -820,7 +820,7 @@ h1 {
     gap: 12px; 
     flex-wrap: nowrap;
     max-width: 600px; /* Evita que se expanda demasiado */
-    margin-left: 750px; /* Alinea correctamente a la derecha */
+    margin-left: 650px; /* Alinea correctamente a la derecha */
     overflow: hidden; /* Evita que los elementos salgan de la pantalla */
 }
 
@@ -892,18 +892,27 @@ h1 {
 
 /* Estilos del modal */
 .modal-content_p {
-    background: #121826;
+    background: linear-gradient(45deg,#121826, #1F2937, #171717, #384152, #2d2d2d);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s infinite linear;;
     padding: 20px;
     border-radius: 12px;
-    width: 600px;
+    width: 690px;
+    height: 700px;
     text-align: center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     position: relative; /* Para que los dropdowns no lo afecten */
+    top: -160px;
+    left: 95px;
     max-height: 20vh;
     overflow: visible; /* Permite que los dropdowns se vean */
     transition: height 0.3s ease-in-out;
 }
-
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 /* Botón para cerrar el modal */
 .close-modal {
     position: absolute;
@@ -916,13 +925,12 @@ h1 {
     border: none;
 }
 .filters-container {
-    background-color: #121826 !important; /* Asegura que el fondo del contenedor sea correcto */
+    background-color: #12182600 !important; /* Asegura que el fondo del contenedor sea correcto */
     border-radius: 12px;
     padding: 10px 15px; /* Reduce el padding */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: start; /* Alinea los elementos al inicio */
-    gap: 10px; /* Espaciado entre los filtros */
+    gap: 30px; /* Espaciado entre los filtros */
     align-items: center;
     justify-content: space-between; /* Asegura que todo se distribuya bien */
 }
@@ -938,12 +946,12 @@ h1 {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    background-color: #121826;
+    background-color: #12182600;
    
 }
 
 .filter-btn {
-    background-color: #171717;
+    background-color: #384152;
     color: #F2F2F2;
     border: none;
     padding: 10px 15px;
@@ -956,7 +964,7 @@ h1 {
 }
 
 .filter-btn:hover {
-    background-color: #384152;
+    background-color: #171717;
 }
 
 .category-btn {
@@ -1011,14 +1019,16 @@ h1 {
 }
 /* Swiper - Productos */
 .mySwiper-2 {
-    width: 110%;
+    width: 100%;
     overflow: hidden; /* Evita desbordes */
-    max-width: 100vw; /* Asegura que no se pase del viewport */
-    }
+    overflow: visible !important; /* Asegura que las flechas sean visibles */
+ 
+}
 .swiper-wrapper {
     display: flex;
     align-items: center;
-    /*left: 315px;*/ /*infinito*/
+    left: 310px;
+    
 }
 
 .swiper-slide {
@@ -1034,7 +1044,7 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
-    width: 110%;
+    width: 100%;
     padding: 10px;
 }
 
@@ -1042,22 +1052,21 @@ h1 {
 .swiper-button-prev,
 .swiper-button-next {
     position: absolute;
-    top: 50%;
+    top: 50%; 
     transform: translateY(-50%);
     z-index: 10;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background 0.3s, opacity 0.3s;
 }
 .swiper-button-prev {
-    left: -10px;
+    left: -20px;
 }
 .swiper-button-next {
-    right: -10px;
+    right: -40px;
 }
 .swiper-button-prev::after,
 .swiper-button-next::after {
@@ -1090,6 +1099,8 @@ h1 {
 }
 .product img {
     width: 100px;
+    height: auto; /* Mantiene la proporción */
+    max-height: 100px;
     margin-bottom: 8px;
 }
 .product-txt h3 {

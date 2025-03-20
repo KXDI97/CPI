@@ -78,6 +78,7 @@
                 </div>
 
                 <div class="Filtros-right">
+                    <div id="modalBackdrop" class="backdrop hidden"></div>
                     <button id="openPModal" class="btn-p"><ion-icon name="options-outline"></ion-icon></button>
                     <div class="modal-overlay_p" id="modal">
                         <div class="modal-content_p">
@@ -153,14 +154,7 @@
                                         // Muestra u oculta el dropdown
                                         dropdown.classList.toggle("show");
 
-                                        // Ajusta la altura del modal solo si el dropdown se expande
-                                        if (dropdown.classList.contains("show")) {
-                                            let dropdownHeight = dropdown.scrollHeight; // Altura del dropdown
-                                            let modalHeight = modal.scrollHeight; // Altura actual del modal
-                                            modal.style.height = `${modalHeight + dropdownHeight}px`; // Ajusta el tamaño
-                                        } else {
-                                            modal.style.height = ""; // Restablece si se cierra
-                                        }
+                                   
                                     }
 
                                     // Actualiza el botón con la opción seleccionada
@@ -194,7 +188,6 @@
                         </div>
                     </div>
 
-
                     <script>
                         // Obtiene el botón e identifica el modal
                         const openButton = document.getElementById("openPModal");
@@ -216,90 +209,89 @@
                     <input type="text" placeholder="Search product...">
                     <ion-icon name="search-outline"></ion-icon>
                 </div>
-                <h2>Results: " "</h2>
-                <section class="products-container" id="lista-2">
+            </div>
+            <h2>Results: " "</h2>
+            <section class="products-container" id="lista-2">
 
-                    <div class="swiper mySwiper-2">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
+                <div class="swiper mySwiper-2">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
 
-                                <div class="product">
-                                    <img src="../Images/Cartuchos .avif" alt="">
-                                    <div class="product-txt">
-                                        <h3>Purchase order</h3>
-                                        <p>Category: Ink, Devices, Tapes</p>
-                                        <p>Date: May 12, 2024</p>
-                                        <p class="precio">$625</p>
-                                        <a href="" class="agregar-carrito btn-3" data-id="1">Add</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <div class="product">
-                                    <img src="../Images/cartucho2.png" alt="">
-                                    <div class="product-txt">
-                                        <h3>Purchase order</h3>
-                                        <p>Category: Ink, Devices, Tapes</p>
-                                        <p>Date: May 12, 2024</p>
-                                        <p class="precio">$625</p>
-                                        <a href="" class="agregar-carrito btn-3" data-id="2">Add</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <div class="product">
-                                    <img src="../Images/Cartuchos .avif" alt="">
-                                    <div class="product-txt">
-                                        <h3>Purchase order</h3>
-                                        <p>Category: Ink, Devices, Tapes</p>
-                                        <p>Date: May 12, 2024</p>
-                                        <p class="precio">$625</p>
-                                        <a href="" class="agregar-carrito btn-3" data-id="3">Add</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <div class="product">
-                                    <img src="../Images/cartucho2.png" alt="">
-                                    <div class="product-txt">
-                                        <h3>Purchase order</h3>
-                                        <p>Category: Ink, Devices, Tapes</p>
-                                        <p>Date: May 12, 2024</p>
-                                        <p class="precio">$625</p>
-                                        <a href="" class="agregar-carrito btn-3" data-id="4">Add</a>
-                                    </div>
+                            <div class="product">
+                                <img src="../Images/Cartuchos .avif" alt="">
+                                <div class="product-txt">
+                                    <h3>Purchase order</h3>
+                                    <p>Category: Ink, Devices, Tapes</p>
+                                    <p>Date: May 12, 2024</p>
+                                    <p class="precio">$625</p>
+                                    <a href="" class="agregar-carrito btn-3" data-id="1">Add</a>
                                 </div>
                             </div>
-                            <div class="swiper-slide">
-
-                                <div class="product">
-                                    <img src="../Images/Cartuchos .avif" alt="">
-                                    <div class="product-txt">
-                                        <h3>Purchase order</h3>
-                                        <p>Category: Ink, Devices, Tapes</p>
-                                        <p>Date: May 12, 2024</p>
-                                        <p class="precio">$625</p>
-                                        <a href="" class="agregar-carrito btn-3" data-id="5">Add</a>
-                                    </div>
-                                </div>
-                            </div>
-
 
                         </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-slide">
+
+                            <div class="product">
+                                <img src="../Images/cartucho2.png" alt="">
+                                <div class="product-txt">
+                                    <h3>Purchase order</h3>
+                                    <p>Category: Ink, Devices, Tapes</p>
+                                    <p>Date: May 12, 2024</p>
+                                    <p class="precio">$625</p>
+                                    <a href="" class="agregar-carrito btn-3" data-id="2">Add</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="swiper-slide">
+
+                            <div class="product">
+                                <img src="../Images/Cartuchos .avif" alt="">
+                                <div class="product-txt">
+                                    <h3>Purchase order</h3>
+                                    <p>Category: Ink, Devices, Tapes</p>
+                                    <p>Date: May 12, 2024</p>
+                                    <p class="precio">$625</p>
+                                    <a href="" class="agregar-carrito btn-3" data-id="3">Add</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="swiper-slide">
+
+                            <div class="product">
+                                <img src="../Images/cartucho2.png" alt="">
+                                <div class="product-txt">
+                                    <h3>Purchase order</h3>
+                                    <p>Category: Ink, Devices, Tapes</p>
+                                    <p>Date: May 12, 2024</p>
+                                    <p class="precio">$625</p>
+                                    <a href="" class="agregar-carrito btn-3" data-id="4">Add</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+
+                            <div class="product">
+                                <img src="../Images/Cartuchos .avif" alt="">
+                                <div class="product-txt">
+                                    <h3>Purchase order</h3>
+                                    <p>Category: Ink, Devices, Tapes</p>
+                                    <p>Date: May 12, 2024</p>
+                                    <p class="precio">$625</p>
+                                    <a href="" class="agregar-carrito btn-3" data-id="5">Add</a>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
-                </section>
-            </div>
-            <div class="pagination">
-                <a href="#">«</a> <a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">6</a> <a href="#">»</a>
-            </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </section>
+
+
         </div>
         <script src="Modal.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
