@@ -9,53 +9,95 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
-<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
-    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
-        <div class="text-center mb-6">
-            <div class="flex items-center justify-center space-x-3">
-                <img src="../Images/Logo - CPI.png" alt="CPI Logo" class="w-12">
-                <span class="text-2xl font-bold">CPI</span>
-            </div>
-            <h2 class="text-2xl font-bold mt-2">Create an Account</h2>
-            <p class="text-gray-400 text-sm">Sign up to get started</p>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen px-4">
+    <div class="bg-gray-800 shadow-lg rounded-lg flex flex-col sm:flex-row max-w-4xl w-full mx-auto h-auto">
+
+        <div class="hidden sm:block sm:w-1/2 bg-cover bg-center rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none"
+            style="background-image: url('../Images/Login-Test.jpeg');">
+            <div class="h-full flex flex-col justify-end p-6 bg-black bg-opacity-20 text-white rounded-l-lg"></div>
         </div>
 
-        <form action="#" method="POST">
-            <div class="mb-4">
-                <label for="fullName" class="block text-sm font-semibold mb-1">Full Name</label>
-                <input type="text" id="fullName" name="fullName" required
-                    class="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#9069F9]">
+        <div class="w-full sm:w-1/2 p-6 sm:p-12 flex flex-col justify-center">
+            <div class="text-center mb-6">
+                <div class="flex items-center justify-center space-x-3">
+                    <img src="../Images/Logo - CPI.png" alt="CPI Logo" class="w-12">
+                    <span class="text-2xl font-bold">CPI</span>
+                </div>
+                <h2 class="text-2xl font-bold mt-2">Create an Account</h2>
+                <p class="text-gray-400 text-sm">Sign up to get started</p>
             </div>
 
-            <div class="mb-4">
-                <label for="email" class="block text-sm font-semibold mb-1">Email Address</label>
-                <input type="email" id="email" name="email" required
-                    class="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#9069F9]">
-            </div>
+            <form action="#" method="POST">
+                <div class="mb-4 relative">
+                    <label for="fullName" class="block text-sm font-semibold mb-1">Full Name</label>
+                    <div class="relative">
+                        <input type="text" id="fullName" name="fullName" required
+                            class="w-full px-10 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#54F1B7]">
+                        <i class="fas fa-user absolute left-3 top-3 text-[#54F1B7] text-sm"></i>
+                    </div>
+                </div>
 
-            <div class="mb-4">
-                <label for="password" class="block text-sm font-semibold mb-1">Password</label>
-                <input type="password" id="password" name="password" required
-                    class="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#54F1B7]">
-            </div>
+                <div class="mb-4 relative">
+                    <label for="email" class="block text-sm font-semibold mb-1">Email Address</label>
+                    <div class="relative">
+                        <input type="email" id="email" name="email" required
+                            class="w-full px-10 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#54F1B7]">
+                        <i class="fas fa-envelope absolute left-3 top-3 text-[#54F1B7] text-sm"></i>
+                    </div>
+                </div>
 
-            <div class="mb-4">
-                <label for="confirmPassword" class="block text-sm font-semibold mb-1">Confirm Password</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required
-                    class="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#54F1B7]">
-            </div>
+                <div class="mb-4 relative">
+                    <label for="password" class="block text-sm font-semibold mb-1">Password</label>
+                    <div class="relative">
+                        <input type="password" id="password" name="password" required
+                            class="w-full px-10 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#54F1B7]">
+                        <i class="fas fa-lock absolute left-3 top-3 text-[#54F1B7] text-sm"></i>
+                    </div>
+                </div>
 
-            <button type="submit"
-                class="w-full bg-gradient-to-b from-[#9069F9] to-[#54F1B7] opacity-90 hover:opacity-100 py-2 rounded-md transition-all duration-300 font-bold">
-                Sign Up
-            </button>
-        </form>
+                <div class="mb-4 relative">
+                    <label for="confirmPassword" class="block text-sm font-semibold mb-1">Confirm Password</label>
+                    <div class="relative">
+                        <input type="password" id="confirmPassword" name="confirmPassword" required
+                            class="w-full px-10 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#54F1B7]">
+                        <i class="fas fa-lock absolute left-3 top-3 text-[#54F1B7] text-sm"></i>
+                    </div>
+                </div>
 
-        <p class="text-center text-sm text-gray-400 mt-4">
-            Already have an account? <a href="login.html" class="text-[#9069F9] hover:underline">Log in</a>
-        </p>
+                <button type="submit"
+                    class="w-full bg-gradient-to-b from-[#9069F9] to-[#54F1B7] opacity-90 hover:opacity-100 py-2 rounded-md transition-all duration-300 font-bold">
+                    Sign Up
+                </button>
+
+                <div class="flex items-center my-4">
+                    <hr class="flex-grow border-gray-600">
+                    <span class="text-gray-400 px-2">or</span>
+                    <hr class="flex-grow border-gray-600">
+                </div>
+
+                <div class="mt-4 flex items-center justify-center">
+                    <button id="google-signup"
+                        class="flex items-center justify-center w-full bg-gray-600 text-white py-2 px-4 rounded-md shadow-md hover:bg-gray-100 hover:text-black transition">
+                        <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google Logo"
+                            class="w-5 h-5 mr-3">
+                        <span class="text-sm font-semibold">Sign up with Google</span>
+                    </button>
+                </div>
+
+                <script>
+                    document.getElementById('google-signup').addEventListener('click', function () {
+                        google.accounts.id.prompt();
+                    });
+                </script>
+            </form>
+
+            <p class="text-center text-sm text-gray-400 mt-4">
+                Already have an account? <a href="login.html" class="text-[#9069F9] hover:underline">Log in</a>
+            </p>
+        </div>
     </div>
 </body>
 
