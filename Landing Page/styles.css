@@ -784,9 +784,9 @@ input, select {
 .content-Purchase {
     flex: 1;
     padding: 20px;
-    margin-left: 220px; /* Espacio del sidebar */
+    margin-left: 220px; 
     margin-right: 180px;
-    padding-top: 100px; /* Ajusta para que no lo cubra el header */
+    padding-top: 100px;
     background-color: #121826;
 }
 
@@ -807,7 +807,7 @@ h1 {
     justify-content: space-between; 
     width: 100%;
     padding: 10px;
-    flex-wrap: wrap; /* Permite que los elementos se acomoden si no hay espacio */
+    flex-wrap: wrap; 
 }
 .Filtros-left h1 {
     font-size: 40px;
@@ -819,17 +819,17 @@ h1 {
     justify-content: flex-start; 
     gap: 12px; 
     flex-wrap: nowrap;
-    max-width: 600px; /* Evita que se expanda demasiado */
-    margin-left: 650px; /* Alinea correctamente a la derecha */
-    overflow: hidden; /* Evita que los elementos salgan de la pantalla */
+    max-width: 600px; 
+    margin-left: 650px; 
+    overflow: hidden;
 }
 
 /* Barra de búsqueda */
 .search-bar_p {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Alinea el contenido a la derecha */
-    width: 240px; /* Ajusta el tamaño */
+    justify-content: flex-end; 
+    width: 240px; 
     background-color: #1a1a1a;
     border-radius: 8px;
     padding: 8px;
@@ -838,7 +838,7 @@ h1 {
 }
 
 .search-bar_p:focus-within {
-    border-color: #54F1B8; /* Cambia el borde a dorado cuando está activo */
+    border-color: #54F1B8; 
     box-shadow: 0 0 8px #54F1B8;
 }
 
@@ -883,13 +883,12 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Oscurece el fondo */
+    background: rgba(0, 0, 0, 0.6); 
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
-
 /* Estilos del modal */
 .modal-content_p {
     background: linear-gradient(45deg,#121826, #1F2937, #171717, #384152, #2d2d2d);
@@ -901,11 +900,11 @@ h1 {
     height: 700px;
     text-align: center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    position: relative; /* Para que los dropdowns no lo afecten */
+    position: relative; 
     top: -160px;
     left: 95px;
     max-height: 20vh;
-    overflow: visible; /* Permite que los dropdowns se vean */
+    overflow: visible; 
     transition: height 0.3s ease-in-out;
 }
 @keyframes gradientAnimation {
@@ -925,14 +924,14 @@ h1 {
     border: none;
 }
 .filters-container {
-    background-color: #12182600 !important; /* Asegura que el fondo del contenedor sea correcto */
+    background-color: #12182600 !important; 
     border-radius: 12px;
-    padding: 10px 15px; /* Reduce el padding */
+    padding: 10px 15px; 
     display: flex;
-    justify-content: start; /* Alinea los elementos al inicio */
-    gap: 30px; /* Espaciado entre los filtros */
+    justify-content: start; 
+    gap: 30px; 
     align-items: center;
-    justify-content: space-between; /* Asegura que todo se distribuya bien */
+    justify-content: space-between; 
 }
 .filter-item {
     display: flex;
@@ -987,8 +986,8 @@ h1 {
 
 .dropdown-content {
     display: none;
-    position: absolute; /* Antes era absolute */
-    top: 100%; /* Coloca el menú debajo del botón */
+    position: absolute; 
+    top: 100%; 
     left: 0;
     background-color: #171717;
     min-width: 150px;
@@ -1007,11 +1006,9 @@ h1 {
 }
 
 .dropdown-content a:focus-within  {
-    border-color: #54F1B8; /* Cambia el borde a dorado cuando está activo */
+    border-color: #54F1B8; 
     box-shadow: 0 0 8px #54F1B8;
 }
-
-
 
 /* Clase para mostrar el menú */
 .show {
@@ -1020,15 +1017,15 @@ h1 {
 /* Swiper - Productos */
 .mySwiper-2 {
     width: 100%;
-    overflow: hidden; /* Evita desbordes */
-    overflow: visible !important; /* Asegura que las flechas sean visibles */
+    overflow: hidden; 
+    overflow: visible !important; 
  
 }
 .swiper-wrapper {
     display: flex;
     align-items: center;
     left: 310px;
-    overflow: hidden; /* Evita desbordes */
+    overflow: hidden; 
 }
 
 .swiper-slide {
@@ -1099,7 +1096,7 @@ h1 {
 }
 .product img {
     width: 100px;
-    height: auto; /* Mantiene la proporción */
+    height: auto; 
     max-height: 100px;
     margin-bottom: 8px;
 }
