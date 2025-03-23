@@ -71,155 +71,289 @@
     <div class="profile-wrapper">
         <main class="profile-main">
             <div class="profile-header">
-                <h1 class="profile-header-title">Ajustes de Cuenta</h1>
-                <p class="profile-header-description">Administra tus datos personales y preferencias</p>
+                <h1 class="profile-header-title">Account Settings</h1>
+                <p class="profile-header-description">Manage your personal data and preferences</p>
             </div>
 
             <div class="profile-tabs-navigation">
-                <button class="profile-tab-btn">Información Personal</button>
-                <button class="profile-tab-btn">Notificaciones</button>
-                <button class="profile-tab-btn">Seguridad</button>
-                <button class="profile-tab-btn">Facturación</button>
-                <button class="profile-tab-btn">Preferencias</button>
-                <button class="profile-tab-btn">Conexiones API</button>
+                <button class="profile-tab-btn active">Personal Information</button>
+                <button class="profile-tab-btn">Billing</button>
+                <button class="profile-tab-btn">Preferences</button>
+                <button class="profile-tab-btn">API Connections</button>
             </div>
 
             <div class="profile-content-box">
-                <h2 class="profile-section-title">Información Personal</h2>
+                <h2 class="profile-section-title">Personal Information</h2>
 
                 <div class="profile-avatar-container">
                     <div class="profile-avatar">JD</div>
                     <div class="profile-avatar-controls">
-                        <button class="profile-btn profile-btn-primary">Cambiar Imagen</button>
-                        <button class="profile-btn profile-btn-danger">Eliminar</button>
+                        <button class="profile-btn profile-btn-primary">Change Image</button>
+                        <button class="profile-btn profile-btn-danger">Delete</button>
                     </div>
                 </div>
 
                 <form class="profile-form">
                     <div class="profile-form-row">
                         <div class="profile-form-group">
-                            <label class="profile-form-label" for="profile-firstname">Nombre</label>
-                            <input type="text" id="profile-firstname" class="profile-form-control" value="Juan">
+                            <label class="profile-form-label" for="profile-firstname">First Name</label>
+                            <input type="text" id="profile-firstname" class="profile-form-control" value="John">
                         </div>
                         <div class="profile-form-group">
-                            <label class="profile-form-label" for="profile-lastname">Apellido</label>
-                            <input type="text" id="profile-lastname" class="profile-form-control" value="Díaz">
+                            <label class="profile-form-label" for="profile-lastname">Last Name</label>
+                            <input type="text" id="profile-lastname" class="profile-form-control" value="Diaz">
                         </div>
                     </div>
 
                     <div class="profile-form-group">
-                        <label class="profile-form-label" for="profile-email">Correo Electrónico</label>
-                        <input type="email" id="profile-email" class="profile-form-control" value="juan.diaz@ejemplo.com">
+                        <label class="profile-form-label" for="profile-email">Email</label>
+                        <input type="email" id="profile-email" class="profile-form-control" value="john.diaz@example.com">
                     </div>
 
                     <div class="profile-form-group">
-                        <label class="profile-form-label" for="profile-company">Empresa</label>
-                        <input type="text" id="profile-company" class="profile-form-control" value="Exportaciones Globales S.A.">
+                        <label class="profile-form-label" for="profile-company">Company</label>
+                        <input type="text" id="profile-company" class="profile-form-control" value="Global Exports Inc.">
                     </div>
 
                     <div class="profile-form-row">
                         <div class="profile-form-group">
-                            <label class="profile-form-label" for="profile-phone">Teléfono</label>
+                            <label class="profile-form-label" for="profile-phone">Phone</label>
                             <input type="tel" id="profile-phone" class="profile-form-control" value="+123456789">
                         </div>
                         <div class="profile-form-group">
-                            <label class="profile-form-label" for="profile-country">País</label>
-                            <input type="text" id="profile-country" class="profile-form-control" value="España">
+                            <label class="profile-form-label" for="profile-country">Country</label>
+                            <input type="text" id="profile-country" class="profile-form-control" value="Spain">
                         </div>
                     </div>
 
                     <div class="profile-form-group">
-                        <label class="profile-form-label" for="profile-address">Dirección</label>
-                        <input type="text" id="profile-address" class="profile-form-control" value="Calle Comercio 123, Barcelona">
+                        <label class="profile-form-label" for="profile-address">Address</label>
+                        <input type="text" id="profile-address" class="profile-form-control" value="123 Commerce Street, Barcelona">
                     </div>
 
                     <div class="profile-form-group">
-                        <button type="submit" class="profile-btn profile-btn-success">Guardar Cambios</button>
+                        <button type="submit" class="profile-btn profile-btn-success">Save Changes</button>
                     </div>
                 </form>
 
                 <div class="profile-section-separator"></div>
 
-                <h2 class="profile-section-title">Estadísticas de Exportación</h2>
+                <h2 class="profile-section-title">Export Statistics</h2>
                 
                 <div class="profile-stats">
                     <div class="profile-stat-card">
                         <h3 class="profile-stat-number">42</h3>
-                        <p class="profile-stat-label">Exportaciones Totales</p>
+                        <p class="profile-stat-label">Total Exports</p>
                     </div>
                     <div class="profile-stat-card">
                         <h3 class="profile-stat-number">12</h3>
-                        <p class="profile-stat-label">Países Destino</p>
+                        <p class="profile-stat-label">Destination Countries</p>
                     </div>
                     <div class="profile-stat-card">
                         <h3 class="profile-stat-number">€120K</h3>
-                        <p class="profile-stat-label">Volumen Total</p>
+                        <p class="profile-stat-label">Total Volume</p>
                     </div>
                 </div>
 
                 <div class="profile-section-separator"></div>
 
-                <h2 class="profile-section-title">Notificaciones</h2>
-
-                <div class="profile-notification-setting">
-                    <div class="profile-notification-info">
-                        <h4 class="profile-notification-title">Alertas de Exportación</h4>
-                        <p class="profile-notification-description">Recibe notificaciones sobre el estado de tus envíos</p>
+                <h2 class="profile-section-title">Billing</h2>
+                
+                <div class="profile-billing-card">
+                    <div class="profile-billing-header">
+                        <h3>Current Plan</h3>
+                        <span class="profile-badge profile-badge-success">Premium</span>
                     </div>
-                    <label class="profile-toggle-switch">
-                        <input type="checkbox" checked>
-                        <span class="profile-slider"></span>
-                    </label>
+                    <p>Billing cycle: Monthly</p>
+                    <p>Next invoice: 04/15/2025</p>
+                    <p>Amount: €99.00/month</p>
+                    
+                    <div style="margin-top: 1rem;">
+                        <h4 style="margin-bottom: 0.5rem;">Features included:</h4>
+                        <div class="profile-plan-feature">
+                            <span>✓</span>
+                            <span>Unlimited exports</span>
+                        </div>
+                        <div class="profile-plan-feature">
+                            <span>✓</span>
+                            <span>Access to all markets</span>
+                        </div>
+                        <div class="profile-plan-feature">
+                            <span>✓</span>
+                            <span>Priority support</span>
+                        </div>
+                        <div class="profile-plan-feature">
+                            <span>✓</span>
+                            <span>Advanced reports</span>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                        <button class="profile-btn profile-btn-primary">Change Plan</button>
+                        <button class="profile-btn profile-btn-danger">Cancel Subscription</button>
+                    </div>
                 </div>
-
-                <div class="profile-notification-setting">
-                    <div class="profile-notification-info">
-                        <h4 class="profile-notification-title">Actualizaciones de Mercado</h4>
-                        <p class="profile-notification-description">Noticias y tendencias del mercado de exportación</p>
+                
+                <h3 style="margin: 1.5rem 0 1rem 0;">Payment Method</h3>
+                <div class="profile-billing-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <p><strong>Visa</strong> ending in 4589</p>
+                            <p>Expires: 09/2026</p>
+                        </div>
+                        <button class="profile-btn profile-btn-primary">Edit</button>
                     </div>
-                    <label class="profile-toggle-switch">
-                        <input type="checkbox" checked>
-                        <span class="profile-slider"></span>
-                    </label>
                 </div>
-
-                <div class="profile-notification-setting">
-                    <div class="profile-notification-info">
-                        <h4 class="profile-notification-title">Boletín Mensual</h4>
-                        <p class="profile-notification-description">Resumen mensual de actividades y estadísticas</p>
-                    </div>
-                    <label class="profile-toggle-switch">
-                        <input type="checkbox">
-                        <span class="profile-slider"></span>
-                    </label>
+                
+                <h3 style="margin: 1.5rem 0 1rem 0;">Invoice History</h3>
+                <div class="profile-billing-card">
+                    <ul class="profile-invoice-list">
+                        <li class="profile-invoice-item">
+                            <div>
+                                <p><strong>Invoice #INV-2025-03</strong></p>
+                                <p>03/15/2025</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <p>€99.00</p>
+                                <button class="profile-btn profile-btn-primary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">Download</button>
+                            </div>
+                        </li>
+                        <li class="profile-invoice-item">
+                            <div>
+                                <p><strong>Invoice #INV-2025-02</strong></p>
+                                <p>02/15/2025</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <p>€99.00</p>
+                                <button class="profile-btn profile-btn-primary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">Download</button>
+                            </div>
+                        </li>
+                        <li class="profile-invoice-item">
+                            <div>
+                                <p><strong>Invoice #INV-2025-01</strong></p>
+                                <p>01/15/2025</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <p>€99.00</p>
+                                <button class="profile-btn profile-btn-primary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">Download</button>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="profile-section-separator"></div>
 
-                <h2 class="profile-section-title">Seguridad</h2>
-
-                <div class="profile-security-item">
-                    <div class="profile-security-info">
-                        <h4 class="profile-security-title">Contraseña</h4>
-                        <p class="profile-security-description">Actualizada hace 3 meses</p>
+                <h2 class="profile-section-title">Preferences</h2>
+                
+                <h3 style="margin-bottom: 1rem;">Language and Region</h3>
+                <div class="profile-form-row">
+                    <div class="profile-form-group">
+                        <label class="profile-form-label" for="profile-language">Language</label>
+                        <select id="profile-language" class="profile-form-control">
+                            <option value="es">Español</option>
+                            <option value="en" selected>English</option>
+                            <option value="fr">Français</option>
+                            <option value="de">Deutsch</option>
+                        </select>
                     </div>
-                    <button class="profile-btn profile-btn-primary">Cambiar</button>
+                    <div class="profile-form-group">
+                        <label class="profile-form-label" for="profile-timezone">Time Zone</label>
+                        <select id="profile-timezone" class="profile-form-control">
+                            <option value="europe-madrid">(GMT+1) Madrid</option>
+                            <option value="europe-london" selected>(GMT+0) London</option>
+                            <option value="america-new_york">(GMT-5) New York</option>
+                            <option value="america-los_angeles">(GMT-8) Los Angeles</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <h3 style="margin: 1rem 0;">Format</h3>
+                <div class="profile-form-row">
+                    <div class="profile-form-group">
+                        <label class="profile-form-label" for="profile-date-format">Date Format</label>
+                        <select id="profile-date-format" class="profile-form-control">
+                            <option value="dd-mm-yyyy">DD/MM/YYYY</option>
+                            <option value="mm-dd-yyyy" selected>MM/DD/YYYY</option>
+                            <option value="yyyy-mm-dd">YYYY/MM/DD</option>
+                        </select>
+                    </div>
+                    <div class="profile-form-group">
+                        <label class="profile-form-label" for="profile-currency">Default Currency</label>
+                        <select id="profile-currency" class="profile-form-control">
+                            <option value="eur" selected>Euro (€)</option>
+                            <option value="usd">US Dollar ($)</option>
+                            <option value="gbp">British Pound (£)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <h3 style="margin: 1rem 0;">View</h3>
+                <div class="profile-form-group">
+                    <label class="profile-form-label" for="profile-theme">Theme</label>
+                    <select id="profile-theme" class="profile-form-control">
+                        <option value="dark" selected>Dark</option>
+                        <option value="light">Light</option>
+                        <option value="system">System</option>
+                    </select>
+                </div>
+                
+                <div class="profile-form-group">
+                    <button type="submit" class="profile-btn profile-btn-success">Save Preferences</button>
                 </div>
 
-                <div class="profile-security-item">
-                    <div class="profile-security-info">
-                        <h4 class="profile-security-title">Autenticación de dos factores</h4>
-                        <p class="profile-security-description">Añade una capa extra de seguridad</p>
-                    </div>
-                    <span class="profile-badge profile-badge-success">Activado</span>
-                </div>
+                <div class="profile-section-separator"></div>
 
-                <div class="profile-security-item">
-                    <div class="profile-security-info">
-                        <h4 class="profile-security-title">Sesiones Activas</h4>
-                        <p class="profile-security-description">Dispositivos conectados a tu cuenta</p>
+                <h2 class="profile-section-title">API Connections</h2>
+                
+                <h3 style="margin-bottom: 1rem;">API Key</h3>
+                <div class="profile-api-key">
+                    <span class="profile-api-key-value">eX4mP1e_4p1_k3Y_12345678abcdefghijklmnopqrstuvwxyz</span>
+                    <button class="profile-btn profile-btn-primary" style="margin-left: 1rem;">Copy</button>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                    <button class="profile-btn profile-btn-primary">Regenerate Key</button>
+                    <button class="profile-btn profile-btn-danger">Revoke Access</button>
+                </div>
+                
+                <h3 style="margin: 1rem 0;">Available Endpoints</h3>
+                <div class="profile-api-endpoints">
+                    <div class="profile-api-endpoint">
+                        <h4>Get Exports</h4>
+                        <p class="profile-api-endpoint-url">GET /api/v1/exports</p>
+                        <p class="profile-api-endpoint-description">Retrieves all exports associated with your account.</p>
                     </div>
-                    <button class="profile-btn profile-btn-primary">Ver Detalles</button>
+                    <div class="profile-api-endpoint">
+                        <h4>Create Export</h4>
+                        <p class="profile-api-endpoint-url">POST /api/v1/exports</p>
+                        <p class="profile-api-endpoint-description">Creates a new export with the provided data.</p>
+                    </div>
+                    <div class="profile-api-endpoint">
+                        <h4>Statistics</h4>
+                        <p class="profile-api-endpoint-url">GET /api/v1/stats</p>
+                        <p class="profile-api-endpoint-description">Gets detailed statistics of your exports.</p>
+                    </div>
+                </div>
+                
+                <h3 style="margin: 1rem 0;">Connected Applications</h3>
+                <div class="profile-billing-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div>
+                            <h4>Enterprise ERP System</h4>
+                            <p style="color: var(--color-gris-claro);">Connected on 01/10/2025</p>
+                        </div>
+                        <button class="profile-btn profile-btn-danger">Disconnect</button>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h4>Logistics App</h4>
+                            <p style="color: var(--color-gris-claro);">Connected on 02/05/2025</p>
+                        </div>
+                        <button class="profile-btn profile-btn-danger">Disconnect</button>
+                    </div>
+                </div>
+                
+                <div class="profile-form-group">
+                    <button class="profile-btn profile-btn-primary">Connect New Application</button>
                 </div>
             </div>
         </main>
@@ -228,25 +362,25 @@
         <div class="profile-popup-overlay" style="display: none;"></div>
         <div class="profile-popup" style="display: none;">
             <div class="profile-popup-header">
-                <h3 class="profile-popup-title">Cambiar Contraseña</h3>
+                <h3 class="profile-popup-title">Change Password</h3>
                 <button class="profile-popup-close">&times;</button>
             </div>
             <form class="profile-form">
                 <div class="profile-form-group">
-                    <label class="profile-form-label" for="profile-current-password">Contraseña Actual</label>
+                    <label class="profile-form-label" for="profile-current-password">Current Password</label>
                     <input type="password" id="profile-current-password" class="profile-form-control">
                 </div>
                 <div class="profile-form-group">
-                    <label class="profile-form-label" for="profile-new-password">Nueva Contraseña</label>
+                    <label class="profile-form-label" for="profile-new-password">New Password</label>
                     <input type="password" id="profile-new-password" class="profile-form-control">
                 </div>
                 <div class="profile-form-group">
-                    <label class="profile-form-label" for="profile-confirm-password">Confirmar Contraseña</label>
+                    <label class="profile-form-label" for="profile-confirm-password">Confirm Password</label>
                     <input type="password" id="profile-confirm-password" class="profile-form-control">
                 </div>
                 <div class="profile-popup-footer">
-                    <button type="button" class="profile-btn profile-btn-danger">Cancelar</button>
-                    <button type="submit" class="profile-btn profile-btn-success">Guardar</button>
+                    <button type="button" class="profile-btn profile-btn-danger">Cancel</button>
+                    <button type="submit" class="profile-btn profile-btn-success">Save</button>
                 </div>
             </form>
         </div>
