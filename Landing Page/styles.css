@@ -164,8 +164,9 @@ body {
 
 .popup.profile-popup {
     position: absolute;
-    top: 235px; /* justo debajo del user-actions */
+    top: 40px; /* justo debajo del user-actions */
     margin-top: 10px;
+    right: 20px;
     background: #1F2937;
     border-radius: 10px;
     padding: 20px;
@@ -331,6 +332,16 @@ body {
     flex-direction: column;
     gap: 10px; /* Espaciado entre botones */
 }
+.nav-buttons button.active {
+    background-color: rgba(144, 105, 249, 0.4);
+    border: 2px solid #9069F9;
+    transform: scale(1.08);
+}
+
+.nav-buttons  button.active ion-icon {
+    color: #9069F9;
+}
+
 
 /* Botones de navegación */
 .nav-buttons button {
@@ -370,6 +381,16 @@ body {
     color: #9069F9; /* Color resaltado */
 }
 
+.nav-buttons button.active {
+    background-color: rgba(144, 105, 249, 0.25);
+    border: 2px solid #9069F9;
+    transform: scale(1.05);
+}
+
+.nav-buttons button.active ion-icon {
+    color: #9069F9;
+}
+
 /* Botones dentro de .account-details */
 .account-details button {
     background: none;
@@ -405,6 +426,16 @@ body {
 /* Cambiar color de iconos en hover */
 .account-details button:hover ion-icon {
     color: #54F1B8; /* Color resaltado */
+}
+
+.account-details button.active {
+    background-color: rgba(144, 105, 249, 0.25);
+    border: 2px solid #54F1B8;
+    transform: scale(1.05);
+}
+
+.account-details button.active ion-icon {
+    color: #9069F9;
 }
 
 /* Separador de secciones */
@@ -797,11 +828,11 @@ td ion-icon {
 
 /* Estilo de los iconos en la columna Actions */
 .icon.edit:hover {
-    color: #4caf50; /* Verde */
+    color: #0EA5E9; /* Verde */
 }
 
 .icon.delete:hover {
-    color: #e53935; /* Rojo */
+    color: #FBD7BD; /* Rojo */
 }
 
 /* Hover sobre los iconos de acción */
