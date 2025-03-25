@@ -7,108 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">
-                <img src="../Images/Logo - CPI.png" alt="Logo de la página">
-                <span class="logo-text">CPI</span>
-            </div>
-            <div class="user-actions">
-                <div class="user-info">
-                    <button class="profile-button">
-                        <img src="../Images/unnamed.png" alt="Perfil" class="profile-icon-img">
-                    </button> 
-                    <span class="username">Bryams Solórzano</span>
-                    <div class="popup profile-popup" id="profile-popup">
-                        <div class="popup-header">
-                            <img src="../Images/unnamed.png" alt="Foto perfil" class="profile-photo">
-                            <h3>Bryams G.</h3>
-                            <p>solorzanobryams@gmail.com</p>
-                        </div>
-                        <div class="popup-body">
-                            <button><ion-icon name="settings-outline"></ion-icon> Personalizar perfil</button>
-                            <button><ion-icon name="key-outline"></ion-icon> Cambiar contraseña</button>
-                            <button><ion-icon name="mail-outline"></ion-icon> Cambiar correo</button>
-                            <button><ion-icon name="log-out-outline"></ion-icon> Cerrar sesión</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="notification">
-                    <button class="notification-button">
-                        <ion-icon name="notifications-outline"></ion-icon>
-                        <span id="notification-counter" class="notification-counter">0</span>
-                    </button>
-                </div>
-                
-                <!-- Popup Notificaciones -->
-                <div class="popup notification-popup" id="notification-popup">
-                    <div class="popup-header">
-                        <h3>Notificaciones</h3>
-                    </div>
-                    <div class="popup-body notifications-list">
-                        <div class="notification-item">
-                            <ion-icon name="alert-circle-outline"></ion-icon>
-                            <div>
-                                <p>Tu pedido ha sido enviado.</p>
-                                <small>Hace 2 horas</small>
-                            </div>
-                        </div>
-                        <div class="notification-item">
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
-                            <div>
-                                <p>Cambio de contraseña exitoso.</p>
-                                <small>Ayer</small>
-                            </div>
-                        </div>
-                        <div class="notification-item">
-                            <ion-icon name="gift-outline"></ion-icon>
-                            <div>
-                                <p>¡Tienes un nuevo bono!</p>
-                                <small>Hace 3 días</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>    
-    </div>
-    <div class="sidebar">
-        <div class="nav-buttons">
-            <button>
-                <ion-icon name="home-outline"></ion-icon> Dashboard
-            </button>
-            <button onclick="window.location.href='Storage.html'">
-                <ion-icon name="archive-outline"></ion-icon> Storage
-            </button>
-            <button onclick="window.location.href='Purchase.html'">
-                <ion-icon name="storefront-outline"></ion-icon> Purchases
-            </button>
-            <button onclick="window.location.href='Savings.html'">
-                <ion-icon name="journal-outline"></ion-icon> Savings
-            </button>
-            <button>
-                <ion-icon name="stats-chart-outline"></ion-icon> Stats
-            </button>
-        </div>
-        <div class="account-details">
-            <h1>account-details</h1>
-            <button onclick="window.location.href='Profile.html'">
-                <ion-icon name="person-outline"></ion-icon> Profile
-            </button>
-            <button onclick="window.location.href='Settings.html'">
-                <ion-icon name="settings-outline"></ion-icon> Settings
-            </button>
-            <button onclick="window.location.href='Landing.html'">
-                <ion-icon name="enter-outline"></ion-icon> Sign out
-            </button>
-        </div>
-        <div class="help-section">
-            <p>Need help?</p>
-            <p>Check out our help</p>
-            <p>center & forums</p>
-            <button>Learn more</button>
-        </div>
-    </div>
+    <div id="header-container"></div>
+    <div id="sidebar-container"></div>
     <div class="content-Storage">
         <h1>Storage Dashboard</h1>
         <div class="controls">
@@ -208,19 +108,6 @@
                         <td>1</td>
                         <td>2</td>
                         <td>$15,000.00</td>
-                        <td>
-                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
-                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
-                        <td>Mar 14</td>
-                        <td>Additive</td>
-                        <td>Qualiprint</td>
-                        <td>24</td>
-                        <td>12</td>
-                        <td>$2,320.00</td>
                         <td>
                             <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
                             <ion-icon name="trash-outline" class="icon delete"></ion-icon>
@@ -326,7 +213,12 @@
             </div>
         </div>
     </div>
+    <script type="module">
+        import { loadComponents } from './components.js';
+        loadComponents();
+    </script>
     <script src="Modal.js"></script>
+    <script src="Components.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

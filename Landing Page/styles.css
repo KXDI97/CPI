@@ -2,19 +2,17 @@ body {
     background-color: #121826;
     color: white;
     font-family: 'Poppins', sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    padding-top: 70px;
 }
 
 .container {
     display: flex;
     flex-wrap: wrap; /* Permite que los elementos se ajusten en la pantalla */
-    width: 100%;
     overflow-x: hidden;
+    
 }
+
+
 /*Plantilla de header y slider*/
 
 .header {
@@ -135,17 +133,33 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-.popup h4 { margin-bottom: 10px; border-bottom: 1px solid #444; padding-bottom: 5px; }
-.popup p { margin: 5px 0; }
-.popup .close-btn {
+.notification {
+    position: relative;
+}
+
+.notification-button {
+    position: relative;
     background: none;
     border: none;
-    color: #ff4d4d;
     cursor: pointer;
+    font-size: 24px;
+}
+
+.notification-counter {
     position: absolute;
-    top: 5px;
-    right: 10px;
-    font-size: 18px;
+    top: -5px;
+    right: -5px;
+    background-color: #ff4d4d; /* Rojo intenso */
+    color: #fff; /* Texto blanco */
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 10;
 }
 
 .popup.profile-popup {
@@ -293,11 +307,6 @@ body {
     font-size: 12px;
 }
 
-/* Contenedor principal */
-.container {
-    display: flex;
-    height: 100vh;
-}
 
 /* Sidebar */
 .sidebar {
@@ -452,16 +461,23 @@ body {
 /*INICIO DE STYLOS SETTINGS*/
 
 .container-settings {
-    width: 90%;
-    max-width: 800px;
-    margin: auto;
-    margin-top: 130px;
+    margin-left: 480px; /* Ancho del sidebar + un pequeño espacio */
+    margin-top: 40px;
+    width: 700px; /* Se ajusta según sidebar y márgenes */
+    max-width: 900px;
     background: #1F2937;
-    padding: 10px 25px;
-    border-radius: 10px;
+    padding: 20px 30px;
+    border-radius: 12px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-    max-height: 500px;
+    max-height: 80vh;
     overflow-y: auto;
+}
+
+@media screen and (max-width: 1200px) {
+    .container-settings {
+        margin-left: 220px;
+        width: calc(100% - 240px);
+    }
 }
 
 .container-settings h2 {
@@ -577,8 +593,7 @@ body {
 .content-Storage {
     flex: 1;
     padding: 18px;
-    margin-left: 260px;
-    padding-top: 70px;
+    margin-left: 310px;
     margin-right: 180px;
     background-color: #121826;
 }
@@ -670,17 +685,18 @@ h1 {
 .search-bar {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Alinea el contenido a la derecha */
-    width: 250px; /* Ajusta el tamaño */
-    background-color: #1a1a1a;
+    justify-content: flex-end;
+    width: 250px;
+    background-color: #1F2937;
     border-radius: 8px;
     padding: 8px;
     position: relative;
     margin-left: auto;
+    overflow: hidden;
 }
 
 .search-bar:focus-within {
-    border-color: #54F1B8; /* Cambia el borde a dorado cuando está activo */
+    border-color: #54F1B8;
     box-shadow: 0 0 8px #54F1B8;
 }
 
@@ -692,6 +708,8 @@ h1 {
     font-size: 14px;
     padding: 5px 10px;
     outline: none;
+    position: relative;
+    z-index: 1;
 }
 
 .search-bar ion-icon {
@@ -700,6 +718,24 @@ h1 {
     margin-left: 8px;
     cursor: pointer;
 }
+
+.search-bar:focus-within ion-icon {
+    color: #54F1B8;
+}
+
+/* Animar el placeholder con un pseudo-elemento */
+.search-bar input::placeholder {
+    color: gray;
+    transition: all 0.3s ease;
+    position: absolute;
+}
+
+.search-bar input:focus::placeholder {
+    transform: translateY(-20px);
+    opacity: 0;
+}
+
+
 
 /* Contenedor de la tabla */
 .table-container {
