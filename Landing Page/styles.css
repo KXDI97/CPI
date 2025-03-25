@@ -797,11 +797,11 @@ td ion-icon {
 
 /* Estilo de los iconos en la columna Actions */
 .icon.edit:hover {
-    color: #4caf50; /* Verde */
+    color: #0EA5E9; /* Verde */
 }
 
 .icon.delete:hover {
-    color: #e53935; /* Rojo */
+    color: #FBD7BD; /* Rojo */
 }
 
 /* Hover sobre los iconos de acción */
