@@ -1,25 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CPI- check-email</title>
-    <link rel="stylesheet" href="check.css">
+    <title>Check - CPI</title>
+    <link rel="icon" type="image/png" href="../Images/logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
 </head>
-<body>
-    <div class="container">
-        <div class="logo">
-            <img src="CPI.jpg" alt="CPI Logo" width="24">
-            <span>CPI</span>
+
+<body class="bg-gray-900 text-white flex items-center justify-center h-screen px-4">
+    <div class="bg-gray-800 shadow-lg rounded-lg flex max-w-4xl w-full mx-auto self-center h-auto md:h-[550px]">
+        <!-- Imagen a la izquierda -->
+        <div class="hidden md:block w-1/2 bg-cover bg-center rounded-l-lg"
+            style="background-image: url('../Images/Login-Test.jpeg');">
+            <div class="h-full flex flex-col justify-end p-6 bg-black bg-opacity-20 text-white rounded-l-lg">
+                <div class="flex space-x-2 mt-2"></div>
+            </div>
         </div>
-        
-        <h2>Revisa tu correo electronico</h2>
-        <p></p>
-        <p>Hemos enviado instrucciones de recuperacion de contraseña a su direccion de correo electronico..</p>
-        <p></p>
-        <p>¿No has recibido el correo eletronico?, Revisa tu carpeta de correo spam o intenta  <a href="#">volver a enviar el mensaje.</a></p>
-        <p></p>
-        <a href="#" class="button">Regresar a iniciar sesion</a>
+
+        <!-- Formulario -->
+        <div class="w-full md:w-1/2 p-8 flex flex-col justify-center">
+            <div class="text-center mb-6">
+                <div class="flex items-center justify-center space-x-3">
+                    <img src="../Images/Logo - CPI.png" alt="CPI Logo" class="w-12">
+                    <span class="text-2xl font-bold">CPI</span>
+                </div>
+                  <br>
+                   <h1 class="text-3xl font-bold mt-2">Check Your Email</h1>
+                </div>
+                
+                <p class="text-gray-400 text-xl">
+                    We have sent password recovery instructions to your email address.</p>
+                  <br>
+                <p class="text-gray-400 text-xl">
+                    Haven't received the email? Check your spam folder or try
+                    <a href="check.html" class="text-[#54F1B7] hover:underline">resend the message</a>
+                </p>
+
+                <br>
+                <button onclick="window.location.href='#'"
+                href="login.html" class="w-full bg-gradient-to-b from-[#9069F9] to-[#54F1B7] opacity-90 hover:opacity-100 py-2 rounded-md transition-all duration-300 font-bold">
+                    verify that it is you</button>
+                <div class="flex items-center my-4">
+                    <hr class="flex-grow border-gray-600">
+                    <span class="text-gray-400 px-2">or</span>
+                    <hr class="flex-grow border-gray-600">
+                </div>
+
+                <div class="flex justify-between items-center text-sm mb-4">
+                    <label class="flex items-center">
+                    </label>
+                    <a href="Login.html" class="text-[#54F1B7] hover:underline">Login</a>
+                </div>
+
+            </form>
+            <p class="text-center text-sm text-gray-400 mt-4">
+                Don't have an account? <a href="SignUp.html" class="text-[#9069F9] hover:underline">Sign up</a>
+            </p>
+        </div>
     </div>
 </body>
+
 </html>
