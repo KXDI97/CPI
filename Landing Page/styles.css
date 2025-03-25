@@ -862,7 +862,7 @@ h1 {
     align-items: center;
     justify-content: space-between; 
     width: 100%;
-    padding: 10px;
+    padding: 0px;
     flex-wrap: wrap; 
 }
 .Filtros-left h1 {
@@ -875,8 +875,8 @@ h1 {
     justify-content: flex-start; 
     gap: 12px; 
     flex-wrap: nowrap;
-    max-width: 600px; 
-    margin-left: 650px; 
+    max-width: 40px; 
+    margin-left: 50%; 
     overflow: hidden;
 }
 
@@ -885,7 +885,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: flex-end; 
-    width: 240px; 
+    width: 230px; 
     background-color: #1a1a1a;
     border-radius: 8px;
     padding: 8px;
@@ -1080,10 +1080,9 @@ h1 {
 .swiper-wrapper {
     display: flex;
     align-items: center;
-    left: 310px;
-    overflow: hidden; 
+    overflow: hidden;
+    
 }
-
 .swiper-slide {
     display: flex;
     justify-content: center;
@@ -1105,21 +1104,24 @@ h1 {
 .swiper-button-prev,
 .swiper-button-next {
     position: absolute;
-    top: 50%; 
+    top: 50%;
     transform: translateY(-50%);
-    z-index: 10;
-    width: 40px;
-    height: 40px;
+    z-index: 15; /* Asegura que estén por encima del Swiper */
+    width: 50px;
+    height: 50px;
+    
+    border-radius: 50%; /* Hace que sean redondos */
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.3s, opacity 0.3s;
+    transition: 0.3s;
+    cursor: pointer;
 }
 .swiper-button-prev {
     left: -20px;
 }
 .swiper-button-next {
-    right: -40px;
+    right: -20px;
 }
 .swiper-button-prev::after,
 .swiper-button-next::after {
@@ -1209,9 +1211,9 @@ h1 {
     padding: 2rem;
     flex: 1;
     padding: 20px;
-    margin-left: 220px; /* Espacio del sidebar */
+    margin-left: 220px;
     margin-right: 180px;
-    padding-top: 100px; /* Ajusta para que no lo cubra el header */ 
+    padding-top: 100px;
 }
 .profile-main {
     max-width: 900px;
@@ -1288,7 +1290,7 @@ h1 {
 
 .profile-btn-primary {
     background-color: #9069F9;
-    color: white;
+    color: white;   
 }
 
 .profile-btn-success {
@@ -1303,7 +1305,7 @@ h1 {
 .profile-btn-success:hover,
 .profile-btn-primary:hover,
 .profile-btn-danger:hover {
-    background-color: #384152; /* Efecto hover en botones */
+    background-color: #384152;
     transform: scale(1.05);
 }
 .profile-section-separator {
@@ -1423,20 +1425,7 @@ h1 {
     color: var(--color-gris-claro);
 }
 
-/* Popup styles */
-.profile-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--color-popup-negro);
-    border-radius: 10px;
-    padding: 2rem;
-    width: 90%;
-    max-width: 500px;
-    z-index: 1000;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-}
+
 
 .profile-popup-overlay {
     position: fixed;
@@ -1574,6 +1563,7 @@ h1 {
     color: var(--color-gris-claro);
     font-size: 0.9rem;
 }
+/*agregados profile*/
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
