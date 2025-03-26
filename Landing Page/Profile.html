@@ -17,17 +17,17 @@
             </div>
 
             <div class="profile-tabs-navigation">
-                <button class="profile-tab-btn active">Personal Information</button>
-                <button class="profile-tab-btn">Billing</button>
-                <button class="profile-tab-btn">Preferences</button>
-                <button class="profile-tab-btn">API Connections</button>
+                <button class="profile-tab-btn"><a href="#personal-info" class="profile-btn profile-btn-primary">Personal Information</a></button>
+                <button class="profile-tab-btn"><a href="#Billing" class="profile-btn profile-btn-primary">Billing</a></button>
+                <button class="profile-tab-btn"><a href="#Preferences" class="profile-btn profile-btn-primary">Preferences</a></button>
+                <button class="profile-tab-btn"><a href="#API-Connections" class="profile-btn profile-btn-primary">API Connections</a></button>
             </div>
 
-            <div class="profile-content-box">
+            <div id="personal-info" class="profile-content-box">
                 <h2 class="profile-section-title">Personal Information</h2>
 
                 <div class="profile-avatar-container">
-                    <div class="profile-avatar">JD</div>
+                    <div class="profile-avatar"></div>
                     <div class="profile-avatar-controls">
                         <button class="profile-btn profile-btn-primary">Change Image</button>
                         <button class="profile-btn profile-btn-danger">Delete</button>
@@ -98,7 +98,7 @@
 
                 <div class="profile-section-separator"></div>
 
-                <h2 class="profile-section-title">Billing</h2>
+                <h2 id="Billing" class="profile-section-title">Billing</h2>
                 
                 <div class="profile-billing-card">
                     <div class="profile-billing-header">
@@ -109,8 +109,8 @@
                     <p>Next invoice: 04/15/2025</p>
                     <p>Amount: €99.00/month</p>
                     
-                    <div style="margin-top: 1rem;">
-                        <h4 style="margin-bottom: 0.5rem;">Features included:</h4>
+                    <div class="profile-plan-features-container">
+                        <h4 class="profile-plan-features-title">Features included:</h4>
                         <div class="profile-plan-feature">
                             <span>✓</span>
                             <span>Unlimited exports</span>
@@ -129,15 +129,15 @@
                         </div>
                     </div>
                     
-                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <div class="profile-billing-card-actions">
                         <button class="profile-btn profile-btn-primary">Change Plan</button>
                         <button class="profile-btn profile-btn-danger">Cancel Subscription</button>
                     </div>
                 </div>
                 
-                <h3 style="margin: 1.5rem 0 1rem 0;">Payment Method</h3>
+                <h3 class="profile-billing-method-title">Payment Method</h3>
                 <div class="profile-billing-card">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="profile-billing-method-details">
                         <div>
                             <p><strong>Visa</strong> ending in 4589</p>
                             <p>Expires: 09/2026</p>
@@ -146,7 +146,7 @@
                     </div>
                 </div>
                 
-                <h3 style="margin: 1.5rem 0 1rem 0;">Invoice History</h3>
+                <h3 class="profile-invoice-history-title">Invoice History</h3>
                 <div class="profile-billing-card">
                     <ul class="profile-invoice-list">
                         <li class="profile-invoice-item">
@@ -154,9 +154,9 @@
                                 <p><strong>Invoice #INV-2025-03</strong></p>
                                 <p>03/15/2025</p>
                             </div>
-                            <div style="text-align: right;">
+                            <div class="profile-invoice-item-details">
                                 <p>€99.00</p>
-                                <button class="profile-btn profile-btn-primary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">Download</button>
+                                <button class="profile-btn profile-btn-primary profile-btn-small">Download</button>
                             </div>
                         </li>
                         <li class="profile-invoice-item">
@@ -164,9 +164,9 @@
                                 <p><strong>Invoice #INV-2025-02</strong></p>
                                 <p>02/15/2025</p>
                             </div>
-                            <div style="text-align: right;">
+                            <div class="profile-invoice-item-details">
                                 <p>€99.00</p>
-                                <button class="profile-btn profile-btn-primary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">Download</button>
+                                <button class="profile-btn profile-btn-primary profile-btn-small">Download</button>
                             </div>
                         </li>
                         <li class="profile-invoice-item">
@@ -174,9 +174,9 @@
                                 <p><strong>Invoice #INV-2025-01</strong></p>
                                 <p>01/15/2025</p>
                             </div>
-                            <div style="text-align: right;">
+                            <div class="profile-invoice-item-details">
                                 <p>€99.00</p>
-                                <button class="profile-btn profile-btn-primary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">Download</button>
+                                <button class="profile-btn profile-btn-primary profile-btn-small">Download</button>
                             </div>
                         </li>
                     </ul>
@@ -184,9 +184,9 @@
 
                 <div class="profile-section-separator"></div>
 
-                <h2 class="profile-section-title">Preferences</h2>
+                <h2 id="Preferences" class="profile-section-title">Preferences</h2>
                 
-                <h3 style="margin-bottom: 1rem;">Language and Region</h3>
+                <h3 class="profile-language-title">Language and Region</h3>
                 <div class="profile-form-row">
                     <div class="profile-form-group">
                         <label class="profile-form-label" for="profile-language">Language</label>
@@ -208,7 +208,7 @@
                     </div>
                 </div>
                 
-                <h3 style="margin: 1rem 0;">Format</h3>
+                <h3 class="profile-format-title">Format</h3>
                 <div class="profile-form-row">
                     <div class="profile-form-group">
                         <label class="profile-form-label" for="profile-date-format">Date Format</label>
@@ -228,7 +228,7 @@
                     </div>
                 </div>
                 
-                <h3 style="margin: 1rem 0;">View</h3>
+                <h3 class="profile-view-title">View</h3>
                 <div class="profile-form-group">
                     <label class="profile-form-label" for="profile-theme">Theme</label>
                     <select id="profile-theme" class="profile-form-control">
@@ -244,19 +244,19 @@
 
                 <div class="profile-section-separator"></div>
 
-                <h2 class="profile-section-title">API Connections</h2>
+                <h2  id="API-Connections" class="profile-section-title">API Connections</h2>
                 
-                <h3 style="margin-bottom: 1rem;">API Key</h3>
+                <h3 class="profile-api-key-title">API Key</h3>
                 <div class="profile-api-key">
                     <span class="profile-api-key-value">eX4mP1e_4p1_k3Y_12345678abcdefghijklmnopqrstuvwxyz</span>
-                    <button class="profile-btn profile-btn-primary" style="margin-left: 1rem;">Copy</button>
+                    <button class="profile-btn profile-btn-primary">Copy</button>
                 </div>
-                <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                <div class="profile-api-key-actions">
                     <button class="profile-btn profile-btn-primary">Regenerate Key</button>
                     <button class="profile-btn profile-btn-danger">Revoke Access</button>
                 </div>
                 
-                <h3 style="margin: 1rem 0;">Available Endpoints</h3>
+                <h3 class="profile-api-endpoints-title">Available Endpoints</h3>
                 <div class="profile-api-endpoints">
                     <div class="profile-api-endpoint">
                         <h4>Get Exports</h4>
@@ -275,19 +275,19 @@
                     </div>
                 </div>
                 
-                <h3 style="margin: 1rem 0;">Connected Applications</h3>
+                <h3 class="profile-connected-apps-title">Connected Applications</h3>
                 <div class="profile-billing-card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div class="profile-connected-app">
                         <div>
                             <h4>Enterprise ERP System</h4>
-                            <p style="color: var(--color-gris-claro);">Connected on 01/10/2025</p>
+                            <p class="profile-connected-app-date">Connected on 01/10/2025</p>
                         </div>
                         <button class="profile-btn profile-btn-danger">Disconnect</button>
                     </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="profile-connected-app">
                         <div>
                             <h4>Logistics App</h4>
-                            <p style="color: var(--color-gris-claro);">Connected on 02/05/2025</p>
+                            <p class="profile-connected-app-date">Connected on 02/05/2025</p>
                         </div>
                         <button class="profile-btn profile-btn-danger">Disconnect</button>
                     </div>
@@ -297,34 +297,7 @@
                     <button class="profile-btn profile-btn-primary">Connect New Application</button>
                 </div>
             </div>
-        </main>
-
-        <!-- Popup example (hidden by default, would be shown via JavaScript) -->
-        <div class="profile-popup-overlay" style="display: none;"></div>
-        <div class="profile-popup" style="display: none;">
-            <div class="profile-popup-header">
-                <h3 class="profile-popup-title">Change Password</h3>
-                <button class="profile-popup-close">&times;</button>
-            </div>
-            <form class="profile-form">
-                <div class="profile-form-group">
-                    <label class="profile-form-label" for="profile-current-password">Current Password</label>
-                    <input type="password" id="profile-current-password" class="profile-form-control">
-                </div>
-                <div class="profile-form-group">
-                    <label class="profile-form-label" for="profile-new-password">New Password</label>
-                    <input type="password" id="profile-new-password" class="profile-form-control">
-                </div>
-                <div class="profile-form-group">
-                    <label class="profile-form-label" for="profile-confirm-password">Confirm Password</label>
-                    <input type="password" id="profile-confirm-password" class="profile-form-control">
-                </div>
-                <div class="profile-popup-footer">
-                    <button type="button" class="profile-btn profile-btn-danger">Cancel</button>
-                    <button type="submit" class="profile-btn profile-btn-success">Save</button>
-                </div>
-            </form>
-        </div>
+        </main>        
     </div>
     <script type="module">
         import { loadComponents } from './components.js';
