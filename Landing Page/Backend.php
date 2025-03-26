@@ -1,8 +1,8 @@
 <?php
-$serverName = "localhost"; // Si SQL Server está en otro host, cambia esto.
+$serverName = "localhost"; 
 $database = "InventarioCPI";
-$username = "KXDI"; // Usuario de SQL Server (cámbialo si usas otro)
-$password = "tu_contraseña"; // Coloca la contraseña de tu usuario de SQL Server
+$username = "KXDI";
+$password = "tu_contraseña";
 
 try {
     $conn = new PDO("sqlsrv:server=$serverName;Database=$database", $username, $password);
