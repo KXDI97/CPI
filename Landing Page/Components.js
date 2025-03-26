@@ -9,24 +9,61 @@ export function loadComponents() {
         })
         .catch(error => console.error('Error cargando Header:', error));
 
-    fetch('slider.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('sidebar-container').innerHTML = data;
+    // Header Loading Script
 
-            // Aquí ya existe el sidebar, entonces ahora sí:
-            const buttons = document.querySelectorAll('.sidebar button');
-            const currentPage = window.location.pathname.split('/').pop().toLowerCase();
+// Header Loading Script
 
-            buttons.forEach(button => {
-                const onclickValue = button.getAttribute('onclick');
-                if (onclickValue) {
-                    const page = onclickValue.match(/'([^']+)'/);
-                    if (page && currentPage === page[1].toLowerCase()) {
-                        button.classList.add('active');
-                    }
+// Header Loading Script
+
+fetch('Slider.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('sidebar-container').innerHTML = data;
+
+        const globalModalScript = document.createElement('script');
+        globalModalScript.src = './GlobalModal.js';
+        globalModalScript.onload = () => {
+            createGlobalModals();
+
+            // Modificamos las funciones para agregar blur al contenido principal
+            const originalShowLogoutModal = showLogoutModal;
+            showLogoutModal = function() {
+                originalShowLogoutModal();
+                document.getElementById('main-content').classList.add('blurred');
+            };
+
+            const originalCloseModal = closeModal;
+            closeModal = function() {
+                originalCloseModal();
+                document.getElementById('main-content').classList.remove('blurred');
+            };
+
+            const originalShowHelpModal = showHelpModal;
+            showHelpModal = function() {
+                originalShowHelpModal();
+                document.getElementById('main-content').classList.add('blurred');
+            };
+
+            const originalCloseHelpModal = closeHelpModal;
+            closeHelpModal = function() {
+                originalCloseHelpModal();
+                document.getElementById('main-content').classList.remove('blurred');
+            };
+        };
+        document.body.appendChild(globalModalScript);
+
+        const buttons = document.querySelectorAll('.sidebar button');
+        const currentPage = window.location.pathname.split('/').pop().toLowerCase();
+
+        buttons.forEach(button => {
+            const onclickValue = button.getAttribute('onclick');
+            if (onclickValue) {
+                const page = onclickValue.match(/'([^']+)'/);
+                if (page && currentPage === page[1].toLowerCase()) {
+                    button.classList.add('active');
                 }
-            });
-        })
-        .catch(error => console.error('Error cargando Slider:', error));
+            }
+        });
+    })
+    .catch(error => console.error('Error cargando Slider:', error));
 }
