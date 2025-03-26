@@ -1309,8 +1309,7 @@ h1 {
     flex: 1;
     padding: 20px;
     margin-left: 220px;
-    margin-right: 180px;
-    padding-top: 100px;
+    padding-top: 10px;
 }
 .profile-main {
     max-width: 900px;
@@ -1366,7 +1365,7 @@ h1 {
 
 .profile-form-control:focus {
     outline: none;
-    border-color: var(--color-azul);
+    border-color: var(--color-lila);
 }
 
 .profile-form-row {
@@ -1484,7 +1483,7 @@ h1 {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: var(--color-durazno);
+    background-image: url('../Images/unnamed.png');
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1522,40 +1521,6 @@ h1 {
     color: var(--color-gris-claro);
 }
 
-
-
-.profile-popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-}
-
-.profile-popup-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.profile-popup-close {
-    background: none;
-    border: none;
-    color: var(--color-gris-claro);
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-.profile-popup-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
 /* Tabs navigation */
 .profile-tabs-navigation {
     display: flex;
@@ -1575,16 +1540,17 @@ h1 {
     transition: background-color 0.3s, color 0.3s;
     white-space: nowrap;
 }
-
+.profile-tab-btn a {
+ background-color: #12182600;
+ text-decoration: none;
+}
+.profile-tab-btn a:hover,
+.profile-tab-btn:hover{
+     background-color: var(--color-lila);
+}
 .profile-tab-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.profile-tab-btn.active {
     background-color: var(--color-lila);
-    color: white;
 }
-
 /* Billing specific styles */
 .profile-billing-card {
     background-color: var(--color-input);
