@@ -729,10 +729,10 @@ body {
 
 .content-Storage {
     flex: 1;
-    padding: 18px;
-    margin-left: 310px;
-    margin-right: 180px;
+    padding: 20px;
+    margin-left: 220px;
     background-color: #121826;
+    width: 80%;
 }
 
 h1 {
