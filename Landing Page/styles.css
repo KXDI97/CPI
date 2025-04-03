@@ -789,7 +789,18 @@ body {
 
 /* INICIO STYLOS STORAGE*/
 
+.content-Storage {
+    flex: 1;
+    padding: 20px;
+    margin-left: 220px;
+    background-color: #121826;
+    width: 80%;
+}
 
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
 
 /* Estilos Dashboard */
 
@@ -811,30 +822,30 @@ body {
 
 
 .chart-container {
+    margin-left: 50px;
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 35px;
     margin-top: 50px;
     position: relative;
 }
 
 #spendingChart {
-    min-width: none;
+    flex: 1;
     max-width: 250px;
     max-height: 250px;
-    margin-top: 20px;
 }
 
 .chart-box {
-    flex: 1;
+
+    display: flex;
     background: #1F2937;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(188, 190, 206, 0.5);
     text-align: center;
-    flex-basis: 45%;
+    flex-basis: 50%;
     max-width: 500px;
-    display: flex;
     flex-direction: column;
     align-items: flex-start;
     position: relative;
@@ -858,6 +869,77 @@ body {
     color: rgba(255, 255, 255, 0.822);
 }
 
+
+.chart-box-dough {
+    display: flex;
+    background: #1F2937;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(188, 190, 206, 0.5);
+    text-align: center;
+    flex-basis: 50%;
+    max-width: 500px;
+    align-items: flex-start;
+    position: relative;
+    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si es necesario */
+}
+
+.chart-box-dough h2,
+.chart-box-dough p {
+    margin: 0;
+    width: 100%;
+    line-height: 1.2;
+}   
+
+.chart-box-dough h2 {
+    font-size: 1.5rem;
+    text-align: left;
+    margin-bottom: 2px; /* Pequeño espacio sin valores negativos */
+}
+
+.chart-box-dough p {
+    font-size: medium;
+    text-align: left;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.822);
+}
+
+
+
+.chart-box-down {
+    margin-left: 50px;
+    margin-top: 35px;
+    background: #1F2937;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(188, 190, 206, 0.5);
+    text-align: center;
+    flex-basis: 45%;
+    width: 915px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+.chart-box-down h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: left;
+    width: 90%;
+}
+
+.chart-box-down p {
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: left;
+    width: 90%;
+    padding: 5px;
+    margin-bottom: 5px;
+    font-size: medium;
+    color: rgba(255, 255, 255, 0.822);
+}
+
 .view-more {
     font-family: 'Poppins';
     position: absolute;
@@ -867,12 +949,30 @@ body {
     height: 30px;
     background-color: #374555;
     border: none;
-    border-radius: 10px;
+    border-radius: 25px;
     color: white;
     cursor: pointer;
 }
 
 .view-more:hover {
+    background-color: #4f6279a9;
+}
+
+.view-more-down {
+    font-family: 'Poppins';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 150px;
+    height: 30px;
+    background-color: #374555;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+}
+
+.view-more-down:hover {
     background-color: #4f6279a9;
 }
 
@@ -896,17 +996,14 @@ canvas {
 }
 
 .legend {
-    position: absolute;
-    right: 0px;
-    top: 55%;
-    transform: translateY(-50%);
+    flex: 1;
     text-align: left;
-    padding: 50px;
+    padding: 20px;
     border-radius: 5px;
+    max-width: 250px;
 }
 
 .legend div {
-
     display: flex;
     align-items: center;
     gap: 5px;
@@ -943,6 +1040,7 @@ canvas {
     background-color: #4682B4;
     border-radius: 100%;
 }
+
 .payments-list {
     display: flex;
     flex-direction: column;
@@ -955,14 +1053,73 @@ canvas {
     margin-bottom: 10px;
 }
 
-.payment-container {
+.payment-container-first,
+.payment-container-second,
+.payment-container-third,
+.payment-container-fourth,
+.payment-container-fifth {
     display: flex;
     align-items: center;
-    background-color: #374555;
     padding: 14px;
     border-radius: 10px;
     flex-grow: 1;
 }
+
+.payment-container-first {
+    background-color: #495869;
+    color: #ffffff;
+}
+
+.payment-container-second {
+    background-color: #495869af;
+    color: #ffffffaf;
+
+}
+
+.payment-container-third {
+    background-color: #49586983;
+    color: #ffffff83;
+
+}
+
+.payment-container-fourth {
+    background-color: #4958695e;
+    color: #ffffff5e;
+}
+
+.payment-container-fifth {
+    background-color: #49586931;
+    color: #ffffff31;
+}
+
+.amount-first {
+    background-color: #495869;
+    color: #ffadad;
+}
+
+.amount-second {
+    background-color: #495869af;
+    color: #ffadadaf;
+
+}
+
+.amount-third {
+    background-color: #49586983;
+    color: #ffadad83;
+
+}
+
+.amount-fourth {
+    background-color: #4958695e;
+    color: #ffadad5e;
+}
+
+.amount-fifth {
+    background-color: #49586931;
+    color: #ffadad31;
+
+}
+
 
 .payment-item {
     display: flex;
@@ -971,24 +1128,23 @@ canvas {
 }
 
 .date {
-    color: #aaa;
     font-size: 14px;
-    font-weight: bold;
-
     text-align: left;
 }
 
 .name {
     font-size: 14px;
-    margin-left: 15px;  
+    margin-left: 15px;
 }
 
-.amount {
-    color: #ff4444;
+.amount-first,
+.amount-second,
+.amount-third,
+.amount-fourth,
+.amount-fifth {
     font-weight: bold;
     font-size: 14px;
     text-align: right;
-    background-color: #374555;
     padding: 14px 12px;
     border-radius: 8px;
     min-width: 70px;
@@ -996,21 +1152,6 @@ canvas {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-}
-
-/* INICIO STYLOS STORAGE*/
-
-.content-Storage {
-    flex: 1;
-    padding: 20px;
-    margin-left: 220px;
-    background-color: #121826;
-    width: 80%;
-}
-
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
 }
 
 /* Controles superiores */
@@ -2057,7 +2198,7 @@ h1 {
         justify-content: flex-start;
     }
 
-    .chart-container {
+    .chart-box {
         flex-direction: column;
         align-items: center;
     }
@@ -2066,6 +2207,7 @@ h1 {
     .chart-circle-container {
         max-width: 100%;
     }
+
 }
 
 /*FIN DE PROFILE*/
