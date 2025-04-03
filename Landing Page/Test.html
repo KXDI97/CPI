@@ -3,144 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upcoming Payments</title>
+    <title>Chart with Legend</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
-            background-color: #111;
-            color: white;
             font-family: Arial, sans-serif;
+            background-color: #1F2937;
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+        }
+
+        .chart-container {
+            display: flex;
+            background: #374151;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(188, 190, 206, 0.5);
+            width: 600px;
+            align-items: center;
+            gap: 20px;
         }
 
         .chart-box {
-            background-color: #1a1a1a;
-            padding: 20px;
-            border-radius: 12px;
-            width: 350px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            flex: 1;
+            display: flex;
+            justify-content: center;
         }
 
-        .chart-box h2 {
-            margin-bottom: 15px;
-        }
-
-        .payments-list {
+        .legend {
             display: flex;
             flex-direction: column;
+            gap: 10px;
         }
 
-        .payment-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .payment-container {
+        .legend div {
             display: flex;
             align-items: center;
-            background-color: #262626;
-            padding: 14px;
-            border-radius: 10px;
-            flex-grow: 1;
+            gap: 5px;
         }
 
-        .payment-item {
-            display: flex;
-            align-items: center;
+        .legend span {
+            width: 15px;
+            height: 15px;
+            display: inline-block;
+            border-radius: 50%;
         }
 
-        .date {
-            color: #aaa;
-            font-size: 14px;
-            font-weight: bold;
-            min-width: 60px;
-            text-align: left;
-        }
-
-        .name {
-            font-size: 14px;
-            margin-left: 15px;
-        }
-
-        .amount {
-            color: #ff4444;
-            font-weight: bold;
-            font-size: 14px;
-            text-align: right;
-            background-color: #333;
-            padding: 14px 12px;
-            border-radius: 8px;
-            min-width: 70px;
-            margin-left: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-        }
-    
-        .view-more {
-            margin-top: 10px;
-            background-color: #333;
-            border: none;
-            color: white;
-            padding: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 14px;
-        }   
-
-        .view-more:hover {
-            background-color: #444;
-        }
+        .color-ink { background-color: #00FFAA; }
+        .color-additives { background-color: #8A2BE2; }
+        .color-tapes { background-color: #FF4C4C; }
+        .color-devices { background-color: #4682B4; }
     </style>
 </head>
 <body>
-    <div class="chart-box">
-        <h2>Upcoming payments</h2>
-        <div class="payments-list">
-            <div class="payment-row">
-                <div class="payment-container">
-                    <div class="payment-item">
-                        <span class="date">20 Mar</span>
-                        <span class="name">Dayning</span>
-                    </div>
-                </div>
-                <span class="amount">-$29.90</span>
-            </div>
-            <div class="payment-row">
-                <div class="payment-container">
-                    <div class="payment-item">
-                        <span class="date">25 Mar</span>
-                        <span class="name">Independent</span>
-                    </div>
-                </div>
-                <span class="amount">-$269.00</span>
-            </div>
-            <div class="payment-row">
-                <div class="payment-container">
-                    <div class="payment-item">
-                        <span class="date">30 Mar</span>
-                        <span class="name">DNP</span>
-                    </div>
-                </div>
-                <span class="amount">-$2100.00</span>
-            </div>
-            <div class="payment-row">
-                <div class="payment-container">
-                    <div class="payment-item">
-                        <span class="date">05 Apr</span>
-                        <span class="name">Sojet</span>
-                    </div>
-                </div>
-                <span class="amount">-$11.99</span>
+
+    <div class="chart-box-dough">
+        <h2>Spending</h2>
+        <p>From 14 Jan, 2024 - 14 Mar, 2024</p>
+        <div class="chart-content">
+            <canvas id="spendingChart"></canvas>
+            <div class="legend">
+                <div><span class="color-ink"></span> Ink - 36%</div>
+                <div><span class="color-additives"></span> Additives - 42%</div>
+                <div><span class="color-tapes"></span> Tapes - 15%</div>
+                <div><span class="color-devices"></span> Devices - 5%</div>
             </div>
         </div>
-        <button class="view-more">See all</button>
+        <button class="view-more" id="statsgo">View more</button>
     </div>
+
+    <div class="chart-container">
+        <div class="chart-box">
+            <canvas id="spendingChart"></canvas>
+        </div>
+        <div class="legend">
+            <div><span class="color-ink"></span> Ink - 36%</div>
+            <div><span class="color-additives"></span> Additives - 42%</div>
+            <div><span class="color-tapes"></span> Tapes - 15%</div>
+            <div><span class="color-devices"></span> Devices - 5%</div>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('spendingChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Ink', 'Additives', 'Tapes', 'Devices'],
+                datasets: [{
+                    data: [36, 42, 15, 5],
+                    backgroundColor: ['#00FFAA', '#8A2BE2', '#FF4C4C', '#4682B4']
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { display: false } // Oculta la leyenda por defecto de Chart.js
+                }
+            }
+        });
+    </script>
+
 </body>
 </html>
