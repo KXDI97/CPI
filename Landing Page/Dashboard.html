@@ -5,19 +5,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard CPI</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div id="header-container"></div>
     <div id="sidebar-container"></div>
     <div class="content-Dashboard">
-        <h1>Bienvenido al Panel de Control</h1>
-        <p>Selecciona una opción desde la barra lateral.</p>
+        <h1>Informs Dashboard</h1>
+        <p>Hello Bryams, let's look at informs and imports performance:</p>
+
+        <div class="chart-container">
+            <button class="view-more">View more</button>
+            <canvas id="purchaseChart"></canvas>
+        </div>
+    
+                    <div class="search-bar">
+            <input type="text" placeholder="Search product..." >
+            <ion-icon name="search-outline"></ion-icon>
+        </div>
+
+
+        <!-- Fondo borroso -->
+        <div id="modalBackdrop" class="backdrop hidden"></div>
+
+<!-- Modal -->
+        <div id="stockModal" class="modal-add-stock hidden">
+            <div class="modal-content">
+                <h2>Add stock</h2>
+                <h3>Product details</h3>
+                <div class="form-group">
+                    <div class="input-container">
+                        <label>Product name *</label>
+                        <input type="text" placeholder="Enter product name">
+                    </div>
+                    <div class="input-container">
+                        <label>Product ID *</label>
+                        <input type="text" placeholder="Enter product ID">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-container">
+                    <label>Category *</label>
+                    <select>
+                        <option>Select</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-container">
+                    <label>Provider *</label>
+                    <select>
+                        <option>Select</option>
+                    </select>
+                </div>
+                <div class="input-container">
+                    <label>Quantity *</label>
+                    <input type="number" placeholder="Enter quantity">
+                </div>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" id="email-confirm">
+                <label for="email-confirm">Send email confirmation</label>
+            </div>
+            <div class="button-group">
+                <button class="btn-1">Add Stock</button>
+                <button class="btn-2" id="closeStockModal">Cancel</button>
+            </div>
+        </div>
+
+
+        <div id="productModal" class="modal-add-product hidden">
+            <div class="modal2-content">
+
+                <h2>Add product</h2>
+                <h3>Product details</h3>
+        
+                <div class="form-group">
+                    <div class="form-field">
+                        <label for="product-name">Product name *</label>
+                        <input type="text" id="product-name" placeholder="Enter product name">
+                    </div>
+                    <div class="form-field">
+                        <label for="product-id">Product ID *</label>
+                        <input type="text" id="product-id" placeholder="Enter product ID">
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <div class="form-field">
+                        <label for="value">Value *</label>
+                        <input type="text" id="value" placeholder="Enter value">
+                    </div>
+                    <div class="form-field">
+                        <label for="category">Category *</label>
+                        <select id="category">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <div class="form-field full-width">
+                        <label for="description">Description *</label>
+                        <textarea id="description" placeholder="Enter description"></textarea>
+                    </div>
+                </div>
+        
+                <div class="form-buttons">
+                    <button class="btn-1">Add Product</button>
+                    <button class="btn-2" id="closeProductModal">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script type="module">
         import { loadComponents } from './components.js';
         loadComponents();
     </script>
+    <script src="Modal.js"></script>
+    <script src="Components.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="chart.js"></script>
 </body>
 </html>

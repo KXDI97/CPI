@@ -734,6 +734,43 @@ body {
     background-color: #121826;
     width: 80%;
 }
+.content-Dashboard {
+    flex: 1;
+    padding: 20px;
+    margin-left: 220px;
+    background-color: #121826;
+    width: 80%;
+}
+
+.chart-container {
+    flex: 1;
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 500px; 
+    height: 300px;
+    background-color: #1F2937;
+    border-radius: 10px;
+    border: 5px solid white; 
+    border-radius: 10px; 
+    padding: 30px; 
+}
+.view-more {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.view-more:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+canvas { 
+    width: 120%;
+    height: 120%; 
+}
 
 h1 {
     font-size: 24px;
