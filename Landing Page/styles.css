@@ -789,18 +789,7 @@ body {
 
 /* INICIO STYLOS STORAGE*/
 
-.content-Storage {
-    flex: 1;
-    padding: 20px;
-    margin-left: 220px;
-    background-color: #121826;
-    width: 80%;
-}
 
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
 
 /* Estilos Dashboard */
 
@@ -1007,6 +996,21 @@ canvas {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+}
+
+/* INICIO STYLOS STORAGE*/
+
+.content-Storage {
+    flex: 1;
+    padding: 20px;
+    margin-left: 220px;
+    background-color: #121826;
+    width: 80%;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 /* Controles superiores */
