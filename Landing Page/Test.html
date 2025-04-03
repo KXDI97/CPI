@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Payments</title>
+    <style>
+        body {
+            background-color: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .chart-box {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 12px;
+            width: 350px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .chart-box h2 {
+            margin-bottom: 15px;
+        }
+
+        .payments-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .payment-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .payment-container {
+            display: flex;
+            align-items: center;
+            background-color: #262626;
+            padding: 14px;
+            border-radius: 10px;
+            flex-grow: 1;
+        }
+
+        .payment-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .date {
+            color: #aaa;
+            font-size: 14px;
+            font-weight: bold;
+            min-width: 60px;
+            text-align: left;
+        }
+
+        .name {
+            font-size: 14px;
+            margin-left: 15px;
+        }
+
+        .amount {
+            color: #ff4444;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: right;
+            background-color: #333;
+            padding: 14px 12px;
+            border-radius: 8px;
+            min-width: 70px;
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+    
+        .view-more {
+            margin-top: 10px;
+            background-color: #333;
+            border: none;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 14px;
+        }   
+
+        .view-more:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-box">
+        <h2>Upcoming payments</h2>
+        <div class="payments-list">
+            <div class="payment-row">
+                <div class="payment-container">
+                    <div class="payment-item">
+                        <span class="date">20 Mar</span>
+                        <span class="name">Dayning</span>
+                    </div>
+                </div>
+                <span class="amount">-$29.90</span>
+            </div>
+            <div class="payment-row">
+                <div class="payment-container">
+                    <div class="payment-item">
+                        <span class="date">25 Mar</span>
+                        <span class="name">Independent</span>
+                    </div>
+                </div>
+                <span class="amount">-$269.00</span>
+            </div>
+            <div class="payment-row">
+                <div class="payment-container">
+                    <div class="payment-item">
+                        <span class="date">30 Mar</span>
+                        <span class="name">DNP</span>
+                    </div>
+                </div>
+                <span class="amount">-$2100.00</span>
+            </div>
+            <div class="payment-row">
+                <div class="payment-container">
+                    <div class="payment-item">
+                        <span class="date">05 Apr</span>
+                        <span class="name">Sojet</span>
+                    </div>
+                </div>
+                <span class="amount">-$11.99</span>
+            </div>
+        </div>
+        <button class="view-more">See all</button>
+    </div>
+</body>
+</html>
