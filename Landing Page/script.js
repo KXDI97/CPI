@@ -135,3 +135,38 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    // Mostrar/Ocultar Número de Cuenta
+    const accountNumber = document.querySelector(".account-number p");
+    const showAccountLink = document.querySelector(".account-number a");
+    let isHidden = true;
+
+    showAccountLink.addEventListener("click", function (event) {
+        event.preventDefault();
+        isHidden = !isHidden;
+        accountNumber.innerHTML = `Account Number: ${isHidden ? "******3017" : "1234-5678-3017"} <a href="#">${isHidden ? "Show" : "Hide"}</a>`;
+    });
+
+    // Actualización de Saldos
+    let availableBalance = 5000;  // Saldo disponible inicial
+    let currentBalance = 5200;    // Saldo actual inicial
+    let interestYTD = 50;         // Intereses generados
+    let apy = 1.5;                // Porcentaje de interés anual
+
+    function updateBalances() {
+        document.querySelector(".balance-item:nth-child(1) strong").textContent = `$${availableBalance.toFixed(2)}`;
+        document.querySelector(".balance-item:nth-child(2) strong").textContent = `$${currentBalance.toFixed(2)}`;
+        document.querySelector(".balance-item:nth-child(3) strong").textContent = `$${interestYTD.toFixed(2)}`;
+        document.querySelector(".balance-item:nth-child(4) strong").textContent = `${apy}%`;
+    }
+
+    updateBalances(); // Llamamos la función al cargar la página
+
+    // Simulación de actualización de saldo cada 5 segundos
+    setInterval(() => {
+        let interest = (currentBalance * (apy / 100)) / 12;  // Interés mensual
+        interestYTD += interest;
+        currentBalance += interest;
+        updateBalances();
+    }, 5000);
+});
