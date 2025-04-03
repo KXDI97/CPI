@@ -9,51 +9,6 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="logo">
-                <img src="Logo - CPI.png" alt="Logo de la página">
-                <span class="logo-text">CPI</span>
-            </div>
-            <div class="user-actions">
-                <div class="user-info">
-                    <button class="profile-button">
-                        <ion-icon name="person-outline" class="profile-icon"></ion-icon>
-                    </button>
-                    <span class="username">Bryams Solórzano</span>
-                </div>
-                <div class="notification">
-                    <button class="notification-button">
-                        <ion-icon name="notifications-outline"></ion-icon>
-                        <span class="notification-dot"></span>
-                    </button>
-                </div>
-                <button class="logout-button" onclick="window.location.href='Landing.html'">
-                    <ion-icon name="log-out-outline"></ion-icon>
-                </button>
-            </div>
-        </header>
-
-        <aside class="sidebar">
-            <nav class="nav-buttons">
-                <button><ion-icon name="home-outline"></ion-icon> Dashboard</button>
-                <button onclick="window.location.href='Storage.html'"><ion-icon name="archive-outline"></ion-icon> Storage</button>
-                <button onclick="window.location.href='http://127.0.0.7:5500/Purchase/purchases.html'"><ion-icon name="storefront-outline"></ion-icon> Purchases</button>
-                <button><ion-icon name="journal-outline"></ion-icon> Savings</button>
-                <button><ion-icon name="stats-chart-outline"></ion-icon> Stats</button>
-            </nav>
-            <div class="account-details">
-                <h2>Account Details</h2>
-                <button><ion-icon name="person-outline"></ion-icon> Profile</button>
-                <button><ion-icon name="settings-outline"></ion-icon> Settings</button>
-                <button onclick="window.location.href='Landing.html'"><ion-icon name="enter-outline"></ion-icon> Sign out</button>
-            </div>
-            <div class="help-section">
-                <p>Need help?</p>
-                <p>Check out our help center & forums</p>
-                <button>Learn more</button>
-            </div>
-        </aside>
 
         <div id="header-container"></div>
          <div id="sidebar-container"></div>
@@ -114,6 +69,10 @@
     function toggleRecurring() {
         document.getElementById('recurring').classList.toggle('active');
     }
+    </script>
+    <script type="module">
+        import { loadComponents } from './components.js';
+        loadComponents();
     </script>
 <script src="script.js"></script>
 </body>
