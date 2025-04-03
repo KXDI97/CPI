@@ -7,6 +7,7 @@
     <title>Dashboard CPI</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -21,7 +22,7 @@
 
             <div class="chart-box">
                 <h2>Purchase Order</h2>
-                <button class="view-more">View more</button>
+                <button class="view-more" id="purchasego">View more</button>
                 <p>From 14 Jan, 2024 - 14 Mar, 2024</p>
                 <canvas id="purchaseChart"></canvas>
             </div>
@@ -37,7 +38,7 @@
                     <div><span class="color-tapes"></span> Tapes - 15%</div>
                     <div><span class="color-devices"></span> Devices - 5%</div>
                 </div>
-                <button class="view-more">View more</button>
+                <button class="view-more" id="statsgo">View more</button>
             </div>
 
             <div class="chart-box"> <!-- Nuevo tercer gráfico -->
@@ -46,7 +47,7 @@
                 <button class="view-more">See all</button>
             </div>
         </div>
-        
+
         <script type="module">
             import { loadComponents } from './components.js';
             loadComponents();
