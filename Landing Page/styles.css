@@ -2211,137 +2211,86 @@ h1 {
 }
 
 /*FIN DE PROFILE*/
+
 /* estilos de saving*/
-.saving-container {
-    position: fixed;
-    top: 30px;
-    left: 40px;
-    background: linear-gradient(145deg, #1F2937, #2B2D42);
-    color: #ffffff;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    margin-left: 180px;
-    margin-top: 80px;
-    width: 600px;
-    max-width: 1500px;
-    font-family: 'Poppins', sans-serif;
-    transition: transform 0.3s ease;
-
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    width: 100%;
+    justify-content: space-between;
+    min-height: none;
+    
 }
 
-
-.saving-container:hover {
-    transform: scale(1.01);
+.main-content {
+    display:flex;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }
 
-.account-number {
-    font-size: 16px;
-    color: #8D99AE;
-    margin-bottom: 20px;
-    background-color: #121826;
-    padding: 8px 12px;
+.savings-account-container {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    max-width: 1200px;
+    background-color: #1F2937; 
+    padding: 10px;
     border-radius: 8px;
-    display: inline-block;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: white;
+    text-align: center;
+    justify-content: center;
+  
+   
+
+}
+.account-info, 
+.projected-balance-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #1F2937;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    width: 60%; 
+    max-width: 1200px; 
 }
 
 .financial-info {
     display: flex;
-    justify-content: space-around;
-    background-color: #121826;
-    padding: 15px;
-    border-radius: 12px;
-    margin-top: 10px;
-    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
-    text-align: center;
-}
-
-.grafica-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    padding: 10px;
-}
-
-.grafica-content {
-    flex: 1;
-}
-
-.grafica-leyenda {
-    list-style: none;
-    padding: 0;
-    font-size: 14px;
-}
-
-.grafica-leyenda li {
-    margin-bottom: 5px;
-}
-
-.grafica-logo {
-    text-align: right;/
-}
-
-.account-actions {
-    margin-top: 25px;
-    display: flex;
-    gap: 15px;
     flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
 }
 
-.action-button {
-    flex: 1 1 45%;
-    padding: 12px 20px;
-    background-color: #9069F9;
-    border: none;
-    color: white;
+.balance-item {
+    width: 60%;
+    background-color: #1F2937 ;
+    padding: 0px;
     border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 500;
-    transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.action-button:hover {
-    background-color: #54F1B8;
-    transform: translateY(-2px);
-}
-
-.recent-transactions {
-    margin-top: 35px;
-}
-
-.recent-transactions h4 {
-    margin-bottom: 15px;
-    color: #2EC4B6;
-    font-size: 20px;
-    font-weight: 600;
-}
-
-.recent-transactions ul {
-    list-style: none;
-    padding: 0;
-}
-
-.recent-transactions li {
-    background-color: #121826;
-    padding: 14px 16px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    display: flex;
+    margin-top: 10px;
+    text-align: left;
     justify-content: space-between;
-    align-items: center;
-    color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s;
 }
 
-.recent-transactions li:hover {
-    background-color: #1F2A40;
+.balance, .recurring {
+    width: 90%;
+    max-width: 400px; 
+    height: 100vh;
+    background-color: #1e1e2f;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    justify-content: space-between;
 }
 
-.transaction-date {
-    color: #8D99AE;
-    font-size: 13px;
+img {
+    display: block;
+    margin: 0 auto;
 }
