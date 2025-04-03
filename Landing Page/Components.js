@@ -9,9 +9,7 @@ export function loadComponents() {
         })
         .catch(error => console.error('Error cargando Header:', error));
 
-    // Header Loading Script
-
-// Header Loading Script
+    
 
 // Header Loading Script
 
