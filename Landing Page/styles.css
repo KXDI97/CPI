@@ -1567,8 +1567,7 @@ textarea {
 /* INICIO DE PURCHASE */
 .content-Purchase {
     flex: 1;
-    padding: 20px;
-    margin-left: 220px;
+    margin-left: 240px;
     background-color: #121826;
     width: 80%;
 }
