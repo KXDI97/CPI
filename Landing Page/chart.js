@@ -4,64 +4,21 @@ document.getElementById("purchasego").addEventListener("click", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
     // 🍩 Doughnut Chart - Spending Chart
-    const spendingCtx = document.getElementById('spendingChart').getContext('2d');
-
-    const spendingChart = new Chart(spendingCtx, {
+    const doughnutChart = new Chart(document.getElementById('doughnutChart'), {
         type: 'doughnut',
         data: {
             labels: ['Ink', 'Additives', 'Tapes', 'Devices'],
             datasets: [{
+                labels: ['Ink', 'Additives', 'Tapes', 'Devices'],
                 data: [36, 42, 15, 5],
-                backgroundColor: ['#66ffcc', '#7d5fff', '#ff4d4d', '#4d79ff'],
-                borderWidth: 0
+                backgroundColor: ['#4F46E5', '#22C55E', '#FACC15', '#4295ff'],
             }]
         },
         options: {
             responsive: true,
-            cutout: '90%',
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        },
-        plugins: [{
-            afterDraw: function (chart) {
-                let ctx = chart.ctx;
-                let width = chart.width;
-                let height = chart.height;
-        
-                ctx.restore();
-                let fontSize = (height / 10).toFixed(2); // Ajusta el tamaño
-        
-                // Asegurar que la fuente está cargada antes de dibujar
-                document.fonts.load("bold " + fontSize + "px Poppins").then(function () {
-                    ctx.font = fontSize + "px 'Poppins', sans-serif";
-                    ctx.textBaseline = "middle";
-                    ctx.textAlign = "center";
-        
-                    let text = "$5,285";
-                    let textX = width / 2;
-                    let textY = height / 2 - 10;
-        
-                    let percentage = "+2.4%";
-                    let percentageY = height / 2 + 15;
-        
-                    ctx.fillStyle = "#ffffff";
-                    ctx.fillText(text, textX, textY);
-        
-                    ctx.font = "bold " + (fontSize / 1.5) + "px 'Poppins', sans-serif";
-                    ctx.fillStyle = "#ff4d4d";
-                    ctx.fillText(percentage, textX, percentageY);
-                    
-                    ctx.save();
-                });
-            }
-        }]
-        
+            maintainAspectRatio: false
+        }
     });
-
-    // 📈 Line Chart - Purchase Chart
     const purchaseCtx = document.getElementById('purchaseChart').getContext('2d');
 
     const purchaseChart = new Chart(purchaseCtx, {

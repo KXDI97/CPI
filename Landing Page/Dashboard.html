@@ -22,23 +22,15 @@
 
             <div class="chart-box">
                 <h2>Purchase Order</h2>
-                    <button class="view-more" id="purchasego">View more</button>
+                <button class="view-more" id="purchasego">View more</button>
                 <p>From 14 Jan, 2024 - 14 Mar, 2024</p>
                 <canvas id="purchaseChart"></canvas>
             </div>
             <div class="chart-box">
                 <h2>Spending</h2>
-                <p>From 14 Jan, 2024 - 14 Mar, 2024</p>
-                <div class="chart-content">
-                    <canvas id="spendingChart"></canvas>
-                    <div class="legend">
-                        <div><span class="color-ink"></span> Ink - 36%</div>
-                        <div><span class="color-additives"></span> Additives - 42%</div>
-                        <div><span class="color-tapes"></span> Tapes - 15%</div>
-                        <div><span class="color-devices"></span> Devices - 5%</div>
-                    </div>
-                </div>
                 <button class="view-more" id="statsgo">View more</button>
+                <p>From 14 Jan, 2024 - 14 Mar, 2024</p>
+                <canvas id="doughnutChart"></canvas>
             </div>
 
             <body>
@@ -94,93 +86,93 @@
                     </div>
                     <button class="view-more">See all</button>
                 </div>
-            </div>
-            <div class="chart-box-down">
-                <h2>Recent Informs</h2>
-                <p>From 14 Jan, 2024 - 14 Mar, 2024</p>
-                <button class="view-more-down">View Full History</button>  
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Description</th>
-                            <th>Date</th>
-                            <th>Category</th>
-                            <th>Provider</th>
-                            <th>Quantity</th>
-                            <th>Pending</th>
-                            <th>Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
-                            <td>Mar 14</td>
-                            <td>Additive</td>
-                            <td>Qualiprint</td>
-                            <td>24</td>
-                            <td>12</td>
-                            <td>$2,320.00</td>
-                        </tr>
-                        <tr>
-                            <td><ion-icon name="color-fill-outline"></ion-icon> LA 0056</td>
-                            <td>Mar 12</td>
-                            <td>Ink</td>
-                            <td>Qualiprint</td>
-                            <td>34</td>
-                            <td>0</td>
-                            <td>$1,450.00</td>
-                        </tr>
-                        <tr>
-                            <td><ion-icon name="radio-outline"></ion-icon> TVSA 33x700</td>
-                            <td>Mar 10</td>
-                            <td>Tape</td>
-                            <td>Qualiprint</td>
-                            <td>10</td>
-                            <td>5</td>
-                            <td>$576.00</td>
-                        </tr>
-                        <tr>
-                            <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
-                            <td>Mar 09</td>
-                            <td>Device</td>
-                            <td>Qualiprint</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>$15,000.00</td>
-                        </tr>
-                        <tr>
-                            <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
-                            <td>Mar 14</td>
-                            <td>Additive</td>
-                            <td>Qualiprint</td>
-                            <td>24</td>
-                            <td>12</td>
-                            <td>$2,320.00</td>
-                        </tr>
-                        <tr>
-                            <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
-                            <td>Mar 09</td>
-                            <td>Device</td>
-                            <td>Qualiprint</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>$15,000.00</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>        
         </div>
+        <div class="chart-box-down">
+            <h2>Recent Informs</h2>
+            <p>From 14 Jan, 2024 - 14 Mar, 2024</p>
+            <button class="view-more-down">View Full History</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Provider</th>
+                        <th>Quantity</th>
+                        <th>Pending</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
+                        <td>Mar 14</td>
+                        <td>Additive</td>
+                        <td>Qualiprint</td>
+                        <td>24</td>
+                        <td>12</td>
+                        <td>$2,320.00</td>
+                    </tr>
+                    <tr>
+                        <td><ion-icon name="color-fill-outline"></ion-icon> LA 0056</td>
+                        <td>Mar 12</td>
+                        <td>Ink</td>
+                        <td>Qualiprint</td>
+                        <td>34</td>
+                        <td>0</td>
+                        <td>$1,450.00</td>
+                    </tr>
+                    <tr>
+                        <td><ion-icon name="radio-outline"></ion-icon> TVSA 33x700</td>
+                        <td>Mar 10</td>
+                        <td>Tape</td>
+                        <td>Qualiprint</td>
+                        <td>10</td>
+                        <td>5</td>
+                        <td>$576.00</td>
+                    </tr>
+                    <tr>
+                        <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
+                        <td>Mar 09</td>
+                        <td>Device</td>
+                        <td>Qualiprint</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>$15,000.00</td>
+                    </tr>
+                    <tr>
+                        <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
+                        <td>Mar 14</td>
+                        <td>Additive</td>
+                        <td>Qualiprint</td>
+                        <td>24</td>
+                        <td>12</td>
+                        <td>$2,320.00</td>
+                    </tr>
+                    <tr>
+                        <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
+                        <td>Mar 09</td>
+                        <td>Device</td>
+                        <td>Qualiprint</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>$15,000.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-        
 
-        <script type="module">
-            import { loadComponents } from './components.js';
-            loadComponents();
-        </script>
-        <script src="components.js"></script>
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        <script src="Chart.js"></script>
+
+    <script type="module">
+        import { loadComponents } from './components.js';
+        loadComponents();
+    </script>
+    <script src="components.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="Chart.js"></script>
     </div>
 </body>
 
