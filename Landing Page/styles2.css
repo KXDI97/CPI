@@ -1,0 +1,263 @@
+/* sTYLOS REPORTS */
+.content-Reports {
+    flex: 1;
+    margin-left: 240px;
+    background-color: #121826;
+    width: 80%;
+    padding: 20px;
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    background: #1F2937;
+    padding: 15px;
+    border-radius: 8px;
+    align-items: center;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.filters input, 
+.filters select {
+    background: #384152;
+    border: 1px solid #444;
+    padding: 8px;
+    color: white;
+    border-radius: 6px;
+    width: 80%;
+    text-align: left;
+}
+
+/* Estilos para el botón */
+.button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-filtrar {
+    background: #9069F9;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-filtrar:hover {
+    background:#54F1B8;
+}
+
+/* visualización de reportes */
+
+.container-reports {
+    display: grid;
+    margin-top: 15px;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas del mismo tamaño */
+    gap: 20px;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.report-viewer, .report-sender {
+    background: #2D3748;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+}
+.report-viewer {
+    background: #1F2937;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    height: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 2px;
+    gap: 5px;
+}
+
+.form-group label {
+    font-size: 14px;
+    margin-bottom: 2px;
+    color: white;
+    text-align: left;
+}
+
+.container-reports h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: white; 
+    text-align: left;
+}
+
+.report-sender input {
+    width: 95%;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    background: #384152;
+    color: #333;
+    text-align: left;
+}
+
+.report-container {
+    border: 2px solid #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 150px;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.discard-button {
+    padding: 10px;
+    background: #E53935;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.report-sender {
+    background: #1F2937;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    height: 400px;
+    margin: auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+
+.send-button {
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+/* Estilos de la tabla */
+
+.table-container {
+    background-color: #1F2937;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    text-align: left;
+    padding: 12px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.icon {
+    font-size: 22px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: transform 0.2s, color 0.3s;
+}
+
+.icon.view:hover {
+    color: #54F1B8;
+}
+
+.icon.download:hover {
+    color: #9069F9;
+}
+
+.icon.email:hover {
+    color: #FBD7BD;
+}
+
+@media (max-width: 768px) {
+    .filters {
+        grid-template-columns: 1fr;
+    }
+
+    .button-group {
+        justify-content: flex-start;
+    }
+}
+
+/* Botones de exportación */
+.export-controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-export {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #1F2937;
+    color: white;
+    border: 2px solid transparent;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-export.pdf:hover {
+    border-color: #F43F5E;
+}
+
+.btn-export.excel:hover {
+    border-color: #22C55E;
+}
+
+
