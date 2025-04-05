@@ -948,7 +948,7 @@ h1 {
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    max-width: 1200px;
+    max-width: 120%;
     margin: auto;
     color: white;
 }
@@ -1037,6 +1037,97 @@ tbody tr:nth-child(odd) {
 .pagination a:hover {
     color: #888;
 }
+
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    .content-Storage {
+        width: 100%;
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .search-bar {
+        width: 100%;
+        justify-content: space-between;
+        margin-left: 0;
+    }
+
+    .btn-1, .btn-2 {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .table-container {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        min-width: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+    }
+
+    .search-bar {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .btn-1, .btn-2 {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+
+    thead th, td {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .icon {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    .search-bar input {
+        font-size: 12px;
+    }
+
+    .btn-1, .btn-2 {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .table-container {
+        padding: 10px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    .pagination a {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+}
+
 
 /*MODAL JS*/
 
