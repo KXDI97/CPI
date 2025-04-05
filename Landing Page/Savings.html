@@ -16,92 +16,93 @@
 
         <!-- Controles y filtros -->
         <div class="filters">
-            <label for="fecha-inicio">Fecha Inicio:</label>
-            <input type="date" id="fecha-inicio">
+            <label for="start-date">Start date:</label>
+            <input type="date" id="start-date">
 
-            <label for="fecha-final">Fecha Final:</label>
+            <label for="end-date">End date:</label>
             <input type="date" id="fecha-final">
 
-            <label for="tipo-producto">Tipo de Producto:</label>
-            <select id="tipo-producto">
-                <option value="">Seleccione</option>
+            <label for="Product-Type">Product Type:</label>
+            <select id="Product-Type">
+                <option value="">Select</option>
                 <option value="Electronico">Electrónico</option>
                 <option value="Muebles">Muebles</option>
                 <option value="Ropa">Ropa</option>
             </select>
 
-            <label for="proveedor">Proveedor:</label>
-            <input type="text" id="proveedor" placeholder="Ingrese proveedor">
+            <label for="Supplier">Supplier:</label>
+            <input type="text" id="Supplier" placeholder="Enter Supplierr">
 
-            <label for="codigo-cliente">Código Cliente:</label>
-            <input type="text" id="codigo-cliente" placeholder="Ingrese código">
+            <label for="Client-Code">Client Code:</label>
+            <input type="text" id="Client-Code" placeholder="Enter Code">
 
-            <label for="metodo-importacion">Método de Importación:</label>
-            <select id="metodo-importacion">
-                <option value="">Seleccione</option>
+            <label for="Import-Method">Import Method:</label>
+            <select id="Import-Method">
+                <option value="">Select</option>
                 <option value="Aéreo">Aéreo</option>
                 <option value="Marítimo">Marítimo</option>
                 <option value="Terrestre">Terrestre</option>
             </select>
 
             <button class="btn-filtrar">
-                <ion-icon name="filter-outline"></ion-icon> Aplicar Filtros
+                <ion-icon name="filter-outline"></ion-icon>Apply Filters
             </button>
         </div>
 
         <div class="container-reports">
             <div class="report-viewer">
-                <h2>Visualización de Informe</h2>
+                <h2>Report Viewing</h2>
         
                 <div class="form-group">
-                    <label for="filters">📌Filtros Aplicado</label>
-                    <input type="text" id="filters" placeholder="Resumen de filtros seleccionados" disabled>
+                    <label for="filters">📌Filters Applied</label>
+                    <input type="text" id="filters" placeholder="selected filters" disabled>
                 </div>
         
                 <div class="report-container">
                     <iframe id="reportFrame" src="ejemplo.pdf"></iframe>
                 </div>
-        
-                <button class="discard-button">🗑️ Descartar Informe</button>
+                
+                <button class="generate-button">Generate Report</button>
+                <button class="discard-button">Discard Report</button>
             </div>
         
             <div class="report-sender">
-                <h2>Envío de Informes</h2>
+                <h2>Sending Reports</h2>
 
                 <div class="form-group">
                     <label for="Reports">Select Report</label>
                     <select id="Reports">
-                        <option value="">Seleccione</option>
+                        <option value="">Select</option>
                     </select>
                 </div>
         
                 <div class="form-group">
-                    <label for="email">📧 Correo Electrónico:</label>
-                    <input type="email" id="email" placeholder="Ingrese el correo destino">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" placeholder="Enter Email Address">
                 </div>
         
                 <div class="form-group">
-                    <label for="report-type">📄 Formato del Informe:</label>
+                    <label for="report-type">Report Format:</label>
                     <select id="report-type">
                         <option value="pdf">PDF</option>
                         <option value="excel">Excel</option>
                     </select>
                 </div>
         
-                <button class="send-button">📤 Enviar Informe</button>
+                <button class="send-button">Send Report</button>
             </div>
         </div>
 
         <!-- Tabla de informes -->
         <div class="table-container">
-            <h2>Historial de Informes</h2>
+            <h2>Report History</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>Fecha</th>
-                        <th>Tipo de Informe</th>
-                        <th>Importancia</th>
-                        <th>Acciones</th>
+                        <th>Date</th>
+                        <th>Report Type</th>
+                        <th>Priority</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>

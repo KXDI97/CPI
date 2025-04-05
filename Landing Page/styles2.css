@@ -50,15 +50,17 @@
     background: #9069F9;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 8px 10px;
     border-radius: 6px;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
     display: flex;
-    align-items: center;
+    align-items: left;
     gap: 8px;
+    justify-self: start; /* Alinea a la izquierda dentro de la celda */
+    width: auto; 
 }
 
 .btn-filtrar:hover {
@@ -137,14 +139,38 @@ iframe {
 }
 
 .discard-button {
+    margin-bottom: auto;
     padding: 10px;
-    background: #E53935;
+    background-color: #384152;
     color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border: 2px solid transparent;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
     font-weight: bold;
-    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.discard-button:hover {
+    border-color: #F43F5E;
+}
+.generate-button:hover {
+    border-color: #22C55E;
+}
+
+.generate-button {
+    padding: 10px;
+    margin-top: 8px;
+    background-color: #384152;
+    color: white;
+    border: 2px solid transparent;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
 }
 
 .report-sender {
