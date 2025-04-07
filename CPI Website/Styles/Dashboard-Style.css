@@ -1,0 +1,349 @@
+.content-Dashboard {
+    flex: 1;
+    padding: 20px;
+    margin-left: 220px;
+    background-color: #121826;
+    width: 80%;
+}
+
+.content-Dashboard h1 {
+    margin-bottom: 0px;
+}
+
+.content-Dashboard p {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+
+.chart-container {
+    margin-left: 50px;
+    display: flex;
+    justify-content: space-between;
+    gap: 35px;
+    margin-top: 50px;
+    position: relative;
+}
+
+#spendingChart {
+    flex: 1;
+    max-width: 250px;
+    max-height: 250px;
+}
+
+.chart-box {
+
+    display: flex;
+    background: #1F2937;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(188, 190, 206, 0.5);
+    text-align: center;
+    flex-basis: 50%;
+    max-width: 500px;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+.chart-box h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: left;
+    width: 90%;
+}
+
+.chart-box p {
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: left;
+    width: 90%;
+    padding: 5px;
+    margin-bottom: 5px;
+    font-size: medium;
+    color: rgba(255, 255, 255, 0.822);
+}
+
+
+.chart-box-dough {
+    display: flex;
+    background: #1F2937;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(188, 190, 206, 0.5);
+    text-align: center;
+    flex-basis: 50%;
+    max-width: 500px;
+    align-items: flex-start;
+    position: relative;
+    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si es necesario */
+}
+
+.chart-box-dough h2,
+.chart-box-dough p {
+    margin: 0;
+    width: 100%;
+    line-height: 1.2;
+}   
+
+.chart-box-dough h2 {
+    font-size: 1.5rem;
+    text-align: left;
+    margin-bottom: 2px; /* Pequeño espacio sin valores negativos */
+}
+
+.chart-box-dough p {
+    font-size: medium;
+    text-align: left;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.822);
+}
+
+
+
+.chart-box-down {
+    margin-left: 50px;
+    margin-top: 35px;
+    background: #1F2937;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(188, 190, 206, 0.5);
+    text-align: center;
+    flex-basis: 45%;
+    width: 915px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+.chart-box-down h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: left;
+    width: 90%;
+}
+
+.chart-box-down p {
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: left;
+    width: 90%;
+    padding: 5px;
+    margin-bottom: 5px;
+    font-size: medium;
+    color: rgba(255, 255, 255, 0.822);
+}
+
+.view-more {
+    font-family: 'Poppins';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 100px;
+    height: 30px;
+    background-color: #374555;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+}
+
+.view-more:hover {
+    background-color: #4f6279a9;
+}
+
+.view-more-down {
+    font-family: 'Poppins';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 150px;
+    height: 30px;
+    background-color: #374555;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+}
+
+.view-more-down:hover {
+    background-color: #4f6279a9;
+}
+
+.chart-table-container {
+    flex: 1;
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 5px;
+    width: 500px;
+    height: 300px;
+    background-color: #1F2937;
+    border-radius: 10px;
+    border: 5px solid white;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+canvas {
+    max-width: 500px;
+    max-height: 300px;
+}
+
+.legend {
+    flex: 1;
+    text-align: left;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 250px;
+}
+
+.legend div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.color-ink,
+.color-additives,
+.color-tapes,
+.color-devices {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+}
+
+
+
+.color-ink {
+    background-color: #00FFAA;
+    border-radius: 100%;
+}
+
+.color-additives {
+    background-color: #8A2BE2;
+    border-radius: 100%;
+}
+
+.color-tapes {
+    background-color: #FF4C4C;
+    border-radius: 100%;
+}
+
+.color-devices {
+    background-color: #4682B4;
+    border-radius: 100%;
+}
+
+.payments-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.payment-container-first,
+.payment-container-second,
+.payment-container-third,
+.payment-container-fourth,
+.payment-container-fifth {
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    border-radius: 10px;
+    flex-grow: 1;
+}
+
+.payment-container-first {
+    background-color: #495869;
+    color: #ffffff;
+}
+
+.payment-container-second {
+    background-color: #495869af;
+    color: #ffffffaf;
+
+}
+
+.payment-container-third {
+    background-color: #49586983;
+    color: #ffffff83;
+
+}
+
+.payment-container-fourth {
+    background-color: #4958695e;
+    color: #ffffff5e;
+}
+
+.payment-container-fifth {
+    background-color: #49586931;
+    color: #ffffff31;
+}
+
+.amount-first {
+    background-color: #495869;
+    color: #ffadad;
+}
+
+.amount-second {
+    background-color: #495869af;
+    color: #ffadadaf;
+
+}
+
+.amount-third {
+    background-color: #49586983;
+    color: #ffadad83;
+
+}
+
+.amount-fourth {
+    background-color: #4958695e;
+    color: #ffadad5e;
+}
+
+.amount-fifth {
+    background-color: #49586931;
+    color: #ffadad31;
+
+}
+
+
+.payment-item {
+    display: flex;
+    align-items: center;
+    min-width: 300px;
+}
+
+.date {
+    font-size: 14px;
+    text-align: left;
+}
+
+.name {
+    font-size: 14px;
+    margin-left: 15px;
+}
+
+.amount-first,
+.amount-second,
+.amount-third,
+.amount-fourth,
+.amount-fifth {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: right;
+    padding: 14px 12px;
+    border-radius: 8px;
+    min-width: 70px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
