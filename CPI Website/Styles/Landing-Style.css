@@ -87,7 +87,7 @@ form {
 }
 .input-color:focus {
     border: 2.5px solid #8a48ff;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color .8s ease, box-shadow .8s ease;
 }
 .input-color:focus {
     border-color: #24d393;
@@ -105,7 +105,7 @@ form {
     transform: translateY(-50%);
     font-size: 20px;
     color: #ebebeba2;
-    transition: color 0.3s;
+    transition: color .8s;
   }
 
   .input-box:focus-within i {
