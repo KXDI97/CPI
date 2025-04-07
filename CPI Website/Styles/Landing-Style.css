@@ -87,7 +87,7 @@ form {
 }
 .input-color:focus {
     border: 2.5px solid #8a48ff;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color .8s ease, box-shadow .8s ease;
 }
 .input-color:focus {
     border-color: #24d393;
@@ -105,7 +105,7 @@ form {
     transform: translateY(-50%);
     font-size: 20px;
     color: #ebebeba2;
-    transition: color 0.3s;
+    transition: color .8s;
   }
 
   .input-box:focus-within i {
@@ -166,6 +166,16 @@ form {
     color: #ffffff;
     text-decoration: none;
     margin: 0 8px;
+    transition: 1s;
+}
+.social-icons a:hover{
+    display: inline-flex;
+    border: 2px solid #24d393;
+    font-size: 24px;
+    color: #24d393;
+    text-decoration: none;
+    background: #1f2937;
+    transition: 1s;
 }
 
 .toggle-box {
@@ -232,6 +242,15 @@ form {
     background: transparent;
     border: 2px solid #ffff;
     box-shadow: none;
+    transition: 1s;
+}
+.toggle-panel .btn:hover {
+    width: 160px;
+    height: 46px;
+    background: #374151;
+    color: #ffff;
+    border: 2px solid #374151;
+    transition: 1s;
 }
 
 .logo {
