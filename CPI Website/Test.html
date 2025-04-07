@@ -1,214 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charts</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Input con Icono</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #111827;
-            color: white;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
+            background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
         }
 
-        .chart-box {
-            display: flex;
-            background: #1F2937;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(188, 190, 206, 0.5);
-            text-align: center;
-            flex-basis: 50%;
-            max-width: 500px;
-            flex-direction: column;
-            align-items: flex-start;
+        .input-box {
             position: relative;
-            margin-bottom: 20px;
-        }
-
-        .chart-box h2 {
-            margin: 0;
-            font-size: 1.5rem;
-            text-align: left;
-            width: 90%;
-        }
-
-        .chart-box p {
-            margin: 0;
-            font-size: medium;
-            text-align: left;
-            width: 90%;
-            padding: 5px;
-            color: rgba(255, 255, 255, 0.822);
-        }
-
-        .chart-box-dough {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            max-width: 600px;
-            background: #1F2937;
-            height: 410px;
+            background: #fff;
+            border: 2px solid #ccc;
             border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(188, 190, 206, 0.5);
+            padding: 10px 15px;
+            transition: border-color 0.3s ease;
         }
 
-        .chart-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            gap: 20px;
+        .input-box:focus-within {
+            border-color: #8a48ff;
         }
 
-        #doughnutChart {
-            max-width: 250px;
-            max-height: 250px;
+        .input-box input {
+            border: none;
+            outline: none;
+            font-size: 16px;
+            padding: 8px;
+            width: 200px;
+            background: transparent;
         }
 
-        .legend {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            border-radius: 5px;
+        .input-box i {
+            font-size: 20px;
+            color: #aaa;
+            margin-left: 10px;
+            transform: translateY(-50%);
         }
 
-        .legend div {
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        .input-box:focus-within i {
+            color: #15ff00;
         }
-
-        .color-ink {
-            width: 15px;
-            height: 15px;
-            background-color: #4F46E5;
-            display: inline-block;
-            border-radius: 50%;
-        }
-
-        .color-additives {
-            width: 15px;
-            height: 15px;
-            background-color: #22C55E;
-            display: inline-block;
-            border-radius: 50%;
-        }
-
-        .color-tapes {
-            width: 15px;
-            height: 15px;
-            background-color: #FACC15;
-            display: inline-block;
-            border-radius: 50%;
-        }
-
-        .color-devices {
-            width: 15px;
-            height: 15px;
-            background-color: #EF4444;
-            display: inline-block;
-            border-radius: 50%;
-        }
-
     </style>
 </head>
 <body>
-    <div class="chart-box-dough">
-        <h2>Doughnut Chart</h2>
-        <div class="chart-content">
-            <canvas id="doughnutChart"></canvas>
-            <div class="legend">
-                <div><span class="color-ink"></span> Ink - 36%</div>
-                <div><span class="color-additives"></span> Additives - 42%</div>
-                <div><span class="color-tapes"></span> Tapes - 15%</div>
-                <div><span class="color-devices"></span> Devices - 5%</div>
-            </div>
-        </div>
+
+    <div class="input-box">
+        <input type="text" class="input-color" placeholder="Password" required>
+        <i class='bx bxs-lock-alt'></i>
     </div>
-
-    <script>
-        const doughnutChart = new Chart(document.getElementById('doughnutChart'), {
-            type: 'doughnut',
-            data: {
-                labels: ['Ink', 'Additives', 'Tapes', 'Devices'],
-                datasets: [{
-                    labels: ['Ink', 'Additives', 'Tapes', 'Devices'],
-                    data: [36, 42, 15, 5],
-                    backgroundColor: ['#4F46E5', '#22C55E', '#FACC15', '#EF4444'],
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false
-            }
-        });
-        const doughnutCtx = document.getElementById('doughnutChart')?.getContext('2d');
-    if (doughnutCtx) {
-        new Chart(doughnutCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Ink', 'Additives', 'Tapes', 'Devices'],
-                datasets: [{
-                    data: [36, 42, 15, 5],
-                    backgroundColor: ['#4F46E5', '#22C55E', '#FACC15', '#EF4444'],
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                cutout: '90%',
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                }
-            },
-            plugins: [{
-                afterDraw: function (chart) {
-                    let ctx = chart.ctx;
-                    let width = chart.width;
-                    let height = chart.height;
-
-                    ctx.save();
-                    let fontSize = (height / 10).toFixed(2);
-
-                    document.fonts.load("bold " + fontSize + "px Poppins").then(function () {
-                        ctx.font = fontSize + "px 'Poppins', sans-serif";
-                        ctx.textBaseline = "middle";
-                        ctx.textAlign = "center";
-
-                        let text = "$5,285";
-                        let textX = width / 2;
-                        let textY = height / 2 - 10;
-
-                        let percentage = "+2.4%";
-                        let percentageY = height / 2 + 15;
-
-                        ctx.fillStyle = "#ffffff";
-                        ctx.fillText(text, textX, textY);
-
-                        ctx.font = "bold " + (fontSize / 1.5) + "px 'Poppins', sans-serif";
-                        ctx.fillStyle = "#ff4d4d";
-                        ctx.fillText(percentage, textX, percentageY);
-                    });
-                }
-            }]
-        });
-    }
-    </script>
 
 </body>
 </html>
