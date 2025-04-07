@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - CPI</title>
     <link rel="icon" type="image/png" href="../Images/logo.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../Styles/Landing-Style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -15,6 +15,7 @@
     <div class="container">
         <div class="form-box login">
             <form action="">
+                <img src="../Images/Logo - CPI.png" class="logo">
                 <h1>Login</h1>
                 <div class="input-box">
                     <input type="text" placeholder="Username" required>
@@ -41,6 +42,7 @@
 
         <div class="form-box register">
             <form action="">
+                <img src="../Images/Logo - CPI.png" class="logo">
                 <h1>Registration</h1>
                 <div class="input-box">
                     <input type="text" placeholder="Username" required>
@@ -70,15 +72,20 @@
         </div>
         <div class="toggle-box">
             <div class="toggle-panel toggle-left">
-                <h1> Hello, Welbome!</h1>
+                <h1> Welcome back!</h1>
                 <p>Don't have an account?</p>
                 <button class="btn register-btn">Register</button>
+            </div>
+            <div class="toggle-panel toggle-right">
+                <h1>Hello, Welcome!</h1>
+                <p>Already have an account?</p>
+                <button class="btn login-btn">Login</button>
             </div>
     </div>
 
     </div>
     </div>
-    <script src="script.js"></script>
+    <script src="../Scripts/Landing.js"></script>
 </body>
 
 </html>
