@@ -1,0 +1,139 @@
+/*INICIO DE STYLOS SETTINGS*/
+
+.container-settings {
+    margin-left: 480px;
+    /* Ancho del sidebar + un pequeño espacio */
+    margin-top: 40px;
+    width: 700px;
+    /* Se ajusta según sidebar y márgenes */
+    max-width: 900px;
+    background: #1F2937;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+@media screen and (max-width: 1200px) {
+    .container-settings {
+        margin-left: 220px;
+        width: calc(100% - 240px);
+    }
+}
+
+.container-settings h2 {
+    text-align: left;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    font-size: 35px;
+}
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.setting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #384152;
+    transition: all 0.3s ease;
+}
+
+.setting:hover {
+    background: #121826;
+}
+
+.setting:hover .icon ion-icon {
+    color: #54F1B8;
+}
+
+.settings-container button {
+    background: #9069F9;
+    color: white;
+    font-size: 14px;
+    padding: 10px 12px;
+    text-align: center;
+    cursor: pointer;
+    width: 130px;
+    border-radius: 8px;
+    font-weight: bold;
+    border: none;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.settings-container button:hover {
+    background-color: #384152;
+    transform: scale(1.05);
+}
+
+.container-settings ion-icon {
+    font-size: 28px;
+    color: #FFFFFF;
+    margin-right: 12px;
+}
+
+.setting span {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    color: #E0E0E0;
+}
+
+/* RESPONSIVE STYLES */
+@media (max-width: 768px) {
+    .container-settings {
+        padding: 10px 15px;
+        margin-top: 30px;
+        max-height: none;
+    }
+
+    .container-settings h2 {
+        font-size: 28px;
+    }
+
+    .setting {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .settings-container button {
+        width: 100%;
+        font-size: 15px;
+        padding: 12px;
+    }
+
+    .container-settings ion-icon {
+        font-size: 24px;
+        margin-right: 8px;
+    }
+
+    .setting span {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container-settings {
+        width: 95%;
+        margin-top: 20px;
+    }
+
+    .container-settings h2 {
+        font-size: 24px;
+    }
+
+    .settings-container button {
+        font-size: 14px;
+    }
+
+    .setting span {
+        font-size: 16px;
+    }
+}

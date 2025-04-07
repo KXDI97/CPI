@@ -4,7 +4,7 @@ export function loadComponents() {
         .then(html => {
             document.getElementById('header-container').innerHTML = html;
             const popupScript = document.createElement('script');
-            popupScript.src = './popup.js';
+            popupScript.src = '../scripts/Popup.js';
             document.body.appendChild(popupScript);
         })
         .catch(error => console.error('Error cargando Header:', error));
@@ -19,7 +19,7 @@ fetch('Slider.html')
         document.getElementById('sidebar-container').innerHTML = data;
 
         const globalModalScript = document.createElement('script');
-        globalModalScript.src = './GlobalModal.js';
+        globalModalScript.src = '../Scripts/GlobalModal.js';
         globalModalScript.onload = () => {
             createGlobalModals();
 
