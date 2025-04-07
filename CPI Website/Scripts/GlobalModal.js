@@ -54,7 +54,7 @@ function closeHelpModal() {
 function logout() {
     closeModal();
     setTimeout(() => {
-        window.location.href = 'landing.html';
+        window.location.href = '';
     }, 300);
 }
 
