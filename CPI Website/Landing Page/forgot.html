@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot - CPI</title>
+    <link rel="icon" type="image/png" href="../Images/logo.png">
+    <link rel="stylesheet" href="../Styles/Forgot-Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="image-section"></div>
+
+        <div class="form-section">
+            <div class="logo">
+                <img src="../Images/Logo - CPI.png" alt="CPI Logo" class="logo-img">
+                <span class="logo-text">CPI</span>
+            </div>
+
+            <h2 class="title">Forgot Password</h2>
+            <p class="subtitle">Enter your email address and we'll send you a link to reset your password.</p>
+
+            <form action="#" method="POST">
+                <label for="email" class="label">Email Address</label>
+                <input type="email" id="email" name="email" required class="input">
+
+                <button type="submit" onclick="window.location.href='check.html'" class="btn">
+                    Send Login Link
+                </button>
+
+                <div class="divider">
+                    <hr><span>or</span><hr>
+                </div>
+
+                <div class="options">
+                    <a href="#" class="option-text">Can't reset your password?</a>
+                    <a href="Login.html" class="link">Login</a>
+                </div>
+            </form>
+
+            <p class="footer">Don't have an account? <a href="Login.html" class="link">Sign up</a></p>
+        </div>
+    </div>
+</body>
+
+</html>
