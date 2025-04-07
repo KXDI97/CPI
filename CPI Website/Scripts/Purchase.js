@@ -170,3 +170,122 @@ document.addEventListener("DOMContentLoaded", function () {
         updateBalances();
     }, 5000);
 });
+        // Modal functionality with pre-filled values
+        const modal = document.getElementById('purchaseModal');
+        const addButtons = document.querySelectorAll('.add-btn');
+        const closeBtn = document.querySelector('.close-btn');
+        const cancelBtn = document.querySelector('.cancel-btn');
+        
+        // Form elements
+        const orderNumberInput = document.getElementById('orderNumber');
+        const clientDocumentInput = document.getElementById('clientDocument');
+        const purchaseDateInput = document.getElementById('purchaseDate');
+        const quantityInput = document.getElementById('quantity');
+        const unitPriceValue = document.getElementById('unitPriceValue');
+        const subtotalValue = document.getElementById('subtotalValue');
+        const ivaValue = document.getElementById('ivaValue');
+        const totalValue = document.getElementById('totalValue');
+        
+        // Current product info (for calculation)
+        let currentProductData = {
+            id: '',
+            unitPrice: 0,
+            ivaRate: 0
+        };
+        
+        // Update price calculations based on quantity
+        function updatePrices() {
+            const quantity = parseInt(quantityInput.value) || 1;
+            
+            // Calculate new values
+            const subtotal = currentProductData.unitPrice * quantity;
+            const iva = subtotal * currentProductData.ivaRate;
+            const total = subtotal + iva;
+            
+            // Flash animation effect on changing values
+            [subtotalValue, ivaValue, totalValue].forEach(el => {
+                el.classList.add('value-changing');
+                setTimeout(() => el.classList.remove('value-changing'), 500);
+            });
+            
+            // Update displayed values
+            subtotalValue.textContent = `$${subtotal.toFixed(2)}`;
+            ivaValue.textContent = `$${iva.toFixed(2)}`;
+            totalValue.textContent = `$${total.toFixed(2)}`;
+        }
+        
+        // Attach event listener to quantity input
+        quantityInput.addEventListener('input', updatePrices);
+        
+        addButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const item = e.target.closest('.purchase-card');
+                
+                // Get data from the selected card
+                const orderNumber = item.getAttribute('data-order');
+                const purchaseDate = item.getAttribute('data-date');
+                const productId = item.getAttribute('data-product-id');
+                const unitPrice = parseFloat(item.getAttribute('data-unit-price'));
+                const ivaRate = parseFloat(item.getAttribute('data-iva-rate'));
+                const client = item.getAttribute('data-client');
+                const defaultQuantity = parseInt(item.getAttribute('data-default-quantity')) || 1;
+                
+                // Store product data for calculations
+                currentProductData = {
+                    id: productId,
+                    unitPrice: unitPrice,
+                    ivaRate: ivaRate
+                };
+                
+                // Fill the form with the data
+                orderNumberInput.value = orderNumber;
+                clientDocumentInput.value = client;
+                purchaseDateInput.value = purchaseDate;
+                quantityInput.value = defaultQuantity;
+                unitPriceValue.textContent = `$${unitPrice.toFixed(2)}`;
+                
+                // Calculate initial values
+                updatePrices();
+                
+                // Show the modal
+                modal.style.display = 'block';
+            });
+        });
+        
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        cancelBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Form submission
+        const purchaseForm = document.getElementById('purchaseForm');
+        
+        purchaseForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Calculate final values for submission
+            const quantity = parseInt(quantityInput.value) || 1;
+            const subtotal = currentProductData.unitPrice * quantity;
+            const iva = subtotal * currentProductData.ivaRate;
+            const total = subtotal + iva;
+            
+            // Here we would submit the form data including the calculated values
+            console.log('Processing purchase for product ID:', currentProductData.id);
+            console.log('Quantity:', quantity);
+            console.log('Subtotal:', subtotal.toFixed(2));
+            console.log('IVA:', iva.toFixed(2));
+            console.log('Total:', total.toFixed(2));
+            
+            // Show confirmation message
+            alert('Purchase processed successfully!');
+            modal.style.display = 'none';
+        });
