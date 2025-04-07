@@ -166,6 +166,16 @@ form {
     color: #ffffff;
     text-decoration: none;
     margin: 0 8px;
+    transition: 1s;
+}
+.social-icons a:hover{
+    display: inline-flex;
+    border: 2px solid #24d393;
+    font-size: 24px;
+    color: #24d393;
+    text-decoration: none;
+    background: #1f2937;
+    transition: 1s;
 }
 
 .toggle-box {
@@ -232,6 +242,15 @@ form {
     background: transparent;
     border: 2px solid #ffff;
     box-shadow: none;
+    transition: 1s;
+}
+.toggle-panel .btn:hover {
+    width: 160px;
+    height: 46px;
+    background: #374151;
+    color: #ffff;
+    border: 2px solid #374151;
+    transition: 1s;
 }
 
 .logo {
