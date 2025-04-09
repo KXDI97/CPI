@@ -289,3 +289,299 @@ document.addEventListener("DOMContentLoaded", function () {
             alert('Purchase processed successfully!');
             modal.style.display = 'none';
         });
+        // Add this to your Purchase.js file
+
+// Invoice modal HTML to be inserted into the body
+function createInvoiceModal() {
+    const invoiceModal = document.createElement('div');
+    invoiceModal.id = 'invoiceModal';
+    invoiceModal.className = 'modal';
+    invoiceModal.innerHTML = `
+      <div class="modal-content invoice-modal">
+        <span class="close-invoice-btn">&times;</span>
+        <div class="invoice-header">
+          <h2>Purchase Invoice</h2>
+          <div class="invoice-logo">LOGO</div>
+        </div>
+        <div class="invoice-details">
+          <div class="invoice-info">
+            <p><strong>Invoice #:</strong> <span id="invoiceNumber"></span></p>
+            <p><strong>Date:</strong> <span id="invoiceDate"></span></p>
+          </div>
+          <div class="invoice-client">
+            <p><strong>Client:</strong> <span id="invoiceClient"></span></p>
+          </div>
+        </div>
+        <div class="invoice-items">
+          <table>
+            <thead>
+              <tr>
+                <th>Product ID</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody id="invoiceItemsList">
+              <!-- Items will be added here dynamically -->
+            </tbody>
+          </table>
+        </div>
+        <div class="invoice-summary">
+          <div class="summary-item">
+            <span>Subtotal:</span>
+            <span id="invoiceSummarySubtotal"></span>
+          </div>
+          <div class="summary-item">
+            <span>IVA (19%):</span>
+            <span id="invoiceSummaryIva"></span>
+          </div>
+          <div class="summary-item total">
+            <span>Total:</span>
+            <span id="invoiceSummaryTotal"></span>
+          </div>
+        </div>
+        <div class="invoice-footer">
+          <p>Thank you for your purchase!</p>
+          <div class="invoice-actions">
+            <button id="printInvoiceBtn" class="print-btn">Print Invoice</button>
+            <button id="closeInvoiceBtn" class="close-btn">Close</button>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(invoiceModal);
+    return invoiceModal;
+  }
+  
+  // Add this to your DOMContentLoaded event listener
+  document.addEventListener('DOMContentLoaded', function() {
+    // Create and append the invoice modal to the body
+    const invoiceModal = createInvoiceModal();
+    
+    // Get invoice elements
+    const closeInvoiceBtn = document.querySelector('.close-invoice-btn');
+    const printInvoiceBtn = document.getElementById('printInvoiceBtn');
+    const closeInvoiceActionBtn = document.getElementById('closeInvoiceBtn');
+    
+    // Close invoice modal events
+    closeInvoiceBtn.addEventListener('click', () => {
+      invoiceModal.style.display = 'none';
+    });
+    
+    closeInvoiceActionBtn.addEventListener('click', () => {
+      invoiceModal.style.display = 'none';
+    });
+    
+    printInvoiceBtn.addEventListener('click', () => {
+      printInvoice();
+    });
+    
+    window.addEventListener('click', (event) => {
+      if (event.target === invoiceModal) {
+        invoiceModal.style.display = 'none';
+      }
+    });
+    
+    // Update the purchase form submission to show the invoice
+    const purchaseForm = document.getElementById('purchaseForm');
+    
+    purchaseForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Calculate final values for submission
+      const quantity = parseInt(quantityInput.value) || 1;
+      const subtotal = currentProductData.unitPrice * quantity;
+      const iva = subtotal * currentProductData.ivaRate;
+      const total = subtotal + iva;
+      
+      // Here we would submit the form data including the calculated values
+      console.log('Processing purchase for product ID:', currentProductData.id);
+      console.log('Quantity:', quantity);
+      console.log('Subtotal:', subtotal.toFixed(2));
+      console.log('IVA:', iva.toFixed(2));
+      console.log('Total:', total.toFixed(2));
+      
+      // Generate invoice number (you might want to get this from your backend)
+      const invoiceNumber = 'INV-' + new Date().getTime().toString().slice(-6);
+      
+      // Close purchase modal
+      modal.style.display = 'none';
+      
+      // Show invoice with a slight delay to allow modal transition
+      setTimeout(() => {
+        generateInvoice({
+          invoiceNumber: invoiceNumber,
+          orderNumber: orderNumberInput.value,
+          client: clientDocumentInput.value,
+          date: purchaseDateInput.value,
+          productId: currentProductData.id,
+          productName: getProductNameById(currentProductData.id),
+          quantity: quantity,
+          unitPrice: currentProductData.unitPrice,
+          subtotal: subtotal,
+          ivaRate: currentProductData.ivaRate,
+          iva: iva,
+          total: total,
+          paymentMethod: document.getElementById('paymentMethod').value
+        });
+        
+        invoiceModal.style.display = 'block';
+      }, 300);
+    });
+  });
+  
+  // Helper function to get product name by ID
+  function getProductNameById(productId) {
+    // This would ideally be fetched from a database or product catalog
+    const productTypes = {
+      'PO-2024-001': 'Premium Black Ink Cartridge',
+      'PO-2024-002': 'Color Ink Cartridge - High Capacity',
+      'PO-2024-003': 'Laser Printer Drum',
+      'PO-2024-004': 'Adhesive Printing Tape',
+      'PO-2024-005': 'Thermal Print Head'
+    };
+    
+    return productTypes[productId] || 'Product ' + productId;
+  }
+  
+  // Generate and populate the invoice
+  function generateInvoice(data) {
+    // Set invoice details
+    document.getElementById('invoiceNumber').textContent = data.invoiceNumber;
+    document.getElementById('invoiceDate').textContent = formatDate(data.date);
+    document.getElementById('invoiceClient').textContent = data.client || 'Guest Client';
+    
+    // Clear previous items
+    const itemsList = document.getElementById('invoiceItemsList');
+    itemsList.innerHTML = '';
+    
+    // Add the purchased item
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${data.productId}</td>
+      <td>${data.productName}</td>
+      <td>${data.quantity}</td>
+      <td>$${data.unitPrice.toFixed(2)}</td>
+      <td>$${data.subtotal.toFixed(2)}</td>
+    `;
+    itemsList.appendChild(row);
+    
+    // Set summary values
+    document.getElementById('invoiceSummarySubtotal').textContent = `$${data.subtotal.toFixed(2)}`;
+    document.getElementById('invoiceSummaryIva').textContent = `$${data.iva.toFixed(2)}`;
+    document.getElementById('invoiceSummaryTotal').textContent = `$${data.total.toFixed(2)}`;
+  }
+  
+  // Format date to a more readable format
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  }
+  
+  // Print invoice function
+  function printInvoice() {
+    const invoiceContent = document.querySelector('.invoice-modal').cloneNode(true);
+    
+    // Remove action buttons for printing
+    const actionButtons = invoiceContent.querySelector('.invoice-actions');
+    if (actionButtons) {
+      actionButtons.remove();
+    }
+    
+    // Remove close button
+    const closeBtn = invoiceContent.querySelector('.close-invoice-btn');
+    if (closeBtn) {
+      closeBtn.remove();
+    }
+    
+    // Create a new window for printing
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Invoice</title>
+          <style>
+            body {
+              font-family: 'Poppins', sans-serif;
+              color: #121826;
+              padding: 20px;
+            }
+            .invoice-modal {
+              max-width: 800px;
+              margin: 0 auto;
+              background-color: white;
+              padding: 20px;
+              border-radius: 10px;
+            }
+            .invoice-header {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 20px;
+              padding-bottom: 20px;
+              border-bottom: 2px solid #eaeaea;
+            }
+            .invoice-details {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 20px;
+            }
+            table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-bottom: 20px;
+            }
+            th, td {
+              padding: 10px;
+              text-align: left;
+              border-bottom: 1px solid #eaeaea;
+            }
+            th {
+              background-color: #f5f5f5;
+            }
+            .invoice-summary {
+              margin-top: 20px;
+              text-align: right;
+            }
+            .summary-item {
+              display: flex;
+              justify-content: flex-end;
+              margin-bottom: 5px;
+            }
+            .summary-item span:first-child {
+              margin-right: 20px;
+              font-weight: 600;
+            }
+            .total {
+              font-weight: bold;
+              font-size: 1.2em;
+              margin-top: 10px;
+              padding-top: 10px;
+              border-top: 2px solid #eaeaea;
+            }
+            .invoice-footer {
+              margin-top: 30px;
+              text-align: center;
+              color: #666;
+            }
+          </style>
+        </head>
+        <body>
+          ${invoiceContent.outerHTML}
+          <script>
+            setTimeout(() => {
+              window.print();
+              window.close();
+            }, 500);
+          </script>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+  }

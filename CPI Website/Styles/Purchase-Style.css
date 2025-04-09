@@ -423,5 +423,123 @@ input:read-only {
     background: #384152;
     border-radius: 10px;
 }
+/* Add these styles to your Purchase-Style.css file */
 
+/* Invoice Modal Styles */
+#invoiceModal .modal-content {
+    max-width: 800px;
+    background-color: #121826;
+    color: #F2F2F2;
+  }
+  
+  .invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #384152;
+  }
+  
+  .invoice-logo {
+    background-color: #9069F9;
+    color: white;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  
+  .invoice-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+  
+  .invoice-info p, .invoice-client p {
+    margin: 5px 0;
+  }
+  
+  .invoice-items {
+    margin-bottom: 25px;
+  }
+  
+  .invoice-items table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .invoice-items th, .invoice-items td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #384152;
+  }
+  
+  .invoice-items th {
+    background-color: #1F2937;
+    color: #D4D4D4;
+  }
+  
+  .invoice-summary {
+    margin-left: auto;
+    width: 300px;
+  }
+  
+  .summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+  }
+  
+  .summary-item.total {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #384152;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #54F1B8;
+  }
+  
+  .invoice-footer {
+    margin-top: 30px;
+    text-align: center;
+    color: #D4D4D4;
+  }
+  
+  .invoice-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .print-btn {
+    background-color: #54F1B8;
+    color: #121826;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  .print-btn:hover {
+    background-color: #3dd19a;
+  }
+  
+  /* Animation for appearing invoice */
+  #invoiceModal .modal-content {
+    animation: fadeInUp 0.4s ease;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 /*FIN DE PURCHASE*/
