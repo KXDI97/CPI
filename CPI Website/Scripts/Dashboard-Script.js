@@ -1,6 +1,10 @@
 document.getElementById("purchasego").addEventListener("click", function () {
     window.location.href = "Purchase.html";
 });
+
+document.getElementById("storagego").addEventListener("click", function () {
+    window.location.href = "Storage.html";
+});
 document.addEventListener("DOMContentLoaded", function () {
     // 🍩 Doughnut Chart - Spending Chart
     const doughnutChart = new Chart(document.getElementById('doughnutChart'), {
