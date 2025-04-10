@@ -347,3 +347,98 @@ canvas {
     align-items: center;
     justify-content: flex-end;
 }
+
+.table-container {
+    background-color: #1F2937;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    max-width: 120%;
+    margin: auto;
+    color: white;
+}
+
+/* Estilo del título */
+.table-container h2 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+/* Estilos de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Encabezados de la tabla */
+thead th {
+    text-align: left;
+    padding: 12px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Celdas de la tabla */
+td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+}
+
+/* Última fila sin borde */
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Íconos dentro de la tabla */
+td ion-icon {
+    font-size: 18px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+/* Íconos de acción (editar, eliminar) */
+.icon {
+    font-size: 22px;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.3s;
+}
+
+/* Estilo de los iconos en la columna Actions */
+.icon.edit:hover {
+    color: #0EA5E9;
+    /* Verde */
+}
+
+.icon.delete:hover {
+    color: #FBD7BD;
+    /* Rojo */
+}
+
+/* Hover sobre los iconos de acción */
+.icon:hover {
+    transform: scale(1.2);
+}
+
+/* Fondo de las filas */
+tbody tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Paginación */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+.pagination a:hover {
+    color: #888;
+}
