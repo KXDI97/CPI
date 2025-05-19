@@ -298,10 +298,9 @@ function createInvoiceModal() {
     invoiceModal.className = 'modal';
     invoiceModal.innerHTML = `
       <div class="modal-content invoice-modal">
-        <span class="close-invoice-btn">&times;</span>
+        <span class="close-invoice-btn"></span>
         <div class="invoice-header">
           <h2>Purchase Invoice</h2>
-          <div class="invoice-logo">LOGO</div>
         </div>
         <div class="invoice-details">
           <div class="invoice-info">
@@ -346,7 +345,7 @@ function createInvoiceModal() {
           <p>Thank you for your purchase!</p>
           <div class="invoice-actions">
             <button id="printInvoiceBtn" class="print-btn">Print Invoice</button>
-            <button id="closeInvoiceBtn" class="close-btn">Close</button>
+            <button id="closeInvoiceBtn" class="close-btn">x</button>
           </div>
         </div>
       </div>

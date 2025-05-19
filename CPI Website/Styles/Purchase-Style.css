@@ -303,6 +303,9 @@ h1 {
     left: 30%;
 }
 
+#closeInvoiceBtn {
+  display: none;
+}
 .close-btn {
     position: absolute;
     top: 1rem;
@@ -310,6 +313,7 @@ h1 {
     font-size: 1.5rem;
     color: #D4D4D4;
     cursor: pointer;
+    border-radius: 20px;
 }
 
 h2 {
