@@ -184,6 +184,11 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 0 20px;
+    scroll-snap-type: x mandatory;
 }
 
 .carousel {
@@ -198,7 +203,9 @@ h1 {
 }
 
 .purchase-card {
-    flex-shrink: 0;
+   flex: 0 0 auto;
+    scroll-snap-align: start;
+    min-width: 200px;
     width: 220px;
     background-color: #1F2937;
     /* Header */
@@ -563,8 +570,9 @@ input:read-only {
         padding: 15px;
     }
     
-    .carousel-container {
-        padding: 0 30px;
+   .carousel-container {
+        padding: 0 15px; /* Reduce el padding */
+        margin-left: 0;  /* Quita el desplazamiento lateral */
     }
     
     /* Ajustar la posición del modal para pantallas medianas */
