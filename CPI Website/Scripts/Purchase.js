@@ -584,3 +584,88 @@ function createInvoiceModal() {
     `);
     printWindow.document.close();
   }
+  // Agregar este código al final de tu archivo JavaScript principal
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Variables existentes de tu código
+    const track = document.querySelector('.carousel-track');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    // Mantener el valor original pero hacerlo dinámico
+    let cardWidth = 236;
+    
+    // Función para ajustar el ancho de las tarjetas según el tamaño de pantalla
+    function updateCardWidth() {
+        if (window.innerWidth <= 576) {
+            cardWidth = 176; // 160px + 16px margen
+        } else if (window.innerWidth <= 768) {
+            cardWidth = 196; // 180px + 16px margen
+        } else {
+            cardWidth = 236; // Valor original
+        }
+        
+        // Actualizar la posición del carrusel
+        if (track) {
+            track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+        }
+    }
+    
+    // Ejecutar al cargar y al cambiar el tamaño de la ventana
+    updateCardWidth();
+    window.addEventListener('resize', updateCardWidth);
+    
+    // Ajustar posición del modal de compra para dispositivos móviles
+    function adjustModalPosition() {
+        const modalContent = document.querySelectorAll('.modal-content');
+        
+        if (window.innerWidth < 768) {
+            modalContent.forEach(modal => {
+                if (modal) {
+                    modal.style.left = '50%';
+                    modal.style.top = '50%';
+                    modal.style.transform = 'translate(-50%, -50%)';
+                }
+            });
+        }
+    }
+    
+    // Llamar a la función cuando cambie el tamaño
+    window.addEventListener('resize', adjustModalPosition);
+    adjustModalPosition();
+    
+    // Añadir soporte para swipe en el carrusel (para dispositivos táctiles)
+    if (track) {
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        track.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+        
+        track.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, {passive: true});
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                // Deslizar a la izquierda (siguiente)
+                nextBtn.click();
+            }
+            
+            if (touchEndX > touchStartX + 50) {
+                // Deslizar a la derecha (anterior)
+                prevBtn.click();
+            }
+        }
+    }
+    
+    // Hacer que las tablas de facturas sean scrollables en móvil
+    const invoiceTable = document.querySelector('.invoice-items table');
+    if (invoiceTable && window.innerWidth < 576) {
+        const wrapper = document.createElement('div');
+        wrapper.style.overflowX = 'auto';
+        invoiceTable.parentNode.insertBefore(wrapper, invoiceTable);
+        wrapper.appendChild(invoiceTable);
+    }
+});

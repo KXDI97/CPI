@@ -546,4 +546,122 @@ input:read-only {
       transform: translateY(0);
     }
   }
+  /* Agregar al final de tu archivo CSS existente */
+
+/* Media queries para hacer la interfaz responsiva */
+@media (max-width: 1200px) {
+    .content-Purchase {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+}
+
+@media (max-width: 992px) {
+    .content-Purchase {
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+    }
+    
+    .carousel-container {
+        padding: 0 30px;
+    }
+    
+    /* Ajustar la posición del modal para pantallas medianas */
+    .modal-content {
+        width: 90%;
+        max-width: 600px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px;
+    }
+    
+    /* Hacer que los filtros sean más usables en móvil */
+    .Filtros {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .search-bar_p {
+        width: 100%;
+        max-width: none;
+        margin-bottom: 10px;
+    }
+    
+    .filter-container {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .filter-dropdown {
+        right: auto;
+        left: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Ajustes para carousel en tablet */
+    .purchase-card {
+        width: 180px;
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Ajustes para móvil */
+    h1 {
+        font-size: 24px;
+    }
+    
+    .content-Purchase h2 {
+        font-size: 18px;
+    }
+    
+    .purchase-card {
+        width: 160px;
+        min-width: 160px;
+    }
+    
+    /* Mejorar formularios en móvil */
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .save-btn, .cancel-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    /* Hacer que las tablas de factura sean scrollables */
+    .invoice-items {
+        overflow-x: auto;
+    }
+    
+    .invoice-items table {
+        min-width: 500px;
+    }
+}
+
+/* Mantener el contenido del modal visible y con scroll interno */
+.modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Hacer que el carrusel sea más accesible en pantallas táctiles */
+@media (hover: none) {
+    .nav-btn {
+        padding: 15px;
+        font-size: 28px;
+    }
+}
 /*FIN DE PURCHASE*/
