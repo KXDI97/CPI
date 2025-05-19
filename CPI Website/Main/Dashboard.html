@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,8 @@
     <link rel="icon" type="image/png" href="../Images/logo.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>  
     <link rel="stylesheet" href="../Styles/HeaderSlider-Style.css">
 </head>
 
@@ -16,6 +19,11 @@
     <div id="sidebar-container"></div>
 
     <div class="content-Dashboard">
+
+        <div class="filter-box">
+            <input type="text" id="date-range" placeholder="Select dates range">
+            <button class="filter-text" onclick="filtrarFechas()">Filter</button>
+          </div>
         <h1>Informs Dashboard</h1>
         <p>Hello Bryams, let's look at informs and imports performance:</p>
 
@@ -33,139 +41,135 @@
                 <p>From 14 Jan, 2024 - 14 Mar, 2024</p>
                 <canvas id="doughnutChart"></canvas>
             </div>
-
-            <body>
-                <div class="chart-box">
-                    <h2>Upcoming payments</h2>
-                    <p>From 14 Jan, 2024 - 14 Mar, 2024</p>
-                    <div class="payments-list">
-                        <div class="payment-row">
-                            <div class="payment-container-first">
-                                <div class="payment-item">
-                                    <span class="date">31 Jan</span>
-                                    <span class="name">Dayning</span>
-                                </div>
+            <div class="chart-box-pay">
+                <h2>Upcoming payments</h2>
+                <p>From 14 Jan, 2024 - 14 Mar, 2024</p>
+                <div class="payments-list">
+                    <div class="payment-row">
+                        <div class="payment-container-first">
+                            <div class="payment-item">
+                                <span class="date">31 Jan</span>
+                                <span class="name">Dayning</span>
                             </div>
-                            <span class="amount-first">-$29.90</span>
                         </div>
-                        <div class="payment-row">
-                            <div class="payment-container-second">
-                                <div class="payment-item">
-                                    <span class="date">15 Feb</span>
-                                    <span class="name">Independent</span>
-                                </div>
-                            </div>
-                            <span class="amount-second">-$269.00</span>
-                        </div>
-                        <div class="payment-row">
-                            <div class="payment-container-third">
-                                <div class="payment-item">
-                                    <span class="date">28 Feb</span>
-                                    <span class="name">DNP</span>
-                                </div>
-                            </div>
-                            <span class="amount-third">-$2100.00</span>
-                        </div>
-                        <div class="payment-row">
-                            <div class="payment-container-fourth">
-                                <div class="payment-item">
-                                    <span class="date">05 Mar</span>
-                                    <span class="name">Sojet</span>
-                                </div>
-                            </div>
-                            <span class="amount-fourth">-$11.99</span>
-                        </div>
-                        <div class="payment-row">
-                            <div class="payment-container-fifth">
-                                <div class="payment-item">
-                                    <span class="date">10 Mar</span>
-                                    <span class="name">Sojet</span>
-                                </div>
-                            </div>
-                            <span class="amount-fifth">-$11.99</span>
-                        </div>
+                        <span class="amount-first">-$29.90</span>
                     </div>
-                    <button class="view-more">See all</button>
+                    <div class="payment-row">
+                        <div class="payment-container-second">
+                            <div class="payment-item">
+                                <span class="date">15 Feb</span>
+                                <span class="name">Independent</span>
+                            </div>
+                        </div>
+                        <span class="amount-second">-$269.00</span>
+                    </div>
+                    <div class="payment-row">
+                        <div class="payment-container-third">
+                            <div class="payment-item">
+                                <span class="date">28 Feb</span>
+                                <span class="name">DNP</span>
+                            </div>
+                        </div>
+                        <span class="amount-third">-$2100.00</span>
+                    </div>
+                    <div class="payment-row">
+                        <div class="payment-container-fourth">
+                            <div class="payment-item">
+                                <span class="date">05 Mar</span>
+                                <span class="name">Sojet</span>
+                            </div>
+                        </div>
+                        <span class="amount-fourth">-$11.99</span>
+                    </div>
+                    <div class="payment-row">
+                        <div class="payment-container-fifth">
+                            <div class="payment-item">
+                                <span class="date">10 Mar</span>
+                                <span class="name">Sojet</span>
+                            </div>
+                        </div>
+                        <span class="amount-fifth">-$11.99</span>
+                    </div>
                 </div>
+                <button class="view-more">See all</button>
+            </div>
+            <div class="chart-box-down">
+                <h2>Recent Informs</h2>
+                <p>From 14 Jan, 2024 - 14 Mar, 2024</p>
+                <button class="view-more-down" id="storagego">View Full History</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Provider</th>
+                            <th>Quantity</th>
+                            <th>Pending</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
+                            <td>Mar 14</td>
+                            <td>Additive</td>
+                            <td>Qualiprint</td>
+                            <td>24</td>
+                            <td>12</td>
+                            <td>$2,320.00</td>
+                        </tr>
+                        <tr>
+                            <td><ion-icon name="color-fill-outline"></ion-icon> LA 0056</td>
+                            <td>Mar 12</td>
+                            <td>Ink</td>
+                            <td>Qualiprint</td>
+                            <td>34</td>
+                            <td>0</td>
+                            <td>$1,450.00</td>
+                        </tr>
+                        <tr>
+                            <td><ion-icon name="radio-outline"></ion-icon> TVSA 33x700</td>
+                            <td>Mar 10</td>
+                            <td>Tape</td>
+                            <td>Qualiprint</td>
+                            <td>10</td>
+                            <td>5</td>
+                            <td>$576.00</td>
+                        </tr>
+                        <tr>
+                            <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
+                            <td>Mar 09</td>
+                            <td>Device</td>
+                            <td>Qualiprint</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>$15,000.00</td>
+                        </tr>
+                        <tr>
+                            <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
+                            <td>Mar 14</td>
+                            <td>Additive</td>
+                            <td>Qualiprint</td>
+                            <td>24</td>
+                            <td>12</td>
+                            <td>$2,320.00</td>
+                        </tr>
+                        <tr>
+                            <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
+                            <td>Mar 09</td>
+                            <td>Device</td>
+                            <td>Qualiprint</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>$15,000.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="chart-box-down">
-            <h2>Recent Informs</h2>
-            <p>From 14 Jan, 2024 - 14 Mar, 2024</p>
-            <button class="view-more-down" id="storagego">View Full History</button>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Date</th>
-                        <th>Category</th>
-                        <th>Provider</th>
-                        <th>Quantity</th>
-                        <th>Pending</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
-                        <td>Mar 14</td>
-                        <td>Additive</td>
-                        <td>Qualiprint</td>
-                        <td>24</td>
-                        <td>12</td>
-                        <td>$2,320.00</td>
-                    </tr>
-                    <tr>
-                        <td><ion-icon name="color-fill-outline"></ion-icon> LA 0056</td>
-                        <td>Mar 12</td>
-                        <td>Ink</td>
-                        <td>Qualiprint</td>
-                        <td>34</td>
-                        <td>0</td>
-                        <td>$1,450.00</td>
-                    </tr>
-                    <tr>
-                        <td><ion-icon name="radio-outline"></ion-icon> TVSA 33x700</td>
-                        <td>Mar 10</td>
-                        <td>Tape</td>
-                        <td>Qualiprint</td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>$576.00</td>
-                    </tr>
-                    <tr>
-                        <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
-                        <td>Mar 09</td>
-                        <td>Device</td>
-                        <td>Qualiprint</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>$15,000.00</td>
-                    </tr>
-                    <tr>
-                        <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
-                        <td>Mar 14</td>
-                        <td>Additive</td>
-                        <td>Qualiprint</td>
-                        <td>24</td>
-                        <td>12</td>
-                        <td>$2,320.00</td>
-                    </tr>
-                    <tr>
-                        <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
-                        <td>Mar 09</td>
-                        <td>Device</td>
-                        <td>Qualiprint</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>$15,000.00</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+
     </div>
-
-
-
     <script type="module">
         import { loadComponents } from '../Scripts/Components.js';
         loadComponents();
@@ -173,7 +177,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="../Scripts/Dashboard-Script.js"></script>
-    </div>
+
 </body>
 
 </html>

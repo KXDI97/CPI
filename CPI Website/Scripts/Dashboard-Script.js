@@ -143,3 +143,22 @@ const purchaseChart = new Chart(purchaseCtx, {
         }
     }
 });
+
+
+flatpickr("#date-range", {
+    mode: "range",
+    dateFormat: "Y-m-d"
+  });
+
+  // Función para capturar fechas
+  function filtrarFechas() {
+    const rango = document.getElementById("date-range").value;
+    if (!rango.includes(" to ")) {
+      alert("Select a valid range");
+      return;
+    }
+
+    const [desde, hasta] = rango.split(" to ");
+    alert(`Filtrar desde: ${desde}\nHasta: ${hasta}`);
+    // Aquí puedes agregar tu lógica de filtrado o redirección
+  }

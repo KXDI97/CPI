@@ -1,10 +1,23 @@
-.content-Dashboard {
-    flex: 1;
-    padding: 20px;
-    margin-left: 220px;
-    background-color: #121826;
-    width: 80%;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #111827;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
+
+/* Estilo del content */
+.content-Dashboard {
+    margin-left: 250px;
+    padding: 20px;
+    background-color: #121826;
+    width: calc(100% - 280px);
+    box-sizing: border-box;
+}
+
 
 .content-Dashboard h1 {
     margin-bottom: 0px;
@@ -16,12 +29,19 @@
 
 
 .chart-container {
-    margin-left: 50px;
     display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
     justify-content: space-between;
-    gap: 35px;
-    margin-top: 50px;
-    position: relative;
+    margin-top: 40px;
+}
+
+.chart-box,
+.chart-box-pay {
+    flex: 1 1 300px;
+    max-width: 100%;
+    min-width: 280px;
+    box-sizing: border-box;
 }
 
 #spendingChart {
@@ -36,13 +56,20 @@
     background: #1F2937;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(188, 190, 206, 0.5);
+    box-shadow: 0 0 10px rgba(206, 188, 188, 0.5);
     text-align: center;
-    flex-basis: 50%;
+    flex-basis: 85%;
     max-width: 500px;
     flex-direction: column;
     align-items: flex-start;
     position: relative;
+    margin-right: 10px;
+}
+
+.chart-box canvas {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 300px;
 }
 
 .chart-box h2 {
@@ -75,7 +102,8 @@
     max-width: 500px;
     align-items: flex-start;
     position: relative;
-    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si es necesario */
+    flex-wrap: wrap;
+    /* Permite que los elementos pasen a la siguiente línea si es necesario */
 }
 
 .chart-box-dough h2,
@@ -83,12 +111,13 @@
     margin: 0;
     width: 100%;
     line-height: 1.2;
-}   
+}
 
 .chart-box-dough h2 {
     font-size: 1.5rem;
     text-align: left;
-    margin-bottom: 2px; /* Pequeño espacio sin valores negativos */
+    margin-bottom: 2px;
+    /* Pequeño espacio sin valores negativos */
 }
 
 .chart-box-dough p {
@@ -240,11 +269,26 @@ canvas {
     flex-direction: column;
 }
 
+.chart-box-pay {
+    background-color: #1F2937;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(188, 190, 206, 0.5);
+    text-align: left;
+    flex-basis: 100%;
+    max-width: 500px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
 .payment-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
 }
 
 .payment-container-first,
@@ -252,12 +296,33 @@ canvas {
 .payment-container-third,
 .payment-container-fourth,
 .payment-container-fifth {
-    display: flex;
-    align-items: center;
+    flex: 1 1 60%;
     padding: 14px;
     border-radius: 10px;
-    flex-grow: 1;
+    background-color: #374151;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    min-width: 200px;
 }
+
+.amount-first,
+.amount-second,
+.amount-third,
+.amount-fourth,
+.amount-fifth {
+    font-weight: bold;
+    font-size: 14px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background-color: #4b5563;
+    color: #f87171;
+    min-width: 80px;
+    text-align: right;
+}
+
+
+
 
 .payment-container-first {
     background-color: #495869;
@@ -331,32 +396,18 @@ canvas {
     margin-left: 15px;
 }
 
-.amount-first,
-.amount-second,
-.amount-third,
-.amount-fourth,
-.amount-fifth {
-    font-weight: bold;
-    font-size: 14px;
-    text-align: right;
-    padding: 14px 12px;
-    border-radius: 8px;
-    min-width: 70px;
-    margin-left: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
 .table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    /* Añade scroll horizontal si se necesita */
     background-color: #1F2937;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    max-width: 120%;
     margin: auto;
-    color: white;
 }
+
 
 /* Estilo del título */
 .table-container h2 {
@@ -441,4 +492,94 @@ tbody tr:nth-child(odd) {
 
 .pagination a:hover {
     color: #888;
+}
+
+/*FILTER OPTIONS*/
+
+.filter-box {
+    background-color: #ffffff00;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 10;
+    margin-top: 100px;
+    margin-right: 20px;
+    width: 350px;
+    height: 40px;
+}
+
+.filter-box label {
+    font-weight: 200;
+}
+
+.filter-box input[type="text"] {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1F2937;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.65);
+    padding: 8px 12px;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s ease;
+    font-size: 14px;
+    width: 220px;
+}
+
+.filter-box input[type="text"]:focus {
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.4);
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.filter-box button {
+    font-family: 'Poppins', sans-serif;
+    background-color: #9069F9;
+    border: none;
+    color: rgba(255, 255, 255, 0.918);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.filter-box button:hover {
+    background-color: #6366F1;
+}
+  
+
+@media screen and (max-width: 768px) {
+    #sidebar-container {
+        position: absolute;
+        left: -220px;
+        /* Ocúltalo inicialmente */
+        transition: left 0.3s;
+    }
+
+    .content-Dashboard {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Responsivo: stack en pantallas pequeñas */
+@media (max-width: 768px) {
+    .payment-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .amount-first,
+    .amount-second,
+    .amount-third,
+    .amount-fourth,
+    .amount-fifth {
+        align-self: flex-end;
+        margin-top: 6px;
+    }
 }
