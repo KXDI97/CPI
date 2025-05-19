@@ -18,7 +18,6 @@ body {
     box-sizing: border-box;
 }
 
-
 .content-Dashboard h1 {
     margin-bottom: 0px;
 }
@@ -31,41 +30,28 @@ body {
 .chart-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
     justify-content: space-between;
-    margin-top: 40px;
+    gap: 20px;
 }
 
+    
 .chart-box,
 .chart-box-pay {
-    flex: 1 1 300px;
-    max-width: 100%;
-    min-width: 280px;
+    flex: 1 1 calc(33.333% - 20px); /* 3 por fila considerando el gap */
+    min-width: 250px;
+    background-color: #1F2937;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     box-sizing: border-box;
 }
+
 
 #spendingChart {
     flex: 1;
     max-width: 250px;
     max-height: 250px;
 }
-
-.chart-box {
-
-    display: flex;
-    background: #1F2937;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(206, 188, 188, 0.5);
-    text-align: center;
-    flex-basis: 85%;
-    max-width: 500px;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-    margin-right: 10px;
-}
-
 .chart-box canvas {
     width: 100% !important;
     height: auto !important;
@@ -267,19 +253,6 @@ canvas {
 .payments-list {
     display: flex;
     flex-direction: column;
-}
-
-.chart-box-pay {
-    background-color: #1F2937;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(188, 190, 206, 0.5);
-    text-align: left;
-    flex-basis: 100%;
-    max-width: 500px;
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 20px;
 }
 
 .payment-row {
@@ -551,7 +524,7 @@ tbody tr:nth-child(odd) {
 .filter-box button:hover {
     background-color: #6366F1;
 }
-  
+
 
 @media screen and (max-width: 768px) {
     #sidebar-container {
