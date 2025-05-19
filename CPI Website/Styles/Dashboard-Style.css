@@ -34,10 +34,11 @@ body {
     gap: 20px;
 }
 
-    
+
 .chart-box,
 .chart-box-pay {
-    flex: 1 1 calc(33.333% - 20px); /* 3 por fila considerando el gap */
+    flex: 1 1 calc(33.333% - 20px);
+    /* 3 por fila considerando el gap */
     min-width: 250px;
     background-color: #1F2937;
     padding: 20px;
@@ -52,6 +53,7 @@ body {
     max-width: 250px;
     max-height: 250px;
 }
+
 .chart-box canvas {
     width: 100% !important;
     height: auto !important;
@@ -259,10 +261,12 @@ canvas {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
     margin-bottom: 12px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    /* <-- Que no se rompa la línea */
+    gap: 10px;
 }
+
 
 .payment-container-first,
 .payment-container-second,
@@ -284,14 +288,17 @@ canvas {
 .amount-third,
 .amount-fourth,
 .amount-fifth {
+    padding: 8px 16px;
+    border-radius: 8px;
     font-weight: bold;
     font-size: 14px;
-    padding: 12px 16px;
-    border-radius: 8px;
-    background-color: #4b5563;
+    background-color: #374151;
     color: #f87171;
-    min-width: 80px;
-    text-align: right;
+    min-width: 90px;
+    text-align: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+    /* <- Que no se encoja */
 }
 
 
@@ -354,10 +361,16 @@ canvas {
 
 
 .payment-item {
+    flex: 1;
+    /* Que tome el espacio disponible */
     display: flex;
     align-items: center;
-    min-width: 300px;
+    gap: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 
 .date {
     font-size: 14px;
@@ -554,5 +567,22 @@ tbody tr:nth-child(odd) {
     .amount-fifth {
         align-self: flex-end;
         margin-top: 6px;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .amount-first,
+    .amount-second,
+    .amount-third,
+    .amount-fourth,
+    .amount-fifth {
+        margin-top: 5px;
+        align-self: flex-start;
+    }
+
+    .payment-row {
+        flex-wrap: wrap;
+        justify-content: flex-start;
     }
 }
