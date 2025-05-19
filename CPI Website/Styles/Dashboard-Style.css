@@ -298,6 +298,7 @@ canvas {
     text-align: center;
     white-space: nowrap;
     flex-shrink: 0;
+    height: 30px;
     /* <- Que no se encoja */
 }
 
