@@ -75,9 +75,9 @@
 
 .container-reports {
     display: grid;
-    margin-top: 15px;
+    margin-top: 25px;
     grid-template-columns: repeat(2, 1fr); /* Dos columnas del mismo tamaño */
-    gap: 20px;
+    gap: 50px;
     padding: 20px;
     border-radius: 8px;
 }
@@ -133,7 +133,7 @@
     border: 2px solid #fff; /*imagen*/
     border-radius: 5px;
     overflow: hidden;
-    height: 150px;
+    height: 230px;
 }
 
 iframe {
