@@ -37,6 +37,8 @@
     border-radius: 6px;
     width: 80%;
     text-align: left;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.4);
+    color: rgba(255, 255, 255, 0.65);
 }
 
 /* Estilos para el botón */
@@ -44,10 +46,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #9069F9;
+    
 }
 
 .btn-filtrar {
-    background: #9069F9;
+    background: #9069F9; /*button alicar filtros*/
     color: white;
     border: none;
     padding: 8px 10px;
@@ -64,7 +68,7 @@
 }
 
 .btn-filtrar:hover {
-    background:#54F1B8;
+    background: #6366F1; /*button filters*/
 }
 
 /* visualización de reportes */
@@ -121,12 +125,12 @@
     border-radius: 5px;
     border: none;
     background: #384152;
-    color: #333;
+    color: white;
     text-align: left;
 }
 
 .report-container {
-    border: 2px solid #fff;
+    border: 2px solid #fff; /*imagen*/
     border-radius: 5px;
     overflow: hidden;
     height: 150px;
@@ -153,16 +157,16 @@ iframe {
 }
 
 .discard-button:hover {
-    border-color: #F43F5E;
+    border-color: #8A2BE2;
 }
 .generate-button:hover {
-    border-color: #22C55E;
+    border-color: #8A2BE2;
 }
 
 .generate-button {
     padding: 10px;
     margin-top: 8px;
-    background-color: #384152;
+    background-color: #384152; /*button generarinforme*/
     color: white;
     border: 2px solid transparent;
     padding: 10px 15px;
@@ -174,7 +178,7 @@ iframe {
 }
 
 .report-sender {
-    background: #1F2937;
+    background: #1F2937; /*envio de infores*/
     color: white;
     padding: 20px;
     border-radius: 8px;
@@ -192,7 +196,7 @@ iframe {
 
 .send-button {
     padding: 10px;
-    background: #2196F3;
+    background: #9069F9; /*button send report*/
     color: white;
     border: none;
     border-radius: 5px;
@@ -200,11 +204,14 @@ iframe {
     font-weight: bold;
 }
 
+.send-button:hover {
+    background: #6366F1; /*button send report*/
+}
 
-/* Estilos de la tabla */
+/* Estilos de la tabla - report history*/
 
 .table-container {
-    background-color: #1F2937;
+    background-color: #1F2937; 
     padding: 20px;
     border-radius: 12px;
     margin-top: 20px;
@@ -243,7 +250,7 @@ td {
 }
 
 .icon.email:hover {
-    color: #FBD7BD;
+    color: #e53737;
 }
 
 @media (max-width: 768px) {
@@ -279,11 +286,11 @@ td {
 }
 
 .btn-export.pdf:hover {
-    border-color: #F43F5E;
+    border-color: #6366F1;
 }
 
 .btn-export.excel:hover {
-    border-color: #22C55E;
+    border-color: #6366F1;
 }
 
 
