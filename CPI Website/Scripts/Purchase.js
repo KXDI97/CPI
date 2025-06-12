@@ -141,11 +141,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const showAccountLink = document.querySelector(".account-number a");
     let isHidden = true;
 
-    showAccountLink.addEventListener("click", function (event) {
-        event.preventDefault();
-        isHidden = !isHidden;
-        accountNumber.innerHTML = `Account Number: ${isHidden ? "******3017" : "1234-5678-3017"} <a href="#">${isHidden ? "Show" : "Hide"}</a>`;
-    });
+    if (accountNumber && showAccountLink) {
+        showAccountLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            isHidden = !isHidden;
+            accountNumber.innerHTML = `Account Number: ${isHidden ? "******3017" : "1234-5678-3017"} <a href="#">${isHidden ? "Show" : "Hide"}</a>`;
+        });
+    }
 
     // Actualización de Saldos
     let availableBalance = 5000;  // Saldo disponible inicial
@@ -153,12 +155,15 @@ document.addEventListener("DOMContentLoaded", function () {
     let interestYTD = 50;         // Intereses generados
     let apy = 1.5;                // Porcentaje de interés anual
 
-    function updateBalances() {
-        document.querySelector(".balance-item:nth-child(1) strong").textContent = `$${availableBalance.toFixed(2)}`;
-        document.querySelector(".balance-item:nth-child(2) strong").textContent = `$${currentBalance.toFixed(2)}`;
-        document.querySelector(".balance-item:nth-child(3) strong").textContent = `$${interestYTD.toFixed(2)}`;
-        document.querySelector(".balance-item:nth-child(4) strong").textContent = `${apy}%`;
-    }
+function updateBalances() {
+    const items = document.querySelectorAll(".balance-item strong");
+    if (items.length < 4) return; // Si no hay suficientes elementos, salta sin mostrar nada
+    items[0].textContent = `$${availableBalance.toFixed(2)}`;
+    items[1].textContent = `$${currentBalance.toFixed(2)}`;
+    items[2].textContent = `$${interestYTD.toFixed(2)}`;
+    items[3].textContent = `${apy}%`;
+}
+
 
     updateBalances(); // Llamamos la función al cargar la página
 
@@ -170,6 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
         updateBalances();
     }, 5000);
 });
+
         // Modal functionality with pre-filled values
         const modal = document.getElementById('purchaseModal');
         const addButtons = document.querySelectorAll('.add-btn');
