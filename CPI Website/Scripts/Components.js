@@ -71,6 +71,20 @@ fetch('Slider.html')
             }
         }
     });
+    const waitForHamburger = () => {
+                const hamburgerButton = document.querySelector('.hamburger');
+                const sidebar = document.querySelector('.sidebar');
+
+                if (hamburgerButton && sidebar) {
+                    hamburgerButton.addEventListener('click', () => {
+                        sidebar.classList.toggle('collapsed');
+                    });
+                } else {
+                    setTimeout(waitForHamburger, 100);
+                }
+            };
+
+        waitForHamburger();
 })
 .catch(error => console.error('Error cargando Slider:', error));
 }
