@@ -85,10 +85,26 @@ form {
     font-size: 16px;
     color: #ebebeb;
 }
+
+.input-box select.input-color {
+    width: 100%;
+    padding: 13px;
+    background: #374151;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #ebebeba2;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
 .input-color:focus {
     border: 2.5px solid #8a48ff;
     transition: border-color .8s ease, box-shadow .8s ease;
 }
+
 .input-color:focus {
     border-color: #24d393;
 }
@@ -106,11 +122,11 @@ form {
     font-size: 20px;
     color: #ebebeba2;
     transition: color .8s;
-  }
+}
 
-  .input-box:focus-within i {
+.input-box:focus-within i {
     color: #24d393;
-    }
+}
 
 .forgot-link {
     margin: -15px 0 15px;
@@ -168,7 +184,8 @@ form {
     margin: 0 8px;
     transition: 1s;
 }
-.social-icons a:hover{
+
+.social-icons a:hover {
     display: inline-flex;
     border: 2px solid #24d393;
     font-size: 24px;
@@ -244,6 +261,7 @@ form {
     box-shadow: none;
     transition: 1s;
 }
+
 .toggle-panel .btn:hover {
     width: 160px;
     height: 46px;

@@ -42,20 +42,28 @@
         </div>
 
         <div class="form-box register">
-            <form action="">
+            <form id="registerForm">
                 <img src="../Images/Logo - CPI.png" class="logo">
                 <h1>Registration</h1>
                 <div class="input-box">
-                    <input type="text" class="input-color" placeholder="Username" required>
+                    <input type="text" id="reg-username" class="input-color" placeholder="Username" required>
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
-                    <input type="text" class="input-color" placeholder="Email" required>
+                    <input type="text" id="reg-email" class="input-color" placeholder="Email" required>
                     <i class='bx bxs-envelope'></i>
                 </div>
                 <div class="input-box">
-                    <input type="text" class="input-color" placeholder="Password" required>
+                    <input type="password" id="reg-password" class="input-color" placeholder="Password" required>
                     <i class='bx bxs-lock-alt'></i>
+                </div>
+                <div class="input-box">
+                    <select id="reg-rol" name="rol" class="input-color" required>
+                        <option value="">Select a role</option>
+                        <option value="client">Client</option>
+                        <option value="moderator">Moderator</option>
+                    </select>
+                    <i class='bx bxs-user-detail'></i>  
                 </div>
                 <button type="submit" class="btn">Register</button>
                 <p>or login with social platforms</p>
@@ -85,6 +93,7 @@
     </div>
     <script src="../Scripts/Landing-Script.js"></script>
     <script src="../Scripts/Login.js"></script>
+    <script src="../Scripts/API.js"></script>
 </body>
 
 </html>
