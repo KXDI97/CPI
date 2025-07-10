@@ -1,19 +1,52 @@
-(async function(){
-    const signup = async () =>{
-    const response = await fetch("http://localhost:5219/usuarios/12", {
-        method : 'PUT',
-        headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-  },
-    body: new URLSearchParams({         
-        user : 'Prueba',
-        pword : 'Prueba123',
-        email : "Prueba@prueba.com" }),
+document.addEventListener("DOMContentLoaded", () => {
+  const registerForm = document.getElementById("registerForm");
 
-    })
-    const data = response.json()
-    console.log(data)
-    return data
-}
-    await signup()
-})()
+  if (!registerForm) {
+    console.error("No se encontró el formulario con id 'registerForm'");
+    return;
+  }
+
+  registerForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const Username = document.getElementById("reg-username")?.value.trim();
+    const Email = document.getElementById("reg-email")?.value.trim();
+    const Password = document.getElementById("reg-password")?.value.trim();
+    const CodRol = document.getElementById("reg-rol")?.value;
+
+    // Validación simple
+    if (!Username || !Email || !Password || !CodRol) {
+      alert("Todos los campos son obligatorios.");
+      return;
+    }
+
+    const data = {
+      Username,
+      Email,
+      Password,
+      CodRol,
+    };
+
+    try {
+      const response = await fetch("http://localhost:5219/usuarios", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        alert("✅ Usuario registrado exitosamente.");
+        registerForm.reset(); // Limpia el formulario
+      } else {
+        const errorText = await response.text();
+        console.error("❌ Error en respuesta:", errorText);
+        alert("❌ Error al registrar usuario.\n" + errorText);
+      }
+    } catch (err) {
+      console.error("🚨 Error en la solicitud:", err);
+      alert("🚨 Error al conectar con el servidor.");
+    }
+  });
+});
