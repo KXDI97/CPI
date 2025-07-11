@@ -100,6 +100,7 @@ form {
     -moz-appearance: none;
 }
 
+
 .input-color:focus {
     border: 2.5px solid #8a48ff;
     transition: border-color .8s ease, box-shadow .8s ease;

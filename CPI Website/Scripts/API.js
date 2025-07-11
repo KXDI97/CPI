@@ -12,10 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const Username = document.getElementById("reg-username")?.value.trim();
     const Email = document.getElementById("reg-email")?.value.trim();
     const Password = document.getElementById("reg-password")?.value.trim();
-    const CodRol = document.getElementById("reg-rol")?.value;
+    const Role = document.getElementById("reg-role")?.value;
 
     // Validación simple
-    if (!Username || !Email || !Password || !CodRol) {
+    if (!Username || !Email || !Password || !Role) {
       alert("Todos los campos son obligatorios.");
       return;
     }
@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
       Username,
       Email,
       Password,
-      CodRol,
+      Role,
     };
-
+    console.log(Role)
     try {
       const response = await fetch("http://localhost:5219/usuarios", {
         method: "POST",
