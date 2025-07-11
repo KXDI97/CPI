@@ -101,6 +101,9 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
     if (response.ok) {
       const result = await response.json();
+      // Guardar datos en localStorage
+      localStorage.setItem("user", JSON.stringify(result.User));
+      // Redireccionar al dashboard
       window.location.href = "../Main/Dashboard.html";
     } else {
       Swal.fire({

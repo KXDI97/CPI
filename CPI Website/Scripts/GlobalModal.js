@@ -51,12 +51,10 @@ function closeHelpModal() {
     document.getElementById('help-modal').style.display = 'none';
 }
 
-function logout() {
-    closeModal();
-    setTimeout(() => {
-        window.location.href = '../landing page/login.html';
-    }, 300);
-}
+  function logout() {
+    localStorage.removeItem("user");
+    window.location.href = "../Landing Page/Login.html";
+  }
 
 
 document.addEventListener('DOMContentLoaded', createGlobalModals);
