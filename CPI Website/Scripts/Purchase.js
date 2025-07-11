@@ -470,3 +470,23 @@ function aplicarFiltros() {
         });
     }
 }
+async function cargarClientes() {
+  try {
+    const res = await fetch("http://localhost:5219/clientes");
+    if (!res.ok) throw new Error("Error al obtener clientes");
+    const clientes = await res.json();
+
+    // Ejemplo: llenar un select con los clientes
+    const select = document.getElementById("client-select");
+    select.innerHTML = "";
+
+    clientes.forEach(cliente => {
+      const option = document.createElement("option");
+      option.value = cliente.docIdentidad;
+      option.textContent = `${cliente.nomUsuario} (${cliente.docIdentidad})`;
+      select.appendChild(option);
+    });
+  } catch (err) {
+    console.error("❌ Error al cargar clientes:", err);
+  }
+}

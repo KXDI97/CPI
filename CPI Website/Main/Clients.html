@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../Images/Logo - CPI.png" type="image/png">
-    <title>Storage CPI</title>
+    <title>S CPI</title>
     <link rel="icon" type="image/png" href="../Images/logo.png">
     <link rel="stylesheet" href="../Styles/HeaderSlider-Style.css">
     <link rel="stylesheet" href="../Styles/Storage-Style.css">
@@ -17,13 +17,17 @@
     <div id="sidebar-container" class="sidebar"></div>
     <div class="content-Storage">
         <h1>Provider's Information</h1>
+
         <div class="controls">
-            <button id="openProviderModal" class="btn-1"><ion-icon name="add-circle"></ion-icon> Add Provider</button>
+            <button id="openProviderModal" class="btn-1">
+                <ion-icon name="add-circle"></ion-icon> Add Provider
+            </button>
             <div class="search-bar">
-                <input type="text" placeholder="Search provider...">
+                <input type="text" id="search-provider" placeholder="Search provider..." />
                 <ion-icon name="search-outline"></ion-icon>
             </div>
         </div>
+
         <div class="table-container">
             <h2>Clients</h2>
             <table>
@@ -33,85 +37,15 @@
                         <th>ID</th>
                         <th>Email</th>
                         <th>Phone Number</th>
-                        <th>Address</th>
+                        <th>Role</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
-                        <td>Mar 14</td>
-                        <td>Additive</td>
-                        <td>Qualiprint</td>
-                        <td>24</td>
-                        <td>
-                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
-                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><ion-icon name="color-fill-outline"></ion-icon> LA 0056</td>
-                        <td>Mar 12</td>
-                        <td>Ink</td>
-                        <td>Qualiprint</td>
-                        <td>34</td>
-                        <td>
-                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
-                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><ion-icon name="radio-outline"></ion-icon> TVSA 33x700</td>
-                        <td>Mar 10</td>
-                        <td>Tape</td>
-                        <td>Qualiprint</td>
-                        <td>10</td>
-                        <td>
-                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
-                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
-                        <td>Mar 09</td>
-                        <td>Device</td>
-                        <td>Qualiprint</td>
-                        <td>1</td>
-                        <td>
-                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
-                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
-                        <td>Mar 14</td>
-                        <td>Additive</td>
-                        <td>Qualiprint</td>
-                        <td>24</td>
-                        <td>
-                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
-                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
-                        <td>Mar 09</td>
-                        <td>Device</td>
-                        <td>Qualiprint</td>
-                        <td>1</td>
-                        <td>
-                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
-                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
-                        </td>
-                    </tr>
-                </tbody>
+                <tbody id="client-table-body"></tbody>
             </table>
         </div>
-        <div class="pagination">
-            <a href="#">«</a> <a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-            <a href="#">6</a> <a href="#">»</a>
-        </div>
-        <!-- Fondo borroso -->
+
+        <!-- Modal fondo -->
         <div id="modalBackdrop" class="backdrop hidden"></div>
 
         <!-- Modal -->
@@ -119,39 +53,52 @@
             <div class="modal-content">
                 <h2>Add Provider</h2>
                 <h3>Provider's Information</h3>
+
                 <div class="form-group">
                     <div class="input-container">
-                        <label>Provider's name *</label>
-                        <input type="text" placeholder="Enter product name">
+                        <label>Name *</label>
+                        <input type="text" id="cliente-nombre" placeholder="Enter provider's name" />
                     </div>
                     <div class="input-container">
-                        <label>Provider's ID *</label>
-                        <input type="text" placeholder="Enter product ID">
+                        <label>ID *</label>
+                        <input type="text" id="cliente-doc" placeholder="Enter provider's ID" />
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="input-container">
-                    <label>Email *</label>
-                    <input type="text" placeholder="Enter product ID">
+
+                <div class="form-group">
+                    <div class="input-container">
+                        <label>Email *</label>
+                        <input type="email" id="cliente-email" placeholder="Enter email" />
+                    </div>
+                    <div class="input-container">
+                        <label>Phone Number *</label>
+                        <input type="text" id="cliente-telefono" placeholder="Enter phone number" />
+                    </div>
                 </div>
-                <div class="input-container">
-                    <label>Phone Number *</label>
-                    <input type="text" placeholder="Enter product ID">
+
+                <div class="form-group">
+                    <div class="input-container">
+                        <label>Password *</label>
+                        <input type="password" id="cliente-pass" placeholder="Enter password" />
+                    </div>
+                    <div class="input-container">
+
+                        <div class="input-container">
+                            <label>Role *</label>
+                            <input type="text" id="cliente-rol" value="CLI" />
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="input-container">
-                    <label>Address *</label>
-                    <input type="text" placeholder="Enter product ID">
+
+                <div class="button-group">
+                    <button class="btn-1" id="btn-registrar-cliente">Add Provider</button>
+                    <button class="btn-2" id="closeProviderModal">Cancel</button>
                 </div>
-            </div>
-            <div class="button-group">
-                <button class="btn-1">Add Provider</button>
-                <button class="btn-2" id="closeProviderModal">Cancel</button>
             </div>
         </div>
     </div>
+
     <script type="module">
         import { loadComponents } from '../Scripts/Components.js';
         loadComponents();

@@ -31,3 +31,52 @@ document.addEventListener("DOMContentLoaded", () => {
         closeModal(providerModal);
     });
 });
+async function cargarClientes() {
+  try {
+    const res = await fetch("http://localhost:5219/clientes");
+    if (!res.ok) throw new Error("Error al obtener clientes");
+    const clientes = await res.json();
+
+    // Ejemplo: llenar un select con los clientes
+    const select = document.getElementById("client-select");
+    select.innerHTML = "";
+
+    clientes.forEach(cliente => {
+      const option = document.createElement("option");
+      option.value = cliente.docIdentidad;
+      option.textContent = `${cliente.nomUsuario} (${cliente.docIdentidad})`;
+      select.appendChild(option);
+    });
+  } catch (err) {
+    console.error("❌ Error al cargar clientes:", err);
+  }
+}
+
+async function registrarCliente() {
+  const data = {
+    docIdentidad: document.getElementById("cliente-doc").value,
+    nomUsuario: document.getElementById("cliente-nombre").value,
+    correo: document.getElementById("cliente-email").value,
+    numTel: document.getElementById("cliente-telefono").value,
+    contrasenia: document.getElementById("cliente-pass").value,
+    codRol: document.getElementById("cliente-rol").value
+    
+  };
+
+  try {
+    const res = await fetch("http://localhost:5219/clientes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    if (!res.ok) throw new Error("Error al registrar cliente");
+    alert("✅ Cliente registrado correctamente.");
+    cargarClientes(); // opcional
+  } catch (err) {
+    console.error("❌ Error:", err);
+    alert("No se pudo registrar el cliente.");
+  }
+}
+document.getElementById("btn-registrar-cliente").addEventListener("click", registrarCliente);
+
