@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Validación simple
     if (!Username || !Email || !Password || !Role) {
-      alert("Todos los campos son obligatorios.");
+      alert("Please fill all the fields");
       return;
     }
 
@@ -26,7 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
       Password,
       Role,
     };
-    console.log(Role)
+
+    console.log(Role);
+
     try {
       const response = await fetch("http://localhost:5219/usuarios", {
         method: "POST",
@@ -37,16 +39,95 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (response.ok) {
-        alert("✅ Usuario registrado exitosamente.");
+        Swal.fire({
+          icon: 'success',
+          title: 'Done!',
+          text: 'User created successfully',
+          customClass: {
+            popup: 'alert',
+            confirmButtonColor: 'btn-grad'
+          },
+          background: '#1f2937',
+          color: '#ffffffff',
+        });
         registerForm.reset(); // Limpia el formulario
       } else {
         const errorText = await response.text();
-        console.error("❌ Error en respuesta:", errorText);
-        alert("❌ Error al registrar usuario.\n" + errorText);
+        console.error("❌ Request error:", errorText);
+        await Swal.fire({
+          icon: "error",
+          title: "Error to register",
+          text: errorText.includes("ya está registrado")
+            ? "The email or username is already used"
+            : errorText,
+          background: "#1f2937",
+          color: "#ffffff",
+          confirmButtonColor: "#8f69f9"
+        });
       }
     } catch (err) {
-      console.error("🚨 Error en la solicitud:", err);
-      alert("🚨 Error al conectar con el servidor.");
+      console.error("🚨 Request error", err);
+      await Swal.fire({
+        icon: "warning",
+        title: "Error de conexión",
+        text: "No se pudo conectar con el servidor."
+      });
     }
   });
+});
+
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const Username = document.getElementById("login-username").value;
+  const Password = document.getElementById("login-password").value;
+
+  const data = { Username, Password };
+
+  try {
+    const response = await fetch("http://localhost:5219/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      window.location.href = "../Main/Dashboard.html";
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "¡Oops!",
+        text: "Username or password invalid",
+        background: "#1f2937",
+        color: "#ffffff",
+        customClass: {
+          popup: 'alert',
+        },
+        confirmButtonColor: "#8f69f9",
+        confirmButtonText: "Try again",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown"
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp"
+        }
+      });
+    }
+  } catch (err) {
+    console.error("🚨 Error en la solicitud:", err);
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'No se pudo conectar con el servidor.',
+      background: '#1f2937',
+      color: '#ffffff',
+      customClass: {
+        popup: 'alert',
+      },
+      buttonsStyling: false
+    });
+  }
 });

@@ -203,6 +203,25 @@ form {
     background: #1f2937;
 }
 
+.alert {
+    border-radius: 20px !important;
+}
+.btn-grad {
+  background-image: linear-gradient(to right, #8f69f9 0%, #54f1b7 50%, #8f69f9 100%);
+  background-size: 200% auto;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  text-align: center;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* animación al hacer hover */
+}
 .toggle-box::before {
     content: '';
     position: absolute;

@@ -10,20 +10,23 @@
     <link rel="icon" type="image/png" href="../Images/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
     <div class="container">
         <div class="form-box login">
-            <form action="">
+            <form id="loginForm">
                 <img src="../Images/Logo - CPI.png" class="logo">
                 <h1>Login</h1>
                 <div class="input-box">
-                    <input type="text" class="input-color" placeholder="Username" required>
+                    <input id="login-username" type="text" class="input-color" placeholder="Username" required>
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
-                    <input type="text" class="input-color" placeholder="Password" required>
+                    <input id="login-password" type="password" class="input-color" placeholder="Password" required>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
                 <div class="forgot-link">
@@ -63,7 +66,7 @@
                         <option value="Client">Client</option>
                         <option value="Moderator">Moderator</option>
                     </select>
-                    <i class='bx bxs-user-detail'></i>  
+                    <i class='bx bxs-user-detail'></i>
                 </div>
                 <button type="submit" class="btn">Register</button>
                 <p>or login with social platforms</p>
