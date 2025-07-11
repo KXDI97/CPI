@@ -644,10 +644,6 @@ body {
 }
 
 
-.sidebar.collapsed {
-    width: 0;
-    overflow: hidden;
-}
 
 .hamburger {
     background: none;
@@ -658,8 +654,8 @@ body {
     display: none;
 }
 
-/* Responsive */
-/*
+
+
 @media (max-width: 768px) {
     .hamburger {
         display: block;
@@ -667,10 +663,17 @@ body {
 
     .sidebar {
         position: absolute;
-        z-index: 10;
-        height: 100vh;
-        background: white;
-        top: 0;
         left: 0;
+        top: 70px; /* o la altura de tu header */
+        width: 200px;
+        background-color: #121826;
+        height: calc(100% - 70px);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1000;
+    }
+
+    .sidebar.collapsed {
+        transform: translateX(0);
     }
 }
