@@ -2,346 +2,414 @@ body {
     background-color: #121826;
     color: white;
     font-family: 'Poppins', sans-serif;
-    padding-top: 70px;
+    padding-top: 30px;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    /* Permite que los elementos se ajusten en la pantalla */
-    overflow-x: hidden;
-}
 
-/* INICIO DE PURCHASE */
 .content-Purchase {
     flex: 1;
-    margin-left: 240px;
+    margin-left: 220px;
     background-color: #121826;
     width: 80%;
 }
-
-/* Títulos */
-h1 {
-    font-size: 32px;
-    text-align: left;
-    margin-bottom: 20px;
-    color: #F2F2F2;
-    /* Gris claro más claro */
+.purchase-header {
+  display: flex;
+  justify-content:space-between;
+  align-items:center;
+  padding: 1rem 2rem;
+  color: white;
+  margin-top: 2%;
+  height: 10%;
 }
 
-.content-Purchase h2 {
-    font-size: 22px;
-    color: #D4D4D4;
-    /* Gris claro más oscuro */
+
+.purchase-header h1 {
+  font-size: 2rem;
+    margin-left: 0;
+  padding-left: 0;
+  text-align: left;
 }
 
-/* Filtros de búsqueda */
-.Filtros {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 0px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-/* Barra de búsqueda */
-.search-bar_p {
+.search-bar {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     width: 230px;
     background-color: #1F2937;
-    /* Header */
     border-radius: 8px;
     padding: 8px;
     position: relative;
 }
 
-.search-bar_p:focus-within {
+.search-bar:focus-within {
     border-color: #54F1B8;
     /* Verde menta */
     box-shadow: 0 0 8px #54F1B8;
 }
 
-.search-bar_p input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 14px;
-    padding: 5px 10px;
-    outline: none;
+.search-bar input {
+  background-color: #1f2937;
+  border: none;
+  padding: 0.5rem 1rem;
+  color: white;
+  border-radius: 5px;
+  outline: none;
+
 }
 
-.search-bar_p ion-icon {
-    font-size: 18px;
-    color: #9069F9;
-    /* Lila */
-    margin-left: 8px;
-    cursor: pointer;
+.search-bar button {
+  background-color: transparent;
+  color: #9069f9;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
 }
 
-/* Nuevos estilos para filtros */
-.filter-container {
-    position: relative;
-    margin-left: 15px;
-    display: flex;
+#search-results {
+  margin-left: 2rem;
+  color: #d4d4d4;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+h1 {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.filtro-panel {
+  background: #1F2937;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+.filtro-panel label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+.filtro-panel input,
+.filtro-panel select {
+  padding: 5px;
+  border-radius: 4px;
+  border: none;
 }
 
-.filter-btn {
-    background-color: #8f69f900;
-    /* Lila */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+
+.swiper {
+  width: 80%;
+  padding: 40px 0;
+}
+.swiper-slide {
+  background-color: #1F2937;
+  border-radius: 10px;
+  padding: 20px;
+  width: 1%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 200px;
+}
+.card {
+  background-color: #1F2937;
+  color: #F2F2F2;
+  border-radius: 10px;
+  padding: 15px;
+  width: 220px;
+  height: 370px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-betwee;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+.imagen {
+  flex-grow: 1;
+  margin-bottom: 10px;
+  background-color: #384152; /* visual placeholder */
+  border-radius: 6px;
+}
+.card h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
 }
 
-.filter-btn:hover {
-    background-color: #9069F9;
+.card p {
+  font-size: 14px;
+  margin: 4px 0;
+}
+.card h3,
+.card p,
+.card strong {
+  font-weight: 500;
+  color: #e5e7eb;
+  text-shadow: none;
 }
 
-.filter-btn svg {
-    margin-left: 5px;
+.product-quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
 }
 
-.filter-dropdown {
-    display: none;
-    position: absolute;
-    top: 0%;
-    right: 310px;
-    background-color: #171717;
-    /* Popup negro */
-    border-radius: 5px;
-    padding: 15px;
-    width: 270px;
-    margin-top: 10px;
-    z-index: 20;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.product-quantity input {
+  background-color: #384152;
+  color: white;
+  border: none;
+  padding: 4px 6px;
+  border-radius: 5px;
+  width: 50px;
+
 }
 
-.filter-dropdown.active {
-    display: block;
+.card label {
+  font-size: 14px;
+  margin-top: 10px;
 }
 
-.filter-section {
-    margin-bottom: 15px;
+.card input[type="number"] {
+  width: 30px;
+  padding: 4px;
+  margin-left: 5px;
+  background-color: #384152;
+  color: #F2F2F2;
+  border: none;
+  border-radius: 4px;
+
 }
 
-.filter-section h3 {
-    margin-bottom: 10px;
-    color: #F2F2F2;
-    /* Gris claro más claro */
-}
-
-.filter-options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.filter-option {
-    background-color: #384152;
-    /* Input */
-    color: #F2F2F2;
-    /* Gris claro más claro */
-    padding: 5px 10px;
-    border-radius: 7px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.filter-option.selected {
-    background-color: #9069F9;
-    /* Lila */
-    color: white;
-}
-
-.apply-filters {
-    background-color: #8f69f9;
-    /* Lila */
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 15px;
-    cursor: pointer;
-}
-
-.apply-filters:hover {
-    background-color: #384152;
-}
-
-/* Carousel Styles */
-.carousel-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding: 0 20px;
-    scroll-snap-type: x mandatory;
-}
-
-.carousel {
-    display: flex;
-    overflow: hidden;
-    width: calc(100% - 100px);
-}
-
-.carousel-track {
-    display: flex;
-    transition: transform 0.3s ease;
-}
-
-.purchase-card {
-   flex: 0 0 auto;
-    scroll-snap-align: start;
-    min-width: 200px;
-    width: 220px;
-    background-color: #1F2937;
-    /* Header */
-    border-radius: 10px;
-    padding: 15px;
-    margin: 0 8px;
-    display: flex;
-    flex-direction: column;
-}
-
-.purchase-card img {
-    width: 100%;
-    height: 200px;
-    border-radius: 10px;
-}
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.order-label {
-    color: #D4D4D4;
-    /* Gris claro más oscuro */
-    font-size: 0.8rem;
-}
-
-.add-btn {
-    background-color: #54f1b700;
-    /* Verde menta */
+.card button {
+  background-color: #54f1b700;
     color: white;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
     border: 2px solid #9069F9;
-}
-
-.add-btn:hover {
-    background-color: #9069F9;
-}
-
-.card-details {
-    color: #E6E6E6;
-    /* Gris claro */
-    margin-bottom: 5px;
-}
-
-.card-price {
-    font-weight: bold;
-    color: white;
-}
-
-.nav-btn {
-    background-color: transparent;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    font-size: 32px;
-}
-
-.nav-btn.prev {
-    left: 0;
-}
-
-.nav-btn.next {
-    right: 0;
-}
-
-/* Modal styles from first code */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.card button:hover {
+  background-color: #7a52d9;
+}
+.swiper-container-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  position: relative;
+  top: 0;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  background-color: #121826;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.swiper-button-prev {
+  margin-right: 10px;
+}
+
+.swiper-button-next {
+  margin-left: 10px;
+}
+
+
+/* 🔘 Botón flotante para mostrar el carrito */
+.btn-ver-carrito {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #9069F9;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 50px;
+  font-size: 30px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 1000;
+ 
+}
+
+.btn-ver-carrito:hover {
+  background-color: #54f1b700;
+
+}
+
+/* 📦 Fondo modal del carrito */
+.modal-carrito {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* Oculto por defecto */
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 9998;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 📦 Contenido del carrito */
+.carrito-contenido {
+  background: #121826;
+  padding: 30px 40px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 1000px;
+  max-height: 90%;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  position: relative;
+  color: #F2F2F2;
+  font-family: 'Poppins', sans-serif;
+  animation: popup 0.4s ease;
+}
+
+@keyframes popup {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ❌ Botón para cerrar */
+.cerrar-modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  color: #EF4444;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.cerrar-modal:hover {
+  color: #FF6666;
+}
+
+/* 💳 Encabezado del carrito */
+.carrito-contenido h2 {
+  margin-bottom: 20px;
+  color:#9069F9;
+  font-weight: 600;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* 🧾 Tabla del carrito */
+.carrito-contenido table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #E6E6E6;
+}
+
+.carrito-contenido th,
+.carrito-contenido td {
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid #384152;
+}
+
+.carrito-contenido th {
+  background-color: #384152;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* 🛒 Botones */
+.carrito-contenido button {
+  background-color: #1F2937;
+  color: white;
+  border: 2px solid transparent;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.carrito-contenido button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #54F1B8;
+}
+
+
+
+/* ❌ Botón eliminar producto */
+.carrito-table button {
+  background-color: #EF4444;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* 💬 Modal de compra */
+.modal {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+ background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
 }
 
 .modal-content {
-    background-color: #121826;
-    padding: 2rem;
-    border-radius: 20px;
-    width: 100%;
-    height: 500px;
-    max-width: 600px;
-    color: #F2F2F2;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    max-height: 70vh;
-    overflow-y: auto;
-    position: fixed;
-    top: 15%;
-    left: 30%;
+  background-color: #121826;
+  padding: 2.5rem;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+  top: 100px;
+  left: 35%;
+  
 }
 
-#closeInvoiceBtn {
-  display: none;
-}
-.close-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    color: #D4D4D4;
-    cursor: pointer;
-    border-radius: 20px;
+.modal-content label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  
 }
 
-h2 {
-    margin-bottom: 1.5rem;
-    color: #FFFFFF;
+.modal-content input {
+  width: 95%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid#384152;
+  background-color: #384152;
 }
-
-.form-group {
-    margin-bottom: 1.2rem;
-    
-}
-
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: #D4D4D4;
-}
-
-input,
 select {
     padding: 0.7rem 1rem;
     background-color: #384152;
@@ -351,326 +419,322 @@ select {
     font-size: 1rem;
 }
 
+.btn-confirmar {
+ background-color: #1F2937;
+  color: white;
+  padding: 10px;
+  border: none;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  
+}
 input:read-only {
     background-color: #2c3448;
     color: #B0B0B0;
 }
 
-.fixed-value {
-    background-color: #2c3448;
-    color: #FBD7BD;
-    padding: 0.7rem 1rem;
-    border-radius: 12px;
-    font-size: 1rem;
-}
-
-.form-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-top: 2rem;
-}
-
-.save-btn,
-.cancel-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    /* Espaciado entre icono y texto */
-    background-color: #1F2937;
-    color: white;
-    border: 2px solid transparent;
-    padding: 10px 15px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-.save-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    /* Espaciado entre icono y texto */
-    background-color: #1F2937;
-    color: white;
-    border: 2px solid transparent;
-    padding: 10px 15px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-.cancel-btn {
-    background-color:rgba(255, 255, 255, 0.1);
-    color: #fff;
-}
-
-.save-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+.btn-confirmar:hover {
+     background-color: rgba(255, 255, 255, 0.1);
     border-color: #54F1B8;
 }
 
-.cancel-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: #9069F9;
+/* ❌ Botón cerrar modal */
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
 }
 
-@media (min-width: 600px) {
-    .form-actions {
-        flex-direction: row;
-        justify-content: flex-end;
-    }
+.close-modal:hover {
+  color: #000;
+}
+/* 🧾 Contenedor de la factura final */
+.modal-factura {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* Oculto por defecto */
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Ocultar scroll en Chrome */
-.modal-content::-webkit-scrollbar {
-    width: 8px;
-}
-
-.modal-content::-webkit-scrollbar-thumb {
-    background: #384152;
+.factura-contenido {
+    background: #121826; /* Fondo de la factura oscuro pero más claro que el body */
+    padding: 30px;
     border-radius: 10px;
-}
-/* Add these styles to your Purchase-Style.css file */
-
-/* Invoice Modal Styles */
-#invoiceModal .modal-content {
+    width: 90%;
     max-width: 800px;
-    background-color: #121826;
-    color: #F2F2F2;
-  }
-  
-  .invoice-header {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); /* Sombra sutil */
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    color: #E2E8F0; /* Color de texto claro para el contenido de la factura */
+    border: 1px solid #36405200; /* Borde sutil */
+}
+
+/* Encabezado de la factura (Purchase Invoice, Invoice #, Date, Client) */
+.factura-contenido h2 { /* Asumiendo que "Purchase Invoice" es un h2 */
+    color: #E2E8F0;
+    font-size: 2em;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #364052; /* Línea separadora debajo del título */
+    padding-bottom: 10px;
+}
+
+.factura-info { /* Contenedor para Invoice #, Date, Client */
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #384152;
-  }
-  
-  .invoice-logo {
-    background-color: #9069F9;
-    color: white;
-    padding: 10px 15px;
-    font-weight: bold;
-    border-radius: 5px;
-  }
-  
-  .invoice-details {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px;
-  }
-  
-  .invoice-info p, .invoice-client p {
-    margin: 5px 0;
-  }
-  
-  .invoice-items {
-    margin-bottom: 25px;
-  }
-  
-  .invoice-items table {
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    color: #CBD5E1; /* Un color de texto ligeramente más tenue para esta info */
+}
+
+.factura-info div {
+    margin-bottom: 5px; /* Espacio entre las líneas de info */
+}
+
+
+.factura-tabla {
     width: 100%;
     border-collapse: collapse;
-  }
-  
-  .invoice-items th, .invoice-items td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #384152;
-  }
-  
-  .invoice-items th {
-    background-color: #1F2937;
-    color: #D4D4D4;
-  }
-  
-  .invoice-summary {
-    margin-left: auto;
-    width: 300px;
-  }
-  
-  .summary-item {
+    margin-top: 25px; /* Más espacio arriba */
+    background-color: #2D3748; /* Un fondo ligeramente más claro para la tabla */
+    border-radius: 8px; /* Bordes redondeados para la tabla */
+    overflow: hidden; /* Asegura que los bordes redondeados se apliquen bien a los contenidos */
+}
+
+.factura-tabla th,
+.factura-tabla td {
+    /* Eliminamos los bordes individuales para un aspecto más limpio y usamos la separación del padding */
+    /* border: 1px solid #ccc; */
+    padding: 12px 15px; /* Más padding para más espacio */
+    text-align: left; /* Alineación a la izquierda como en la imagen */
+    color: #E2E8F0; /* Color de texto claro */
+}
+
+.factura-tabla th {
+    background-color: #242D3D; /* Fondo de los encabezados de columna más oscuro */
+    color: #94A3B8; /* Color de texto para los encabezados */
+    font-weight: bold;
+    text-transform: uppercase; /* Mayúsculas para los encabezados */
+    font-size: 0.85em;
+    border-bottom: 1px solid #364052; /* Borde inferior para separar el encabezado */
+}
+
+.factura-tabla tr:nth-child(even) { /* Filas pares con un color ligeramente diferente para mejor lectura */
+    background-color: #273040;
+}
+
+/* Si tu tabla solo tiene una fila de datos como en la imagen,
+   entonces las reglas de nth-child(even) no se notarán a menos que tengas más datos. */
+
+.factura-resumen { /* Contenedor para Subtotal, IVA, Total */
+    margin-top: 30px; /* Más espacio entre la tabla y el resumen */
+    text-align: right;
+    font-size: 1.1em;
+    color: #E2E8F0;
+}
+
+.factura-resumen div {
     display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-  }
-  
-  .summary-item.total {
-    margin-top: 10px;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+}
+
+.factura-resumen span:first-child {
+    width: 120px; /* Ancho fijo para las etiquetas (Subtotal, IVA, Total) */
+    margin-right: 15px;
+    color: #CBD5E1; /* Color ligeramente más tenue para las etiquetas */
+}
+
+.factura-resumen .total {
+    font-size: 1.4em; /* Fuente más grande para el total */
+    font-weight: bold;
+    color: #54F1B8; /* Color verde brillante para el total */
+    border-top: 1px solid #364052; /* Línea superior para el total */
     padding-top: 10px;
-    border-top: 1px solid #384152;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #54F1B8;
-  }
-  
-  .invoice-footer {
-    margin-top: 30px;
+    margin-top: 15px;
+}
+
+.factura-resumen .total span:first-child {
+    color: #E2E8F0; /* Asegura que la etiqueta "Total" también sea clara */
+}
+
+
+.gracias-mensaje { /* Mensaje "Thank you for your purchase!" */
     text-align: center;
-    color: #D4D4D4;
-  }
-  
-  .invoice-actions {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-  }
-  
-  .print-btn {
-    background-color: #54F1B8;
-    color: #121826;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    margin-top: 40px;
+    font-size: 1.1em;
+    color: #CBD5E1; /* Color de texto ligeramente más tenue */
+}
+
+
+/* Cerrar Modal (si es parte de un modal) */
+.cerrar-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    color: #94A3B8; /* Color gris para el icono de cerrar */
     cursor: pointer;
+    z-index: 10; /* Asegura que esté por encima de otros elementos */
+}
+
+.cerrar-modal:hover {
+    color: #E2E8F0; /* Color claro al pasar el ratón */
+}
+
+/* Botón de Imprimir */
+.btn-imprimir {
+    background-color: #54F1B8; /* Verde brillante como en la imagen */
+    color: #121826; /* Texto muy oscuro */
+    padding: 12px 25px; /* Más padding */
+    border: none;
     font-weight: bold;
-    transition: all 0.3s ease;
+    font-size: 1.1em; /* Un poco más grande */
+    margin-top: 2.5rem; /* Más espacio arriba */
+    border-radius: 8px;
+    cursor: pointer;
+    display: block; /* Para centrarlo */
+    margin-left: auto;
+    margin-right: auto;
+    transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
+}
+
+.btn-imprimir:hover {
+    background-color: #3ad3a3; /* Tono de verde más oscuro al pasar el ratón */
+}
+
+/* 🖨️ Optimización para impresión */
+@media print {
+  body * {
+    visibility: hidden;
   }
-  
-  .print-btn:hover {
-    background-color: #3dd19a;
+
+  .factura-contenedor, .factura-contenedor * {
+    visibility: visible;
   }
-  
-  /* Animation for appearing invoice */
-  #invoiceModal .modal-content {
-    animation: fadeInUp 0.4s ease;
+
+  .factura-contenedor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: none;
+    background: white;
   }
-  
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+
+  .btn-imprimir {
+    display: none;
   }
-  /* Agregar al final de tu archivo CSS existente */
-
-/* Media queries para hacer la interfaz responsiva */
-@media (max-width: 1200px) {
-    .content-Purchase {
-        margin-left: 200px;
-        width: calc(100% - 200px);
-    }
+}
+.filter-btn {
+    background-color: #8f69f900;
+    color: #E0E0E0;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 5px 10px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    margin-left: auto; 
+    margin-right: 15px;
 }
 
-@media (max-width: 992px) {
-    .content-Purchase {
-        margin-left: 0;
-        width: 100%;
-        padding: 15px;
-    }
-    
-   .carousel-container {
-        padding: 0 15px; /* Reduce el padding */
-        margin-left: 0;  /* Quita el desplazamiento lateral */
-    }
-    
-    /* Ajustar la posición del modal para pantallas medianas */
-    .modal-content {
-        width: 90%;
-        max-width: 600px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+
+
+.filter-btn svg {
+    width: 30px;
+    height: 30px;
+    fill: currentColor;
 }
 
-@media (max-width: 768px) {
-    body {
-        padding-top: 60px;
-    }
-    
-    /* Hacer que los filtros sean más usables en móvil */
-    .Filtros {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .search-bar_p {
-        width: 100%;
-        max-width: none;
-        margin-bottom: 10px;
-    }
-    
-    .filter-container {
-        width: 100%;
-        margin-left: 0;
-    }
-    
-    .filter-dropdown {
-        right: auto;
-        left: 0;
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    /* Ajustes para carousel en tablet */
-    .purchase-card {
-        width: 180px;
-        min-width: 180px;
-    }
+.filtro-panel {
+    background-color: #1A2233;
+    color: #E0E0E0;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    position: absolute;
+    right: 20px;
+    top: 70px;
+    z-index: 1000;
 }
 
-@media (max-width: 576px) {
-    /* Ajustes para móvil */
-    h1 {
-        font-size: 24px;
-    }
-    
-    .content-Purchase h2 {
-        font-size: 18px;
-    }
-    
-    .purchase-card {
-        width: 160px;
-        min-width: 160px;
-    }
-    
-    /* Mejorar formularios en móvil */
-    .form-group {
-        margin-bottom: 15px;
-    }
-    
-    .form-actions {
-        flex-direction: column;
-    }
-    
-    .save-btn, .cancel-btn {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-    
-    /* Hacer que las tablas de factura sean scrollables */
-    .invoice-items {
-        overflow-x: auto;
-    }
-    
-    .invoice-items table {
-        min-width: 500px;
-    }
+.filtro-panel label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+    color: #A0AEC0;
 }
 
-/* Mantener el contenido del modal visible y con scroll interno */
-.modal-content {
-    max-height: 90vh;
-    overflow-y: auto;
+.filtro-panel input[type="number"],
+.filtro-panel input[type="date"],
+.filtro-panel select {
+    background-color: #2D3748;
+    border: 1px solid #4A5568;
+    color: #E0E0E0;
+    padding: 10px 12px;
+    border-radius: 6px;
+    width: calc(100% - 24px);
+    margin-top: 5px;
+    box-sizing: border-box;
 }
 
-/* Hacer que el carrusel sea más accesible en pantallas táctiles */
-@media (hover: none) {
-    .nav-btn {
-        padding: 15px;
-        font-size: 28px;
-    }
+.filtro-panel input::placeholder {
+    color: #A0AEC0;
 }
-/*FIN DE PURCHASE*/
+
+.filtro-panel input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.filtro-panel button[onclick="aplicarFiltros()"] {
+    background-color: #5542F6;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.filtro-panel button[onclick="aplicarFiltros()"]:hover {
+    background-color: #4333C7;
+}
+
+.filtro-panel button[onclick="aplicarFiltros()"]::before {
+    content: "🔍";
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.filtro-panel > label {
+    margin-top: 15px;
+}
+.filtro-panel > label:first-of-type {
+    margin-top: 0;
+}
+

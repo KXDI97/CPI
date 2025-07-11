@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Purchase CPI</title>
     <link rel="icon" type="image/png" href="../Images/logo.png">
-        <link rel="stylesheet" href="../Styles/HeaderSlider-Style.css">
+    <link rel="stylesheet" href="../Styles/HeaderSlider-Style.css">
     <link rel="stylesheet" href="../Styles/Savings-Style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
@@ -17,478 +17,163 @@
     <div id="header-container"></div>
     <div id="sidebar-container"></div>
     <div class="content-Purchase">
-        <div class="Filtros">
-
+        <section class="purchase-header">
             <h1>Purchase</h1>
+            <button class="filter-btn"> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25"
+                    fill="currentColor" class="bi bi-sliders2" viewBox="2 0 18 15">
+                    <path fill-rule="evenodd"
+                        d="M10.5 1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4H1.5a.5.5 0 0 1 0-1H10V1.5a.5.5 0 0 1 .5-.5M12 3.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m-6.5 2A.5.5 0 0 1 6 6v1.5h8.5a.5.5 0 0 1 0 1H6V10a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5M1 8a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 1 8m9.5 2a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V13H1.5a.5.5 0 0 1 0-1H10v-1.5a.5.5 0 0 1 .5-.5m1.5 2.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5" />
+                </svg></button>
+            <!-- 🔽 Panel de filtros -->
+            <div id="filtro-panel" class="filtro-panel" style="display: none;">
+                <label>
+                    Category:
+                    <select id="filtro-categoria">
+                        <option value="">All</option>
+                        <option value="Cartucho">Cartucho</option>
+                        <option value="Tinta">Tinta</option>
+                        <!-- Agrega más si es necesario -->
+                    </select>
+                </label>
 
-            <div class="filter-container">
-                <button class="filter-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                        class="bi bi-sliders2" viewBox="2 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M10.5 1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4H1.5a.5.5 0 0 1 0-1H10V1.5a.5.5 0 0 1 .5-.5M12 3.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m-6.5 2A.5.5 0 0 1 6 6v1.5h8.5a.5.5 0 0 1 0 1H6V10a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5M1 8a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 1 8m9.5 2a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V13H1.5a.5.5 0 0 1 0-1H10v-1.5a.5.5 0 0 1 .5-.5m1.5 2.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5" />
-                    </svg>
-                </button>
-                <div class="filter-dropdown">
-                    <div class="filter-section">
-                        <h3>Sort by</h3>
-                        <div class="filter-options category-filters">
-                            <div class="filter-option" data-filter="Ascending">Ascending</div>
-                            <div class="filter-option" data-filter="Descending">Descending</div>
-                        </div>
-                    </div>
-                    <div class="filter-section">
-                        <h3>Category</h3>
-                        <div class="filter-options category-filters">
-                            <div class="filter-option" data-filter="ink">Ink</div>
-                            <div class="filter-option" data-filter="devices">Devices</div>
-                            <div class="filter-option" data-filter="tapes">Tapes</div>
-                        </div>
-                    </div>
-                    <div class="filter-section">
-                        <h3>Date Range</h3>
-                        <div class="filter-options date-filters">
-                            <div class="filter-option" data-filter="last-week">Last Week</div>
-                            <div class="filter-option" data-filter="last-month">Last Month</div>
-                            <div class="filter-option" data-filter="this-year">This Year</div>
-                        </div>
-                    </div>
-                    <div class="filter-section">
-                        <h3>Price Range</h3>
-                        <div class="filter-options price-filters">
-                            <div class="filter-option" data-filter="0-500">$0 - $500</div>
-                            <div class="filter-option" data-filter="500-1000">$500 - $1000</div>
-                            <div class="filter-option" data-filter="1000+">$1000+</div>
-                        </div>
-                    </div>
-                    <button class="apply-filters">Apply Filters</button>
-                </div>
-                <div class="search-bar_p">
-                    <input type="text" class="search-input" placeholder="Search product...">
-                    <ion-icon name="search-outline"></ion-icon>
-                </div>
+                <label>
+                    Maximum price:
+                    <input type="number" id="filtro-precio" placeholder="Ej: 50000" />
+                </label>
+
+                <label>
+                    Since:
+                    <input type="date" id="filtro-fecha-inicio" />
+                </label>
+
+                <label>
+                    Until:
+                    <input type="date" id="filtro-fecha-fin" />
+                </label>
+
+                <button onclick="aplicarFiltros()"> filter</button>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search product..." />
+                <button onclick="buscarProducto()"><ion-icon name="search-outline"></ion-icon></button>
+
+            </div>
+        </section>
+        <!-- Carrusel de productos -->
+        <div class="swiper-container-wrapper">
+            <div class="swiper-button-prev"></div>
+
+            <section class="swiper mySwiper">
+                <div class="swiper-wrapper" id="product-carousel"></div>
+            </section>
+
+            <div class="swiper-button-next"></div>
+        </div>
+
+
+
+        <!-- 🔘 Botón para desplegar el carrito -->
+        <button id="toggle-cart-btn" onclick="abrirCarrito
+    ()" class="btn-ver-carrito"><ion-icon name="cart-outline"></ion-icon></button>
+        <!-- 🛒 Contenedor del carrito (oculto por defecto) -->
+        <div id="carrito-modal" class="modal-carrito">
+            <div class="carrito-contenido">
+                <span class="cerrar-modal" onclick="cerrarCarrito()">×</span>
+                <h2>Shopping Cart</h2>
+
+                <table class="factura-tabla">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Product</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>VAT</th>
+                            <th>Costs</th>
+                            <th>Total</th>
+                            <th>Actions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-carrito"></tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="6" style="text-align: right;">Total:</td>
+                            <td colspan="2"><strong>$<span id="total-carrito">0.00</span></strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+               <button type="submit" onclick="cerrarCarrito(); abrirModalCompra()">Register Purchase</button>
+
             </div>
         </div>
-        <h2>Results: " "</h2>
-        <div class="carousel-container">
-            <button class="nav-btn prev"><</button>
-            <div class="carousel">
-                <div class="carousel-track">
-                    <div class="purchase-card" 
-                         data-order="PO-2024-001" 
-                         data-date="2024-05-12" 
-                         data-product-id="INK-453" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client=""
-                         data-default-quantity="5">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order1</span>
-                        </div>
-                        <img src="../Images/cartucho2.png" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card"
-                         data-order="PO-2024-002" 
-                         data-date="2024-05-12" 
-                         data-product-id="INK-267" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client=""
-                         data-default-quantity="5">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order2</span>
-                        </div>
-                        <img src="../Images/Cartuchos .avif" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card"
-                         data-order="PO-2024-003" 
-                         data-date="2024-05-12" 
-                         data-product-id="DEV-789" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client="CLI-123"
-                         data-default-quantity="4">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order3</span>
-                        </div>
-                        <img src="../Images/cartucho2.png" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card"
-                         data-order="PO-2024-004" 
-                         data-date="2024-05-12" 
-                         data-product-id="TAP-345" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client="CLI-567"
-                         data-default-quantity="5">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order4</span>
-                        </div>
-                        <img src="../Images/Cartuchos .avif" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card"
-                         data-order="PO-2024-005" 
-                         data-date="2024-05-12" 
-                         data-product-id="DEV-901" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client="CLI-890"
-                         data-default-quantity="5">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order5</span>
-                        </div>
-                        <img src="../Images/cartucho2.png" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card" 
-                         data-order="PO-2024-001" 
-                         data-date="2024-05-12" 
-                         data-product-id="INK-453" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client=""
-                         data-default-quantity="5">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order1</span>
-                        </div>
-                        <img src="../Images/cartucho2.png" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card"
-                         data-order="PO-2024-002" 
-                         data-date="2024-05-12" 
-                         data-product-id="INK-267" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client=""
-                         data-default-quantity="5">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order2</span>
-                        </div>
-                        <img src="../Images/Cartuchos .avif" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card"
-                         data-order="PO-2024-003" 
-                         data-date="2024-05-12" 
-                         data-product-id="DEV-789" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client="CLI-123"
-                         data-default-quantity="4">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order3</span>
-                        </div>
-                        <img src="../Images/cartucho2.png" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card"
-                         data-order="PO-2024-004" 
-                         data-date="2024-05-12" 
-                         data-product-id="TAP-345" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client="CLI-567"
-                         data-default-quantity="5">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order4</span>
-                        </div>
-                        <img src="../Images/Cartuchos .avif" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card"
-                         data-order="PO-2024-005" 
-                         data-date="2024-05-12" 
-                         data-product-id="DEV-901" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client="CLI-890"
-                         data-default-quantity="5">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order5</span>
-                        </div>
-                        <img src="../Images/cartucho2.png" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card" 
-                         data-order="PO-2024-001" 
-                         data-date="2024-05-12" 
-                         data-product-id="INK-453" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client=""
-                         data-default-quantity="5">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order1</span>
-                        </div>
-                        <img src="../Images/cartucho2.png" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card"
-                         data-order="PO-2024-002" 
-                         data-date="2024-05-12" 
-                         data-product-id="INK-267" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client=""
-                         data-default-quantity="5">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order2</span>
-                        </div>
-                        <img src="../Images/Cartuchos .avif" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card"
-                         data-order="PO-2024-003" 
-                         data-date="2024-05-12" 
-                         data-product-id="DEV-789" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client="CLI-123"
-                         data-default-quantity="4">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order3</span>
-                        </div>
-                        <img src="../Images/cartucho2.png" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card"
-                         data-order="PO-2024-004" 
-                         data-date="2024-05-12" 
-                         data-product-id="TAP-345" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client="CLI-567"
-                         data-default-quantity="5">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order4</span>
-                        </div>
-                        <img src="../Images/Cartuchos .avif" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card"
-                         data-order="PO-2024-005" 
-                         data-date="2024-05-12" 
-                         data-product-id="DEV-901" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client="CLI-890"
-                         data-default-quantity="5">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order5</span>
-                        </div>
-                        <img src="../Images/cartucho2.png" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card" 
-                         data-order="PO-2024-001" 
-                         data-date="2024-05-12" 
-                         data-product-id="INK-453" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client=""
-                         data-default-quantity="5">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order1</span>
-                        </div>
-                        <img src="../Images/cartucho2.png" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card"
-                         data-order="PO-2024-002" 
-                         data-date="2024-05-12" 
-                         data-product-id="INK-267" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client=""
-                         data-default-quantity="5">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order2</span>
-                        </div>
-                        <img src="../Images/Cartuchos .avif" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card"
-                         data-order="PO-2024-003" 
-                         data-date="2024-05-12" 
-                         data-product-id="DEV-789" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client="CLI-123"
-                         data-default-quantity="4">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order3</span>
-                        </div>
-                        <img src="../Images/cartucho2.png" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card"
-                         data-order="PO-2024-004" 
-                         data-date="2024-05-12" 
-                         data-product-id="TAP-345" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client="CLI-567"
-                         data-default-quantity="5">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order4</span>
-                        </div>
-                        <img src="../Images/Cartuchos .avif" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    <div class="purchase-card"
-                         data-order="PO-2024-005" 
-                         data-date="2024-05-12" 
-                         data-product-id="DEV-901" 
-                         data-unit-price="625" 
-                         data-iva-rate="0.19" 
-                         data-client="CLI-890"
-                         data-default-quantity="5">
-                        <div class="card-header">
-                            <span class="order-label">Purchase order5</span>
-                        </div>
-                        <img src="../Images/cartucho2.png" alt="">
-                        <p class="card-details">Category: Ink, Devices, Tapes</p>
-                        <p class="card-details">Date: May 12, 2024</p>
-                        <p class="card-price">$625</p>
-                        <button class="add-btn">Add</button>
-                    </div>
-                    
-                </div>
+
+        <!-- 💬 Modal de registro de compra -->
+        <div id="modal-registro" class="modal" style="display: none;">
+            <form id="form-compra" class="modal-content">
+                <span class="close-modal" onclick="cerrarModalCompra()">×</span>
+                <h2>Registrar Compra</h2>
+
+                <label>Order Number: <input type="text" id="order-number" readonly /></label>
+                <label>Client Document: <input type="text" id="client-document" required /></label>
+                <label>Purchase Date: <input type="date" id="purchase-date" required /></label>
+                <label>Payment Method: </label>
+                <select id="payment-method" required>
+                    <option value="">Select payment method</option>
+                    <option value="debit">Debit</option>
+                    <option value="credit">Credit</option>
+                </select>
+
+                <p><strong>Total:</strong> $<span id="total-final-modal">0.00</span></p>
+
+                <button type="submit" class="btn-confirmar">Process Purchase</button>
+            </form>
+        </div>
+
+        </section>
+        <!-- 🧾 Factura generada -->
+        <div id="factura-modal" class="modal-factura">
+            <div class="factura-contenido">
+                <span class="cerrar-modal" onclick="cerrarFactura()">×</span>
+                <h2>📄 Purchase Invoice</h2>
+                <p><strong>Orden:</strong> <span id="factura-orden"></span></p>
+                <p><strong>Client:</strong> <span id="factura-cliente"></span></p>
+                <p><strong>Date:</strong> <span id="factura-fecha"></span></p>
+
+                <table class="factura-tabla">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>IVA</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="factura-productos"></tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4" style="text-align: right;">Total:</td>
+                            <td><strong>$<span id="factura-total"></span></strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <button onclick="window.print()" class="btn-imprimir">Print invoice</button>
             </div>
-            <button class="nav-btn next">></button>
         </div>
     </div>
-    
-    <!-- Create Purchase Order Modal -->
-    <div id="purchaseModal" class="modal">
-        <div class="modal-content">
-          <span class="close-btn">&times;</span>
-          <h2>Purchase Order Details</h2>
-          <form id="purchaseForm">
-            <div class="form-group">
-              <label for="orderNumber">Order Number</label>
-              <input type="text" id="orderNumber" readonly>
-            </div>
-      
-            <div class="form-group">
-              <label for="clientDocument">Client Document</label>
-              <input type="text" id="clientDocument" required>
-            </div>
-      
-            <div class="form-group">
-              <label for="purchaseDate">Purchase Date</label>
-              <input type="date" id="purchaseDate" readonly>
-            </div>
-      
-            <div class="form-group">
-              <label for="quantity">Quantity</label>
-              <input type="number" id="quantity" min="1" value="1" required>
-            </div>
-      
-            <div class="form-group">
-              <label for="unitPrice">Unit Price</label>
-              <div class="fixed-value" id="unitPriceValue">$0.00</div>
-            </div>
-      
-            <div class="form-group">
-              <label for="subtotal">Subtotal</label>
-              <div class="fixed-value" id="subtotalValue">$0.00</div>
-            </div>
-      
-            <div class="form-group">
-              <label for="iva">IVA</label>
-              <div class="fixed-value" id="ivaValue">$0.00</div>
-            </div>
-      
-            <div class="form-group">
-              <label for="total">Total</label>
-              <div class="fixed-value" id="totalValue">$0.00</div>
-            </div>
-      
-            <div class="form-group">
-              <label for="paymentMethod">Payment Method</label>
-              <select id="paymentMethod" required>
-                <option value="">Select payment method</option>
-                <option value="debit">Debit</option>
-                <option value="credit">Credit</option>
-              </select>
-            </div>
-      
-            <div class="form-actions">
-              <button type="button" class="cancel-btn">Cancel</button>
-              <button type="submit" class="save-btn">Process Purchase</button>
-            </div>
-          </form>
-        </div>
-      </div>
-        <script type="module">
-            import { loadComponents } from '../Scripts/Components.js';
-            loadComponents();
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-        <script src="../Scripts/Purchase.js"></script>
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+
+    <script type="module">
+        import { loadComponents } from '../Scripts/Components.js';
+        loadComponents();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script src="../Scripts/Purchase.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
