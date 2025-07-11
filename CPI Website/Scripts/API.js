@@ -70,7 +70,13 @@ document.addEventListener("DOMContentLoaded", () => {
       await Swal.fire({
         icon: "warning",
         title: "Error de conexión",
-        text: "No se pudo conectar con el servidor."
+        customClass: {
+          popup: 'alert',
+          confirmButtonColor: 'btn-grad'
+        },
+        background: "#1f2937",
+        color: "#ffffff",
+        text: "Cannot reach the server."
       });
     }
   });
