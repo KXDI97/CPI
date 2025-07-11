@@ -35,5 +35,5 @@ document.addEventListener("DOMContentLoaded", () => {
     modalBackdrop.addEventListener("click", () => {
         closeModal(stockModal);
         closeModal(productModal);
-    });
+    })
 });
