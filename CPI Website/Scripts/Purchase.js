@@ -290,7 +290,7 @@ document.getElementById("form-compra").addEventListener("submit", async (e) => {
     await procesarCompra();
 });
 
-
+//factura
 function mostrarFactura(noOrden, docIdentidad, fechaCompra) {
     const modal = document.getElementById("factura-modal");
     const tabla = document.getElementById("factura-productos");
