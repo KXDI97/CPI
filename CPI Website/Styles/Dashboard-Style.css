@@ -7,6 +7,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     overflow-x: hidden;
+    padding-top: 90px;
 }
 
 /* Estilo del content */
@@ -16,6 +17,7 @@ body {
     background-color: #121826;
     width: calc(100% - 280px);
     box-sizing: border-box;
+    margin-top:  80px;
 }
 
 .content-Dashboard h1 {
