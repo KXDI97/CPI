@@ -2,7 +2,7 @@ body {
     background-color: #121826;
     color: white;
     font-family: 'Poppins', sans-serif;
-    padding-top: 30px;
+    padding-top: 70px;
 }
 
 
@@ -18,7 +18,7 @@ body {
   align-items:center;
   padding: 1rem 2rem;
   color: white;
-  margin-top: 2%;
+  margin-top: 0;
   height: 10%;
 }
 
