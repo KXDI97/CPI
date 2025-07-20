@@ -12,10 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const Username = document.getElementById("reg-username")?.value.trim();
     const Email = document.getElementById("reg-email")?.value.trim();
     const Password = document.getElementById("reg-password")?.value.trim();
-    const Role = document.getElementById("reg-role")?.value;
+
 
     // Validación simple
-    if (!Username || !Email || !Password || !Role) {
+    if (!Username || !Email || !Password) {
       alert("Please fill all the fields");
       return;
     }
@@ -24,10 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       Username,
       Email,
       Password,
-      Role,
     };
-
-    console.log(Role);
 
     try {
       const response = await fetch("http://localhost:5219/usuarios", {
@@ -59,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
           title: "Error to register",
           text: errorText.includes("ya está registrado")
             ? "The email or username is already used"
+
             : errorText,
           background: "#1f2937",
           color: "#ffffff",
