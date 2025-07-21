@@ -631,7 +631,7 @@ body {
 }
 
 .global-modal-buttons button#confirm-btn:hover {
-    background-color: #26e936;
+    background-color: #54f1b7;
     transform: scale(1.15);
 }
 
@@ -648,7 +648,7 @@ body {
 }
 
 .global-modal-buttons button#cancel-btn:hover {
-    background-color: #f40505;
+    background-color: #8f69f9;
     transform: scale(1.15);
 }
 
