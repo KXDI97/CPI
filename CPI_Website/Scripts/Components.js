@@ -5,6 +5,10 @@ export function loadComponents() {
         .then(html => {
             document.getElementById('header-container').innerHTML = html;
 
+            setTimeout(() => {
+            setUserHeaderInfo();
+            }, 0);
+
             const popupScript = document.createElement('script');
             popupScript.src = '../scripts/Popup.js';
             document.body.appendChild(popupScript);
@@ -90,3 +94,30 @@ export function loadComponents() {
         })
         .catch(error => console.error('Error cargando Slider:', error));
 }
+
+// ✅ Esta función carga el nombre y correo desde localStorage al header
+function setUserHeaderInfo() {
+    const userString = localStorage.getItem("user");
+
+    // ✅ Validamos que el valor exista y no sea "undefined"
+    if (!userString || userString === "undefined") {
+        console.warn("ℹ️ No hay usuario válido en localStorage.");
+        return;
+    }
+
+    try {
+        const user = JSON.parse(userString);  // ✅ Ahora seguro
+
+        // ✅ Actualizamos los elementos del header si existen
+        const headerName = document.getElementById("header-username");
+        const popupName = document.getElementById("popup-name");
+        const popupEmail = document.getElementById("popup-email");
+
+        if (headerName) headerName.textContent = user.username;
+        if (popupName) popupName.textContent = user.username;
+        if (popupEmail) popupEmail.textContent = user.email;
+    } catch (err) {
+        console.error("❌ Error al parsear usuario desde localStorage:", err);
+    }
+}
+
