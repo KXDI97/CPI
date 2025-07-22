@@ -8,7 +8,7 @@
     <title>Storage CPI</title>
     <link rel="icon" type="image/png" href="../Images/logo.png">
     <link rel="stylesheet" href="../Styles/HeaderSlider-Style.css">
-    <link rel="stylesheet" href="../Styles/Storage-Style.css">
+    <link rel="stylesheet" href="../Styles/Sales-Style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 
@@ -16,6 +16,34 @@
     <div id="header-container"></div>
     <div id="sidebar-container"></div>
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+            <div class="content-Sales">
+            <div class="sales-header">
+                <h1>Registrar Nueva Venta</h1>
+                <button class="btn-primary" id="btnNuevaVenta">+ Nueva Venta</button>
+            </div>
+
+            <section id="form-venta" class="venta-form hidden">
+                <h2>Información de la venta</h2>
+                <form id="venta-formulario">
+                    <div class="form-group">
+                        <label for="cliente">Cliente:</label>
+                        <select id="cliente" name="cliente"></select>
+                        <button type="button" id="btnRegistrarCliente">Registrar Cliente</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" id="fecha" name="fecha">
+                    </div>
+                </form>
+                <button class="btn-secondary" id="btnContinuar">Continuar</button>
+            </section>
+
+            <section id="detalle-productos" class="productos hidden">
+                <h2>Agregar Productos</h2>
+                <!-- Aquí irá tabla con productos -->
+            </section>
+        </div>
 
     <script type="module">
         import { loadComponents } from '../Scripts/Components.js';
@@ -26,6 +54,7 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="../Scripts/Session.js"></script>
+    <script src="../Scripts/Sales.js"></script>
 </body>
 
 </html>

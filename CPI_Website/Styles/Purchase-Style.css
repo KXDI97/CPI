@@ -1,16 +1,12 @@
-body {
-    background-color: #121826;
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    padding-top: 70px;
-}
 
 
 .content-Purchase {
     flex: 1;
+    padding: 20px;
     margin-left: 220px;
     background-color: #121826;
     width: 80%;
+    padding-top: 90px;
 }
 .purchase-header {
   display: flex;

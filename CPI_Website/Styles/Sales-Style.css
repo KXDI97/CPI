@@ -1,0 +1,96 @@
+
+/* Contenedor principal */
+.content-Sales {
+    flex: 1;
+    padding: 20px;
+    margin-left: 220px;
+    background-color: #121826;
+    width: 80%;
+    padding-top: 90px;
+}
+
+/* Header del módulo */
+.sales-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.sales-header h1 {
+    font-size: 2rem;
+}
+
+/* Botones principales */
+.btn-primary,
+.btn-secondary {
+    background-color: #54F1B8;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    color: #121826;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary {
+    background-color: #1F2937;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #3dd9a0;
+}
+
+.btn-secondary:hover {
+    background-color: #2c3a4d;
+}
+
+/* Formulario */
+.venta-form {
+    background-color: #1F2937;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.venta-form h2 {
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Sección productos */
+.productos {
+    background-color: #1F2937;
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.productos h2 {
+    margin-bottom: 1rem;
+}
+
+/* Ocultar elementos */
+.hidden {
+    display: none;
+}
