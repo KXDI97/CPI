@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Cargar productos al iniciar
     loadProducts();
     setupAddStockButton();
-    // Acción al hacer clic en "Add Product"
+
     const addProductBtn = document.querySelector('.modal-add-product .btn-1');
 
     addProductBtn.addEventListener("click", async (e) => {
@@ -17,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
             stock: 0
         };
 
-        // Validación básica
         if (!product.productId || !product.name || isNaN(product.value) || !product.category || !product.description) {
             alert("⚠️ Por favor completa todos los campos requeridos.");
             return;
@@ -26,16 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
             const response = await fetch("http://localhost:5219/api/products", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(product)
             });
 
             if (response.ok) {
                 alert("✅ Producto agregado exitosamente");
 
-                // Limpiar formulario y cerrar modal
                 document.getElementById("product-id").value = "";
                 document.getElementById("product-name").value = "";
                 document.getElementById("value").value = "";
@@ -43,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("description").value = "";
                 document.getElementById("productModal").classList.add("hidden");
 
-                // Recargar tabla
                 loadProducts();
             } else {
                 const errorData = await response.json();
@@ -58,14 +52,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function loadProducts() {
     const tableBody = document.querySelector(".table-container tbody");
-    tableBody.innerHTML = ""; // Limpiar contenido previo
+    tableBody.innerHTML = "";
 
     try {
         const response = await fetch("http://localhost:5219/api/products");
 
-        if (!response.ok) {
-            throw new Error("Error al cargar productos");
-        }
+        if (!response.ok) throw new Error("Error al cargar productos");
 
         const products = await response.json();
 
@@ -78,17 +70,16 @@ async function loadProducts() {
             const row = document.createElement("tr");
 
             row.innerHTML = `
-        <td><ion-icon name="cube-outline"></ion-icon> ${product.name}</td>     <!-- Description -->
-        <td>${product.category}</td>                                           <!-- Category -->
-        <td>${product.stock}</td>                                              <!-- Quantity -->
-        <td>${product.pending || "N/A"}</td>                                   <!-- Pending -->
-        <td>$${product.value.toLocaleString()}</td>                            <!-- Amount -->
-        <td>
-            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
-            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
-        </td>                                                                   <!-- Actions -->
-`;
-
+                <td><ion-icon name="cube-outline"></ion-icon> ${product.name}</td>
+                <td>${product.category}</td>
+                <td>${product.stock}</td>
+                <td>${product.pending || "N/A"}</td>
+                <td>$${product.value.toLocaleString()}</td>
+                <td>
+                    <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
+                    <ion-icon name="trash-outline" class="icon delete"></ion-icon>
+                </td>
+            `;
 
             tableBody.appendChild(row);
         });
@@ -99,23 +90,13 @@ async function loadProducts() {
     }
 }
 
-function formatDate(dateStr) {
-    if (!dateStr) return "—";
-    const date = new Date(dateStr);
-    return date.toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric"
-    });
-}
-
-// Conexión del botón "Add Stock" al backend
 function setupAddStockButton() {
     const addStockBtn = document.querySelector('.modal-add-stock .btn-1');
 
     addStockBtn.addEventListener("click", async (e) => {
         e.preventDefault();
 
-        const productId = document.getElementById("product-id").value.trim();
+        const productId = document.getElementById("product-id-stock").value.trim();
         const quantity = parseInt(document.getElementById("quantity-stock").value);
 
         if (!productId || isNaN(quantity) || quantity <= 0) {
@@ -133,7 +114,7 @@ function setupAddStockButton() {
             if (response.ok) {
                 alert("✅ Stock actualizado correctamente.");
                 document.getElementById("product-name-stock").value = "";
-                document.getElementById("product-id").value = "";
+                document.getElementById("product-id-stock").value = "";
                 document.getElementById("category-stock").value = "";
                 document.getElementById("provider-stock").value = "";
                 document.getElementById("quantity-stock").value = "";

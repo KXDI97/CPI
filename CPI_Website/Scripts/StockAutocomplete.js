@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function setupStockModal() {
     const productNameInput = document.getElementById("product-name-stock");
-    const productIdInput = document.getElementById("product-id");
+    const productIdInput = document.getElementById("product-id-stock");
     const categoryInput = document.getElementById("category-stock");
     const providerInput = document.getElementById("provider-stock");
     const datalist = document.getElementById("product-list");
