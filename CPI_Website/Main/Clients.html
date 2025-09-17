@@ -21,7 +21,7 @@
         <h1>client's Information</h1>
 
         <div class="controls">
-            <button id="openProviderModal" class="btn-1">
+            <button id="openClientModal" class="btn-1">
                 <ion-icon name="add-circle"></ion-icon> Add client
             </button>
             <div class="search-bar">
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <div class="clientes-grid">
+        <div class="clientes-grid" >
             <!-- Tarjeta de cliente (repetible dinámicamente) -->
             <div class="cliente-card">
                 <div class="cliente-header">
@@ -135,56 +135,74 @@
         <!-- Modal fondo -->
         <div id="modalBackdrop" class="backdrop hidden"></div>
 
-        <!-- Modal -->
-        <div id="providerModal" class="modal-add-stock hidden">
-            <div class="modal-content">
-                <h2>Add cliente</h2>
-                <h3>Client's Information</h3>
+        <!-- Modal Clientes (puedes dejar la clase de estilos que ya tienes) -->
+        <div id="clientModal" class="modal-add-stock hidden">
+        <div class="modal-content">
+            <h2>Add client</h2>
+            <h3>Client's Information</h3>
 
-                <div class="form-group">
-                    <div class="input-container">
-                        <label>Name *</label>
-                        <input type="text" id="cliente-nombre" placeholder="Enter provider's name" />
-                    </div>
-                    <div class="input-container">
-                        <label>ID *</label>
-                        <input type="text" id="cliente-doc" placeholder="Enter provider's ID" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="input-container">
-                        <label>Email *</label>
-                        <input type="email" id="cliente-email" placeholder="Enter email" />
-                    </div>
-                    <div class="input-container">
-                        <label>Phone Number *</label>
-                        <input type="text" id="cliente-telefono" placeholder="Enter phone number" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="input-container">
-                        <label>Password *</label>
-                        <input type="password" id="cliente-pass" placeholder="Enter password" />
-                    </div>
-                    <div class="input-container">
-
-                        <div class="input-container">
-                            <label>Role *</label>
-                            <input type="text" id="cliente-rol" value="CLI" />
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="button-group">
-                    <button class="btn-1" id="btn-registrar-cliente">Add client  </button>
-                    <button class="btn-2" id="closeProviderModal">Cancel</button>
-                </div>
+            <div class="form-group">
+            <div class="input-container">
+                <label>Name *</label>
+                <input type="text" id="client-name" placeholder="Client name" required />
             </div>
+            <div class="input-container">
+                <label>Client Type *</label>
+                <select id="client-type">
+                <option value="Empresa" selected>Empresa</option>
+                <option value="Persona">Persona</option>
+                </select>
+            </div>
+            </div>
+
+            <div class="form-group">
+            <div class="input-container">
+                <label>Document Type *</label>
+                <select id="client-doc-type">
+                <option value="RUT" selected>RUT</option>
+                <option value="NIT">NIT</option>
+                <option value="CC">CC</option>
+                <option value="CE">CE</option>
+                <option value="PAS">PAS</option>
+                </select>
+            </div>
+            <div class="input-container">
+                <label>Document ID *</label>
+                <input type="text" id="client-doc-id" placeholder="123456789-0" required />
+            </div>
+            </div>
+
+            <div class="form-group">
+            <div class="input-container">
+                <label>Email</label>
+                <input type="email" id="client-email" placeholder="email@example.com" />
+            </div>
+            <div class="input-container">
+                <label>Phone</label>
+                <input type="text" id="client-phone" placeholder="+57 300 000 0000" />
+            </div>
+            </div>
+
+            <div class="form-group">
+            <div class="input-container">
+                <label>Website</label>
+                <input type="text" id="client-website" placeholder="https://example.com" />
+            </div>
+            <div class="input-container">
+                <label>Address</label>
+                <input type="text" id="client-address" placeholder="Calle 123 #45-67, Bogotá" />
+            </div>
+            </div>
+
+            <div class="button-group">
+            <button class="btn-1" id="btn-save-client">Save client</button>
+            <button class="btn-2" id="btn-cancel-client">Cancel</button>
+            </div>
+
+            <p id="client-error" style="color:#c0392b;display:none;margin-top:8px;"></p>
         </div>
-    </div>
+        </div>
+
 
     <script type="module">
         import { loadComponents } from '../Scripts/Components.js';
