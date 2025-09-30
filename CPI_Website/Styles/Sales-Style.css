@@ -9,88 +9,139 @@
     padding-top: 90px;
 }
 
-/* Header del módulo */
+/* Contenedor */
+.sales-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
 .sales-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 15px;
 }
 
-.sales-header h1 {
-    font-size: 2rem;
+/* Grid con 2 columnas */
+.sales-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
 
-/* Botones principales */
-.btn-primary,
-.btn-secondary {
-    background-color: #54F1B8;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 16px;
-    color: #121826;
+@media (max-width: 900px) {
+    .sales-grid {
+    grid-template-columns: 1fr;
+    }
+}
+
+/* Tarjetas */
+.card {
+    background: #1F2937;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.card-title {
+    background: #1f4b7f;
+    color: #fff;
+    padding: 12px 15px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+/* Tabla */
+.tbl {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tbl th, .tbl td {
+    padding: 8px;
+    text-align: left;
+}
+
+.tbl th {
+    background: #f3f3f3;
+}
+
+.tbl .ta-right {
+    text-align: right;
+}
+
+/* Badges */
+.badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
     font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.btn-secondary {
-    background-color: #1F2937;
-    color: white;
+.badge.success {
+    background: #d4f5dd;
+    color: #2d7a42;
+}
+
+.badge.warning {
+    background: #fff1c2;
+    color: #8a6d00;
+}
+
+.badge.danger {
+    background: #fddddd;
+    color: #a94442;
+}
+
+/* Inputs */
+.fld {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.fld span {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+input, select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Botones */
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
 .btn-primary:hover {
-    background-color: #3dd9a0;
+    background: #1d4ed8;
+}
+
+.btn-secondary {
+    background: #f3f3f3;
+    border: 1px solid #ccc;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
 .btn-secondary:hover {
-    background-color: #2c3a4d;
-}
-
-/* Formulario */
-.venta-form {
-    background-color: #1F2937;
-    padding: 1.5rem;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.venta-form h2 {
-    margin-bottom: 1rem;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group select {
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-family: 'Poppins', sans-serif;
-}
-
-/* Sección productos */
-.productos {
-    background-color: #1F2937;
-    padding: 1.5rem;
-    border-radius: 12px;
-}
-
-.productos h2 {
-    margin-bottom: 1rem;
-}
-
-/* Ocultar elementos */
-.hidden {
-    display: none;
+    background: #e2e2e2;
 }

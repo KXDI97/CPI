@@ -17,32 +17,144 @@
     <div id="sidebar-container"></div>
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
 
-            <div class="content-Sales">
-            <div class="sales-header">
-                <h1>Registrar Nueva Venta</h1>
-                <button class="btn-primary" id="btnNuevaVenta">+ Nueva Venta</button>
+        <div class="content-Sales">
+        <section id="sales-module" class="sales-wrap">
+        <header class="sales-header">
+            <h2>Sales</h2>
+            <button id="btn-new-sale" class="btn-primary">+ New Sale</button>
+        </header>
+
+        <div class="sales-grid">
+            <!-- Card 1: Sales List -->
+            <article class="card">
+            <div class="card-title">
+                <h3>Sales</h3>
             </div>
+            <div class="card-body">
+                <table class="tbl">
+                <thead>
+                    <tr>
+                    <th>Date</th>
+                    <th>Customer</th>
+                    <th class="ta-right">Amount</th>
+                    <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>2024-04-24</td>
+                    <td>John Doe</td>
+                    <td class="ta-right">$1,200.00</td>
+                    <td><span class="badge success">Paid</span></td>
+                    </tr>
+                    <tr>
+                    <td>2024-04-24</td>
+                    <td>Acme Inc.</td>
+                    <td class="ta-right">$800.00</td>
+                    <td><span class="badge warning">Pending</span></td>
+                    </tr>
+                    <tr>
+                    <td>2024-04-24</td>
+                    <td>Beta Corp</td>
+                    <td class="ta-right">$8,000.00</td>
+                    <td><span class="badge danger">Overdue</span></td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            </article>
 
-            <section id="form-venta" class="venta-form hidden">
-                <h2>Información de la venta</h2>
-                <form id="venta-formulario">
-                    <div class="form-group">
-                        <label for="cliente">Cliente:</label>
-                        <select id="cliente" name="cliente"></select>
-                        <button type="button" id="btnRegistrarCliente">Registrar Cliente</button>
-                    </div>
-                    <div class="form-group">
-                        <label for="fecha">Fecha:</label>
-                        <input type="date" id="fecha" name="fecha">
-                    </div>
+            <!-- Card 2: New Sale -->
+            <article class="card">
+            <div class="card-title">
+                <h3>New Sale</h3>
+            </div>
+            <div class="card-body">
+                <form>
+                <label class="fld">
+                    <span>Customer</span>
+                    <input type="text" placeholder="Customer name">
+                </label>
+
+                <label class="fld">
+                    <span>Date</span>
+                    <input type="date" value="2024-04-24">
+                </label>
+
+                <label class="fld">
+                    <span>Amount</span>
+                    <input type="number" step="0.01" placeholder="0.00">
+                </label>
+
+                <label class="fld">
+                    <span>Status</span>
+                    <select>
+                    <option>Paid</option>
+                    <option>Pending</option>
+                    <option>Overdue</option>
+                    </select>
+                </label>
+
+                <div class="actions">
+                    <button type="submit" class="btn-primary">Save</button>
+                    <button type="button" class="btn-secondary">Cancel</button>
+                </div>
                 </form>
-                <button class="btn-secondary" id="btnContinuar">Continuar</button>
-            </section>
+            </div>
+            </article>
 
-            <section id="detalle-productos" class="productos hidden">
-                <h2>Agregar Productos</h2>
-                <!-- Aquí irá tabla con productos -->
-            </section>
+            <!-- Card 3: Editable Detail -->
+            <article class="card">
+            <div class="card-title">
+                <h3>Sale Detail</h3>
+            </div>
+            <div class="card-body">
+                <form>
+                <label class="fld">
+                    <span>Customer</span>
+                    <input type="text" value="John Doe">
+                </label>
+                <label class="fld">
+                    <span>Date</span>
+                    <input type="date" value="2024-04-24">
+                </label>
+                <label class="fld">
+                    <span>Amount</span>
+                    <input type="number" step="0.01" value="1200.00">
+                </label>
+                <label class="fld">
+                    <span>Status</span>
+                    <select>
+                    <option selected>Paid</option>
+                    <option>Pending</option>
+                    <option>Overdue</option>
+                    </select>
+                </label>
+                <div class="actions">
+                    <button type="submit" class="btn-primary">Save</button>
+                </div>
+                </form>
+            </div>
+            </article>
+
+            <!-- Card 4: Read-only Detail -->
+            <article class="card">
+            <div class="card-title">
+                <h3>Sale Detail</h3>
+            </div>
+            <div class="card-body">
+                <p><strong>Customer:</strong> John Doe</p>
+                <p><strong>Date:</strong> 2024-04-24</p>
+                <p><strong>Amount:</strong> $1,200.00</p>
+                <p><strong>Status:</strong> <span class="badge success">Paid</span></p>
+                <div class="actions">
+                <button class="btn-primary">Edit</button>
+                </div>
+            </div>
+            </article>
+        </div>
+        </section>
+
         </div>
 
     <script type="module">
