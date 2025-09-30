@@ -17,131 +17,35 @@
     <div id="header-container"></div>
     <div id="sidebar-container"></div>
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
     <div class="content-Clients">
-        <h1>client's Information</h1>
+        <h1>Client's Information</h1>
 
-        <div class="controls">
-            <button id="openClientModal" class="btn-1">
-                <ion-icon name="add-circle"></ion-icon> Add client
-            </button>
-            <div class="search-bar">
-                <input type="text" id="search-provider" placeholder="Search Client..." />
-                <ion-icon name="search-outline"></ion-icon>
-            </div>
+    <div class="controls">
+        <button id="openClientModal" class="btn-1">
+            <ion-icon name="add-circle"></ion-icon> Add client
+        </button>
+        <div class="search-bar">
+        <!-- corregido el id -->
+        <input type="text" id="search-client" placeholder="Search Client..." />
+        <ion-icon name="search-outline"></ion-icon>
         </div>
+    </div>
 
-        <div class="clientes-grid" >
-            <!-- Tarjeta de cliente (repetible dinámicamente) -->
-            <div class="cliente-card">
-                <div class="cliente-header">
-                    <div class="cliente-avatar">AC</div> <!-- Iniciales del cliente -->
-                    <div>
-                        <h3>Alimentos Caribe S.A.S.</h3>
-                        <p>Empresa</p>
-                    </div>
-                </div>
-                <p><strong>RUT:</strong> 901234567-8</p>
-                <p><strong>Teléfono:</strong> +57 320 456 7890</p>
-                <p><strong>Email:</strong> contacto@caribe.com</p>
-                <p><strong>Web:</strong> <a href="https://caribe.com" target="_blank">caribe.com</a></p>
-                <p><strong>Dirección:</strong> Cl. 123 #45-67, Medellín</p>
-            </div>
-            <div class="cliente-card">
-                <div class="cliente-header">
-                    <div class="cliente-avatar">AC</div> <!-- Iniciales del cliente -->
-                    <div>
-                        <h3>Alimentos Caribe S.A.S.</h3>
-                        <p>Empresa</p>
-                    </div>
-                </div>
-                <p><strong>RUT:</strong> 901234567-8</p>
-                <p><strong>Teléfono:</strong> +57 320 456 7890</p>
-                <p><strong>Email:</strong> contacto@caribe.com</p>
-                <p><strong>Web:</strong> <a href="https://caribe.com" target="_blank">caribe.com</a></p>
-                <p><strong>Dirección:</strong> Cl. 123 #45-67, Medellín</p>
-            </div>
-            <div class="cliente-card">
-                <div class="cliente-header">
-                    <div class="cliente-avatar">AC</div> <!-- Iniciales del cliente -->
-                    <div>
-                        <h3>Alimentos Caribe S.A.S.</h3>
-                        <p>Empresa</p>
-                    </div>
-                </div>
-                <p><strong>RUT:</strong> 901234567-8</p>
-                <p><strong>Teléfono:</strong> +57 320 456 7890</p>
-                <p><strong>Email:</strong> contacto@caribe.com</p>
-                <p><strong>Web:</strong> <a href="https://caribe.com" target="_blank">caribe.com</a></p>
-                <p><strong>Dirección:</strong> Cl. 123 #45-67, Medellín</p>
-            </div>
-            <div class="cliente-card">
-                <div class="cliente-header">
-                    <div class="cliente-avatar">AC</div> <!-- Iniciales del cliente -->
-                    <div>
-                        <h3>Alimentos Caribe S.A.S.</h3>
-                        <p>Empresa</p>
-                    </div>
-                </div>
-                <p><strong>RUT:</strong> 901234567-8</p>
-                <p><strong>Teléfono:</strong> +57 320 456 7890</p>
-                <p><strong>Email:</strong> contacto@caribe.com</p>
-                <p><strong>Web:</strong> <a href="https://caribe.com" target="_blank">caribe.com</a></p>
-                <p><strong>Dirección:</strong> Cl. 123 #45-67, Medellín</p>
-            </div>
-            <div class="cliente-card">
-                <div class="cliente-header">
-                    <div class="cliente-avatar">AC</div> <!-- Iniciales del cliente -->
-                    <div>
-                        <h3>Alimentos Caribe S.A.S.</h3>
-                        <p>Empresa</p>
-                    </div>
-                </div>
-                <p><strong>RUT:</strong> 901234567-8</p>
-                <p><strong>Teléfono:</strong> +57 320 456 7890</p>
-                <p><strong>Email:</strong> contacto@caribe.com</p>
-                <p><strong>Web:</strong> <a href="https://caribe.com" target="_blank">caribe.com</a></p>
-                <p><strong>Dirección:</strong> Cl. 123 #45-67, Medellín</p>
-            </div>
-            <div class="cliente-card">
-                <div class="cliente-header">
-                    <div class="cliente-avatar">AC</div> <!-- Iniciales del cliente -->
-                    <div>
-                        <h3>Alimentos Caribe S.A.S.</h3>
-                        <p>Empresa</p>
-                    </div>
-                </div>
-                <p><strong>RUT:</strong> 901234567-8</p>
-                <p><strong>Teléfono:</strong> +57 320 456 7890</p>
-                <p><strong>Email:</strong> contacto@caribe.com</p>
-                <p><strong>Web:</strong> <a href="https://caribe.com" target="_blank">caribe.com</a></p>
-                <p><strong>Dirección:</strong> Cl. 123 #45-67, Medellín</p>
-            </div>
-            <div class="cliente-card">
-                <div class="cliente-header">
-                    <div class="cliente-avatar">AC</div> <!-- Iniciales del cliente -->
-                    <div>
-                        <h3>Alimentos Caribe S.A.S.</h3>
-                        <p>Empresa</p>
-                    </div>
-                </div>
-                <p><strong>RUT:</strong> 901234567-8</p>
-                <p><strong>Teléfono:</strong> +57 320 456 7890</p>
-                <p><strong>Email:</strong> contacto@caribe.com</p>
-                <p><strong>Web:</strong> <a href="https://caribe.com" target="_blank">caribe.com</a></p>
-                <p><strong>Dirección:</strong> Cl. 123 #45-67, Medellín</p>
-            </div>
-        </div>
+    <!-- Grid donde se van a renderizar las tarjetas dinámicamente -->
+    <div class="clientes-grid" id="clientesGrid"></div>
 
-        <!-- Modal fondo -->
-        <div id="modalBackdrop" class="backdrop hidden"></div>
 
-        <!-- Modal Clientes (puedes dejar la clase de estilos que ya tienes) -->
-        <div id="clientModal" class="modal-add-stock hidden">
+    <!-- Modal fondo -->
+    <div id="modalBackdrop" class="backdrop hidden"></div>
+
+    <!-- Modal Clientes -->
+    <div id="clientModal" class="modal-add-stock hidden">
         <div class="modal-content">
-            <h2>Add client</h2>
-            <h3>Client's Information</h3>
+        <h2>Add client</h2>
+        <h3>Client's Information</h3>
 
-            <div class="form-group">
+        <div class="form-group">
             <div class="input-container">
                 <label>Name *</label>
                 <input type="text" id="client-name" placeholder="Client name" required />
@@ -149,30 +53,30 @@
             <div class="input-container">
                 <label>Client Type *</label>
                 <select id="client-type">
-                <option value="Empresa" selected>Empresa</option>
-                <option value="Persona">Persona</option>
+                    <option value="Empresa" selected>Empresa</option>
+                    <option value="Persona">Persona</option>
                 </select>
             </div>
-            </div>
+        </div>
 
-            <div class="form-group">
+        <div class="form-group">
             <div class="input-container">
-                <label>Document Type *</label>
+            <label>Document Type *</label>
                 <select id="client-doc-type">
-                <option value="RUT" selected>RUT</option>
-                <option value="NIT">NIT</option>
-                <option value="CC">CC</option>
-                <option value="CE">CE</option>
-                <option value="PAS">PAS</option>
+                    <option value="RUT" selected>RUT</option>
+                    <option value="NIT">NIT</option>
+                    <option value="CC">CC</option>
+                    <option value="CE">CE</option>
+                    <option value="PAS">PAS</option>
                 </select>
             </div>
-            <div class="input-container">
-                <label>Document ID *</label>
-                <input type="text" id="client-doc-id" placeholder="123456789-0" required />
-            </div>
-            </div>
+        <div class="input-container">
+            <label>Document ID *</label>
+            <input type="text" id="client-doc-id" placeholder="123456789-0" required />
+        </div>
+    </div>
 
-            <div class="form-group">
+        <div class="form-group">
             <div class="input-container">
                 <label>Email</label>
                 <input type="email" id="client-email" placeholder="email@example.com" />
@@ -181,9 +85,9 @@
                 <label>Phone</label>
                 <input type="text" id="client-phone" placeholder="+57 300 000 0000" />
             </div>
-            </div>
+        </div>
 
-            <div class="form-group">
+        <div class="form-group">
             <div class="input-container">
                 <label>Website</label>
                 <input type="text" id="client-website" placeholder="https://example.com" />
@@ -192,18 +96,56 @@
                 <label>Address</label>
                 <input type="text" id="client-address" placeholder="Calle 123 #45-67, Bogotá" />
             </div>
-            </div>
+        </div>
 
-            <div class="button-group">
+        <div class="button-group">
             <button class="btn-1" id="btn-save-client">Save client</button>
             <button class="btn-2" id="btn-cancel-client">Cancel</button>
+        </div>
+
+        <p id="client-error" style="color:#c0392b;display:none;margin-top:8px;"></p>
+        </div>
+    </div>
+
+    <!-- Template para render dinámico -->
+    <template id="client-card-tpl">
+        <div class="cliente-card" data-id="">
+            <div class="cliente-header">
+            <div class="cliente-avatar"></div>
+            <div>
+                <h3 class="c-name"></h3>
+                <p class="c-type"></p>
             </div>
 
-            <p id="client-error" style="color:#c0392b;display:none;margin-top:8px;"></p>
-        </div>
-        </div>
+            <!-- menú tres punticos -->
+            <div class="menu-container">
+                <button class="menu-btn" aria-label="Más opciones">
+                <ion-icon name="ellipsis-vertical"></ion-icon>
+                </button>
+                <ul class="menu-options hidden">
+                <li class="opt-edit">Editar</li>
+                <li class="opt-delete">Borrar</li>
+                </ul>
+            </div>
+            </div>
 
+        <p><strong>Documento:</strong> <span class="c-doc"></span></p>
+        <p><strong>Teléfono:</strong> <span class="c-phone"></span></p>
+        <p><strong>Email:</strong> <span class="c-email"></span></p>
+        <p><strong>Web:</strong> <a class="c-web" target="_blank" rel="noopener"></a></p>
+        <p><strong>Dirección:</strong> <span class="c-address"></span></p>
 
+        <!-- opcional: botones visibles -->
+            <div class="card-actions" style="margin-top:8px; display:flex; gap:8px;">
+            <button class="btn-1 btn-edit">Edit</button>
+            <button class="btn-2 btn-delete">Delete</button>
+            </div>
+        </div>
+        </template>
+
+    </div>
+
+    <!-- Scripts -->
     <script type="module">
         import { loadComponents } from '../Scripts/Components.js';
         loadComponents();

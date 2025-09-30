@@ -1,4 +1,4 @@
-// GlobalModal.js
+GlobalModal.js
 
 function createGlobalModals() {
     const modalHTML = `
@@ -19,7 +19,7 @@ function createGlobalModals() {
             <button id="close-help">Close</button>
         </div>
     </div>
-    `;
+    `
 
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 
@@ -51,10 +51,10 @@ function closeHelpModal() {
     document.getElementById('help-modal').style.display = 'none';
 }
 
-  function logout() {
-    localStorage.removeItem("user");
-    window.location.href = "../Landing Page/Login.html";
-  }
+    function logout() {
+        localStorage.removeItem("user");
+        window.location.href = "../Landing Page/Login.html";
+    }
 
 
 document.addEventListener('DOMContentLoaded', createGlobalModals);
