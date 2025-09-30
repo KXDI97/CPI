@@ -134,3 +134,298 @@
 @media (max-width: 600px) {
     .cliente-card { padding: 16px; }
 }
+
+
+.modal-add-stock {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    background: #121826;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    z-index: 999;
+}
+
+/* Ocultar modal por defecto */
+.hidden {
+    display: none;
+}
+
+/* Estilos del contenido */
+.modal-content h2 {
+    color: #fff;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.modal-content h3 {
+    color: #bbb;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* Inputs */
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 15px;
+}
+
+.input-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+input,
+select {
+    width: 90%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: none;
+    background: #384152;
+    color: white;
+}
+
+/* Checkbox mejor alineado */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #bbb;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Ajuste del checkbox */
+.checkbox-container input {
+    width: 18px;
+    height: 18px;
+    accent-color: #7A5AF8;
+}
+
+/* Botones */
+.button-group {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.modal-add-product {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: #121826;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    padding: 25px;
+    border-radius: 10px;
+    z-index: 999;
+    box-shadow: 0px 4px 10px rgba(69, 47, 47, 0.1);
+}
+
+.modal-add-product .modal-content2 {
+    background: #181818;
+    /* Fondo oscuro */
+    color: #fff;
+    /* Texto blanco */
+    padding: 20px;
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos de los títulos */
+.modal-add-product.modal-content h2 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.modal-add-product .modal-content h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Estilos de los grupos de formularios */
+.modal-add-product .form-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.modal-add-product .form-field {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+/* Inputs y selects */
+.modal-add-product input,
+select,
+textarea {
+    background: #384152;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.modal-add-product textarea {
+    height: 60px;
+    resize: none;
+}
+
+/* Para el campo de descripción que ocupa todo el ancho */
+.modal-add-product .full-width {
+    width: 100%;
+}
+
+.modal-add-product .form-buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* Espaciado entre elementos */
+    margin-bottom: 15px;
+}
+
+
+/* Estilos base para los botones */
+.btn-1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Espaciado entre icono y texto */
+    background-color: #1F2937;
+    color: white;
+    border: 2px solid transparent;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Íconos con degradado sólido */
+.btn-1 ion-icon {
+    font-size: 18px;
+}
+
+/* Hover para los botones */
+.btn-1:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #54F1B8;
+}
+
+/* Hover para los íconos (ligera escala) */
+.btn-1:hover ion-icon {
+    transform: scale(1.1);
+    color: #9069F9;
+}
+
+.btn-2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Espaciado entre icono y texto */
+    background-color: #1F2937;
+    color: white;
+    border: 2px solid transparent;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Íconos con degradado sólido */
+.btn-2 ion-icon {
+    font-size: 18px;
+}
+
+/* Hover para los botones */
+.btn-2:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #9069F9;
+}
+
+/* Hover para los íconos (ligera escala) */
+.btn-2:hover ion-icon {
+    transform: scale(1.1);
+    color: #54F1B8;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Espaciado entre elementos */
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 250px;
+    background-color: #1F2937;
+    border-radius: 8px;
+    padding: 8px;
+    position: relative;
+    margin-left: auto;
+    overflow: hidden;
+}
+
+.search-bar:focus-within {
+    border-color: #54F1B8;
+    box-shadow: 0 0 8px #54F1B8;
+}
+
+.search-bar input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 14px;
+    padding: 5px 10px;
+    outline: none;
+    position: relative;
+    z-index: 1;
+}
+
+.search-bar ion-icon {
+    font-size: 18px;
+    color: #9069F9;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.search-bar:focus-within ion-icon {
+    color: #54F1B8;
+}
+
+/* Animar el placeholder con un pseudo-elemento */
+.search-bar input::placeholder {
+    color: gray;
+    transition: all 0.3s ease;
+    position: absolute;
+}
+
+.search-bar input:focus::placeholder {
+    transform: translateY(-20px);
+    opacity: 0;
+}

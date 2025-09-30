@@ -18,144 +18,226 @@
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
 
         <div class="content-Sales">
-        <section id="sales-module" class="sales-wrap">
-        <header class="sales-header">
-            <h2>Sales</h2>
-            <button id="btn-new-sale" class="btn-primary">+ New Sale</button>
-        </header>
+            <section id="sales-module" class="sales-wrap">
+            <header class="sales-header">
+                <h1>Sales</h1>
+                <button id="btn-new-sale" class="btn-primary">+ New Sale</button>
+            </header>
 
-        <div class="sales-grid">
-            <!-- Card 1: Sales List -->
-            <article class="card">
-            <div class="card-title">
-                <h3>Sales</h3>
-            </div>
-            <div class="card-body">
-                <table class="tbl">
-                <thead>
-                    <tr>
-                    <th>Date</th>
-                    <th>Customer</th>
-                    <th class="ta-right">Amount</th>
-                    <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td>2024-04-24</td>
-                    <td>John Doe</td>
-                    <td class="ta-right">$1,200.00</td>
-                    <td><span class="badge success">Paid</span></td>
-                    </tr>
-                    <tr>
-                    <td>2024-04-24</td>
-                    <td>Acme Inc.</td>
-                    <td class="ta-right">$800.00</td>
-                    <td><span class="badge warning">Pending</span></td>
-                    </tr>
-                    <tr>
-                    <td>2024-04-24</td>
-                    <td>Beta Corp</td>
-                    <td class="ta-right">$8,000.00</td>
-                    <td><span class="badge danger">Overdue</span></td>
-                    </tr>
-                </tbody>
-                </table>
-            </div>
-            </article>
+            <div class="sales-grid">
+                <!-- Card 1: Sales List -->
+                <article class="card" id="card-sales-summary" data-card="sales-summary">
+                    <div class="card-title"><h3>Sales Summary</h3></div>
+                    <div class="card-body">
+                        <table class="tbl" id="tbl-sales-summary">
+                        <thead>
+                            <tr>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th class="ta-right">Amount</th>
+                            <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sales-summary-rows">
+                            <!-- JS inyecta filas acá -->
+                        </tbody>
+                        </table>
+                    </div>
+                </article>
 
-            <!-- Card 2: New Sale -->
-            <article class="card">
-            <div class="card-title">
-                <h3>New Sale</h3>
-            </div>
-            <div class="card-body">
-                <form>
-                <label class="fld">
-                    <span>Customer</span>
-                    <input type="text" placeholder="Customer name">
-                </label>
+                    <!-- Card 2: Customer Details (read-only) -->
+                <article class="card" id="card-customer-details" data-card="customer-details">
+                    <div class="card-title"><h3>Client Details</h3></div>
+                    <div class="card-body">
+                        <dl class="read">
+                        <div>
+                            <dt>Document</dt>
+                            <dd><span id="cd-doc">—</span></dd>
+                        </div>
+                        <div>
+                            <dt>Customer</dt>
+                            <dd><span id="cd-name">—</span></dd>
+                        </div>
+                        <div>
+                            <dt>Purchase date</dt>
+                            <dd><span id="cd-date">—</span></dd>
+                        </div>
+                        <div>
+                            <dt>Amount</dt>
+                            <dd><span id="cd-amount">—</span></dd>
+                        </div>
+                        </dl>
 
-                <label class="fld">
-                    <span>Date</span>
-                    <input type="date" value="2024-04-24">
-                </label>
+                        <!-- ocultos para contexto -->
+                        <input type="hidden" id="cd-invoiceId">
+                        <input type="hidden" id="cd-clientId">
+                    </div>
+                </article>
 
-                <label class="fld">
-                    <span>Amount</span>
-                    <input type="number" step="0.01" placeholder="0.00">
-                </label>
+                
+                
+                <!-- Card 3: Sale Status (ver datos + cambiar estado) -->
+                <article class="card" id="card-sale-detail-edit" data-card="sale-detail-edit">
+                    <div class="card-title"><h3>Sale Status</h3></div>
+                    <div class="card-body">
+                        <!-- Datos solo lectura -->
+                        <dl class="read">
+                        <div>
+                            <dt>Customer</dt>
+                            <dd><span id="se-customer-txt">—</span></dd>
+                        </div>
+                        <div>
+                            <dt>Sale Date</dt>
+                            <dd><span id="se-date-txt">—</span></dd>
+                        </div>
+                        <div>
+                            <dt>TRM</dt>
+                            <dd><span id="se-exr-txt">—</span></dd>
+                        </div>
+                        <div>
+                            <dt>Total Sale</dt>
+                            <dd><span id="se-total-txt">—</span></dd>
+                        </div>
+                        </dl>
 
-                <label class="fld">
-                    <span>Status</span>
-                    <select>
-                    <option>Paid</option>
-                    <option>Pending</option>
-                    <option>Overdue</option>
-                    </select>
-                </label>
+                        <!-- Solo cambiar estado -->
+                        <form id="form-sale-status" style="margin-top:.75rem;">
+                        <label class="fld">
+                            <span>Status</span>
+                            <select id="se-status" name="status">
+                            <option value="Emitida">Emitida</option>
+                            <option value="Paid">Paid</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Overdue">Overdue</option>
+                            </select>
+                        </label>
+                        <div class="actions">
+                            <button type="submit" class="btn-primary">Modify status</button>
+                        </div>
+                        </form>
+                    </div>
+                </article>
 
-                <div class="actions">
-                    <button type="submit" class="btn-primary">Save</button>
-                    <button type="button" class="btn-secondary">Cancel</button>
-                </div>
-                </form>
-            </div>
-            </article>
 
-            <!-- Card 3: Editable Detail -->
-            <article class="card">
-            <div class="card-title">
-                <h3>Sale Detail</h3>
-            </div>
-            <div class="card-body">
-                <form>
-                <label class="fld">
-                    <span>Customer</span>
-                    <input type="text" value="John Doe">
-                </label>
-                <label class="fld">
-                    <span>Date</span>
-                    <input type="date" value="2024-04-24">
-                </label>
-                <label class="fld">
-                    <span>Amount</span>
-                    <input type="number" step="0.01" value="1200.00">
-                </label>
-                <label class="fld">
-                    <span>Status</span>
-                    <select>
-                    <option selected>Paid</option>
-                    <option>Pending</option>
-                    <option>Overdue</option>
-                    </select>
-                </label>
-                <div class="actions">
-                    <button type="submit" class="btn-primary">Save</button>
-                </div>
-                </form>
-            </div>
-            </article>
+                <!-- Card 4: Invoice Totals (read-only) -->
+                <article class="card" id="card-invoice-details" data-card="invoice-details">
+                    <div class="card-title"><h3>Invoice Totals</h3></div>
+                    <div class="card-body">
+                        <dl class="read">
+                        <div>
+                            <dt>Invoice ID</dt>
+                            <dd><span id="iv-invoiceId">—</span></dd>
+                        </div>
+                        <div>
+                            <dt>Subtotal</dt>
+                            <dd><span id="iv-subtotal">—</span></dd>
+                        </div>
+                        <div>
+                            <dt>IVA</dt>
+                            <dd><span id="iv-tax">—</span></dd>
+                        </div>
+                        <div>
+                            <dt>Total</dt>
+                            <dd><span id="iv-total">—</span></dd>
+                        </div>
+                        </dl>
+                        <div class="actions">
+                            <button class="btn-secondary" id="iv-edit">Modificar venta</button>
+                            <button class="btn-primary" id="iv-save">Guardar factura</button>
+                        </div>
+                    </div>
+                </article>
 
-            <!-- Card 4: Read-only Detail -->
-            <article class="card">
-            <div class="card-title">
-                <h3>Sale Detail</h3>
             </div>
-            <div class="card-body">
-                <p><strong>Customer:</strong> John Doe</p>
-                <p><strong>Date:</strong> 2024-04-24</p>
-                <p><strong>Amount:</strong> $1,200.00</p>
-                <p><strong>Status:</strong> <span class="badge success">Paid</span></p>
-                <div class="actions">
-                <button class="btn-primary">Edit</button>
-                </div>
-            </div>
-            </article>
-        </div>
-        </section>
+            </section>
 
         </div>
+
+        <!-- Backdrop + Modal Nueva Venta -->
+            <div id="saleBackdrop" class="modal-backdrop hidden"></div>
+
+            <div id="saleModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="saleModalTitle">
+            <div class="modal-card">
+                <div class="modal-header">
+                <h3 id="saleModalTitle">New Sale</h3>
+                <button type="button" class="modal-close" id="ns-close" aria-label="Cerrar">×</button>
+                </div>
+
+                <div class="modal-body">
+                <form id="form-new-sale">
+                    <!-- Cliente + Fecha -->
+                    <div class="grid-2">
+                    <label class="fld">
+                        <span>Cliente</span>
+                        <select id="ns-client" required>
+                        <option value="">Seleccione…</option>
+                        <!-- JS inyecta opciones -->
+                        </select>
+                    </label>
+
+                    <label class="fld">
+                        <span>Fecha</span>
+                        <input type="date" id="ns-date" required>
+                    </label>
+                    </div>
+
+                    <!-- TRM -->
+                    <div class="fld">
+                    <span>TRM</span>
+                    <div class="trm-row">
+                        <label class="radio">
+                        <input type="radio" name="ns-exr-mode" id="ns-exr-today" checked>
+                        <span>Usar TRM del día</span>
+                        </label>
+                        <label class="radio">
+                        <input type="radio" name="ns-exr-mode" id="ns-exr-custom">
+                        <span>Personalizada</span>
+                        </label>
+                        <input type="number" id="ns-exr" step="0.0001" placeholder="p.ej. 4050.1234" disabled>
+                        <small id="ns-exr-hint" class="muted">Se intentará cargar automáticamente; puedes cambiarla.</small>
+                    </div>
+                    </div>
+
+                    <!-- Líneas -->
+                    <div class="lines">
+                    <div class="lines-header">
+                        <h4>Productos</h4>
+                        <button type="button" id="ns-add-line" class="btn-secondary">+ Agregar producto</button>
+                    </div>
+
+                    <table class="tbl tbl-lines">
+                        <thead>
+                        <tr>
+                            <th style="width:42%">Producto</th>
+                            <th style="width:16%">Precio</th>
+                            <th style="width:16%">Cantidad</th>
+                            <th style="width:16%" class="ta-right">Total</th>
+                            <th style="width:10%"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="ns-lines-body">
+                        <!-- JS inyecta filas -->
+                        </tbody>
+                    </table>
+                    </div>
+
+                    <!-- Totales -->
+                    <div class="totals">
+                    <div><span>Subtotal</span><strong id="ns-subtotal">$0</strong></div>
+                    <div><span>IVA</span><strong id="ns-iva">$0</strong></div>
+                    <div class="total"><span>Total</span><strong id="ns-total">$0</strong></div>
+                    </div>
+
+                    <!-- Acciones -->
+                    <div class="actions mt">
+                    <button type="button" class="btn-secondary" id="ns-cancel">Cancelar</button>
+                    <button type="submit" class="btn-primary">Crear venta</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+            </div>
+
 
     <script type="module">
         import { loadComponents } from '../Scripts/Components.js';
