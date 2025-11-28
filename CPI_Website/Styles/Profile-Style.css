@@ -1,9 +1,4 @@
-body {
-    background-color: #121826;
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    padding-top: 70px;
-}
+
 
 .container {
     display: flex;
@@ -43,13 +38,14 @@ body {
     padding: 2rem;
     flex: 1;
     padding: 20px;
-    margin-left: 220px;
-    padding-top: 10px;
+    margin-left: 200px;
+    transition: margin-left 0.3s ease;
+    padding-top: 100px;
 }
 
 .profile-main {
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 1200px;
+    margin: 0 0 0 2rem;  /* 32px de espacio a la izquierda */
 }
 
 .profile-header {
@@ -373,6 +369,11 @@ body {
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
+    .profile-wrapper {
+        margin-left: 0;
+        padding: 15px;
+    }
+
     .profile-form-row {
         grid-template-columns: 1fr;
     }

@@ -734,3 +734,66 @@ input:read-only {
     margin-top: 0;
 }
 
+.btn-nuevo-proveedor {
+            background-color: #2196F3;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 5px;
+            width: auto;
+            display: inline-block;
+        }
+
+        .btn-nuevo-proveedor:hover {
+            background-color: #0b7dda;
+        }
+
+        .supplier-section {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .supplier-section > div {
+            flex: 1;
+        }
+
+        /* 🔘 Botón flotante para crear proveedor */
+.btn-nuevo-proveedor-float {
+  position: fixed;
+  bottom: 100px; /* un poco más arriba del carrito */
+  right: 40px;
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(135deg, #9069F9, #0EA5E9);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(144, 105, 249, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  z-index: 1000;
+}
+
+/* Efecto al pasar el mouse */
+.btn-nuevo-proveedor-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+}
+
+/* Ícono */
+.btn-nuevo-proveedor-float ion-icon {
+  font-size: 26px;
+  color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.btn-nuevo-proveedor-float:hover ion-icon {
+  transform: rotate(15deg);
+}

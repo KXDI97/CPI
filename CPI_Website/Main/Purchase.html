@@ -74,9 +74,13 @@
 
 
 
+        <!-- 🔘 Botón para crear proveedor -->
+        <button id="btn-nuevo-proveedor" onclick="abrirModalProveedor()" class="btn-nuevo-proveedor-float">
+            <ion-icon name="person-add-outline"></ion-icon>
+        </button>
+
         <!-- 🔘 Botón para desplegar el carrito -->
-        <button id="toggle-cart-btn" onclick="abrirCarrito
-    ()" class="btn-ver-carrito"><ion-icon name="cart-outline"></ion-icon></button>
+        <button id="toggle-cart-btn" onclick="abrirCarrito()" class="btn-ver-carrito"><ion-icon name="cart-outline"></ion-icon></button>
         <!-- 🛒 Contenedor del carrito (oculto por defecto) -->
         <div id="carrito-modal" class="modal-carrito">
             <div class="carrito-contenido">
@@ -111,20 +115,45 @@
             </div>
         </div>
 
+        <!-- 💬 Modal de nuevo proveedor -->
+        <div id="modal-nuevo-proveedor" class="modal" style="display: none;">
+            <form id="form-nuevo-proveedor" class="modal-content">
+                <span class="close-modal" onclick="cerrarModalProveedor()">×</span>
+                <h2>New Supplier</h2>
+
+                <label>Name: <input type="text" id="supplier-name" required /></label>
+                <label>Document/NIT: <input type="text" id="supplier-document" required /></label>
+                <label>Email: <input type="email" id="supplier-email" required /></label>
+                <label>Phone: <input type="text" id="supplier-phone" required /></label>
+                <label>Address: <input type="text" id="supplier-address" /></label>
+
+                <button type="submit" class="btn-confirmar">Create Supplier</button>
+            </form>
+        </div>
+
         <!-- 💬 Modal de registro de compra -->
         <div id="modal-registro" class="modal" style="display: none;">
             <form id="form-compra" class="modal-content">
                 <span class="close-modal" onclick="cerrarModalCompra()">×</span>
-                <h2>Registrar Compra</h2>
+                <h2>Register Purchase</h2>
 
                 <label>Order Number: <input type="text" id="order-number" readonly /></label>
-                <label>Provider Document: <input type="text" id="client-document" required /></label>
+                
+                <label>Supplier: 
+                    <select id="supplier-select" required>
+                        <option value="">Select a supplier</option>
+                    </select>
+                </label>
+                <button type="button" onclick="abrirModalProveedor()" style="margin-bottom: 15px;">+ New Supplier</button>
+                
                 <label>Purchase Date: <input type="date" id="purchase-date" required /></label>
                 <label>Payment Method: </label>
                 <select id="payment-method" required>
                     <option value="">Select payment method</option>
+                    <option value="cash">Cash</option>
                     <option value="debit">Debit</option>
                     <option value="credit">Credit</option>
+                    <option value="transfer">Transfer</option>
                 </select>
 
                 <p><strong>Total:</strong> $<span id="total-final-modal">0.00</span></p>
@@ -139,8 +168,8 @@
             <div class="factura-contenido">
                 <span class="cerrar-modal" onclick="cerrarFactura()">×</span>
                 <h2>📄 Purchase Invoice</h2>
-                <p><strong>Orden:</strong> <span id="factura-orden"></span></p>
-                <p><strong>Client:</strong> <span id="factura-cliente"></span></p>
+                <p><strong>Order:</strong> <span id="factura-orden"></span></p>
+                <p><strong>Supplier:</strong> <span id="factura-cliente"></span></p>
                 <p><strong>Date:</strong> <span id="factura-fecha"></span></p>
 
                 <table class="factura-tabla">
@@ -180,3 +209,4 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="../Scripts/Session.js"></script>
 </body>
+</html>
