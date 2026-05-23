@@ -1,222 +1,195 @@
-// Scripts/Sales.js
 
-// ==== MOCKS para demo (sin backend) ====
-const MOCK_CLIENTS = [
-  { clientId: 1, name: "Acme S.A.S.", documentType: "NIT", documentID: "900123456-7" },
-  { clientId: 2, name: "Beta Corp", documentType: "CC", documentID: "1032456789" },
-  { clientId: 3, name: "Jane Smith", documentType: "CC", documentID: "1010101010" }
-];
+const CATALOG_API = "http://localhost:5131/api";
+const SALES_API   = "http://localhost:5215/api";
 
-const MOCK_PRODUCTS = [
-  { productId: "SKU-001", name: "Tornillo 1/2", value: 3500, stock: 250 },
-  { productId: "SKU-002", name: "Arandela X", value: 1200, stock: 500 },
-  { productId: "SKU-003", name: "Lubricante 250ml", value: 22000, stock: 42 }
-];
 
-// IVA demo (ajústalo si quieres mostrar otro valor)
-const IVA_RATE = 0.19;
-
-// ===== Helpers de formato =====
 function fmtMoney(n) {
   return new Intl.NumberFormat("es-CO", {
     style: "currency", currency: "COP", maximumFractionDigits: 0
   }).format(Number(n || 0));
 }
+
+function fmtDate(iso) {
+  if (!iso) return "—";
+  return new Date(iso).toLocaleDateString("es-CO", {
+    year: "numeric", month: "short", day: "2-digit"
+  });
+}
+
 function todayISODate() {
   const d = new Date();
-  const tz = new Date(d.getTime() - d.getTimezoneOffset() * 60000);
-  return tz.toISOString().slice(0, 10);
+  return new Date(d.getTime() - d.getTimezoneOffset() * 60000)
+    .toISOString().slice(0, 10);
 }
 
-// ===== Inyección del modal si no existe =====
-function ensureSaleModal() {
-  if (document.getElementById("saleModal")) return; // ya existe
-
-  const backdrop = document.createElement("div");
-  backdrop.id = "saleBackdrop";
-  backdrop.className = "modal-backdrop hidden";
-
-  const modal = document.createElement("div");
-  modal.id = "saleModal";
-  modal.className = "modal hidden";
-  modal.setAttribute("role", "dialog");
-  modal.setAttribute("aria-modal", "true");
-  modal.setAttribute("aria-labelledby", "saleModalTitle");
-
-  modal.innerHTML = `
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3 id="saleModalTitle">Nueva venta</h3>
-        <button type="button" class="modal-close" id="ns-close" aria-label="Cerrar">×</button>
-      </div>
-      <div class="modal-body">
-        <form id="form-new-sale">
-          <div class="grid-2">
-            <label class="fld">
-              <span>Cliente</span>
-              <select id="ns-client" required>
-                <option value="">Seleccione…</option>
-              </select>
-            </label>
-            <label class="fld">
-              <span>Fecha</span>
-              <input type="date" id="ns-date" required>
-            </label>
-          </div>
-
-          <div class="fld">
-            <span>TRM</span>
-            <div class="trm-row">
-              <label class="radio">
-                <input type="radio" name="ns-exr-mode" id="ns-exr-today" checked>
-                <span>TRM del día</span>
-              </label>
-              <label class="radio">
-                <input type="radio" name="ns-exr-mode" id="ns-exr-custom">
-                <span>Personalizada</span>
-              </label>
-              <input type="number" id="ns-exr" step="0.0001" placeholder="p.ej. 4050.1234" disabled>
-              <small id="ns-exr-hint" class="muted">Demo: la TRM se puede escribir si eliges personalizada.</small>
-            </div>
-          </div>
-
-          <div class="lines">
-            <div class="lines-header">
-              <h4>Productos</h4>
-              <button type="button" id="ns-add-line" class="btn-secondary">+ Agregar producto</button>
-            </div>
-            <table class="tbl tbl-lines">
-              <thead>
-                <tr>
-                  <th style="width:42%">Producto</th>
-                  <th style="width:16%">Precio</th>
-                  <th style="width:16%">Cantidad</th>
-                  <th style="width:16%" class="ta-right">Total</th>
-                  <th style="width:10%"></th>
-                </tr>
-              </thead>
-              <tbody id="ns-lines-body"></tbody>
-            </table>
-          </div>
-
-          <div class="totals">
-            <div><span>Subtotal</span><strong id="ns-subtotal">$0</strong></div>
-            <div><span>IVA</span><strong id="ns-iva">$0</strong></div>
-            <div class="total"><span>Total</span><strong id="ns-total">$0</strong></div>
-          </div>
-
-          <div class="actions mt">
-            <button type="button" class="btn-secondary" id="ns-cancel">Cancelar</button>
-            <button type="submit" class="btn-primary">Crear venta (demo)</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(backdrop);
-  document.body.appendChild(modal);
+// ===== Fetch helpers =====
+async function apiFetch(url, opts = {}) {
+  const res = await fetch(url, {
+    headers: { "Content-Type": "application/json" },
+    ...opts
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`${res.status}: ${err}`);
+  }
+  return res.status === 204 ? null : res.json();
 }
 
-// ===== Estado/refs =====
-let $backdrop, $modal, $btnClose, $btnCancel, $form,
-    $clientSel, $dateInput, $exrToday, $exrCustom, $exrInput, $exrHint,
-    $addLineBtn, $linesBody, $subTotSpan, $ivaSpan, $totSpan;
+// ===== Estado global =====
+let allClients  = [];
+let allProducts = [];
 
-// ===== Apertura/cierre =====
-function openSaleModal() {
-  ensureSaleModal();
-  cacheRefs();
-
-  // Inicial
-  fillClientsMock();
-  $dateInput.value = todayISODate();
-  $exrInput.value = ""; // demo
-  $exrInput.disabled = true;
-  $exrHint.textContent = "Demo: TRM del día (deshabilitada) o escribe una personalizada.";
-  $linesBody.innerHTML = "";
-  addLine();
-  renderTotals();
-
-  // Mostrar
-  $backdrop.classList.remove("hidden");
-  $modal.classList.remove("hidden");
-}
-
-function closeSaleModal() {
-  if (!$modal) return;
-  $backdrop.classList.add("hidden");
-  $modal.classList.add("hidden");
-  $linesBody.innerHTML = "";
-}
-
-// ===== Cachear referencias (después de inyectar modal) =====
-function cacheRefs() {
-  $backdrop   = document.getElementById("saleBackdrop");
-  $modal      = document.getElementById("saleModal");
-  $btnClose   = document.getElementById("ns-close");
-  $btnCancel  = document.getElementById("ns-cancel");
-  $form       = document.getElementById("form-new-sale");
-
-  $clientSel  = document.getElementById("ns-client");
-  $dateInput  = document.getElementById("ns-date");
-  $exrToday   = document.getElementById("ns-exr-today");
-  $exrCustom  = document.getElementById("ns-exr-custom");
-  $exrInput   = document.getElementById("ns-exr");
-  $exrHint    = document.getElementById("ns-exr-hint");
-
-  $addLineBtn = document.getElementById("ns-add-line");
-  $linesBody  = document.getElementById("ns-lines-body");
-
-  $subTotSpan = document.getElementById("ns-subtotal");
-  $ivaSpan    = document.getElementById("ns-iva");
-  $totSpan    = document.getElementById("ns-total");
-
-  // Listeners básicos
-  $btnClose.addEventListener("click", closeSaleModal);
-  $btnCancel.addEventListener("click", closeSaleModal);
-  $backdrop.addEventListener("click", closeSaleModal);
-  $addLineBtn.addEventListener("click", addLine);
-  $exrToday.addEventListener("change", toggleTRMMode);
-  $exrCustom.addEventListener("change", toggleTRMMode);
-  $form.addEventListener("submit", submitDemo);
-}
-
-// ===== Poblar selects (mock) =====
-function fillClientsMock() {
-  $clientSel.innerHTML = `<option value="">Seleccione…</option>` + MOCK_CLIENTS.map(c => {
-    const doc = (c.documentType || "") + " " + (c.documentID || "");
-    return `<option value="${c.clientId}">${c.name} (${doc.trim()})</option>`;
-  }).join("");
-}
-
-function fillProductsSelect(sel) {
-  sel.innerHTML = `<option value="">Seleccione…</option>` + MOCK_PRODUCTS.map(p => {
-    return `<option value="${p.productId}" data-price="${p.value}" data-stock="${p.stock}">
-      ${p.name} (Stock: ${p.stock})
-    </option>`;
-  }).join("");
-}
-
-// ===== TRM =====
-function toggleTRMMode() {
-  if ($exrCustom.checked) {
-    $exrInput.disabled = false;
-    $exrHint.textContent = "Escribe la TRM personalizada.";
-    $exrInput.focus();
-  } else {
-    $exrInput.disabled = true;
-    $exrHint.textContent = "Demo: TRM del día (sin servicio).";
+// ===== Cargar datos iniciales =====
+async function loadInitialData() {
+  try {
+    const [clientsRes, productsRes] = await Promise.all([
+      apiFetch(`${CATALOG_API}/clients`),
+      apiFetch(`${CATALOG_API}/products`)
+    ]);
+    allClients  = Array.isArray(clientsRes)  ? clientsRes  : (clientsRes.items  ?? []);
+    allProducts = Array.isArray(productsRes) ? productsRes : (productsRes.items ?? []);
+  } catch (e) {
+    console.error("Error cargando datos del catálogo:", e);
   }
 }
 
-// ===== Líneas =====
+// ===== Sales Summary =====
+async function loadSalesSummary() {
+  const tbody = document.getElementById("sales-summary-rows");
+  if (!tbody) return;
+
+  try {
+    const sales = await apiFetch(`${SALES_API}/sales`);
+
+    if (!sales.length) {
+      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;opacity:.5">Sin ventas registradas</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = sales.map(s => {
+      const client = allClients.find(c => c.clientId === s.clientId);
+      const clientName = client ? client.name : `Cliente #${s.clientId}`;
+      const statusClass = s.status === "Paid" ? "status-paid"
+                        : s.status === "Emitida" ? "status-emitida"
+                        : s.status === "Overdue" ? "status-overdue"
+                        : "status-pending";
+      return `
+        <tr class="sale-row" data-id="${s.invoiceId}" style="cursor:pointer">
+          <td>${fmtDate(s.invoiceDate)}</td>
+          <td>${clientName}</td>
+          <td class="ta-right">${fmtMoney(s.total)}</td>
+          <td><span class="badge ${statusClass}">${s.status}</span></td>
+        </tr>`;
+    }).join("");
+
+    // Click en fila → cargar detalle
+    tbody.querySelectorAll(".sale-row").forEach(row => {
+      row.addEventListener("click", () => loadSaleDetail(Number(row.dataset.id)));
+    });
+
+  } catch (e) {
+    tbody.innerHTML = `<tr><td colspan="4" style="color:red">Error cargando ventas</td></tr>`;
+    console.error(e);
+  }
+}
+
+// ===== Detalle de venta =====
+async function loadSaleDetail(invoiceId) {
+  try {
+    const sale = await apiFetch(`${SALES_API}/sales/${invoiceId}`);
+    const client = allClients.find(c => c.clientId === sale.clientId);
+
+    // Card: Client Details
+    document.getElementById("cd-doc").textContent =
+      client ? `${client.documentType} ${client.documentID}` : `ID ${sale.clientId}`;
+    document.getElementById("cd-name").textContent =
+      client ? client.name : `Cliente #${sale.clientId}`;
+    document.getElementById("cd-date").textContent = fmtDate(sale.invoiceDate);
+    document.getElementById("cd-amount").textContent = fmtMoney(sale.total);
+    document.getElementById("cd-invoiceId").value = sale.invoiceId;
+    document.getElementById("cd-clientId").value = sale.clientId;
+
+    // Card: Sale Status
+    document.getElementById("se-customer-txt").textContent =
+      client ? client.name : `Cliente #${sale.clientId}`;
+    document.getElementById("se-date-txt").textContent = fmtDate(sale.invoiceDate);
+    document.getElementById("se-exr-txt").textContent =
+      sale.exchangeRate ? fmtMoney(sale.exchangeRate) : "—";
+    document.getElementById("se-total-txt").textContent = fmtMoney(sale.total);
+    document.getElementById("se-status").value = sale.status;
+
+    // Card: Invoice Totals
+    document.getElementById("iv-invoiceId").textContent = `#${sale.invoiceId}`;
+    document.getElementById("iv-subtotal").textContent  = fmtMoney(sale.subtotal);
+    document.getElementById("iv-tax").textContent       = fmtMoney(sale.tax);
+    document.getElementById("iv-total").textContent     = fmtMoney(sale.total);
+
+  } catch (e) {
+    console.error("Error cargando detalle de venta:", e);
+  }
+}
+
+// ===== Cambiar estado =====
+async function handleStatusUpdate(e) {
+  e.preventDefault();
+  const invoiceId = document.getElementById("cd-invoiceId").value;
+  const status    = document.getElementById("se-status").value;
+
+  if (!invoiceId) { alert("Selecciona una venta primero"); return; }
+
+  try {
+    await apiFetch(`${SALES_API}/sales/${invoiceId}/status`, {
+      method: "PATCH",
+      body: JSON.stringify({ status })
+    });
+    alert(`Estado actualizado a "${status}"`);
+    await loadSalesSummary();
+  } catch (e) {
+    alert("Error actualizando estado: " + e.message);
+  }
+}
+
+// ===== Modal Nueva Venta =====
+function openSaleModal() {
+  fillClientsSelect();
+  document.getElementById("ns-date").value = todayISODate();
+  document.getElementById("ns-exr").value = "";
+  document.getElementById("ns-exr").disabled = true;
+  document.getElementById("ns-lines-body").innerHTML = "";
+  addLine();
+  renderTotals();
+  document.getElementById("saleBackdrop").classList.remove("hidden");
+  document.getElementById("saleModal").classList.remove("hidden");
+}
+
+function closeSaleModal() {
+  document.getElementById("saleBackdrop").classList.add("hidden");
+  document.getElementById("saleModal").classList.add("hidden");
+}
+
+function fillClientsSelect() {
+  const sel = document.getElementById("ns-client");
+  sel.innerHTML = `<option value="">Seleccione…</option>` +
+    allClients.map(c =>
+      `<option value="${c.clientId}">${c.name} (${c.documentType} ${c.documentID})</option>`
+    ).join("");
+}
+
+function fillProductsSelect(sel) {
+  sel.innerHTML = `<option value="">Seleccione…</option>` +
+    allProducts.map(p =>
+      `<option value="${p.productId}" data-price="${p.value}" data-stock="${p.stock}">
+        ${p.name} (Stock: ${p.stock})
+      </option>`
+    ).join("");
+}
+
 function addLine() {
+  const tbody = document.getElementById("ns-lines-body");
   const tr = document.createElement("tr");
 
   const tdProd = document.createElement("td");
-  const sel = document.createElement("select");
-  sel.required = true;
+  const sel = document.createElement("select"); sel.required = true;
   fillProductsSelect(sel);
   tdProd.appendChild(sel);
 
@@ -243,81 +216,112 @@ function addLine() {
   tdDel.appendChild(btnDel);
 
   tr.append(tdProd, tdPrice, tdQty, tdTotal, tdDel);
-  $linesBody.appendChild(tr);
+  tbody.appendChild(tr);
 
   sel.addEventListener("change", () => {
     const opt = sel.selectedOptions[0];
     if (!opt) return;
-    const price = Number(opt.dataset.price || 0);
-    inpPrice.value = price ? String(price) : "";
+    inpPrice.value = opt.dataset.price || "";
     recalcRow();
   });
-  [inpPrice, inpQty].forEach(inp => inp.addEventListener("input", recalcRow));
+
+  [inpPrice, inpQty].forEach(i => i.addEventListener("input", recalcRow));
   btnDel.addEventListener("click", () => { tr.remove(); renderTotals(); });
 
   function recalcRow() {
-    const q = Number(inpQty.value || 0);
-    const p = Number(inpPrice.value || 0);
-    const lt = q * p;
-    spanTot.textContent = fmtMoney(lt);
+    spanTot.textContent = fmtMoney(Number(inpQty.value || 0) * Number(inpPrice.value || 0));
     renderTotals();
   }
 }
 
 function readLines() {
-  const rows = Array.from($linesBody.querySelectorAll("tr"));
-  return rows.map(tr => {
-    const sel = tr.querySelector("select");
-    const inpP = tr.querySelector("td:nth-child(2) input");
-    const inpQ = tr.querySelector("td:nth-child(3) input");
-    return {
-      productId: sel && sel.value || "",
-      unitPrice: Number(inpP && inpP.value || 0),
-      quantity:  Number(inpQ && inpQ.value || 0)
-    };
-  }).filter(x => x.productId && x.quantity > 0);
+  return Array.from(document.getElementById("ns-lines-body").querySelectorAll("tr"))
+    .map(tr => ({
+      productId: tr.querySelector("select")?.value || "",
+      unitPrice: Number(tr.querySelector("td:nth-child(2) input")?.value || 0),
+      quantity:  Number(tr.querySelector("td:nth-child(3) input")?.value || 0)
+    }))
+    .filter(x => x.productId && x.quantity > 0);
 }
 
 function renderTotals() {
-  const lines = readLines();
-  const subtotal = lines.reduce((s, l) => s + (l.unitPrice * l.quantity), 0);
-  const iva = subtotal * IVA_RATE;
-  const total = subtotal + iva;
+  const lines    = readLines();
+  const subtotal = lines.reduce((s, l) => s + l.unitPrice * l.quantity, 0);
+  const iva      = 0; // ajusta si manejas IVA
   document.getElementById("ns-subtotal").textContent = fmtMoney(subtotal);
-  document.getElementById("ns-iva").textContent = fmtMoney(iva);
-  document.getElementById("ns-total").textContent = fmtMoney(total);
+  document.getElementById("ns-iva").textContent      = fmtMoney(iva);
+  document.getElementById("ns-total").textContent    = fmtMoney(subtotal + iva);
 }
 
-// ===== Submit DEMO =====
-function submitDemo(e) {
+// ===== Submit nueva venta =====
+async function submitSale(e) {
   e.preventDefault();
 
-  const clientId = document.getElementById("ns-client").value;
-  const date = document.getElementById("ns-date").value;
-  const lines = readLines();
+  const clientId = Number(document.getElementById("ns-client").value);
+  const date     = document.getElementById("ns-date").value;
+  const lines    = readLines();
+  const isCustom = document.getElementById("ns-exr-custom").checked;
+  const exrVal   = document.getElementById("ns-exr").value;
 
   if (!clientId) { alert("Selecciona un cliente"); return; }
-  if (!date) { alert("Selecciona una fecha"); return; }
+  if (!date)     { alert("Selecciona una fecha"); return; }
   if (!lines.length) { alert("Agrega al menos un producto"); return; }
 
-  const exrMode = document.getElementById("ns-exr-custom").checked ? "custom" : "today";
-  const exrVal = document.getElementById("ns-exr").value || null;
-
-  const payloadDemo = {
-    ClientId: Number(clientId),
-    InvoiceDate: date,
-    ExchangeRate: exrMode === "custom" ? Number(exrVal) : null,
-    Details: lines
+  const payload = {
+    clientId,
+    invoiceDate:  new Date(date).toISOString(),
+    exchangeRate: isCustom && exrVal ? Number(exrVal) : null,
+    lines
   };
 
-  console.log("DEMO payload listo para enviar al backend:", payloadDemo);
-  alert("Demo OK: se mostraría la venta creada en consola.");
-  closeSaleModal();
+  try {
+    await apiFetch(`${SALES_API}/sales`, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
+    closeSaleModal();
+    await loadSalesSummary();
+  } catch (e) {
+    alert("Error creando venta: " + e.message);
+    console.error(e);
+  }
 }
 
-// ===== Hook botón "+ New Sale" =====
-document.addEventListener("DOMContentLoaded", function () {
-  const btnNew = document.getElementById("btn-new-sale");
-  if (!btnNew) return;
-  btnNew.addEventListener("click", openSaleModal);
+// ===== Init =====
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadInitialData();
+  await loadSalesSummary();
+
+  // Botón nueva venta
+  document.getElementById("btn-new-sale")
+    ?.addEventListener("click", openSaleModal);
+
+  // Cerrar modal
+  document.getElementById("ns-close")
+    ?.addEventListener("click", closeSaleModal);
+  document.getElementById("ns-cancel")
+    ?.addEventListener("click", closeSaleModal);
+  document.getElementById("saleBackdrop")
+    ?.addEventListener("click", closeSaleModal);
+
+  // Agregar línea
+  document.getElementById("ns-add-line")
+    ?.addEventListener("click", addLine);
+
+  // TRM toggle
+  document.getElementById("ns-exr-today")?.addEventListener("change", () => {
+    document.getElementById("ns-exr").disabled = true;
+  });
+  document.getElementById("ns-exr-custom")?.addEventListener("change", () => {
+    document.getElementById("ns-exr").disabled = false;
+    document.getElementById("ns-exr").focus();
+  });
+
+  // Submit
+  document.getElementById("form-new-sale")
+    ?.addEventListener("submit", submitSale);
+
+  // Cambiar estado
+  document.getElementById("form-sale-status")
+    ?.addEventListener("submit", handleStatusUpdate);
 });
