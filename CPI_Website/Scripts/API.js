@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     try {
-      const response = await fetch("http://localhost:5219/usuarios", {
+      const response = await fetch("http://localhost:5258/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -86,10 +86,10 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   const Username = document.getElementById("login-username").value;
   const Password = document.getElementById("login-password").value;
 
-  const data = { Username, Password };
+  const data = { UsernameOrEmail: Username, Password };
 
   try {
-    const response = await fetch("http://localhost:5219/login", {
+    const response = await fetch("http://localhost:5258/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -99,9 +99,9 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
     if (response.ok) {
       const result = await response.json();
-      // Guardar datos en localStorage
-      localStorage.setItem("user", JSON.stringify(result.User));
-      // Redireccionar al dashboard
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("refreshToken", result.refreshToken);
+      localStorage.setItem("user", JSON.stringify({ username: result.username, email: result.email, role: result.role }));
       window.location.href = "../Main/Dashboard.html";
     } else {
       Swal.fire({
