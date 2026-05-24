@@ -305,16 +305,23 @@ function buildHistoryModal() {
     </div>
   `);
 
-  document.getElementById("hist-close").addEventListener("click", closeHistoryModal);
-  document.getElementById("historyBackdrop").addEventListener("click", closeHistoryModal);
+  document.getElementById("hist-close").addEventListener("click", (e) => {
+    e.stopPropagation();
+    closeHistoryModal();
+  });
+  document.getElementById("historyBackdrop").addEventListener("click", (e) => {
+    if (e.target === document.getElementById("historyBackdrop")) closeHistoryModal();
+  });
 }
 
 async function openHistoryModal() {
   buildHistoryModal();
   const tbody = document.getElementById("history-rows");
   tbody.innerHTML = `<tr><td colspan="6" style="text-align:center">Cargando…</td></tr>`;
-  document.getElementById("historyBackdrop").classList.remove("hidden");
-  document.getElementById("historyModal").classList.remove("hidden");
+  const bd = document.getElementById("historyBackdrop");
+  const md = document.getElementById("historyModal");
+  bd.classList.remove("hidden"); bd.style.display = "";
+  md.classList.remove("hidden"); md.style.display = "";
 
   try {
     const sales = await apiFetch(`${SALES_API}/sales`);
@@ -353,8 +360,10 @@ async function openHistoryModal() {
 }
 
 function closeHistoryModal() {
-  document.getElementById("historyBackdrop").classList.add("hidden");
-  document.getElementById("historyModal").classList.add("hidden");
+  const bd = document.getElementById("historyBackdrop");
+  const md = document.getElementById("historyModal");
+  if (bd) { bd.classList.add("hidden"); bd.style.display = "none"; }
+  if (md) { md.classList.add("hidden"); md.style.display = "none"; }
 }
 
 // ===== Modal Editar Venta =====

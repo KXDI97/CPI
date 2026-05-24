@@ -6,19 +6,8 @@ body {
     padding: 0;
 }
 
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    /* Permite que los elementos se ajusten en la pantalla */
-    overflow-x: hidden;
-
-}
-
-
-/*Plantilla de header y slider*/
-
+/* ===== HEADER ===== */
 .header {
-    position: relative;
     background-color: #1F2937;
     display: flex;
     justify-content: space-between;
@@ -39,10 +28,7 @@ body {
     gap: 10px;
 }
 
-.logo img {
-    height: 40px;
-    width: auto;
-}
+.logo img { height: 40px; width: auto; }
 
 .logo-text {
     font-size: 20px;
@@ -50,7 +36,7 @@ body {
     color: aliceblue;
 }
 
-/* Contenedor principal */
+/* ===== USER ACTIONS ===== */
 .user-actions {
     position: relative;
     display: flex;
@@ -61,7 +47,6 @@ body {
     border-radius: 8px;
 }
 
-/* Información del usuario */
 .user-info {
     display: flex;
     align-items: center;
@@ -75,7 +60,6 @@ body {
     font-weight: bold;
 }
 
-/* ── Avatar circular con gradiente ──────────────────────────────────────── */
 .profile-button {
     background: none;
     border: none;
@@ -107,7 +91,6 @@ body {
     box-shadow: 0 0 14px rgba(144, 105, 249, 0.55);
 }
 
-/* ── Username + role badge en el header ─────────────────────────────────── */
 .header-user-text {
     display: flex;
     flex-direction: column;
@@ -116,7 +99,6 @@ body {
     gap: 2px;
 }
 
-/* ── Role badges (compartidos header + popup) ───────────────────────────── */
 .role-badge-header,
 .role-badge-popup {
     display: inline-block;
@@ -126,28 +108,16 @@ body {
     border-radius: 20px;
 }
 
-.role-badge-header {
-    font-size: 9px;
-    padding: 1px 7px;
-}
-
-.role-badge-popup {
-    font-size: 11px;
-    padding: 3px 12px;
-    margin-top: 6px;
-}
+.role-badge-header { font-size: 9px; padding: 1px 7px; }
+.role-badge-popup  { font-size: 11px; padding: 3px 12px; margin-top: 6px; }
 
 .role-admin  { background: rgba(99,102,241,0.2);  color: #818cf8; }
 .role-seller { background: rgba(16,185,129,0.2);  color: #34d399; }
 .role-viewer { background: rgba(156,163,175,0.2); color: #9ca3af; }
 
+/* ===== NOTIFICATIONS ===== */
+.notification { position: relative; }
 
-/* Notificación */
-.notification {
-    position: relative;
-}
-
-/* Botón de notificación */
 .notification-button {
     background: none;
     border: none;
@@ -158,57 +128,24 @@ body {
     transition: transform 0.2s ease-in-out;
 }
 
-/* Icono de notificación */
 .notification-button ion-icon {
     font-size: 24px;
     color: #9069F9;
     transition: color 0.3s, transform 0.3s ease-in-out;
 }
 
-/* Efecto al pasar el mouse */
 .notification-button:hover ion-icon {
     color: #54F1B8;
-    /* Color resaltado */
     transform: scale(1.2);
-}
-
-
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.notification {
-    position: relative;
-}
-
-.notification-button {
-    position: relative;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
 }
 
 .notification-counter {
     position: absolute;
-    top: -5px;
-    right: -5px;
+    top: -5px; right: -5px;
     background-color: #ff4d4d;
-    /* Rojo intenso */
     color: #fff;
-    /* Texto blanco */
     border-radius: 50%;
-    width: 18px;
-    height: 18px;
+    width: 18px; height: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -217,7 +154,7 @@ body {
     z-index: 10;
 }
 
-/* ── Profile popup container ────────────────────────────────────────────── */
+/* ===== PROFILE POPUP ===== */
 .popup.profile-popup {
     position: absolute;
     top: calc(100% + 12px);
@@ -242,7 +179,6 @@ body {
     to   { opacity: 1; transform: translateY(0)    scale(1);    }
 }
 
-/* ── Avatar section (gradient header) ──────────────────────────────────── */
 .popup-avatar-section {
     background: linear-gradient(160deg, #1e1b4b 0%, #1a2a3a 100%);
     padding: 24px 20px 18px;
@@ -252,13 +188,10 @@ body {
     align-items: center;
 }
 
-.popup-avatar-wrap {
-    margin-bottom: 10px;
-}
+.popup-avatar-wrap { margin-bottom: 10px; }
 
 .popup-avatar {
-    width: 64px;
-    height: 64px;
+    width: 64px; height: 64px;
     border-radius: 50%;
     background: linear-gradient(135deg, #9069F9 0%, #54F1B8 100%);
     display: flex;
@@ -271,31 +204,12 @@ body {
     user-select: none;
 }
 
-.popup-avatar-section h3 {
-    margin: 0 0 3px;
-    font-size: 15px;
-    font-weight: 700;
-    color: #f9fafb;
-}
+.popup-avatar-section h3 { margin: 0 0 3px; font-size: 15px; font-weight: 700; color: #f9fafb; }
+.popup-avatar-section p  { margin: 0; font-size: 12px; color: rgba(255,255,255,0.5); }
 
-.popup-avatar-section p {
-    margin: 0;
-    font-size: 12px;
-    color: rgba(255,255,255,0.5);
-}
+.popup-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 0; }
+.popup-divider--thin { margin: 4px 12px; }
 
-/* ── Dividers ───────────────────────────────────────────────────────────── */
-.popup-divider {
-    height: 1px;
-    background: rgba(255,255,255,0.08);
-    margin: 0;
-}
-
-.popup-divider--thin {
-    margin: 4px 12px;
-}
-
-/* ── Popup body buttons ─────────────────────────────────────────────────── */
 .popup-body {
     display: flex;
     flex-direction: column;
@@ -320,371 +234,198 @@ body {
     transition: background 0.15s ease, color 0.15s ease;
 }
 
-.popup-body button:hover {
-    background: rgba(144,105,249,0.12);
-    color: #fff;
-}
+.popup-body button:hover { background: rgba(144,105,249,0.12); color: #fff; }
+.popup-body button ion-icon { font-size: 17px; color: rgba(255,255,255,0.45); flex-shrink: 0; transition: color 0.15s ease; }
+.popup-body button:hover ion-icon { color: #9069F9; }
 
-.popup-body button ion-icon {
-    font-size: 17px;
-    color: rgba(255,255,255,0.45);
-    flex-shrink: 0;
-    transition: color 0.15s ease;
-}
+.popup-body .popup-signout { color: rgba(248,113,113,0.85); }
+.popup-body .popup-signout ion-icon { color: rgba(248,113,113,0.55); }
+.popup-body .popup-signout:hover { background: rgba(220,38,38,0.12); color: #f87171; }
+.popup-body .popup-signout:hover ion-icon { color: #f87171; }
 
-.popup-body button:hover ion-icon {
-    color: #9069F9;
-}
-
-/* Sign out — rojo */
-.popup-body .popup-signout {
-    color: rgba(248,113,113,0.85);
-}
-
-.popup-body .popup-signout ion-icon {
-    color: rgba(248,113,113,0.55);
-}
-
-.popup-body .popup-signout:hover {
-    background: rgba(220,38,38,0.12);
-    color: #f87171;
-}
-
-.popup-body .popup-signout:hover ion-icon {
-    color: #f87171;
-}
-
-/* Notifications popup header (unchanged) */
-.popup-header {
-    text-align: center;
-    padding: 15px;
-    background-color: #2d3a50;
-}
-
-.popup-header h3 {
-    margin: 5px 0 2px;
-}
-
-.popup-header p {
-    font-size: 12px;
-    color: #ccc;
-}
-
+/* Notifications popup */
+.popup-header { text-align: center; padding: 15px; background-color: #2d3a50; }
+.popup-header h3 { margin: 5px 0 2px; }
+.popup-header p { font-size: 12px; color: #ccc; }
 
 .notification-popup {
     position: absolute;
-    top: 60px;
-    right: 20px;
+    top: 60px; right: 20px;
     width: 300px;
     background-color: #1F2937;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     padding: 15px;
     display: none;
     z-index: 2000;
 }
 
-.notification-popup.show {
-    display: block;
-}
+.notification-popup.show { display: block; }
 
-.notification-popup .popup-header h3 {
-    color: #ffffff;
-    margin-bottom: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding-bottom: 5px;
-}
-
-.notifications-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+.notifications-list { display: flex; flex-direction: column; gap: 12px; }
 
 .notification-item {
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255,255,255,0.05);
     padding: 10px;
     border-radius: 8px;
     transition: background 0.3s;
 }
 
-.notification-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
+.notification-item:hover { background-color: rgba(255,255,255,0.1); }
+.notification-item ion-icon { font-size: 24px; color: #9069F9; flex-shrink: 0; }
+.notification-item p { color: #ffffff; margin: 0; }
+.notification-item small { color: rgba(255,255,255,0.6); font-size: 12px; }
 
-.notification-item ion-icon {
-    font-size: 24px;
-    color: #9069F9;
-    flex-shrink: 0;
-}
-
-.notification-item p {
-    color: #ffffff;
-    margin: 0;
-}
-
-.notification-item small {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 12px;
-}
-
-@media (max-width: 768px) {
-.username,
-.role-badge-header,
-.header-user-text {
-    display: none;
-}
-
-.header {
-    padding: 6px 20px;
-    height: 56px;
-}
-
-.user-actions {
-    gap: 8px;
-    padding: 4px 10px;
-}
-
-.profile-icon-img {
-    width: 28px;
-    height: 28px;
-}
-
-.notification-button ion-icon {
-    font-size: 20px;
-}
-
-.notification-counter {
-    width: 16px;
-    height: 16px;
-    font-size: 10px;
-}
-}
-
-
-/* Sidebar */
+/* ===== SIDEBAR FIJO EN DESKTOP ===== */
 .sidebar {
-    position: fixed;              /* ← antes estaba static */
-    top: 70px;                    /* altura del header */
+    position: fixed;
+    top: 70px;
     left: 0;
-    width: 200px;
-    height: calc(100vh - 70px);   /* ocupa toda la ventana menos el header */
-    background-color: #121826;
+    width: 220px;
+    height: calc(100vh - 70px);
+    background-color: #1a2233;
     box-shadow: 4px 0 10px rgba(255,255,255,0.1);
+
     z-index: 1500;
     display: flex;
     flex-direction: column;
-    align-items: center;         /* que use el ancho completo */
+    align-items: stretch;
     padding: 10px 12px 20px;
     box-sizing: border-box;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
 }
 
-/* Contenedor de los botones de navegación */
+.sidebar::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+/* ===== NAV BUTTONS ===== */
 .nav-buttons {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    /* Espaciado entre botones */
+    gap: 6px;
 }
 
-.nav-buttons button.active {
-    background-color: rgba(144, 105, 249, 0.4);
-    border: 2px solid #9069F9;
-    transform: scale(1.08);
-}
-
-.nav-buttons button.active ion-icon {
-    color: #9069F9;
-}
-
-
-/* Botones de navegación */
 .nav-buttons button {
     background: none;
-    border: none;
+    border: 2px solid transparent;
     color: #ffffff;
-    font-size: 16px;
+    font-size: 14px;
     padding: 10px 13px;
-    /* Espaciado uniforme */
     text-align: left;
     cursor: pointer;
     width: 100%;
-    /* Que ocupen toda la sidebar */
     display: flex;
     align-items: center;
-    /* Alineación vertical correcta */
     gap: 12px;
-    /* Espaciado entre icono y texto */
-    transition: background 0.3s, transform 0.2s;
+    transition: background 0.2s, transform 0.2s, border-color 0.2s;
     border-radius: 8px;
-    font-weight: bold;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
 }
 
 .nav-buttons button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    /* Efecto de fondo suave */
-    transform: scale(1.05);
-    /* Ligero aumento al pasar el mouse */
-    border: 2px solid aquamarine;
-    /* Borde aguamarina */
+    background-color: rgba(255,255,255,0.08);
+    border-color: #54F1B8;
+    transform: scale(1.04);
 }
 
-/* Íconos en los botones */
 .nav-buttons button ion-icon {
     font-size: 20px;
-    /* Tamaño adecuado */
     color: #ffffff;
-    /* Color de los íconos */
-    transition: color 0.3s;
+    transition: color 0.2s;
 }
 
-
-/* Cambiar color de iconos en hover y cuando el botón está activo */
-.nav-buttons .active ion-icon,
-.nav-buttons button:hover ion-icon {
-    color: #9069F9;
-    /* Color resaltado */
-}
+.nav-buttons button:hover ion-icon { color: #9069F9; }
 
 .nav-buttons button.active {
-
-    border: 2px solid #9069F9;
-    transform: scale(1.05);
+    background-color: rgba(144,105,249,0.2);
+    border-color: #9069F9;
+    transform: scale(1.04);
 }
 
-.nav-buttons button.active ion-icon {
-    color: #0EA5E9;
-}
+.nav-buttons button.active ion-icon { color: #9069F9; }
 
-/* Botones dentro de .account-details */
-.account-details button {
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 16px;
-    padding: 8px 12px;
-    /* Espaciado uniforme */
-    text-align: left;
-    cursor: pointer;
-    width: 100%;
-    /* Que ocupen toda la sección */
-    display: flex;
-    align-items: center;
-    /* Alineación vertical correcta */
-    gap: 8px;
-    /* Espaciado entre icono y texto */
-    transition: background 0.3s, transform 0.2s;
-    border-radius: 8px;
-    font-weight: bold;
-}
-
-/* Efecto al pasar el mouse */
-.account-details button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    /* Efecto de fondo suave */
-    transform: scale(1.05);
-    /* Ligero aumento */
-    border: 2px solid #9069F9;
-    /* Borde aguamarina */
-}
-
-/* Íconos en los botones */
-.account-details button ion-icon {
-    font-size: 20px;
-    /* Tamaño adecuado */
-    color: #ffffff;
-    /* Color de los íconos */
-    transition: color 0.3s;
-}
-
-/* Cambiar color de iconos en hover */
-.account-details button:hover ion-icon {
-    color: #54F1B8;
-    /* Color resaltado */
-}
-
-.account-details button.active {
-    background-color: rgba(144, 105, 249, 0.25);
-    border: 2px solid #54F1B8;
-    transform: scale(1.05);
-}
-
-.account-details button.active ion-icon {
-    color: #0EA5E9;
-}
-
-/* Separador de secciones */
+/* ===== ACCOUNT DETAILS ===== */
 .account-details {
     margin-top: 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255,255,255,0.1);
     padding-top: 10px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    align-items: left;
+    gap: 6px;
 }
 
-.account-details h1 {
-    font-size: 12px;
-    color: white;
-    text-align: center;
-    margin: 0 auto;
-    /* Centra horizontalmente */
-    display: flex;
-    justify-content: center;
-    /* Centra el texto */
-    align-items: center;
-    /* Centra verticalmente */
+.account-details button {
+    background: none;
+    border: 2px solid transparent;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 8px 12px;
+    text-align: left;
+    cursor: pointer;
     width: 100%;
-    padding: 10px 0;
-    /* Ajusta el espacio */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s, transform 0.2s, border-color 0.2s;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
 }
 
-/* Sección de ayuda */
+.account-details button:hover {
+    background-color: rgba(255,255,255,0.08);
+    border-color: #9069F9;
+    transform: scale(1.04);
+}
+
+.account-details button ion-icon { font-size: 18px; color: #ffffff; transition: color 0.2s; }
+.account-details button:hover ion-icon { color: #54F1B8; }
+
+.account-details button.active {
+    background-color: rgba(144,105,249,0.2);
+    border-color: #54F1B8;
+}
+
+/* ===== HELP SECTION ===== */
 .help-section {
     background-color: #1F2937;
-    width: 80%;
-    max-width: none;
-    padding: 2px;
-    /* Reduce el espacio interno */
-    border-radius: 8px;
-    /* Esquinas menos redondeadas */
+    border-radius: 10px;
+    padding: 10px;
     text-align: center;
-    font-size: 10px;
-    /* Texto más pequeño */
+    font-size: 11px;
     margin-top: auto;
-    
-
+    color: #c9d1d9;
 }
+
+.help-section p { margin: 2px 0; }
 
 .help-section button {
-    background-color: #333;
+    background-color: #384152;
     border: none;
-    padding: 8px 12px;
+    padding: 6px 14px;
     color: white;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s;
+    border-radius: 6px;
+    font-size: 12px;
+    margin-top: 6px;
+    transition: background 0.2s;
 }
 
-.help-section button:hover {
-    background-color: #555;
-}
+.help-section button:hover { background-color: #4b5563; }
 
+/* ===== GLOBAL MODALS ===== */
 .global-modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    inset: 0;
+    background-color: rgba(0,0,0,0.7);
     display: none;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 4000;
 }
 
 .global-modal-content {
@@ -695,67 +436,28 @@ body {
     text-align: center;
     max-width: 400px;
     width: 90%;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
-.global-modal-content h3 {
-    margin-bottom: 15px;
-}
+.global-modal-content h3 { margin-bottom: 15px; }
+.global-modal-content p  { margin-bottom: 20px; line-height: 1.4; }
 
-.global-modal-content p {
-    margin-bottom: 20px;
-    line-height: 1.4;
-}
+.global-modal-buttons { display: flex; gap: 10px; justify-content: center; }
 
-.global-modal-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-.global-modal-buttons button,
-.global-modal-content button {
-    padding: 8px 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.global-modal-buttons button#confirm-btn {
-    background-color: #384152;
-    color: #fff;
+.global-modal-buttons button {
     padding: 10px 20px;
     border: none;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.global-modal-buttons button#confirm-btn:hover {
-    background-color: #54f1b7;
-    transform: scale(1.15);
-}
-
-.global-modal-buttons button#cancel-btn {
+    transition: background-color 0.2s, transform 0.2s;
     background-color: #384152;
     color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
 }
 
-.global-modal-buttons button#cancel-btn:hover {
-    background-color: #8f69f9;
-    transform: scale(1.15);
-}
-
+.global-modal-buttons button#confirm-btn:hover { background-color: #54f1b7; transform: scale(1.1); }
+.global-modal-buttons button#cancel-btn:hover  { background-color: #8f69f9; transform: scale(1.1); }
 
 .global-modal-content button#close-help {
     background-color: #384152;
@@ -763,27 +465,16 @@ body {
     padding: 10px 20px;
     border: none;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.2s, transform 0.2s;
 }
+.global-modal-content button#close-help:hover { background-color: #f40505; transform: scale(1.1); }
 
-.global-modal-content button#close-help:hover {
-    background-color: #f40505;
-    transform: scale(1.15);
-}
+.blurred { filter: blur(5px); transition: filter 0.3s; }
 
-.blurred {
-    filter: blur(5px);
-    transition: filter 0.3s;
-}
-
-
-
-
-
-
+/* ===== HAMBURGER ===== */
 .hamburger {
     background: none;
     border: none;
@@ -791,17 +482,15 @@ body {
     cursor: pointer;
     margin-right: 1rem;
     display: none;
-    position: relative; /* <- agrega esto si no está */
-    z-index: 2100; 
+    z-index: 2100;
 }
 
-/* --- Drawer sidebar estilo popup --- */
+/* ===== SIDEBAR DRAWER (mobile) ===== */
 .sidebar-drawer {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
     height: 100vh;
-    width: 200px;
+    width: 220px;
     background-color: #121826;
     z-index: 1500;
     transform: translateX(-100%);
@@ -810,49 +499,76 @@ body {
     flex-direction: column;
 }
 
-.sidebar-drawer.open {
-    transform: translateX(0);
-}
+.sidebar-drawer.open { transform: translateX(0); }
 
-/* Fondo oscuro detrás del slider */
 .sidebar-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 200px;
-    height: 87vh;
-    background-color: rgba(0, 0, 0, 0.5);
+    inset: 0;
+    background-color: rgba(0,0,0,0.5);
     z-index: 1400;
     display: none;
 }
 
-.sidebar-overlay.show {
-    display: block;
-}
+.sidebar-overlay.show { display: block; }
 
-/* Opcional: oculta el drawer en pantallas grandes */
+/* ===== DESKTOP: sidebar siempre visible y fijo ===== */
 @media (min-width: 769px) {
+    .hamburger { display: none !important; }
 
     .sidebar-drawer {
         transform: translateX(0) !important;
-        position: static;
-        height: auto;
-        width: auto;
-        z-index: auto;
+        position: fixed !important;
+        top: 70px !important;
+        left: 0 !important;
+        height: calc(100vh - 70px) !important;
+        width: 220px !important;
+        z-index: 1500 !important;
+        overflow: hidden !important;
     }
-    .sidebar-overlay {
-        display: none !important;
+
+    .sidebar-drawer > .sidebar {
+        top: 0 !important;
+        position: relative !important;
+        height: 100% !important;
+    }
+
+    .sidebar-overlay { display: none !important; }
+
+    /* Todo el content principal se desplaza a la derecha del sidebar */
+    [class*="content-"] {
+        margin-left: 220px !important;
+        padding-top: 90px !important;
+        width: calc(100% - 220px) !important;
+        box-sizing: border-box !important;
+        position: relative !important;
     }
 }
 
-.sidebar-drawer > .sidebar {
-    padding-top: 10px; /* deja espacio debajo del header */
-    height: calc(100vh - 70px); /* ajusta altura exacta */
-    box-sizing: border-box;
-}
-
+/* ===== MOBILE ===== */
 @media (max-width: 768px) {
-    .hamburger {
-        display: block;
-    }}
-    
+    .hamburger { display: block; }
+
+    .username,
+    .role-badge-header,
+    .header-user-text { display: none; }
+
+    .header { padding: 6px 20px; height: 56px; }
+
+    .user-actions { gap: 8px; padding: 4px 10px; }
+
+    .notification-button ion-icon { font-size: 20px; }
+
+    .notification-counter { width: 16px; height: 16px; font-size: 10px; }
+
+    .sidebar-drawer > .sidebar {
+        padding-top: 80px;
+        height: 100vh;
+        box-sizing: border-box;
+    }
+
+    [class*="content-"] {
+        margin-left: 0 !important;
+        padding-top: 76px !important;
+        width: 100% !important;
+    }
+}
