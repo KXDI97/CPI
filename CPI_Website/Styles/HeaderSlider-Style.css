@@ -75,29 +75,71 @@ body {
     font-weight: bold;
 }
 
-/* Botón de perfil */
+/* ── Avatar circular con gradiente ──────────────────────────────────────── */
 .profile-button {
     background: none;
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
+    padding: 0;
 }
 
-.profile-icon-img {
-    width: 24px;
-    height: 24px;
+.user-avatar {
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    object-fit: cover;
+    background: linear-gradient(135deg, #9069F9 0%, #54F1B8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    color: #fff;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-shrink: 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    user-select: none;
 }
 
-/* Efecto hover */
-.profile-icon-img:hover {
+.user-avatar:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(144, 105, 249, 0.6);
+    box-shadow: 0 0 14px rgba(144, 105, 249, 0.55);
 }
+
+/* ── Username + role badge en el header ─────────────────────────────────── */
+.header-user-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.2;
+    gap: 2px;
+}
+
+/* ── Role badges (compartidos header + popup) ───────────────────────────── */
+.role-badge-header,
+.role-badge-popup {
+    display: inline-block;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 20px;
+}
+
+.role-badge-header {
+    font-size: 9px;
+    padding: 1px 7px;
+}
+
+.role-badge-popup {
+    font-size: 11px;
+    padding: 3px 12px;
+    margin-top: 6px;
+}
+
+.role-admin  { background: rgba(99,102,241,0.2);  color: #818cf8; }
+.role-seller { background: rgba(16,185,129,0.2);  color: #34d399; }
+.role-viewer { background: rgba(156,163,175,0.2); color: #9ca3af; }
 
 
 /* Notificación */
@@ -175,37 +217,148 @@ body {
     z-index: 10;
 }
 
+/* ── Profile popup container ────────────────────────────────────────────── */
 .popup.profile-popup {
     position: absolute;
-    top: 40px;
-    /* justo debajo del user-actions */
-    margin-top: 10px;
-    right: 20px;
-    background: #1F2937;
-    border-radius: 10px;
-    padding: 20px;
-    width: 250px;
+    top: calc(100% + 12px);
+    right: 0;
+    background: #1a2233;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    width: 270px;
     display: none;
-    z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 3000;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(144,105,249,0.12);
+    overflow: hidden;
 }
-
 
 .popup.profile-popup.show {
     display: block;
+    animation: popupSlideDown 0.2s cubic-bezier(0.16,1,0.3,1);
 }
 
+@keyframes popupSlideDown {
+    from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+/* ── Avatar section (gradient header) ──────────────────────────────────── */
+.popup-avatar-section {
+    background: linear-gradient(160deg, #1e1b4b 0%, #1a2a3a 100%);
+    padding: 24px 20px 18px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.popup-avatar-wrap {
+    margin-bottom: 10px;
+}
+
+.popup-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #9069F9 0%, #54F1B8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 22px;
+    color: #fff;
+    box-shadow: 0 0 0 3px rgba(144,105,249,0.35), 0 4px 16px rgba(0,0,0,0.4);
+    user-select: none;
+}
+
+.popup-avatar-section h3 {
+    margin: 0 0 3px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #f9fafb;
+}
+
+.popup-avatar-section p {
+    margin: 0;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+}
+
+/* ── Dividers ───────────────────────────────────────────────────────────── */
+.popup-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 0;
+}
+
+.popup-divider--thin {
+    margin: 4px 12px;
+}
+
+/* ── Popup body buttons ─────────────────────────────────────────────────── */
+.popup-body {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+}
+
+.popup-body button {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.85);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 9px 12px;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.popup-body button:hover {
+    background: rgba(144,105,249,0.12);
+    color: #fff;
+}
+
+.popup-body button ion-icon {
+    font-size: 17px;
+    color: rgba(255,255,255,0.45);
+    flex-shrink: 0;
+    transition: color 0.15s ease;
+}
+
+.popup-body button:hover ion-icon {
+    color: #9069F9;
+}
+
+/* Sign out — rojo */
+.popup-body .popup-signout {
+    color: rgba(248,113,113,0.85);
+}
+
+.popup-body .popup-signout ion-icon {
+    color: rgba(248,113,113,0.55);
+}
+
+.popup-body .popup-signout:hover {
+    background: rgba(220,38,38,0.12);
+    color: #f87171;
+}
+
+.popup-body .popup-signout:hover ion-icon {
+    color: #f87171;
+}
+
+/* Notifications popup header (unchanged) */
 .popup-header {
     text-align: center;
     padding: 15px;
     background-color: #2d3a50;
-}
-
-.popup-header .profile-photo {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin-bottom: 10px;
 }
 
 .popup-header h3 {
@@ -215,57 +368,6 @@ body {
 .popup-header p {
     font-size: 12px;
     color: #ccc;
-}
-
-.popup-body {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-}
-
-.popup-body a {
-    padding: 8px;
-    text-decoration: none;
-    color: #fff;
-    border-radius: 8px;
-    transition: background 0.2s;
-}
-
-.popup-body a:hover {
-    background: #374151;
-}
-
-.popup-body button {
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 16px;
-    padding: 12px 15px;
-    text-align: left;
-    cursor: pointer;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transition: background 0.3s, transform 0.2s;
-    border-radius: 8px;
-    font-weight: bold;
-}
-
-.popup-body button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: scale(1.05);
-    border: 2px solid #9069F9;
-}
-
-.popup-body button ion-icon {
-    font-size: 20px;
-    color: #ffffff;
-    transition: color 0.3s;
-}
-
-.popup-body button:hover ion-icon {
-    color: #54F1B8;
 }
 
 
@@ -330,7 +432,9 @@ body {
 }
 
 @media (max-width: 768px) {
-.username {
+.username,
+.role-badge-header,
+.header-user-text {
     display: none;
 }
 

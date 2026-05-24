@@ -8,33 +8,62 @@
             <span class="logo-text">CPI</span>
         </div>
         <div class="user-actions">
+
+            <!-- ── User info + dropdown ───────────────────────────── -->
             <div class="user-info">
-                <button class="profile-button">
-                    <img src="../Images/unnamed.png" alt="Perfil" class="profile-icon-img">
-                </button> 
-                <span class="username" id="header-username">Bryams Solórzano</span>
-                <div class="popup profile-popup" id="profile-popup">
-                    <div class="popup-header">  
-                        <img src="../Images/unnamed.png" alt="Foto perfil" class="profile-photo">
+                <button class="profile-button" aria-label="User menu" aria-expanded="false">
+                    <div class="user-avatar" id="header-avatar">BS</div>
+                </button>
+                <div class="header-user-text">
+                    <span class="username" id="header-username">Bryams Solórzano</span>
+                    <span class="role-badge-header role-viewer" id="header-role-badge">Viewer</span>
+                </div>
+
+                <!-- Dropdown -->
+                <div class="popup profile-popup" id="profile-popup" role="menu">
+
+                    <!-- Avatar + info section -->
+                    <div class="popup-avatar-section">
+                        <div class="popup-avatar-wrap">
+                            <div class="popup-avatar" id="popup-avatar">BS</div>
+                        </div>
                         <h3 id="popup-name">Bryams G.</h3>
                         <p id="popup-email">solorzanobryams@gmail.com</p>
+                        <span class="role-badge-popup role-viewer" id="popup-role-badge">Viewer</span>
                     </div>
+
+                    <div class="popup-divider"></div>
+
+                    <!-- Menu options -->
                     <div class="popup-body">
-                        <button><ion-icon name="settings-outline"></ion-icon> Settings</button>
-                        <button><ion-icon name="key-outline"></ion-icon> Change password</button>
-                        <button><ion-icon name="mail-outline"></ion-icon> Change email</button>
-                        <button onclick="showLogoutModal()"><ion-icon name="log-out-outline"></ion-icon> Sign out</button>
+                        <button onclick="window.location.href='Profile.html'" role="menuitem">
+                            <ion-icon name="person-circle-outline"></ion-icon> My Profile
+                        </button>
+                        <button onclick="window.location.href='Settings.html'" role="menuitem">
+                            <ion-icon name="settings-outline"></ion-icon> Settings
+                        </button>
+                        <button role="menuitem">
+                            <ion-icon name="lock-closed-outline"></ion-icon> Change password
+                        </button>
+                        <button role="menuitem">
+                            <ion-icon name="mail-outline"></ion-icon> Change email
+                        </button>
+                        <div class="popup-divider popup-divider--thin"></div>
+                        <button class="popup-signout" onclick="showLogoutModal()" role="menuitem">
+                            <ion-icon name="log-out-outline"></ion-icon> Sign out
+                        </button>
                     </div>
                 </div>
             </div>
+
+            <!-- ── Notifications ─────────────────────────────────── -->
             <div class="notification">
                 <button class="notification-button">
                     <ion-icon name="notifications-outline"></ion-icon>
                     <span id="notification-counter" class="notification-counter">0</span>
                 </button>
             </div>
-            
-            <!-- Popup Notificaciones -->
+
             <div class="popup notification-popup" id="notification-popup">
                 <div class="popup-header">
                     <h3>Notificaciones</h3>
@@ -63,7 +92,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>    
-</div>
 
+        </div>
+    </div>
+</div>

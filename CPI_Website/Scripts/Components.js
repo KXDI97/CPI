@@ -107,27 +107,45 @@ export function loadComponents() {
         .catch(error => console.error('Error cargando Slider:', error));
 }
 
-// ✅ Esta función carga el nombre y correo desde localStorage al header
+function getInitials(name) {
+    if (!name) return '?';
+    const parts = name.trim().split(/[\s_+.\-@]+/).filter(Boolean);
+    if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+
+function applyRoleBadge(el, role) {
+    if (!el) return;
+    el.textContent = role;
+    el.className = el.className.replace(/\brole-\w+/g, '').trim();
+    el.classList.add(`role-${role.toLowerCase()}`);
+}
+
 function setUserHeaderInfo() {
     const userString = localStorage.getItem("user");
-
-    // ✅ Validamos que el valor exista y no sea "undefined"
-    if (!userString || userString === "undefined") {
-        console.warn("ℹ️ No hay usuario válido en localStorage.");
-        return;
-    }
+    if (!userString || userString === "undefined") return;
 
     try {
-        const user = JSON.parse(userString);  // ✅ Ahora seguro
+        const user = JSON.parse(userString);
+        const role = user.role || 'Viewer';
+        const initials = getInitials(user.username);
 
-        // ✅ Actualizamos los elementos del header si existen
-        const headerName = document.getElementById("header-username");
-        const popupName = document.getElementById("popup-name");
-        const popupEmail = document.getElementById("popup-email");
+        const headerName   = document.getElementById("header-username");
+        const popupName    = document.getElementById("popup-name");
+        const popupEmail   = document.getElementById("popup-email");
+        const headerAvatar = document.getElementById("header-avatar");
+        const popupAvatar  = document.getElementById("popup-avatar");
+        const headerBadge  = document.getElementById("header-role-badge");
+        const popupBadge   = document.getElementById("popup-role-badge");
 
-        if (headerName) headerName.textContent = user.username;
-        if (popupName) popupName.textContent = user.username;
-        if (popupEmail) popupEmail.textContent = user.email;
+        if (headerName)   headerName.textContent  = user.username;
+        if (popupName)    popupName.textContent    = user.username;
+        if (popupEmail)   popupEmail.textContent   = user.email;
+        if (headerAvatar) headerAvatar.textContent = initials;
+        if (popupAvatar)  popupAvatar.textContent  = initials;
+
+        applyRoleBadge(headerBadge, role);
+        applyRoleBadge(popupBadge,  role);
     } catch (err) {
         console.error("❌ Error al parsear usuario desde localStorage:", err);
     }
