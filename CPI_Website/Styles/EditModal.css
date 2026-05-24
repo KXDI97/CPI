@@ -1,0 +1,131 @@
+/* ===== MODAL EDICIÓN PRODUCTO ===== */
+
+#editBackdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(43, 43, 93, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 998;
+}
+
+#editProductModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #1e2130;
+    border-radius: 12px;
+    padding: 28px 32px;
+    width: 420px;
+    max-width: 90vw;
+    z-index: 999;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    color: #e2e8f0;
+}
+
+.ep-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.ep-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.ep-close-btn {
+    background: none;
+    border: none;
+    color: #e2e8f0;
+    font-size: 1.4rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.ep-close-btn:hover {
+    color: #f87171;
+}
+
+.ep-field {
+    margin-bottom: 14px;
+}
+
+.ep-field label {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+    opacity: 0.7;
+}
+
+.ep-field input,
+.ep-field select {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #3a3f5c;
+    background: #252a40;
+    color: #e2e8f0;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+}
+
+.ep-field input:focus,
+.ep-field select:focus {
+    outline: none;
+    border-color: #6c63ff;
+    box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+}
+
+.ep-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.ep-btn-cancel {
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: 1px solid #3a3f5c;
+    background: transparent;
+    color: #e2e8f0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.ep-btn-cancel:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+.ep-btn-save {
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #6c63ff;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.ep-btn-save:hover {
+    background: #574fd6;
+}
+
+/* Stock bajo / vacío */
+.stock-low   { color: #f59e0b; }
+.stock-empty { color: #f87171; }
+
+/* Paginación activa */
+.pagination a.active {
+    color: #6c63ff;
+    font-weight: bold;
+    border-bottom: 2px solid #6c63ff;
+}
