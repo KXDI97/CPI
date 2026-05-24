@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="../Styles/HeaderSlider-Style.css">
     <link rel="stylesheet" href="../Styles/Settings-Style.css">
     <style>body { visibility: hidden }</style>
-    <script>if (!localStorage.getItem('token')) location.replace('../Landing%20Page/Login.html');</script>
+    <script src="../Scripts/ui-helpers.js"></script>
+    <script>checkAuth();</script>
 </head>
 <body>
     <div id="header-container"></div>
@@ -68,7 +69,6 @@
     <script type="module" src="../Scripts/Main.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="../Scripts/ui-helpers.js"></script>
     <script src="../Scripts/Session.js"></script>
 </body>
 </html>

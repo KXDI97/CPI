@@ -211,6 +211,29 @@
     initPasswordToggles();
   }
 
+  // ── checkAuth — guard síncrono, llamar como primer script en páginas protegidas
+  function checkAuth() {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      location.replace(LOGIN_URL);
+      return;
+    }
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const isExpired = (payload.exp * 1000) < Date.now();
+      if (isExpired) {
+        localStorage.removeItem('token');
+        location.replace(LOGIN_URL);
+      }
+    } catch (e) {
+      localStorage.removeItem('token');
+      location.replace(LOGIN_URL);
+    }
+  }
+
   // ── API pública ──────────────────────────────────────────────────────────────
-  window.CPI = { initPasswordToggles, initSession, sessionLogout };
+  window.checkAuth = checkAuth;
+  window.CPI = { initPasswordToggles, initSession, sessionLogout, checkAuth };
 })();

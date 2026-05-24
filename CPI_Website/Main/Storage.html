@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="../Styles/Storage-Style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>body { visibility: hidden }</style>
-    <script>if (!localStorage.getItem('token')) location.replace('../Landing%20Page/Login.html');</script>
+    <script src="../Scripts/ui-helpers.js"></script>
+    <script>checkAuth();</script>
 </head>
 <body>
     <div id="header-container"></div>
@@ -122,7 +123,6 @@
 
 
     </div>
-    <script src="../Scripts/ui-helpers.js"></script>
     <script src="../Scripts/Session.js"></script>
     <script type="module">
         import { loadComponents } from '../Scripts/Components.js';
