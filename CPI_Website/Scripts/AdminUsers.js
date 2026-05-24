@@ -220,8 +220,10 @@
   // ── Edit Role Modal ───────────────────────────────────────────────────────
   function openEditModal(id, username, role) {
     currentEditId = id;
-    document.getElementById('editUsername').value = username;
-    document.getElementById('editRole').value     = role;
+    document.getElementById('editRoleSubtitle').textContent = username;
+    document.querySelectorAll('#editRoleCards .erm-card').forEach(c => {
+      c.classList.toggle('selected', c.dataset.role === role);
+    });
     hideErr('editRoleError');
     show('editRoleBackdrop');
     show('editRoleModal');
@@ -233,7 +235,9 @@
   }
 
   async function handleEditRole() {
-    const role = document.getElementById('editRole').value;
+    const selected = document.querySelector('#editRoleCards .erm-card.selected');
+    if (!selected) { showErr('editRoleError', 'Please select a role.'); return; }
+    const role = selected.dataset.role;
     const btn  = document.getElementById('confirmEditRole');
     btn.disabled    = true;
     btn.textContent = 'Saving…';
@@ -316,6 +320,14 @@
     document.getElementById('confirmEditRole') ?.addEventListener('click', handleEditRole);
     document.getElementById('cancelEditRole')  ?.addEventListener('click', closeEditModal);
     document.getElementById('editRoleBackdrop')?.addEventListener('click', closeEditModal);
+
+    document.getElementById('editRoleCards')?.addEventListener('click', e => {
+      const card = e.target.closest('.erm-card');
+      if (!card) return;
+      document.querySelectorAll('#editRoleCards .erm-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      hideErr('editRoleError');
+    });
 
     document.getElementById('confirmDelete') ?.addEventListener('click', handleDelete);
     document.getElementById('cancelDelete')  ?.addEventListener('click', closeDeleteModal);

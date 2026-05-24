@@ -1,329 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Styles/HeaderSlider-Style.css">
-    
-    <link rel="stylesheet" href="../Styles/Profile-Style.css">
+    <title>Profile - CPI</title>
     <link rel="icon" type="image/png" href="../Images/logo.png">
-    <title>Profile</title>
+    <link rel="stylesheet" href="../Styles/HeaderSlider-Style.css">
+    <link rel="stylesheet" href="../Styles/Profile-Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>body { visibility: hidden }</style>
     <script src="../Scripts/ui-helpers.js"></script>
     <script>checkAuth();</script>
 </head>
-
 <body>
     <div id="header-container"></div>
     <div id="sidebar-container"></div>
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
-    <div class="profile-wrapper">
-        <main class="profile-main">
-            <div class="profile-header">
-                <h1 class="profile-header-title">Account Settings</h1>
-                <p class="profile-header-description">Manage your personal data and preferences</p>
+
+    <div class="pf-wrapper">
+
+        <!-- ── Hero ──────────────────────────────────────────────────────── -->
+        <div class="pf-hero">
+            <div class="pf-avatar" id="pfAvatar">?</div>
+            <div class="pf-hero-info">
+                <h1 class="pf-hero-name" id="pfName">Loading…</h1>
+                <span class="pf-role-badge" id="pfRoleBadge"></span>
+                <p class="pf-hero-email" id="pfEmailDisplay"></p>
+            </div>
+        </div>
+
+        <!-- ── Tabs ──────────────────────────────────────────────────────── -->
+        <div class="pf-tabs-bar">
+            <button class="pf-tab active" data-tab="account">
+                <ion-icon name="person-outline"></ion-icon> Account
+            </button>
+            <button class="pf-tab" data-tab="security">
+                <ion-icon name="lock-closed-outline"></ion-icon> Security
+            </button>
+        </div>
+
+        <!-- ── Panel: Account ────────────────────────────────────────────── -->
+        <div class="pf-panel" id="tab-account">
+
+            <!-- Username -->
+            <div class="pf-card">
+                <div class="pf-card-header">
+                    <div class="pf-card-icon">
+                        <ion-icon name="at-outline"></ion-icon>
+                    </div>
+                    <div>
+                        <h2>Username</h2>
+                        <p class="pf-card-sub">Your public display name</p>
+                    </div>
+                </div>
+                <div class="pf-field">
+                    <label for="inpUsername">New username</label>
+                    <input type="text" id="inpUsername" placeholder="Enter username" autocomplete="off">
+                    <p class="pf-field-err" id="errUsername"></p>
+                </div>
+                <button class="pf-btn-save" id="btnSaveUsername">Save Username</button>
             </div>
 
-            <div class="profile-tabs-navigation">
-                <button class="profile-tab-btn"><a href="#personal-info"
-                        class="profile-btn profile-btn-primary">Personal Information</a></button>
-                <button class="profile-tab-btn"><a href="#Billing"
-                        class="profile-btn profile-btn-primary">Billing</a></button>
-                <button class="profile-tab-btn"><a href="#Preferences"
-                        class="profile-btn profile-btn-primary">Preferences</a></button>
-                <button class="profile-tab-btn"><a href="#API-Connections" class="profile-btn profile-btn-primary">API
-                        Connections</a></button>
+            <!-- Email -->
+            <div class="pf-card">
+                <div class="pf-card-header">
+                    <div class="pf-card-icon">
+                        <ion-icon name="mail-outline"></ion-icon>
+                    </div>
+                    <div>
+                        <h2>Email Address</h2>
+                        <p class="pf-card-sub">For login and notifications</p>
+                    </div>
+                </div>
+                <div class="pf-field">
+                    <label for="inpEmail">New email</label>
+                    <input type="email" id="inpEmail" placeholder="Enter email" autocomplete="off">
+                    <p class="pf-field-err" id="errEmail"></p>
+                </div>
+                <div class="pf-field">
+                    <label for="inpEmailPass">Confirm with current password</label>
+                    <div class="pf-input-wrap">
+                        <input type="password" id="inpEmailPass" placeholder="Enter current password" autocomplete="current-password">
+                        <button class="pf-eye" data-target="inpEmailPass" type="button">
+                            <ion-icon name="eye-outline"></ion-icon>
+                        </button>
+                    </div>
+                    <p class="pf-field-err" id="errEmailPass"></p>
+                </div>
+                <button class="pf-btn-save" id="btnSaveEmail">Update Email</button>
             </div>
 
-            <div id="personal-info" class="profile-content-box">
-                <h2 class="profile-section-title">Personal Information</h2>
+        </div><!-- /tab-account -->
 
-                <div class="profile-avatar-container">
-                    <div class="profile-avatar"></div>
-                    <div class="profile-avatar-controls">
-                        <button class="profile-btn profile-btn-primary">Change Image</button>
-                        <button class="profile-btn profile-btn-danger">Delete</button>
+        <!-- ── Panel: Security ───────────────────────────────────────────── -->
+        <div class="pf-panel hidden" id="tab-security">
+
+            <div class="pf-card">
+                <div class="pf-card-header">
+                    <div class="pf-card-icon">
+                        <ion-icon name="shield-checkmark-outline"></ion-icon>
+                    </div>
+                    <div>
+                        <h2>Change Password</h2>
+                        <p class="pf-card-sub">Use a strong password you don't reuse</p>
                     </div>
                 </div>
 
-                <form class="profile-form">
-                    <div class="profile-form-row">
-                        <div class="profile-form-group">
-                            <label class="profile-form-label" for="profile-firstname">First Name</label>
-                            <input type="text" id="profile-firstname" class="profile-form-control" value="John">
-                        </div>
-                        <div class="profile-form-group">
-                            <label class="profile-form-label" for="profile-lastname">Last Name</label>
-                            <input type="text" id="profile-lastname" class="profile-form-control" value="Diaz">
-                        </div>
+                <div class="pf-field">
+                    <label for="inpCurrentPass">Current password</label>
+                    <div class="pf-input-wrap">
+                        <input type="password" id="inpCurrentPass" placeholder="Enter current password" autocomplete="current-password">
+                        <button class="pf-eye" data-target="inpCurrentPass" type="button">
+                            <ion-icon name="eye-outline"></ion-icon>
+                        </button>
                     </div>
+                    <p class="pf-field-err" id="errCurrentPass"></p>
+                </div>
 
-                    <div class="profile-form-group">
-                        <label class="profile-form-label" for="profile-email">Email</label>
-                        <input type="email" id="profile-email" class="profile-form-control"
-                            value="john.diaz@example.com">
+                <div class="pf-field">
+                    <label for="inpNewPass">New password</label>
+                    <div class="pf-input-wrap">
+                        <input type="password" id="inpNewPass" placeholder="Minimum 8 characters" autocomplete="new-password">
+                        <button class="pf-eye" data-target="inpNewPass" type="button">
+                            <ion-icon name="eye-outline"></ion-icon>
+                        </button>
                     </div>
-
-                    <div class="profile-form-group">
-                        <label class="profile-form-label" for="profile-company">Company</label>
-                        <input type="text" id="profile-company" class="profile-form-control"
-                            value="Global Exports Inc.">
-                    </div>
-
-                    <div class="profile-form-row">
-                        <div class="profile-form-group">
-                            <label class="profile-form-label" for="profile-phone">Phone</label>
-                            <input type="tel" id="profile-phone" class="profile-form-control" value="+123456789">
-                        </div>
-                        <div class="profile-form-group">
-                            <label class="profile-form-label" for="profile-country">Country</label>
-                            <input type="text" id="profile-country" class="profile-form-control" value="Spain">
-                        </div>
-                    </div>
-
-                    <div class="profile-form-group">
-                        <label class="profile-form-label" for="profile-address">Address</label>
-                        <input type="text" id="profile-address" class="profile-form-control"
-                            value="123 Commerce Street, Barcelona">
-                    </div>
-
-                    <div class="profile-form-group">
-                        <button type="submit" class="profile-btn profile-btn-success">Save Changes</button>
-                    </div>
-                </form>
-
-                <div class="profile-section-separator"></div>
-
-                <h2 class="profile-section-title">Export Statistics</h2>
-
-                <div class="profile-stats">
-                    <div class="profile-stat-card">
-                        <h3 class="profile-stat-number">42</h3>
-                        <p class="profile-stat-label">Total Exports</p>
-                    </div>
-                    <div class="profile-stat-card">
-                        <h3 class="profile-stat-number">12</h3>
-                        <p class="profile-stat-label">Destination Countries</p>
-                    </div>
-                    <div class="profile-stat-card">
-                        <h3 class="profile-stat-number">€120K</h3>
-                        <p class="profile-stat-label">Total Volume</p>
+                    <p class="pf-field-err" id="errNewPass"></p>
+                    <div class="pf-strength" id="pwStrength">
+                        <div class="pf-strength-bar"><span id="sb0"></span><span id="sb1"></span><span id="sb2"></span><span id="sb3"></span></div>
+                        <span class="pf-strength-label" id="pwStrengthLabel"></span>
                     </div>
                 </div>
 
-                <div class="profile-section-separator"></div>
-
-                <h2 id="Billing" class="profile-section-title">Billing</h2>
-
-                <div class="profile-billing-card">
-                    <div class="profile-billing-header">
-                        <h3>Current Plan</h3>
-                        <span class="profile-badge profile-badge-success">Premium</span>
+                <div class="pf-field">
+                    <label for="inpConfirmPass">Confirm new password</label>
+                    <div class="pf-input-wrap">
+                        <input type="password" id="inpConfirmPass" placeholder="Repeat new password" autocomplete="new-password">
+                        <button class="pf-eye" data-target="inpConfirmPass" type="button">
+                            <ion-icon name="eye-outline"></ion-icon>
+                        </button>
                     </div>
-                    <p>Billing cycle: Monthly</p>
-                    <p>Next invoice: 04/15/2025</p>
-                    <p>Amount: €99.00/month</p>
-
-                    <div class="profile-plan-features-container">
-                        <h4 class="profile-plan-features-title">Features included:</h4>
-                        <div class="profile-plan-feature">
-                            <span>✓</span>
-                            <span>Unlimited exports</span>
-                        </div>
-                        <div class="profile-plan-feature">
-                            <span>✓</span>
-                            <span>Access to all markets</span>
-                        </div>
-                        <div class="profile-plan-feature">
-                            <span>✓</span>
-                            <span>Priority support</span>
-                        </div>
-                        <div class="profile-plan-feature">
-                            <span>✓</span>
-                            <span>Advanced reports</span>
-                        </div>
-                    </div>
-
-                    <div class="profile-billing-card-actions">
-                        <button class="profile-btn profile-btn-primary">Change Plan</button>
-                        <button class="profile-btn profile-btn-danger">Cancel Subscription</button>
-                    </div>
+                    <p class="pf-field-err" id="errConfirmPass"></p>
                 </div>
 
-                <h3 class="profile-billing-method-title">Payment Method</h3>
-                <div class="profile-billing-card">
-                    <div class="profile-billing-method-details">
-                        <div>
-                            <p><strong>Visa</strong> ending in 4589</p>
-                            <p>Expires: 09/2026</p>
-                        </div>
-                        <button class="profile-btn profile-btn-primary">Edit</button>
-                    </div>
-                </div>
-
-                <h3 class="profile-invoice-history-title">Invoice History</h3>
-                <div class="profile-billing-card">
-                    <ul class="profile-invoice-list">
-                        <li class="profile-invoice-item">
-                            <div>
-                                <p><strong>Invoice #INV-2025-03</strong></p>
-                                <p>03/15/2025</p>
-                            </div>
-                            <div class="profile-invoice-item-details">
-                                <p>€99.00</p>
-                                <button class="profile-btn profile-btn-primary profile-btn-small">Download</button>
-                            </div>
-                        </li>
-                        <li class="profile-invoice-item">
-                            <div>
-                                <p><strong>Invoice #INV-2025-02</strong></p>
-                                <p>02/15/2025</p>
-                            </div>
-                            <div class="profile-invoice-item-details">
-                                <p>€99.00</p>
-                                <button class="profile-btn profile-btn-primary profile-btn-small">Download</button>
-                            </div>
-                        </li>
-                        <li class="profile-invoice-item">
-                            <div>
-                                <p><strong>Invoice #INV-2025-01</strong></p>
-                                <p>01/15/2025</p>
-                            </div>
-                            <div class="profile-invoice-item-details">
-                                <p>€99.00</p>
-                                <button class="profile-btn profile-btn-primary profile-btn-small">Download</button>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="profile-section-separator"></div>
-
-                <h2 id="Preferences" class="profile-section-title">Preferences</h2>
-
-                <h3 class="profile-language-title">Language and Region</h3>
-                <div class="profile-form-row">
-                    <div class="profile-form-group">
-                        <label class="profile-form-label" for="profile-language">Language</label>
-                        <select id="profile-language" class="profile-form-control">
-                            <option value="es">Español</option>
-                            <option value="en" selected>English</option>
-                            <option value="fr">Français</option>
-                            <option value="de">Deutsch</option>
-                        </select>
-                    </div>
-                    <div class="profile-form-group">
-                        <label class="profile-form-label" for="profile-timezone">Time Zone</label>
-                        <select id="profile-timezone" class="profile-form-control">
-                            <option value="europe-madrid">(GMT+1) Madrid</option>
-                            <option value="europe-london" selected>(GMT+0) London</option>
-                            <option value="america-new_york">(GMT-5) New York</option>
-                            <option value="america-los_angeles">(GMT-8) Los Angeles</option>
-                        </select>
-                    </div>
-                </div>
-
-                <h3 class="profile-format-title">Format</h3>
-                <div class="profile-form-row">
-                    <div class="profile-form-group">
-                        <label class="profile-form-label" for="profile-date-format">Date Format</label>
-                        <select id="profile-date-format" class="profile-form-control">
-                            <option value="dd-mm-yyyy">DD/MM/YYYY</option>
-                            <option value="mm-dd-yyyy" selected>MM/DD/YYYY</option>
-                            <option value="yyyy-mm-dd">YYYY/MM/DD</option>
-                        </select>
-                    </div>
-                    <div class="profile-form-group">
-                        <label class="profile-form-label" for="profile-currency">Default Currency</label>
-                        <select id="profile-currency" class="profile-form-control">
-                            <option value="eur" selected>Euro (€)</option>
-                            <option value="usd">US Dollar ($)</option>
-                            <option value="gbp">British Pound (£)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <h3 class="profile-view-title">View</h3>
-                <div class="profile-form-group">
-                    <label class="profile-form-label" for="profile-theme">Theme</label>
-                    <select id="profile-theme" class="profile-form-control">
-                        <option value="dark" selected>Dark</option>
-                        <option value="light">Light</option>
-                        <option value="system">System</option>
-                    </select>
-                </div>
-
-                <div class="profile-form-group">
-                    <button type="submit" class="profile-btn profile-btn-success">Save Preferences</button>
-                </div>
-
-                <div class="profile-section-separator"></div>
-
-                <h2 id="API-Connections" class="profile-section-title">API Connections</h2>
-
-                <h3 class="profile-api-key-title">API Key</h3>
-                <div class="profile-api-key">
-                    <span class="profile-api-key-value">eX4mP1e_4p1_k3Y_12345678abcdefghijklmnopqrstuvwxyz</span>
-                    <button class="profile-btn profile-btn-primary">Copy</button>
-                </div>
-                <div class="profile-api-key-actions">
-                    <button class="profile-btn profile-btn-primary">Regenerate Key</button>
-                    <button class="profile-btn profile-btn-danger">Revoke Access</button>
-                </div>
-
-                <h3 class="profile-api-endpoints-title">Available Endpoints</h3>
-                <div class="profile-api-endpoints">
-                    <div class="profile-api-endpoint">
-                        <h4>Get Exports</h4>
-                        <p class="profile-api-endpoint-url">GET /api/v1/exports</p>
-                        <p class="profile-api-endpoint-description">Retrieves all exports associated with your account.
-                        </p>
-                    </div>
-                    <div class="profile-api-endpoint">
-                        <h4>Create Export</h4>
-                        <p class="profile-api-endpoint-url">POST /api/v1/exports</p>
-                        <p class="profile-api-endpoint-description">Creates a new export with the provided data.</p>
-                    </div>
-                    <div class="profile-api-endpoint">
-                        <h4>Statistics</h4>
-                        <p class="profile-api-endpoint-url">GET /api/v1/stats</p>
-                        <p class="profile-api-endpoint-description">Gets detailed statistics of your exports.</p>
-                    </div>
-                </div>
-
-                <h3 class="profile-connected-apps-title">Connected Applications</h3>
-                <div class="profile-billing-card">
-                    <div class="profile-connected-app">
-                        <div>
-                            <h4>Enterprise ERP System</h4>
-                            <p class="profile-connected-app-date">Connected on 01/10/2025</p>
-                        </div>
-                        <button class="profile-btn profile-btn-danger">Disconnect</button>
-                    </div>
-                    <div class="profile-connected-app">
-                        <div>
-                            <h4>Logistics App</h4>
-                            <p class="profile-connected-app-date">Connected on 02/05/2025</p>
-                        </div>
-                        <button class="profile-btn profile-btn-danger">Disconnect</button>
-                    </div>
-                </div>
-
-                <div class="profile-form-group">
-                    <button class="profile-btn profile-btn-primary">Connect New Application</button>
-                </div>
+                <button class="pf-btn-save" id="btnSavePassword">Change Password</button>
             </div>
-        </main>
-    </div>
+
+        </div><!-- /tab-security -->
+
+    </div><!-- /pf-wrapper -->
+
+    <!-- Toast container -->
+    <div id="pfToasts"></div>
+
     <script type="module">
-        import { loadComponents } from '../Scripts/components.js';
+        import { loadComponents } from '../Scripts/Components.js';
         loadComponents();
     </script>
     <script type="module" src="../Scripts/Main.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="../Scripts/Session.js"></script>
+    <script src="../Scripts/Profile.js"></script>
 </body>
-
 </html>

@@ -108,10 +108,14 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
       }));
       window.location.href = "../Main/Dashboard.html";
     } else {
+      const errorBody = await response.text().catch(() => '');
+      const isDeactivated = errorBody.includes("ACCOUNT_DEACTIVATED");
       Swal.fire({
         icon: "error",
-        title: "¡Oops!",
-        text: "Username or password invalid",
+        title: isDeactivated ? "Account Deactivated" : "¡Oops!",
+        text:  isDeactivated
+          ? "Your account has been deactivated. Please contact an administrator."
+          : "Username or password invalid",
         background: "#1f2937",
         color: "#ffffff",
         customClass: {

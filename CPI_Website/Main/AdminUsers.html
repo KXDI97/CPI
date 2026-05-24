@@ -20,9 +20,10 @@
             text-transform: uppercase;
             letter-spacing: 0.04em;
         }
-        .role-admin   { background: rgba(99,102,241,0.2); color: #818cf8; }
-        .role-seller  { background: rgba(16,185,129,0.2); color: #34d399; }
-        .role-viewer  { background: rgba(156,163,175,0.2); color: #9ca3af; }
+        .role-admin        { background: rgba(99,102,241,0.2);  color: #818cf8; }
+        .role-seller       { background: rgba(16,185,129,0.2);  color: #34d399; }
+        .role-viewer       { background: rgba(156,163,175,0.2); color: #9ca3af; }
+        .role-deactivated  { background: rgba(239,68,68,0.15); color: #f87171; }
         .modal-error  { color: #f87171; font-size: 14px; margin-top: 8px; display: none; }
         select {
             font-family: 'Poppins', sans-serif;
@@ -49,6 +50,150 @@
         .delete-btn-red:hover {
             background-color: #991b1b !important;
         }
+
+        /* ── Edit Role Modal ─────────────────────── */
+        .edit-role-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 420px;
+            background: #1a2234;
+            border: 1px solid rgba(144,105,249,0.22);
+            border-radius: 18px;
+            box-shadow: 0 28px 64px rgba(0,0,0,0.65), 0 0 0 1px rgba(144,105,249,0.08);
+            z-index: 999;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+        .edit-role-modal:not(.hidden) {
+            animation: erm-appear 0.26s cubic-bezier(.34,1.56,.64,1) forwards;
+        }
+        @keyframes erm-appear {
+            from { opacity:0; transform: translate(-50%,-50%) scale(0.88); }
+            to   { opacity:1; transform: translate(-50%,-50%) scale(1);    }
+        }
+        .erm-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 28px 18px;
+            background: linear-gradient(160deg,rgba(122,90,248,0.14) 0%,transparent 70%);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+        }
+        .erm-icon-wrap {
+            width: 58px;
+            height: 58px;
+            border-radius: 15px;
+            background: linear-gradient(135deg,#7A5AF8,#9069F9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            box-shadow: 0 8px 26px rgba(122,90,248,0.42);
+            font-size: 27px;
+            color: #fff;
+        }
+        .erm-header h2 {
+            margin: 0 0 4px;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .erm-subtitle {
+            margin: 0;
+            color: #9069F9;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .erm-body { padding: 22px 28px 14px; }
+        .erm-label {
+            color: rgba(255,255,255,0.42);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            margin: 0 0 12px;
+        }
+        .erm-role-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .erm-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 14px;
+            background: #121826;
+            border: 1.5px solid rgba(255,255,255,0.07);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: border-color 0.17s, background 0.17s, box-shadow 0.17s;
+            user-select: none;
+        }
+        .erm-card:hover {
+            background: rgba(144,105,249,0.07);
+            border-color: rgba(144,105,249,0.38);
+        }
+        .erm-card.selected {
+            background: rgba(144,105,249,0.13);
+            border-color: #9069F9;
+            box-shadow: 0 0 0 3px rgba(144,105,249,0.18);
+        }
+        .erm-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .erm-card-title {
+            display: block;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        .erm-card-desc {
+            display: block;
+            color: rgba(255,255,255,0.38);
+            font-size: 11px;
+        }
+        .erm-footer {
+            display: flex;
+            gap: 10px;
+            padding: 8px 28px 26px;
+        }
+        .erm-btn-save {
+            flex: 1;
+            padding: 12px 0;
+            background: linear-gradient(135deg,#7A5AF8,#9069F9);
+            color: #fff;
+            border: none;
+            border-radius: 9px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.17s, transform 0.15s;
+            box-shadow: 0 4px 18px rgba(122,90,248,0.38);
+        }
+        .erm-btn-save:hover   { opacity:.88; transform:translateY(-1px); }
+        .erm-btn-save:active  { transform:translateY(0);  opacity:1; }
+        .erm-btn-save:disabled { opacity:.45; cursor:not-allowed; transform:none; }
+        .erm-btn-cancel {
+            flex: 1;
+            padding: 12px 0;
+            background: transparent;
+            color: rgba(255,255,255,0.6);
+            border: 1.5px solid rgba(255,255,255,0.11);
+            border-radius: 9px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: border-color 0.17s, color 0.17s;
+        }
+        .erm-btn-cancel:hover { border-color:rgba(255,255,255,0.28); color:#fff; }
     </style>
     <script src="../Scripts/ui-helpers.js"></script>
     <script>checkAdminAccess();</script>
@@ -130,29 +275,51 @@
 
     <!-- Edit Role Modal -->
     <div id="editRoleBackdrop" class="backdrop hidden"></div>
-    <div id="editRoleModal" class="modal-add-stock hidden">
-        <div class="modal-content">
+    <div id="editRoleModal" class="edit-role-modal hidden">
+        <div class="erm-header">
+            <div class="erm-icon-wrap">
+                <ion-icon name="shield-checkmark-outline"></ion-icon>
+            </div>
             <h2>Edit Role</h2>
-            <h3>Change user role</h3>
-            <div class="form-group">
-                <div class="input-container">
-                    <label>Username</label>
-                    <input type="text" id="editUsername" disabled style="opacity:0.5; cursor:not-allowed;">
+            <p class="erm-subtitle" id="editRoleSubtitle"></p>
+        </div>
+        <div class="erm-body">
+            <p class="erm-label">Select a role</p>
+            <div class="erm-role-cards" id="editRoleCards">
+                <div class="erm-card" data-role="Admin">
+                    <span class="erm-dot" style="background:#34d399;"></span>
+                    <div>
+                        <span class="erm-card-title">Admin</span>
+                        <span class="erm-card-desc">Full access</span>
+                    </div>
                 </div>
-                <div class="input-container">
-                    <label>New Role *</label>
-                    <select id="editRole">
-                        <option value="Viewer">Viewer</option>
-                        <option value="Seller">Seller</option>
-                        <option value="Admin">Admin</option>
-                    </select>
+                <div class="erm-card" data-role="Seller">
+                    <span class="erm-dot" style="background:#60a5fa;"></span>
+                    <div>
+                        <span class="erm-card-title">Seller</span>
+                        <span class="erm-card-desc">Sales &amp; clients</span>
+                    </div>
+                </div>
+                <div class="erm-card" data-role="Viewer">
+                    <span class="erm-dot" style="background:#9ca3af;"></span>
+                    <div>
+                        <span class="erm-card-title">Viewer</span>
+                        <span class="erm-card-desc">Read only</span>
+                    </div>
+                </div>
+                <div class="erm-card" data-role="Deactivated">
+                    <span class="erm-dot" style="background:#f87171;"></span>
+                    <div>
+                        <span class="erm-card-title">Deactivated</span>
+                        <span class="erm-card-desc">No access</span>
+                    </div>
                 </div>
             </div>
-            <p id="editRoleError" class="modal-error"></p>
+            <p id="editRoleError" class="modal-error" style="margin-top:10px;"></p>
         </div>
-        <div class="button-group">
-            <button class="btn-1" id="confirmEditRole">Save</button>
-            <button class="btn-2" id="cancelEditRole">Cancel</button>
+        <div class="erm-footer">
+            <button class="erm-btn-save" id="confirmEditRole">Save Changes</button>
+            <button class="erm-btn-cancel" id="cancelEditRole">Cancel</button>
         </div>
     </div>
 
