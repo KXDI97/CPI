@@ -164,6 +164,10 @@
       document.getElementById(id).value = '';
     });
     document.getElementById('newRole').value = 'Viewer';
+    // Clear input error states
+    ['newUsername', 'newEmail', 'newPassword'].forEach(id => {
+      document.getElementById(id)?.classList.remove('error');
+    });
     hideErr('addUserError');
     show('addUserBackdrop');
     show('addUserModal');
@@ -178,17 +182,24 @@
     const username = document.getElementById('newUsername').value.trim();
     const email    = document.getElementById('newEmail').value.trim();
     const password = document.getElementById('newPassword').value;
-    const role     = document.getElementById('newRole').value;
+    const role = document.getElementById('newRole').value;
+
+    // Highlight empty fields
+    document.getElementById('newUsername')?.classList.toggle('error', !username);
+    document.getElementById('newEmail')   ?.classList.toggle('error', !email);
+    document.getElementById('newPassword')?.classList.toggle('error', !password);
 
     if (!username || !email || !password) {
       showErr('addUserError', 'All fields are required.');
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      document.getElementById('newEmail')?.classList.add('error');
       showErr('addUserError', 'Enter a valid email address.');
       return;
     }
     if (password.length < 6) {
+      document.getElementById('newPassword')?.classList.add('error');
       showErr('addUserError', 'Password must be at least 6 characters.');
       return;
     }
@@ -266,8 +277,9 @@
   // ── Delete Modal ──────────────────────────────────────────────────────────
   function openDeleteModal(id, username) {
     currentDeleteId = id;
+    document.getElementById('deleteUsername').textContent = username;
     document.getElementById('deleteMsg').textContent =
-      `Are you sure you want to delete "${username}"? This action cannot be undone.`;
+      'This action is permanent and cannot be undone.';
     show('deleteBackdrop');
     show('deleteModal');
   }
@@ -328,6 +340,7 @@
       card.classList.add('selected');
       hideErr('editRoleError');
     });
+
 
     document.getElementById('confirmDelete') ?.addEventListener('click', handleDelete);
     document.getElementById('cancelDelete')  ?.addEventListener('click', closeDeleteModal);

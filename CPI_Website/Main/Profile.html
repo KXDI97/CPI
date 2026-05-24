@@ -18,136 +18,155 @@
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
 
     <div class="pf-wrapper">
+        <div class="pf-page">
 
-        <!-- ── Hero ──────────────────────────────────────────────────────── -->
-        <div class="pf-hero">
-            <div class="pf-avatar" id="pfAvatar">?</div>
-            <div class="pf-hero-info">
-                <h1 class="pf-hero-name" id="pfName">Loading…</h1>
-                <span class="pf-role-badge" id="pfRoleBadge"></span>
-                <p class="pf-hero-email" id="pfEmailDisplay"></p>
-            </div>
-        </div>
+            <!-- ── Left: Profile card ─────────────────────────── -->
+            <aside class="pf-profile-card">
 
-        <!-- ── Tabs ──────────────────────────────────────────────────────── -->
-        <div class="pf-tabs-bar">
-            <button class="pf-tab active" data-tab="account">
-                <ion-icon name="person-outline"></ion-icon> Account
-            </button>
-            <button class="pf-tab" data-tab="security">
-                <ion-icon name="lock-closed-outline"></ion-icon> Security
-            </button>
-        </div>
-
-        <!-- ── Panel: Account ────────────────────────────────────────────── -->
-        <div class="pf-panel" id="tab-account">
-
-            <!-- Username -->
-            <div class="pf-card">
-                <div class="pf-card-header">
-                    <div class="pf-card-icon">
-                        <ion-icon name="at-outline"></ion-icon>
-                    </div>
-                    <div>
-                        <h2>Username</h2>
-                        <p class="pf-card-sub">Your public display name</p>
+                <!-- Banner gradient -->
+                <div class="pf-banner">
+                    <div class="pf-avatar-wrap">
+                        <div class="pf-avatar" id="pfAvatar">?</div>
                     </div>
                 </div>
-                <div class="pf-field">
-                    <label for="inpUsername">New username</label>
-                    <input type="text" id="inpUsername" placeholder="Enter username" autocomplete="off">
-                    <p class="pf-field-err" id="errUsername"></p>
-                </div>
-                <button class="pf-btn-save" id="btnSaveUsername">Save Username</button>
-            </div>
 
-            <!-- Email -->
-            <div class="pf-card">
-                <div class="pf-card-header">
-                    <div class="pf-card-icon">
-                        <ion-icon name="mail-outline"></ion-icon>
+                <!-- Body -->
+                <div class="pf-profile-body">
+                    <h2 class="pf-profile-name" id="pfName">Loading…</h2>
+                    <span class="pf-role-badge" id="pfRoleBadge"></span>
+                    <p class="pf-profile-email" id="pfEmailDisplay"></p>
+
+                    <div class="pf-profile-divider"></div>
+
+                    <div class="pf-meta-row">
+                        <ion-icon name="calendar-outline"></ion-icon>
+                        <span>Member since <strong id="pfSince">—</strong></span>
                     </div>
-                    <div>
-                        <h2>Email Address</h2>
-                        <p class="pf-card-sub">For login and notifications</p>
-                    </div>
-                </div>
-                <div class="pf-field">
-                    <label for="inpEmail">New email</label>
-                    <input type="email" id="inpEmail" placeholder="Enter email" autocomplete="off">
-                    <p class="pf-field-err" id="errEmail"></p>
-                </div>
-                <div class="pf-field">
-                    <label for="inpEmailPass">Confirm with current password</label>
-                    <div class="pf-input-wrap">
-                        <input type="password" id="inpEmailPass" placeholder="Enter current password" autocomplete="current-password">
-                        <button class="pf-eye" data-target="inpEmailPass" type="button">
-                            <ion-icon name="eye-outline"></ion-icon>
-                        </button>
-                    </div>
-                    <p class="pf-field-err" id="errEmailPass"></p>
-                </div>
-                <button class="pf-btn-save" id="btnSaveEmail">Update Email</button>
-            </div>
-
-        </div><!-- /tab-account -->
-
-        <!-- ── Panel: Security ───────────────────────────────────────────── -->
-        <div class="pf-panel hidden" id="tab-security">
-
-            <div class="pf-card">
-                <div class="pf-card-header">
-                    <div class="pf-card-icon">
+                    <div class="pf-meta-row">
                         <ion-icon name="shield-checkmark-outline"></ion-icon>
-                    </div>
-                    <div>
-                        <h2>Change Password</h2>
-                        <p class="pf-card-sub">Use a strong password you don't reuse</p>
+                        <span>Role: <strong id="pfRoleMeta">—</strong></span>
                     </div>
                 </div>
 
-                <div class="pf-field">
-                    <label for="inpCurrentPass">Current password</label>
-                    <div class="pf-input-wrap">
-                        <input type="password" id="inpCurrentPass" placeholder="Enter current password" autocomplete="current-password">
-                        <button class="pf-eye" data-target="inpCurrentPass" type="button">
-                            <ion-icon name="eye-outline"></ion-icon>
-                        </button>
-                    </div>
-                    <p class="pf-field-err" id="errCurrentPass"></p>
+            </aside>
+
+            <!-- ── Right: tabs + forms ────────────────────────── -->
+            <div class="pf-right">
+
+                <!-- Tabs bar -->
+                <div class="pf-tabs-bar">
+                    <button class="pf-tab active" data-tab="account">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <span>Account</span>
+                    </button>
+                    <button class="pf-tab" data-tab="security">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <span>Security</span>
+                    </button>
                 </div>
 
-                <div class="pf-field">
-                    <label for="inpNewPass">New password</label>
-                    <div class="pf-input-wrap">
-                        <input type="password" id="inpNewPass" placeholder="Minimum 8 characters" autocomplete="new-password">
-                        <button class="pf-eye" data-target="inpNewPass" type="button">
-                            <ion-icon name="eye-outline"></ion-icon>
-                        </button>
+                <!-- ── Panel: Account ───────────────────────── -->
+                <div class="pf-panel" id="tab-account">
+
+                    <!-- Username section -->
+                    <div class="pf-section">
+                        <h3 class="pf-section-title">Username</h3>
+                        <p class="pf-section-desc">Your public display name in the system</p>
+                        <div class="pf-field">
+                            <label for="inpUsername">New username</label>
+                            <input type="text" id="inpUsername" placeholder="Enter username" autocomplete="off">
+                            <p class="pf-field-err" id="errUsername"></p>
+                        </div>
+                        <div class="pf-form-footer">
+                            <button class="pf-btn-save" id="btnSaveUsername">Save Changes</button>
+                        </div>
                     </div>
-                    <p class="pf-field-err" id="errNewPass"></p>
-                    <div class="pf-strength" id="pwStrength">
-                        <div class="pf-strength-bar"><span id="sb0"></span><span id="sb1"></span><span id="sb2"></span><span id="sb3"></span></div>
-                        <span class="pf-strength-label" id="pwStrengthLabel"></span>
+
+                    <div class="pf-section-sep"></div>
+
+                    <!-- Email section -->
+                    <div class="pf-section">
+                        <h3 class="pf-section-title">Email Address</h3>
+                        <p class="pf-section-desc">Used for login — requires current password to change</p>
+                        <div class="pf-field">
+                            <label for="inpEmail">New email</label>
+                            <input type="email" id="inpEmail" placeholder="Enter new email" autocomplete="off">
+                            <p class="pf-field-err" id="errEmail"></p>
+                        </div>
+                        <div class="pf-field">
+                            <label for="inpEmailPass">Current password to confirm</label>
+                            <div class="pf-inp-wrap">
+                                <input type="password" id="inpEmailPass" placeholder="Enter current password" autocomplete="current-password">
+                                <button class="pf-eye" data-target="inpEmailPass" type="button">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </button>
+                            </div>
+                            <p class="pf-field-err" id="errEmailPass"></p>
+                        </div>
+                        <div class="pf-form-footer">
+                            <button class="pf-btn-save" id="btnSaveEmail">Save Changes</button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="pf-field">
-                    <label for="inpConfirmPass">Confirm new password</label>
-                    <div class="pf-input-wrap">
-                        <input type="password" id="inpConfirmPass" placeholder="Repeat new password" autocomplete="new-password">
-                        <button class="pf-eye" data-target="inpConfirmPass" type="button">
-                            <ion-icon name="eye-outline"></ion-icon>
-                        </button>
+                </div><!-- /tab-account -->
+
+                <!-- ── Panel: Security ──────────────────────── -->
+                <div class="pf-panel hidden" id="tab-security">
+
+                    <div class="pf-section">
+                        <h3 class="pf-section-title">Change Password</h3>
+                        <p class="pf-section-desc">Use a strong, unique password you don't reuse elsewhere</p>
+
+                        <div class="pf-field">
+                            <label for="inpCurrentPass">Current password</label>
+                            <div class="pf-inp-wrap">
+                                <input type="password" id="inpCurrentPass" placeholder="Enter current password" autocomplete="current-password">
+                                <button class="pf-eye" data-target="inpCurrentPass" type="button">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </button>
+                            </div>
+                            <p class="pf-field-err" id="errCurrentPass"></p>
+                        </div>
+
+                        <div class="pf-field">
+                            <label for="inpNewPass">New password</label>
+                            <div class="pf-inp-wrap">
+                                <input type="password" id="inpNewPass" placeholder="Minimum 8 characters" autocomplete="new-password">
+                                <button class="pf-eye" data-target="inpNewPass" type="button">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </button>
+                            </div>
+                            <p class="pf-field-err" id="errNewPass"></p>
+                            <div class="pf-strength" id="pwStrength">
+                                <div class="pf-strength-bar">
+                                    <span id="sb0"></span><span id="sb1"></span>
+                                    <span id="sb2"></span><span id="sb3"></span>
+                                </div>
+                                <span class="pf-strength-label" id="pwStrengthLabel"></span>
+                            </div>
+                        </div>
+
+                        <div class="pf-field">
+                            <label for="inpConfirmPass">Confirm new password</label>
+                            <div class="pf-inp-wrap">
+                                <input type="password" id="inpConfirmPass" placeholder="Repeat new password" autocomplete="new-password">
+                                <button class="pf-eye" data-target="inpConfirmPass" type="button">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </button>
+                            </div>
+                            <p class="pf-field-err" id="errConfirmPass"></p>
+                        </div>
+
+                        <div class="pf-form-footer">
+                            <button class="pf-btn-save" id="btnSavePassword">Save Changes</button>
+                        </div>
                     </div>
-                    <p class="pf-field-err" id="errConfirmPass"></p>
-                </div>
 
-                <button class="pf-btn-save" id="btnSavePassword">Change Password</button>
-            </div>
+                </div><!-- /tab-security -->
 
-        </div><!-- /tab-security -->
+            </div><!-- /pf-right -->
 
+        </div><!-- /pf-page -->
     </div><!-- /pf-wrapper -->
 
     <!-- Toast container -->

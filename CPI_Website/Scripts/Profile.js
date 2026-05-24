@@ -86,6 +86,24 @@
       document.getElementById('inpUsername').value = username;
       document.getElementById('inpEmail').value    = email;
 
+      // Populate sidebar meta
+      const roleMeta = document.getElementById('pfRoleMeta');
+      if (roleMeta) roleMeta.textContent = role;
+
+      // Fetch full user for createdAt
+      if (userId) {
+        const r2 = await fetch(`${API}/api/users/${userId}`, { headers: authHeaders() });
+        if (r2.ok) {
+          const full    = await r2.json();
+          const created = full.createdAt ?? full.CreatedAt;
+          if (created) {
+            const d = new Date(created);
+            const since = document.getElementById('pfSince');
+            if (since) since.textContent = d.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+          }
+        }
+      }
+
     } catch {
       toast('Could not load profile data.', 'error');
     }
