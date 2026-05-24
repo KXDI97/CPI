@@ -64,7 +64,7 @@ export function loadComponents() {
                 const userStr = localStorage.getItem('user');
                 if (userStr && userStr !== 'undefined') {
                     const u = JSON.parse(userStr);
-                    if (u.role === 'Admin') {
+                    if ((u.role || getTokenRole()) === 'Admin') {
                         const adminBtn = document.getElementById('admin-users-btn');
                         if (adminBtn) adminBtn.style.display = '';
                     }
@@ -127,7 +127,7 @@ function setUserHeaderInfo() {
 
     try {
         const user = JSON.parse(userString);
-        const role = user.role || 'Viewer';
+        const role = user.role || getTokenRole() || 'Viewer';
         const initials = getInitials(user.username);
 
         const headerName   = document.getElementById("header-username");

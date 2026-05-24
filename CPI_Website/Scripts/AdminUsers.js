@@ -11,11 +11,14 @@
 
   // ── Admin guard ───────────────────────────────────────────────────────────
   (function guardAdmin() {
-    const str = localStorage.getItem('user');
-    if (!str || str === 'undefined') { location.replace('Dashboard.html'); return; }
     try {
-      const u = JSON.parse(str);
-      if (u.role !== 'Admin') location.replace('Dashboard.html');
+      // Prefer JWT claim (authoritative) over the cached localStorage value
+      const role = (window.getTokenRole?.()) || (() => {
+        const str = localStorage.getItem('user');
+        const u   = (str && str !== 'undefined') ? JSON.parse(str) : {};
+        return u.role || null;
+      })();
+      if (role !== 'Admin') location.replace('Dashboard.html');
     } catch { location.replace('Dashboard.html'); }
   })();
 

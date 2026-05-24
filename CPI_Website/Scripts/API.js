@@ -99,9 +99,13 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
     if (response.ok) {
       const result = await response.json();
-      localStorage.setItem("token", result.token);
-      localStorage.setItem("refreshToken", result.refreshToken);
-      localStorage.setItem("user", JSON.stringify({ username: result.username, email: result.email, role: result.role }));
+      localStorage.setItem("token", result.token || result.Token);
+      localStorage.setItem("refreshToken", result.refreshToken || result.RefreshToken);
+      localStorage.setItem("user", JSON.stringify({
+        username: result.username || result.Username,
+        email:    result.email    || result.Email,
+        role:     result.role     || result.Role
+      }));
       window.location.href = "../Main/Dashboard.html";
     } else {
       Swal.fire({

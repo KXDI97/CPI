@@ -256,136 +256,106 @@ canvas {
     border-radius: 100%;
 }
 
+/* ── Payments list ────────────────────────────────────────────────────────── */
 .payments-list {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    max-height: 265px;
+    margin-top: 8px;
+    padding-right: 2px;
 }
 
+.payments-list::-webkit-scrollbar { width: 4px; }
+.payments-list::-webkit-scrollbar-track { background: transparent; }
+.payments-list::-webkit-scrollbar-thumb {
+    background: rgba(144,105,249,0.3);
+    border-radius: 4px;
+}
+
+/* Fila: contenedor flex sin fondo propio */
 .payment-row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
-    flex-wrap: nowrap;
-    /* <-- Que no se rompa la línea */
+    justify-content: space-between;
     gap: 10px;
+    cursor: default;
 }
 
+/* Efecto hover: ilumina los dos elementos hijos */
+.payment-row:hover .pay-info,
+.payment-row:hover .pay-amount {
+    filter: brightness(1.18);
+}
 
-.payment-container-first,
-.payment-container-second,
-.payment-container-third,
-.payment-container-fourth,
-.payment-container-fifth {
+/* ── Fade escalonado via nth-child (replica la jerarquía visual original) ─ */
+.payments-list .payment-row:nth-child(1) .pay-info  { background-color: #495869;   color: #ffffff;   }
+.payments-list .payment-row:nth-child(2) .pay-info  { background-color: #495869af; color: #ffffffaf; }
+.payments-list .payment-row:nth-child(3) .pay-info  { background-color: #49586983; color: #ffffff83; }
+.payments-list .payment-row:nth-child(4) .pay-info  { background-color: #4958695e; color: #ffffff5e; }
+.payments-list .payment-row:nth-child(5) .pay-info  { background-color: #49586931; color: #ffffff31; }
+
+.payments-list .payment-row:nth-child(1) .pay-amount { background-color: #495869; }
+.payments-list .payment-row:nth-child(2) .pay-amount { background-color: #495869af; }
+.payments-list .payment-row:nth-child(3) .pay-amount { background-color: #49586983; }
+.payments-list .payment-row:nth-child(4) .pay-amount { background-color: #4958695e; }
+.payments-list .payment-row:nth-child(5) .pay-amount { background-color: #49586931; }
+
+/* ── Contenedor fecha + nombre ─────────────────────────────────────────────── */
+.pay-info {
     flex: 1 1 60%;
     padding: 14px;
     border-radius: 10px;
-    background-color: #374151;
-    color: #ffffff;
     display: flex;
     align-items: center;
-    min-width: 160px;
+    gap: 10px;
+    min-width: 0;
+    transition: filter 0.2s;
 }
 
-.amount-first,
-.amount-second,
-.amount-third,
-.amount-fourth,
-.amount-fifth {
+.pay-date {
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.pay-name {
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ── Badge de monto ────────────────────────────────────────────────────────── */
+.pay-amount {
     padding: 8px 16px;
     border-radius: 8px;
     font-weight: bold;
     font-size: 14px;
-    background-color: #374151;
-    color: #f87171;
     min-width: 100px;
     text-align: center;
     white-space: nowrap;
     flex-shrink: 0;
     height: 30px;
-    
-}
-
-
-
-
-.payment-container-first {
-    background-color: #495869;
-    color: #ffffff;
-}
-
-.payment-container-second {
-    background-color: #495869af;
-    color: #ffffffaf;
-
-}
-
-.payment-container-third {
-    background-color: #49586983;
-    color: #ffffff83;
-
-}
-
-.payment-container-fourth {
-    background-color: #4958695e;
-    color: #ffffff5e;
-}
-
-.payment-container-fifth {
-    background-color: #49586931;
-    color: #ffffff31;
-}
-
-.amount-first {
-    background-color: #495869;
-    color: #ffadad;
-}
-
-.amount-second {
-    background-color: #495869af;
-    color: #ffadadaf;
-
-}
-
-.amount-third {
-    background-color: #49586983;
-    color: #ffadad83;
-
-}
-
-.amount-fourth {
-    background-color: #4958695e;
-    color: #ffadad5e;
-}
-
-.amount-fifth {
-    background-color: #49586931;
-    color: #ffadad31;
-
-}
-
-
-.payment-item {
-    flex: 1;
-    /* Que tome el espacio disponible */
     display: flex;
     align-items: center;
-    gap: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    justify-content: center;
+    transition: filter 0.2s;
 }
 
+/* Colores del monto con opacidad escalonada */
+.pay-amount.negative { color: #ffadad; }
+.pay-amount.positive { color: #34d399; }
 
-.date {
-    font-size: 14px;
-    text-align: left;
-}
+.payments-list .payment-row:nth-child(2) .pay-amount.negative { color: #ffadadaf; }
+.payments-list .payment-row:nth-child(3) .pay-amount.negative { color: #ffadad83; }
+.payments-list .payment-row:nth-child(4) .pay-amount.negative { color: #ffadad5e; }
+.payments-list .payment-row:nth-child(5) .pay-amount.negative { color: #ffadad31; }
 
-.name {
-    font-size: 14px;
-    margin-left: 15px;
-}
+.payments-list .payment-row:nth-child(2) .pay-amount.positive { color: #34d399af; }
+.payments-list .payment-row:nth-child(3) .pay-amount.positive { color: #34d39983; }
+.payments-list .payment-row:nth-child(4) .pay-amount.positive { color: #34d3995e; }
+.payments-list .payment-row:nth-child(5) .pay-amount.positive { color: #34d39931; }
 
 .table-container {
     width: 100%;
@@ -545,7 +515,7 @@ tbody tr:nth-child(odd) {
 }
 
 
-/* ── Tablet: 768px – 1023px ─────────────────────────────────────────────── */
+/* ── Tablet: 768px – 1023px  (2 cards por fila) ─────────────────────────── */
 @media (min-width: 768px) and (max-width: 1023px) {
     .content-Dashboard {
         margin-left: 200px;
@@ -557,12 +527,9 @@ tbody tr:nth-child(odd) {
 
     .filter-box {
         position: relative;
-        top: auto;
-        right: auto;
-        margin-top: 0;
-        margin-right: 0;
-        width: 100%;
-        height: auto;
+        top: auto; right: auto;
+        margin-top: 0; margin-right: 0;
+        width: 100%; height: auto;
         margin-bottom: 16px;
     }
 
@@ -571,30 +538,10 @@ tbody tr:nth-child(odd) {
         flex: 1 1 calc(50% - 10px);
         min-width: 0;
     }
-
-    .payment-row {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-    }
-
-    .amount-first,
-    .amount-second,
-    .amount-third,
-    .amount-fourth,
-    .amount-fifth {
-        align-self: flex-start;
-        margin-top: 5px;
-    }
 }
 
-/* ── Móvil: < 768px ─────────────────────────────────────────────────────── */
+/* ── Móvil: ≤ 767px  (1 card por fila) ─────────────────────────────────── */
 @media (max-width: 767px) {
-    #sidebar-container {
-        position: absolute;
-        left: -220px;
-        transition: left 0.3s;
-    }
-
     .content-Dashboard {
         margin-left: 0;
         width: 100%;
@@ -614,12 +561,9 @@ tbody tr:nth-child(odd) {
 
     .filter-box {
         position: relative;
-        top: auto;
-        right: auto;
-        margin-top: 0;
-        margin-right: 0;
-        width: 100%;
-        height: auto;
+        top: auto; right: auto;
+        margin-top: 0; margin-right: 0;
+        width: 100%; height: auto;
         padding: 8px;
         box-sizing: border-box;
         margin-bottom: 12px;
@@ -645,18 +589,24 @@ tbody tr:nth-child(odd) {
         max-height: 220px;
     }
 
-    .payment-row {
+    /* Payments móvil: fecha+nombre apilados, monto a la derecha */
+    .pay-info {
         flex-direction: column;
         align-items: flex-start;
+        gap: 1px;
     }
 
-    .amount-first,
-    .amount-second,
-    .amount-third,
-    .amount-fourth,
-    .amount-fifth {
-        align-self: flex-end;
-        margin-top: 6px;
+    .pay-date {
+        min-width: auto;
+        font-size: 10px;
+    }
+
+    .pay-name {
+        font-size: 13px;
+    }
+
+    .payments-list {
+        max-height: 200px;
     }
 
     .chart-box-down {
