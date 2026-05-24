@@ -1,6 +1,6 @@
 export function loadComponents() {
     // Cargar Header
-    fetch('header.html')
+    fetch('Header.html')
         .then(response => response.text())
         .then(html => {
             document.getElementById('header-container').innerHTML = html;
@@ -10,7 +10,7 @@ export function loadComponents() {
             }, 0);
 
             const popupScript = document.createElement('script');
-            popupScript.src = '../scripts/Popup.js';
+            popupScript.src = '../Scripts/Popup.js';
             document.body.appendChild(popupScript);
         })
         .catch(error => console.error('Error cargando Header:', error));
@@ -64,7 +64,7 @@ export function loadComponents() {
                 const userStr = localStorage.getItem('user');
                 if (userStr && userStr !== 'undefined') {
                     const u = JSON.parse(userStr);
-                    if (u.role === 'Admin') {
+                    if ((u.role || getTokenRole()) === 'Admin') {
                         const adminBtn = document.getElementById('admin-users-btn');
                         if (adminBtn) adminBtn.style.display = '';
                     }
@@ -127,7 +127,7 @@ function setUserHeaderInfo() {
 
     try {
         const user = JSON.parse(userString);
-        const role = user.role || 'Viewer';
+        const role = user.role || getTokenRole() || 'Viewer';
         const initials = getInitials(user.username);
 
         const headerName   = document.getElementById("header-username");

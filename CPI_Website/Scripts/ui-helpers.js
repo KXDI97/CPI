@@ -27,13 +27,31 @@
   }
 
   // ── JWT helpers ──────────────────────────────────────────────────────────────
-  function isTokenExpired(token) {
+  // .NET serializes ClaimTypes.Role with this full URI in the JWT payload
+  const ROLE_CLAIM = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role';
+
+  function parsePayload(token) {
     try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      return payload.exp * 1000 < Date.now();
-    } catch {
-      return true;
-    }
+      const b64 = (token.split('.')[1] ?? '').replace(/-/g, '+').replace(/_/g, '/');
+      return JSON.parse(atob(b64));
+    } catch { return null; }
+  }
+
+  function isTokenExpired(token) {
+    const p = parsePayload(token);
+    return !p || p.exp * 1000 < Date.now();
+  }
+
+  function getTokenPayload() {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+    return parsePayload(token);
+  }
+
+  function getTokenRole() {
+    const payload = getTokenPayload();
+    if (!payload) return null;
+    return payload[ROLE_CLAIM] || payload.role || null;
   }
 
   // ── Estilos del modal ────────────────────────────────────────────────────────
@@ -104,8 +122,16 @@
       });
       if (res.ok) {
         const d = await res.json();
-        localStorage.setItem('token', d.token);
-        localStorage.setItem('refreshToken', d.refreshToken);
+        localStorage.setItem('token', d.token || d.Token);
+        localStorage.setItem('refreshToken', d.refreshToken || d.RefreshToken);
+        // Mantiene user sincronizado con el rol actualizado
+        try {
+          const stored = JSON.parse(localStorage.getItem('user') || '{}');
+          stored.username = d.username || d.Username || stored.username;
+          stored.email    = d.email    || d.Email    || stored.email;
+          stored.role     = d.role     || d.Role     || stored.role;
+          localStorage.setItem('user', JSON.stringify(stored));
+        } catch { /* best-effort */ }
         return true;
       }
       return false;
@@ -214,26 +240,26 @@
   // ── checkAuth — guard síncrono, llamar como primer script en páginas protegidas
   function checkAuth() {
     const token = localStorage.getItem('token');
+    if (!token) { location.replace(LOGIN_URL); return; }
 
-    if (!token) {
-      location.replace(LOGIN_URL);
-      return;
-    }
-
-    try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      const isExpired = (payload.exp * 1000) < Date.now();
-      if (isExpired) {
-        localStorage.removeItem('token');
-        location.replace(LOGIN_URL);
-      }
-    } catch (e) {
+    const payload = parsePayload(token);
+    if (!payload || (payload.exp * 1000) < Date.now()) {
       localStorage.removeItem('token');
       location.replace(LOGIN_URL);
     }
   }
 
+  // ── checkAdminAccess — guard síncrono para páginas exclusivas de Admin
+  function checkAdminAccess() {
+    checkAuth();                          // primero verifica token válido
+    const role = getTokenRole();
+    if (role !== 'Admin') location.replace('Dashboard.html');
+  }
+
   // ── API pública ──────────────────────────────────────────────────────────────
-  window.checkAuth = checkAuth;
-  window.CPI = { initPasswordToggles, initSession, sessionLogout, checkAuth };
+  window.checkAuth        = checkAuth;
+  window.checkAdminAccess = checkAdminAccess;
+  window.getTokenRole     = getTokenRole;
+  window.getTokenPayload  = getTokenPayload;
+  window.CPI = { initPasswordToggles, initSession, silentRefresh, sessionLogout, checkAuth, checkAdminAccess, getTokenRole, getTokenPayload };
 })();

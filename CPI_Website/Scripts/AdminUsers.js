@@ -9,16 +9,6 @@
   let currentDeleteId   = null;
   let currentPage       = 1;
 
-  // ── Admin guard ───────────────────────────────────────────────────────────
-  (function guardAdmin() {
-    const str = localStorage.getItem('user');
-    if (!str || str === 'undefined') { location.replace('Dashboard.html'); return; }
-    try {
-      const u = JSON.parse(str);
-      if (u.role !== 'Admin') location.replace('Dashboard.html');
-    } catch { location.replace('Dashboard.html'); }
-  })();
-
   // ── Helpers ───────────────────────────────────────────────────────────────
   function authHeaders() {
     return {
@@ -52,20 +42,45 @@
   }
 
   // ── Fetch & render ────────────────────────────────────────────────────────
+  function showTableError(msg) {
+    document.getElementById('adminUsersTableBody').innerHTML =
+      `<tr><td colspan="5" style="text-align:center;color:#f87171;padding:20px;">${msg}</td></tr>`;
+  }
+
   async function fetchUsers() {
     try {
-      const res = await fetch(`${API_URL}/api/users`, { headers: authHeaders() });
-      if (res.status === 401) { CPI.sessionLogout(); return; }
+      let res = await fetch(`${API_URL}/api/users`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (res.status === 401) {
+        // Try a silent token refresh once before giving up
+        const refreshed = await window.CPI?.silentRefresh?.();
+        if (refreshed) {
+          res = await fetch(`${API_URL}/api/users`, {
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`,
+              'Content-Type': 'application/json'
+            }
+          });
+        }
+        if (res.status === 401) {
+          showTableError('Session expired. Please <a href="../Landing Page/Login.html" style="color:#9069F9;">log in again</a>.');
+          return;
+        }
+      }
+
       if (res.status === 403) {
-        document.getElementById('adminUsersTableBody').innerHTML =
-          '<tr><td colspan="5" style="text-align:center;color:#f87171;padding:20px;">Access denied — Admin only.</td></tr>';
+        showTableError('Access denied — Admin only.');
         return;
       }
       if (!res.ok) throw new Error('Server error');
       allUsers = await res.json();
     } catch {
-      document.getElementById('adminUsersTableBody').innerHTML =
-        '<tr><td colspan="5" style="text-align:center;color:#f87171;padding:20px;">Failed to load users. Is the API running?</td></tr>';
+      showTableError('Failed to load users. Is the API running?');
       return;
     }
     renderTable();
