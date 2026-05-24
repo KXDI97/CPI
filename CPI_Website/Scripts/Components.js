@@ -1,6 +1,6 @@
 export function loadComponents() {
     // Cargar Header
-    fetch('header.html')
+    fetch('Header.html')
         .then(response => response.text())
         .then(html => {
             document.getElementById('header-container').innerHTML = html;
@@ -10,7 +10,7 @@ export function loadComponents() {
             }, 0);
 
             const popupScript = document.createElement('script');
-            popupScript.src = '../scripts/Popup.js';
+            popupScript.src = '../Scripts/Popup.js';
             document.body.appendChild(popupScript);
         })
         .catch(error => console.error('Error cargando Header:', error));

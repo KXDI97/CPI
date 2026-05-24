@@ -31,8 +31,10 @@
   const ROLE_CLAIM = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role';
 
   function parsePayload(token) {
-    try { return JSON.parse(atob(token.split('.')[1])); }
-    catch { return null; }
+    try {
+      const b64 = (token.split('.')[1] ?? '').replace(/-/g, '+').replace(/_/g, '/');
+      return JSON.parse(atob(b64));
+    } catch { return null; }
   }
 
   function isTokenExpired(token) {
@@ -238,28 +240,26 @@
   // ── checkAuth — guard síncrono, llamar como primer script en páginas protegidas
   function checkAuth() {
     const token = localStorage.getItem('token');
+    if (!token) { location.replace(LOGIN_URL); return; }
 
-    if (!token) {
-      location.replace(LOGIN_URL);
-      return;
-    }
-
-    try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      const isExpired = (payload.exp * 1000) < Date.now();
-      if (isExpired) {
-        localStorage.removeItem('token');
-        location.replace(LOGIN_URL);
-      }
-    } catch (e) {
+    const payload = parsePayload(token);
+    if (!payload || (payload.exp * 1000) < Date.now()) {
       localStorage.removeItem('token');
       location.replace(LOGIN_URL);
     }
   }
 
+  // ── checkAdminAccess — guard síncrono para páginas exclusivas de Admin
+  function checkAdminAccess() {
+    checkAuth();                          // primero verifica token válido
+    const role = getTokenRole();
+    if (role !== 'Admin') location.replace('Dashboard.html');
+  }
+
   // ── API pública ──────────────────────────────────────────────────────────────
   window.checkAuth        = checkAuth;
+  window.checkAdminAccess = checkAdminAccess;
   window.getTokenRole     = getTokenRole;
   window.getTokenPayload  = getTokenPayload;
-  window.CPI = { initPasswordToggles, initSession, sessionLogout, checkAuth, getTokenRole, getTokenPayload };
+  window.CPI = { initPasswordToggles, initSession, silentRefresh, sessionLogout, checkAuth, checkAdminAccess, getTokenRole, getTokenPayload };
 })();
