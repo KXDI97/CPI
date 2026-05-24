@@ -1,0 +1,108 @@
+/* ===== BADGES DE ESTADO ===== */
+.badge.status-paid {
+    background: #d4f5dd;
+    color: #2d7a42;
+}
+
+.badge.status-emitida {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.badge.status-pending {
+    background: #fff1c2;
+    color: #8a6d00;
+}
+
+.badge.status-overdue {
+    background: #fddddd;
+    color: #a94442;
+}
+
+/* ===== FILAS DE VENTAS ===== */
+.sale-row:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transition: background 0.2s;
+}
+
+/* ===== CARD CLIENT DETAILS - TOTAL HISTÓRICO ===== */
+#cd-client-total {
+    color: #54f1b8;
+    font-size: 1.1rem;
+}
+
+#cd-client-count {
+    font-size: 0.85rem;
+    opacity: 0.75;
+}
+
+/* ===== BOTÓN INVOICE HISTORY ===== */
+#btn-invoice-history {
+    background: #1F2937;
+    color: #e2e8f0;
+    border: 1px solid #3a3f5c;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+#btn-invoice-history:hover {
+    background: #2d3748;
+    border-color: #6c63ff;
+}
+
+/* ===== MODAL HISTORIAL ===== */
+#historyBackdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 950;
+}
+
+#historyModal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 951;
+}
+
+#historyModal .modal-card {
+    max-width: 750px;
+    width: 92vw;
+}
+
+#tbl-history th,
+#tbl-history td {
+    padding: 10px 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+#tbl-history tbody tr:hover {
+    background: rgba(255,255,255,0.04);
+}
+
+.btn-dl-pdf {
+    padding: 4px 12px !important;
+    font-size: 0.8rem !important;
+    background: #6c63ff !important;
+    border: none !important;
+    color: #fff !important;
+    border-radius: 6px !important;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-dl-pdf:hover {
+    background: #574fd6 !important;
+}
+
+/* ===== TOTALES CARD ===== */
+#iv-total {
+    color: #54f1b8;
+    font-weight: 700;
+    font-size: 1.05rem;
+}

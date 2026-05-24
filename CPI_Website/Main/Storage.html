@@ -5,25 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../Images/Logo - CPI.png" type="image/png">
     <title>Storage CPI</title>
-    <link rel="icon" type="image/png" href="../Images/logo.png">
     <link rel="stylesheet" href="../Styles/HeaderSlider-Style.css">
     <link rel="stylesheet" href="../Styles/Storage-Style.css">
+    <link rel="stylesheet" href="../Styles/EditModal.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="header-container"></div>
     <div id="sidebar-container"></div>
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
-    
+
     <div class="content-Storage">
         <h1>Storage Dashboard</h1>
         <div class="controls">
-            
             <div class="search-bar">
-                <input type="text" placeholder="Search product..." >
+                <input type="text" placeholder="Search product...">
                 <ion-icon name="search-outline"></ion-icon>
             </div>
         </div>
+
         <div class="table-container">
             <h2>Current Storage</h2>
             <table>
@@ -38,95 +38,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
-                        <td>Additive</td>
-                        <td>Qualiprint</td>
-                        <td>24</td>
-                        <td>12</td>
-                        <td>$2,320.00</td>
-                        <td>
-                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
-                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><ion-icon name="color-fill-outline"></ion-icon> LA 0056</td>
-                        <td>Ink</td>
-                        <td>Qualiprint</td>
-                        <td>34</td>
-                        <td>0</td>
-                        <td>$1,450.00</td>
-                        <td>
-                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
-                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><ion-icon name="radio-outline"></ion-icon> TVSA 33x700</td>
-
-                        <td>Tape</td>
-                        <td>Qualiprint</td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>$576.00</td>
-                        <td>
-                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
-                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
-                        <td>Device</td>
-                        <td>Qualiprint</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>$15,000.00</td>
-                        <td>
-                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
-                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
-                        <td>Additive</td>
-                        <td>Qualiprint</td>
-                        <td>24</td>
-                        <td>12</td>
-                        <td>$2,320.00</td>
-                        <td>
-                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
-                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
-                        <td>Device</td>
-                        <td>Qualiprint</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>$15,000.00</td>
-                        <td>
-                            <ion-icon name="pencil-outline" class="icon edit"></ion-icon>
-                            <ion-icon name="trash-outline" class="icon delete"></ion-icon>
-                        </td>
-                    </tr>
+                    <!-- JS inyecta filas -->
                 </tbody>
             </table>
-        </div>        
-        <div class="pagination">
-            <a href="#">«</a> <a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">6</a> <a href="#">»</a>
         </div>
 
-
+        <div class="pagination">
+            <!-- JS inyecta páginas -->
+        </div>
     </div>
+
     <script type="module">
         import { loadComponents } from '../Scripts/Components.js';
         loadComponents();
     </script>
     <script type="module" src="../Scripts/Main.js"></script>
-    <script src="../Scripts/Modal.js"></script>
-    <script src="../Scripts/StockAutocomplete.js"></script>
     <script type="module" src="../Scripts/Storage.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
