@@ -37,20 +37,20 @@
                     <!-- Menu options -->
                     <div class="popup-body">
                         <button onclick="window.location.href='Profile.html'" role="menuitem">
-                            <ion-icon name="person-circle-outline"></ion-icon> My Profile
+                            <ion-icon name="person-circle-outline"></ion-icon> <span data-i18n="header.myProfile">My Profile</span>
                         </button>
                         <button onclick="window.location.href='Settings.html'" role="menuitem">
-                            <ion-icon name="settings-outline"></ion-icon> Settings
+                            <ion-icon name="settings-outline"></ion-icon> <span data-i18n="header.settings">Settings</span>
                         </button>
-                        <button role="menuitem">
-                            <ion-icon name="lock-closed-outline"></ion-icon> Change password
+                        <button onclick="window.location.href='Profile.html#security'" role="menuitem">
+                            <ion-icon name="lock-closed-outline"></ion-icon> <span data-i18n="header.changePassword">Change password</span>
                         </button>
-                        <button role="menuitem">
-                            <ion-icon name="mail-outline"></ion-icon> Change email
+                        <button onclick="window.location.href='Profile.html#account'" role="menuitem">
+                            <ion-icon name="mail-outline"></ion-icon> <span data-i18n="header.changeEmail">Change email</span>
                         </button>
                         <div class="popup-divider popup-divider--thin"></div>
                         <button class="popup-signout" onclick="showLogoutModal()" role="menuitem">
-                            <ion-icon name="log-out-outline"></ion-icon> Sign out
+                            <ion-icon name="log-out-outline"></ion-icon> <span data-i18n="header.signOut">Sign out</span>
                         </button>
                     </div>
                 </div>

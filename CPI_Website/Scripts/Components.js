@@ -6,7 +6,8 @@ export function loadComponents() {
             document.getElementById('header-container').innerHTML = html;
 
             setTimeout(() => {
-            setUserHeaderInfo();
+              setUserHeaderInfo();
+              window.applyLanguage?.();
             }, 0);
 
             const popupScript = document.createElement('script');
@@ -84,6 +85,9 @@ export function loadComponents() {
                     }
                 }
             });
+
+            // Apply i18n to sidebar
+            setTimeout(() => window.applyLanguage?.(), 0);
 
             // Toggle del drawer (una sola vez)
             setTimeout(() => {

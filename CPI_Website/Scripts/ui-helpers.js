@@ -256,10 +256,48 @@
     if (role !== 'Admin') location.replace('Dashboard.html');
   }
 
+  // ── Theme ────────────────────────────────────────────────────────────────────
+  function initTheme() {
+    const theme = localStorage.getItem('cpi-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+  }
+
+  function setTheme(theme) {
+    localStorage.setItem('cpi-theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
+  }
+
+  // ── Language ─────────────────────────────────────────────────────────────────
+  function applyLanguage(lang) {
+    const active = lang || localStorage.getItem('cpi-lang') || 'en';
+    const t = window.CPI_TRANSLATIONS?.[active];
+    if (!t) return;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+  }
+
+  function setLanguage(lang) {
+    localStorage.setItem('cpi-lang', lang);
+    applyLanguage(lang);
+  }
+
+  // Apply language once DOM is ready (handles static page content)
+  document.addEventListener('DOMContentLoaded', () => applyLanguage());
+
   // ── API pública ──────────────────────────────────────────────────────────────
   window.checkAuth        = checkAuth;
   window.checkAdminAccess = checkAdminAccess;
   window.getTokenRole     = getTokenRole;
   window.getTokenPayload  = getTokenPayload;
-  window.CPI = { initPasswordToggles, initSession, silentRefresh, sessionLogout, checkAuth, checkAdminAccess, getTokenRole, getTokenPayload };
+  window.initTheme        = initTheme;
+  window.setTheme         = setTheme;
+  window.applyLanguage    = applyLanguage;
+  window.setLanguage      = setLanguage;
+  window.CPI = {
+    initPasswordToggles, initSession, silentRefresh, sessionLogout,
+    checkAuth, checkAdminAccess, getTokenRole, getTokenPayload,
+    initTheme, setTheme, applyLanguage, setLanguage
+  };
 })();

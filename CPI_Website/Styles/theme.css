@@ -1,0 +1,255 @@
+/* ── Light theme overrides ───────────────────────────────────────────────────
+   Applied when <html data-theme="light">.
+   Dark theme is the default — no overrides needed for it.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Base ───────────────────────────────────────────────────────────────── */
+[data-theme="light"] body {
+  background-color: #f0f4f8;
+  color: #1e293b;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+[data-theme="light"] .header {
+  background-color: #ffffff;
+  box-shadow: 0 4px 0px #e2e8f0;
+}
+
+[data-theme="light"] .logo-text      { color: #1e293b; }
+[data-theme="light"] .username        { color: #1e293b; }
+
+[data-theme="light"] .user-actions {
+  background-color: #f8fafc;
+}
+
+[data-theme="light"] .hamburger         { color: #374151; }
+[data-theme="light"] .hamburger ion-icon { color: #374151; }
+
+[data-theme="light"] .notification-button ion-icon { color: #374151; }
+
+[data-theme="light"] .notification-counter {
+  background-color: #7c3aed;
+}
+
+/* ── Header dropdown popup ──────────────────────────────────────────────── */
+[data-theme="light"] .popup {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.10);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+}
+
+[data-theme="light"] .popup-avatar-section {
+  background: linear-gradient(160deg, #ede9fe 0%, #dbeafe 100%);
+}
+
+[data-theme="light"] .popup-avatar-section h3 { color: #1e293b; }
+[data-theme="light"] .popup-avatar-section p  { color: #64748b; }
+
+[data-theme="light"] .popup-divider           { background: rgba(0,0,0,0.08); }
+
+[data-theme="light"] .popup-body button {
+  color: #374151;
+}
+
+[data-theme="light"] .popup-body button:hover {
+  background: rgba(144,105,249,0.10);
+  color: #1e293b;
+}
+
+[data-theme="light"] .popup-body .popup-signout       { color: #dc2626; }
+[data-theme="light"] .popup-body .popup-signout:hover { background: rgba(220,38,38,0.08); color: #dc2626; }
+
+[data-theme="light"] .popup-header             { background-color: #f8fafc; }
+[data-theme="light"] .popup-header h3           { color: #1e293b; }
+
+/* ── Notification popup ─────────────────────────────────────────────────── */
+[data-theme="light"] .notification-popup { background: #ffffff; }
+
+[data-theme="light"] .notification-item { border-bottom-color: rgba(0,0,0,0.06); }
+[data-theme="light"] .notification-item:hover { background-color: rgba(0,0,0,0.04); }
+[data-theme="light"] .notification-item p     { color: #374151; }
+[data-theme="light"] .notification-item small { color: #94a3b8; }
+[data-theme="light"] .notification-item ion-icon { color: #7c3aed; }
+
+/* ── Sidebar ────────────────────────────────────────────────────────────── */
+[data-theme="light"] .sidebar {
+  background-color: #ffffff;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] .sidebar-drawer {
+  background-color: #ffffff;
+}
+
+[data-theme="light"] .nav-buttons button,
+[data-theme="light"] .account-details button {
+  color: #374151;
+}
+
+[data-theme="light"] .nav-buttons button ion-icon,
+[data-theme="light"] .account-details button ion-icon {
+  color: #374151;
+}
+
+[data-theme="light"] .nav-buttons button:hover,
+[data-theme="light"] .account-details button:hover {
+  background-color: rgba(144,105,249,0.08);
+  border-color: #9069F9;
+  color: #1e293b;
+}
+
+[data-theme="light"] .nav-buttons button:hover ion-icon    { color: #9069F9; }
+[data-theme="light"] .account-details button:hover ion-icon { color: #9069F9; }
+
+[data-theme="light"] .nav-buttons button.active {
+  background-color: rgba(144,105,249,0.14);
+  border-color: #9069F9;
+  color: #7c3aed;
+}
+
+[data-theme="light"] .nav-buttons button.active ion-icon    { color: #9069F9; }
+
+[data-theme="light"] .account-details {
+  border-top-color: rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] .help-section {
+  background-color: #f0f4ff;
+  color: #374151;
+}
+
+[data-theme="light"] .help-section p { color: #374151; }
+
+[data-theme="light"] .help-section button {
+  background-color: #e0e7ff;
+  color: #4f46e5;
+}
+
+[data-theme="light"] .help-section button:hover {
+  background-color: #c7d2fe;
+}
+
+/* ── Global modals ──────────────────────────────────────────────────────── */
+[data-theme="light"] .global-modal-content {
+  background: #ffffff;
+  color: #1e293b;
+  border: 1px solid rgba(0,0,0,0.10);
+}
+
+[data-theme="light"] .global-modal-buttons button {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+[data-theme="light"] .global-modal-content button#close-help {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+/* ── Session warning modal (injected by ui-helpers) ─────────────────────── */
+[data-theme="light"] #cpi-modal {
+  background: #ffffff;
+  color: #1e293b;
+  border: 1px solid rgba(0,0,0,0.10);
+}
+
+[data-theme="light"] #cpi-modal p { color: #64748b; }
+
+/* ── Profile module ─────────────────────────────────────────────────────── */
+[data-theme="light"] .pf-wrapper { background: #f0f4f8; }
+
+[data-theme="light"] .pf-profile-card,
+[data-theme="light"] .pf-right {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.10);
+}
+
+[data-theme="light"] .pf-banner {
+  background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 45%, #1e40af 100%);
+}
+
+[data-theme="light"] .pf-avatar          { border-color: #ffffff; }
+[data-theme="light"] .pf-profile-name    { color: #1e293b; }
+[data-theme="light"] .pf-profile-email   { color: rgba(0,0,0,0.45); }
+[data-theme="light"] .pf-profile-divider { border-top-color: rgba(0,0,0,0.08); }
+
+[data-theme="light"] .pf-meta-row        { color: rgba(0,0,0,0.55); }
+[data-theme="light"] .pf-meta-row strong { color: #1e293b; }
+[data-theme="light"] .pf-meta-row ion-icon { color: #7c3aed; }
+
+[data-theme="light"] .pf-tabs-bar {
+  background: rgba(240,244,250,0.8);
+  border-bottom-color: rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] .pf-tab              { color: rgba(0,0,0,0.45); }
+[data-theme="light"] .pf-tab:hover:not(.active) { color: rgba(0,0,0,0.70); }
+[data-theme="light"] .pf-tab.active       { color: #7c3aed; }
+
+[data-theme="light"] .pf-section-sep     { border-top-color: rgba(0,0,0,0.07); }
+[data-theme="light"] .pf-section-title   { color: #1e293b; }
+[data-theme="light"] .pf-section-desc    { color: rgba(0,0,0,0.42); }
+
+[data-theme="light"] .pf-field label { color: rgba(0,0,0,0.55); }
+
+[data-theme="light"] .pf-field input {
+  background: #f8fafc;
+  border-color: rgba(0,0,0,0.14);
+  color: #1e293b;
+}
+
+[data-theme="light"] .pf-field input::placeholder { color: rgba(0,0,0,0.28); }
+
+[data-theme="light"] .pf-field input:focus {
+  border-color: rgba(124,58,237,0.50);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.09);
+}
+
+[data-theme="light"] .pf-eye { color: rgba(0,0,0,0.35); }
+[data-theme="light"] .pf-eye:hover { color: rgba(0,0,0,0.65); }
+
+[data-theme="light"] .pf-strength-bar span { background: rgba(0,0,0,0.10); }
+[data-theme="light"] .pf-strength-label    { color: rgba(0,0,0,0.40); }
+
+[data-theme="light"] .pf-role-admin   { background: rgba(124,58,237,0.12); color: #6d28d9; }
+[data-theme="light"] .pf-role-seller  { background: rgba(5,150,105,0.12);  color: #065f46; }
+[data-theme="light"] .pf-role-viewer  { background: rgba(71,85,105,0.12);  color: #475569; }
+
+/* ── Settings module ────────────────────────────────────────────────────── */
+[data-theme="light"] .container-settings { background-color: #f0f4f8; }
+[data-theme="light"] .container-settings h2 { color: #1e293b; }
+
+[data-theme="light"] .setting {
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+}
+
+[data-theme="light"] .setting:hover   { background-color: #f5f3ff; }
+[data-theme="light"] .setting-info span { color: #374151; }
+[data-theme="light"] .setting-info ion-icon { color: #7c3aed; }
+
+/* New preference cards */
+[data-theme="light"] .st-header-desc { color: rgba(0,0,0,0.48); }
+[data-theme="light"] .st-section-label { color: rgba(0,0,0,0.40); }
+
+[data-theme="light"] .st-card {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.10);
+}
+
+[data-theme="light"] .st-card-title { color: #1e293b; }
+[data-theme="light"] .st-card-desc  { color: rgba(0,0,0,0.48); }
+
+[data-theme="light"] .st-seg-track {
+  background: #e2e8f0;
+}
+
+[data-theme="light"] .st-seg-btn {
+  color: #64748b;
+}
+
+[data-theme="light"] .st-seg-btn.active {
+  background: #ffffff;
+  color: #1e293b;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}

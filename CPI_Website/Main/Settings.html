@@ -3,72 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings CPI</title>
+    <title>Settings - CPI</title>
     <link rel="icon" type="image/png" href="../Images/logo.png">
     <link rel="stylesheet" href="../Styles/HeaderSlider-Style.css">
+    <link rel="stylesheet" href="../Styles/theme.css">
     <link rel="stylesheet" href="../Styles/Settings-Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>body { visibility: hidden }</style>
+    <script src="../Scripts/translations.js"></script>
     <script src="../Scripts/ui-helpers.js"></script>
-    <script>checkAuth();</script>
+    <script>initTheme(); checkAuth();</script>
 </head>
 <body>
     <div id="header-container"></div>
     <div id="sidebar-container"></div>
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
     <div class="container-settings">
-        <h2>Settings</h2>
+
+        <!-- Page header -->
+        <div class="st-header">
+            <h2 data-i18n="settings.title">Settings</h2>
+            <p class="st-header-desc" data-i18n="settings.subtitle">Manage your account and preferences</p>
+        </div>
+
+        <!-- ── Section: User Preferences ────────────────────────────────── -->
+        <div class="st-section">
+            <span class="st-section-label" data-i18n="settings.preferences">User Preferences</span>
+
+            <div class="st-cards-grid">
+
+                <!-- Appearance card -->
+                <div class="st-card">
+                    <div class="st-card-icon-wrap" style="background: linear-gradient(135deg,#4c1d95,#7c3aed);">
+                        <ion-icon name="color-palette-outline"></ion-icon>
+                    </div>
+                    <div class="st-card-body">
+                        <h4 class="st-card-title" data-i18n="settings.appearance">Appearance</h4>
+                        <p class="st-card-desc" data-i18n="settings.appearanceDesc">Switch between dark and light theme</p>
+                        <div class="st-seg-track" id="themeSegment">
+                            <button class="st-seg-btn" data-theme-val="dark" id="btnThemeDark">
+                                <ion-icon name="moon-outline"></ion-icon>
+                                <span data-i18n="settings.dark">Dark</span>
+                            </button>
+                            <button class="st-seg-btn" data-theme-val="light" id="btnThemeLight">
+                                <ion-icon name="sunny-outline"></ion-icon>
+                                <span data-i18n="settings.light">Light</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Language card -->
+                <div class="st-card">
+                    <div class="st-card-icon-wrap" style="background: linear-gradient(135deg,#065f46,#059669);">
+                        <ion-icon name="language-outline"></ion-icon>
+                    </div>
+                    <div class="st-card-body">
+                        <h4 class="st-card-title" data-i18n="settings.language">Language</h4>
+                        <p class="st-card-desc" data-i18n="settings.languageDesc">Select the interface language</p>
+                        <div class="st-seg-track" id="langSegment">
+                            <button class="st-seg-btn" data-lang-val="en" id="btnLangEn">
+                                <span class="st-flag">🇺🇸</span>
+                                <span>English</span>
+                            </button>
+                            <button class="st-seg-btn" data-lang-val="es" id="btnLangEs">
+                                <span class="st-flag">🇨🇴</span>
+                                <span>Español</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /st-cards-grid -->
+        </div><!-- /section preferences -->
+
+        <!-- ── Section: System Configuration ────────────────────────────── -->
+        <div class="st-section">
+            <span class="st-section-label" data-i18n="settings.system">System Configuration</span>
+
             <div class="settings-container">
                 <div class="setting">
                     <div class="setting-info">
                         <ion-icon name="people-outline"></ion-icon>
-                        <span>User Management</span>
+                        <span data-i18n="settings.userMgmt">User Management</span>
                     </div>
-                    <button>Editar</button>
+                    <button data-i18n="btn.edit">Edit</button>
                 </div>
                 <div class="setting">
                     <div class="setting-info">
                         <ion-icon name="notifications-circle-outline"></ion-icon>
-                        <span>Notifications</span>
+                        <span data-i18n="settings.notifications">Notifications</span>
                     </div>
-                    <button>Configurar</button>
+                    <button>Configure</button>
                 </div>
                 <div class="setting">
                     <div class="setting-info">
                         <ion-icon name="shield-half-outline"></ion-icon>
-                        <span>Security and Backup</span>
+                        <span data-i18n="settings.security">Security and Backup</span>
                     </div>
-                    <button>Ver</button>
+                    <button>View</button>
                 </div>
                 <div class="setting">
                     <div class="setting-info">
                         <ion-icon name="settings-outline"></ion-icon>
-                        <span>User Preferences</span>
+                        <span data-i18n="settings.userPrefs">User Preferences</span>
                     </div>
-                    <button>Ajustar</button>
+                    <button>Adjust</button>
                 </div>
                 <div class="setting">
                     <div class="setting-info">
                         <ion-icon name="globe-outline"></ion-icon>
-                        <span>Language and Region</span>
+                        <span data-i18n="settings.langRegion">Language and Region</span>
                     </div>
-                    <button>Cambiar</button>
+                    <button>Change</button>
                 </div>
                 <div class="setting">
                     <div class="setting-info">
                         <ion-icon name="bar-chart-outline"></ion-icon>
-                        <span>Customizing Reports</span>
+                        <span data-i18n="settings.reports">Customizing Reports</span>
                     </div>
-                    <button>Editar</button>
+                    <button data-i18n="btn.edit">Edit</button>
                 </div>
             </div>
-    </div>
+        </div><!-- /section system -->
+
+    </div><!-- /container-settings -->
+
     <script type="module">
-        import { loadComponents } from '../Scripts/components.js';
+        import { loadComponents } from '../Scripts/Components.js';
         loadComponents();
     </script>
     <script type="module" src="../Scripts/Main.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="../Scripts/Session.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const currentTheme = localStorage.getItem('cpi-theme') || 'dark';
+        const currentLang  = localStorage.getItem('cpi-lang')  || 'en';
+
+        // Set initial active states
+        setActiveTheme(currentTheme);
+        setActiveLang(currentLang);
+
+        // Theme toggle
+        document.getElementById('themeSegment').addEventListener('click', e => {
+            const btn = e.target.closest('[data-theme-val]');
+            if (!btn) return;
+            const val = btn.dataset.themeVal;
+            window.setTheme(val);
+            setActiveTheme(val);
+        });
+
+        // Language toggle
+        document.getElementById('langSegment').addEventListener('click', e => {
+            const btn = e.target.closest('[data-lang-val]');
+            if (!btn) return;
+            const val = btn.dataset.langVal;
+            window.setLanguage(val);
+            setActiveLang(val);
+        });
+    });
+
+    function setActiveTheme(theme) {
+        document.querySelectorAll('#themeSegment .st-seg-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.themeVal === theme);
+        });
+    }
+
+    function setActiveLang(lang) {
+        document.querySelectorAll('#langSegment .st-seg-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.langVal === lang);
+        });
+    }
+    </script>
 </body>
 </html>

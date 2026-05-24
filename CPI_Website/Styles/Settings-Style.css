@@ -1,43 +1,168 @@
-/* CONTENEDOR PRINCIPAL */
+/* ── Settings page ──────────────────────────────────────────────────────── */
+
 .container-settings {
     flex: 1;
-    padding: 20px;
+    padding: 90px 2rem 3rem;
     margin-left: 220px;
     background-color: #121826;
-    width: calc(100% - 220px);
-    padding-top: 90px;
+    min-height: 100vh;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    max-width: calc(100% - 220px);
+}
+
+/* ── Page header ────────────────────────────────────────────────────────── */
+.st-header {
+    margin-bottom: 28px;
 }
 
 .container-settings h2 {
-    color: #FFFFFF;
-    margin-bottom: 20px;
-    font-size: 35px;
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 4px;
 }
 
-/* CONTENEDOR DE BLOQUES DE CONFIGURACIÓN */
+.st-header-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.40);
+    margin: 0;
+}
+
+/* ── Sections ───────────────────────────────────────────────────────────── */
+.st-section {
+    margin-bottom: 32px;
+}
+
+.st-section-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 12px;
+}
+
+/* ── Preference cards grid ──────────────────────────────────────────────── */
+.st-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+/* ── Card ───────────────────────────────────────────────────────────────── */
+.st-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: #1F2937;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 20px;
+}
+
+/* Card icon */
+.st-card-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 22px;
+    color: #fff;
+}
+
+/* Card content */
+.st-card-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.st-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 3px;
+}
+
+.st-card-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.40);
+    margin: 0 0 14px;
+}
+
+/* ── Segmented control (shared by theme + lang) ─────────────────────────── */
+.st-seg-track {
+    display: flex;
+    background: rgba(255,255,255,0.07);
+    border-radius: 9px;
+    padding: 3px;
+    gap: 2px;
+}
+
+.st-seg-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 7px 10px;
+    border: none;
+    border-radius: 7px;
+    background: none;
+    color: rgba(255,255,255,0.45);
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+    white-space: nowrap;
+}
+
+.st-seg-btn ion-icon { font-size: 14px; }
+
+.st-seg-btn:hover:not(.active) {
+    color: rgba(255,255,255,0.70);
+}
+
+.st-seg-btn.active {
+    background: #9069F9;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(144,105,249,0.40);
+}
+
+/* Flag in language toggle */
+.st-flag {
+    font-size: 15px;
+    line-height: 1;
+}
+
+/* ── System configuration list ──────────────────────────────────────────── */
 .settings-container {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 10px;
 }
 
-/* CADA BLOQUE */
 .setting {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #384152;
-    border-radius: 10px;
+    background: #1F2937;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
     padding: 16px 20px;
-    transition: background 0.3s ease;
+    transition: background 0.2s ease, border-color 0.2s;
 }
 
 .setting:hover {
-    background-color: #2c3444;
+    background-color: #252f42;
+    border-color: rgba(144,105,249,0.20);
 }
 
-/* CONTENIDO IZQUIERDO: ÍCONO + TEXTO */
 .setting-info {
     display: flex;
     align-items: center;
@@ -45,40 +170,48 @@
 }
 
 .setting-info ion-icon {
-    font-size: 26px;
-    color: #54F1B8;
+    font-size: 22px;
+    color: #9069F9;
 }
 
 .setting-info span {
-    font-size: 20px;
-    color: #E0E0E0;
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
     font-weight: 500;
 }
 
-/* BOTÓN DERECHO */
 .setting button {
-    background: #9069F9;
-    color: white;
-    font-size: 14px;
-    padding: 10px 16px;
-    border: none;
+    background: rgba(144,105,249,0.14);
+    color: #a78bfa;
+    font-size: 12px;
+    padding: 7px 16px;
+    border: 1px solid rgba(144,105,249,0.25);
     border-radius: 8px;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    font-family: 'Poppins', sans-serif;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    white-space: nowrap;
 }
 
 .setting button:hover {
-    background-color: #6d52c8;
-    transform: scale(1.05);
+    background: rgba(144,105,249,0.28);
+    color: #fff;
+    border-color: rgba(144,105,249,0.50);
 }
 
-/* RESPONSIVE */
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+    .st-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
     .container-settings {
         margin-left: 0;
-        width: 100%;
-        padding: 16px;
+        max-width: 100%;
+        padding: 80px 1rem 2rem;
     }
 
     .setting {
@@ -87,30 +220,8 @@
         gap: 12px;
     }
 
-    .setting-info span {
-        font-size: 18px;
-    }
-
-    .setting-info ion-icon {
-        font-size: 24px;
-    }
-
     .setting button {
         width: 100%;
-        font-size: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .container-settings h2 {
-        font-size: 24px;
-    }
-
-    .setting-info span {
-        font-size: 16px;
-    }
-
-    .setting button {
-        font-size: 14px;
+        text-align: center;
     }
 }
