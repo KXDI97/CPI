@@ -284,7 +284,7 @@ body {
     position: fixed;
     top: 70px;
     left: 0;
-    width: 220px;
+    width: 200px;
     height: calc(100vh - 70px);
     background-color: #1a2233;
     box-shadow: 4px 0 10px rgba(255,255,255,0.1);
@@ -292,7 +292,7 @@ body {
     z-index: 1500;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     padding: 10px 12px 20px;
     box-sizing: border-box;
     overflow-y: auto;
@@ -314,9 +314,9 @@ body {
     color: #ffffff;
     font-size: 14px;
     padding: 10px 13px;
-    text-align: left;
+    text-align: center;
     cursor: pointer;
-    width: 100%;
+    width: 95%;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -366,7 +366,7 @@ body {
     padding: 8px 12px;
     text-align: left;
     cursor: pointer;
-    width: 100%;
+    width: 95%;
     display: flex;
     align-items: center;
     gap: 8px;
