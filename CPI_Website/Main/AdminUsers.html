@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - CPI</title>
+    <link rel="icon" type="image/png" href="../Images/logo.png">
+    <link rel="stylesheet" href="../Styles/HeaderSlider-Style.css">
+    <link rel="stylesheet" href="../Styles/Storage-Style.css">
+    <link rel="stylesheet" href="../Styles/Clients-Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { visibility: hidden }
+        .role-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .role-admin   { background: rgba(99,102,241,0.2); color: #818cf8; }
+        .role-seller  { background: rgba(16,185,129,0.2); color: #34d399; }
+        .role-viewer  { background: rgba(156,163,175,0.2); color: #9ca3af; }
+        .modal-error  { color: #f87171; font-size: 14px; margin-top: 8px; display: none; }
+        select {
+            font-family: 'Poppins', sans-serif;
+            width: 90%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: none;
+            background: #384152;
+            color: white;
+            cursor: pointer;
+        }
+        #usersEmptyMsg {
+            padding: 20px;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            display: none;
+        }
+        .delete-btn-red {
+            background-color: #7f1d1d !important;
+            border-color: #dc2626 !important;
+            color: #fca5a5 !important;
+        }
+        .delete-btn-red:hover {
+            background-color: #991b1b !important;
+        }
+    </style>
+    <script src="../Scripts/ui-helpers.js"></script>
+    <script>checkAuth();</script>
+</head>
+<body>
+    <div id="header-container"></div>
+    <div id="sidebar-container"></div>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <div class="content-Storage">
+        <h1>User Management</h1>
+        <div class="controls">
+            <div class="search-bar">
+                <input type="text" id="userSearch" placeholder="Search user...">
+                <ion-icon name="search-outline"></ion-icon>
+            </div>
+            <button class="btn-1" id="addUserBtn">
+                <ion-icon name="person-add-outline"></ion-icon> Add User
+            </button>
+        </div>
+
+        <div class="table-container">
+            <h2>Registered Users</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="adminUsersTableBody"></tbody>
+            </table>
+            <div id="usersEmptyMsg">No users found.</div>
+        </div>
+
+        <div class="pagination" id="usersPagination"></div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div id="addUserBackdrop" class="backdrop hidden"></div>
+    <div id="addUserModal" class="modal-add-stock hidden">
+        <div class="modal-content">
+            <h2>Add User</h2>
+            <h3>User Information</h3>
+            <div class="form-group">
+                <div class="input-container">
+                    <label>Username *</label>
+                    <input type="text" id="newUsername" placeholder="Enter username">
+                </div>
+                <div class="input-container">
+                    <label>Email *</label>
+                    <input type="email" id="newEmail" placeholder="Enter email">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-container">
+                    <label>Password *</label>
+                    <input type="password" id="newPassword" placeholder="Enter password">
+                </div>
+                <div class="input-container">
+                    <label>Role *</label>
+                    <select id="newRole">
+                        <option value="Viewer">Viewer</option>
+                        <option value="Seller">Seller</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                </div>
+            </div>
+            <p id="addUserError" class="modal-error"></p>
+        </div>
+        <div class="button-group">
+            <button class="btn-1" id="confirmAddUser">Add User</button>
+            <button class="btn-2" id="cancelAddUser">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Edit Role Modal -->
+    <div id="editRoleBackdrop" class="backdrop hidden"></div>
+    <div id="editRoleModal" class="modal-add-stock hidden">
+        <div class="modal-content">
+            <h2>Edit Role</h2>
+            <h3>Change user role</h3>
+            <div class="form-group">
+                <div class="input-container">
+                    <label>Username</label>
+                    <input type="text" id="editUsername" disabled style="opacity:0.5; cursor:not-allowed;">
+                </div>
+                <div class="input-container">
+                    <label>New Role *</label>
+                    <select id="editRole">
+                        <option value="Viewer">Viewer</option>
+                        <option value="Seller">Seller</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                </div>
+            </div>
+            <p id="editRoleError" class="modal-error"></p>
+        </div>
+        <div class="button-group">
+            <button class="btn-1" id="confirmEditRole">Save</button>
+            <button class="btn-2" id="cancelEditRole">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteBackdrop" class="backdrop hidden"></div>
+    <div id="deleteModal" class="modal-add-stock hidden">
+        <div class="modal-content">
+            <h2>Delete User</h2>
+            <p id="deleteMsg" style="color:rgba(255,255,255,0.7); margin-top:8px; line-height:1.5;"></p>
+        </div>
+        <div class="button-group">
+            <button class="btn-1 delete-btn-red" id="confirmDelete">Delete</button>
+            <button class="btn-2" id="cancelDelete">Cancel</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { loadComponents } from '../Scripts/Components.js';
+        loadComponents();
+    </script>
+    <script type="module" src="../Scripts/Main.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="../Scripts/Session.js"></script>
+    <script src="../Scripts/AdminUsers.js"></script>
+</body>
+</html>

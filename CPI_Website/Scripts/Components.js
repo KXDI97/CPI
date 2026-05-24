@@ -59,6 +59,18 @@ export function loadComponents() {
             };
             document.body.appendChild(globalModalScript);
 
+            // Show admin-only buttons based on role
+            try {
+                const userStr = localStorage.getItem('user');
+                if (userStr && userStr !== 'undefined') {
+                    const u = JSON.parse(userStr);
+                    if (u.role === 'Admin') {
+                        const adminBtn = document.getElementById('admin-users-btn');
+                        if (adminBtn) adminBtn.style.display = '';
+                    }
+                }
+            } catch { /* role check failed silently */ }
+
             // Activar botón activo según URL
             const buttons = document.querySelectorAll('.sidebar button');
             const currentPage = window.location.pathname.split('/').pop().toLowerCase();
