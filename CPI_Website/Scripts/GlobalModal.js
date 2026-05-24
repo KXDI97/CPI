@@ -1,4 +1,4 @@
-GlobalModal.js
+// GlobalModal.js
 
 function createGlobalModals() {
     const modalHTML = `
