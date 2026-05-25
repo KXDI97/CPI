@@ -6,111 +6,437 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - CPI</title>
     <link rel="icon" type="image/png" href="../Images/logo.png">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../Styles/LandingPage-Style.css">
 </head>
 
-<body class="bg-gray-900 text-white font-montserrat">
-    <header class="flex justify-between items-center px-6 py-4 bg-gray-800">
-        <div class="flex items-center">
-            <img src="../Images/Logo - CPI.png" alt="Mi Logo" class="w-12 h-12 object-contain">
-            <div class="text-white font-bold text-lg ml-2">CPI</div>
-        </div>
-        <nav class="flex gap-10 items-center">
-            <a href="Landing.html" class="relative text-gray-400 hover:text-white flex flex-col items-center">
-                Home
-            </a>
-            <a href="Pricing.html" class="relative text-gray-400 hover:text-white flex flex-col items-centers">
-                Pricing
-            </a>
-            <a href="About Us.html" class="relative text-white font-bold flex flex-col items-center">
-                About Us
-                <span
-                    class="absolute left-1/2 -bottom-2 w-[130%] h-[4px] bg-gradient-to-r from-indigo-600 to-purple-600 rounded-md transform -translate-x-1/2"></span>
-            </a>
+<body>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <a href="Landing.html" class="header__logo">
+            <img src="../Images/Logo - CPI.png" alt="CPI Logo">
+            <span class="header__logo-text">CPI</span>
+        </a>
+
+        <nav class="header__nav">
+            <a href="Landing.html" class="nav__link">Home</a>
+            <a href="Pricing.html" class="nav__link">Pricing</a>
+            <a href="About Us.html" class="nav__link active">About Us</a>
         </nav>
-        <div class="hidden md:flex space-x-4">
-            <a href="Login.html"
-                class="bg-gradient-to-b from-[#9069F9] to-[#54F1B7] px-4 py-2 rounded-xl hover:opacity-90">
-                Login</a>
+
+        <div class="header__actions">
+            <a href="Login.html" class="btn-primary">Login</a>
         </div>
-        <button class="md:hidden text-white focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
+
+        <button class="header__hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
         </button>
     </header>
-    <section class="flex flex-col md:flex-row items-center justify-center text-center md:text-left py-12 px-8 max-w-5xl mx-auto">
-        <div class="max-w-2xl w-full md:w-1/2 flex flex-col items-center md:items-start">
-            <h2 class="text-4xl font-bold">Our Mission</h2>
-            <p class="mt-4 text-gray-400">
-                Develop an innovative information system that optimizes import management for businesses, enabling efficient 
-                inventory control, improving decision-making based on historical data, and facilitating logistics planning. 
-                Our goal is to provide a technological tool that minimizes costs, reduces financial risks, and enhances 
-                operational efficiency, ensuring a more stable cash flow and better customer service.
-            </p>
-        </div>
-        <div class="md:w-1/2 flex justify-center">
-            <img src="../Images/Mission.png" alt="Mission Image" class="w-80 h-auto rounded-lg shadow-lg">
-        </div>
-    </section>
 
-    
-    
-    <section class="flex flex-col items-center text-center py-8 px-6">
-        <div class="max-w-2xl">
-            <h2 class="text-3xl font-bold">Our Vision</h2>
-            <p class="mt-3 text-gray-400 text-lg">
-                To become the leading platform for import control and forecasting in Latin America, recognized for its 
-                accuracy in inventory management and its ability to provide data intelligence for strategic decision-making. 
-                We aim to transform the way companies handle their logistics processes, driving digitalization and automation 
-                to increase their competitiveness in the global market.
+    <!-- MOBILE NAV -->
+    <nav class="mobile-nav" id="mobile-nav">
+        <a href="Landing.html">Home</a>
+        <a href="Pricing.html">Pricing</a>
+        <a href="About Us.html" class="active">About Us</a>
+        <a href="Login.html" class="btn-primary">Login</a>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="page-hero__inner">
+            <span class="section-tag">About Us</span>
+            <h1 class="page-hero__title">
+                Built for importers,<br>
+                <span class="gradient-text">by importers</span>
+            </h1>
+            <p class="page-hero__desc">
+                CPI was born from a real problem: managing imports is complex, fragmented, and
+                stressful. We built the platform we always wished existed.
             </p>
         </div>
     </section>
-    
 
-    <!-- Mission & Values Section -->
-    <section class="py-8 px-6 bg-gray-800">
-        <div class="flex flex-col md:flex-row justify-center items-center text-center bg-gray-800 py-8 px-6 gap-8">
-            <div>
-                <h3 class="text-xl font-semibold">Our Mission</h3>
-                <p class="mt-2 text-gray-400">To revolutionize import management by offering an efficient, transparent,
-                    and user-friendly platform for businesses worldwide.</p>
+    <!-- STATS -->
+    <section class="stats">
+        <div class="stats__inner">
+            <div class="stat">
+                <div class="stat__number">10+</div>
+                <div class="stat__label">Modules Available</div>
             </div>
-            <div>
-                <h3 class="text-xl font-semibold">Our Values</h3>
-                <p class="mt-2 text-gray-400">Innovation, Integrity, Customer Focus, and Excellence drive our commitment
-                    to helping businesses succeed.</p>
+            <div class="stat">
+                <div class="stat__number">99.9%</div>
+                <div class="stat__label">Uptime Guarantee</div>
+            </div>
+            <div class="stat">
+                <div class="stat__number">500+</div>
+                <div class="stat__label">Active Users</div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section 
-    <section class="py-12 px-6">
-        <h2 class="text-3xl font-bold text-center mb-6">Meet Our Team</h2>
-        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-                <img src="../Images/team1.jpg" alt="CEO" class="w-32 h-32 rounded-full mx-auto mb-4">
-                <h3 class="text-lg font-semibold">John Doe</h3>
-                <p class="text-gray-400">CEO & Founder</p>
+    <!-- MISSION -->
+    <section class="mission-section">
+        <div class="mission-section__inner">
+            <div class="mission-section__content">
+                <span class="section-tag">Our Mission</span>
+                <h2 class="mission-section__title">
+                    Optimizing import management<br>
+                    <span class="gradient-text">for every business</span>
+                </h2>
+                <p class="mission-section__text">
+                    Develop an innovative information system that optimizes import management for
+                    businesses, enabling efficient inventory control, improving decision-making based
+                    on historical data, and facilitating logistics planning.
+                    <br><br>
+                    Our goal is to provide a technological tool that minimizes costs, reduces
+                    financial risks, and enhances operational efficiency — ensuring a more stable
+                    cash flow and better customer service across all industries.
+                </p>
             </div>
-            <div>
-                <img src="../Images/team2.jpg" alt="CTO" class="w-32 h-32 rounded-full mx-auto mb-4">
-                <h3 class="text-lg font-semibold">Jane Smith</h3>
-                <p class="text-gray-400">CTO</p>
-            </div>
-            <div>
-                <img src="../Images/team3.jpg" alt="COO" class="w-32 h-32 rounded-full mx-auto mb-4">
-                <h3 class="text-lg font-semibold">Mark Wilson</h3>
-                <p class="text-gray-400">COO</p>
+
+            <div class="mission-visual">
+                <div class="mission-visual__glow"></div>
+
+                <!-- Floating badge -->
+                <div class="mission-visual__badge">
+                    <span class="mission-visual__badge-dot"></span>
+                    Live metrics
+                </div>
+
+                <!-- Main metrics card -->
+                <div class="mission-card">
+                    <p class="mission-card__label">Platform Impact</p>
+
+                    <div class="mission-metric">
+                        <div class="mission-metric__icon">
+                            <svg fill="none" viewBox="0 0 20 20" stroke-width="1.8">
+                                <defs>
+                                    <linearGradient id="m1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#9069F9"/>
+                                        <stop offset="100%" stop-color="#54F1B7"/>
+                                    </linearGradient>
+                                </defs>
+                                <path stroke="url(#m1)" stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 14H11V11h2v5zm0-7H11V7h2v2z"
+                                    transform="scale(0.83) translate(1.2,1.2)"/>
+                            </svg>
+                        </div>
+                        <div class="mission-metric__body">
+                            <span class="mission-metric__title">Cost Reduction</span>
+                            <div class="mission-metric__bar-wrap">
+                                <div class="mission-metric__bar" style="--fill: 77%"></div>
+                            </div>
+                        </div>
+                        <span class="mission-metric__value mission-metric__value--green">-23%</span>
+                    </div>
+
+                    <div class="mission-metric">
+                        <div class="mission-metric__icon">
+                            <svg fill="none" viewBox="0 0 20 20" stroke-width="1.8">
+                                <defs>
+                                    <linearGradient id="m2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#9069F9"/>
+                                        <stop offset="100%" stop-color="#54F1B7"/>
+                                    </linearGradient>
+                                </defs>
+                                <path stroke="url(#m2)" stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                                    transform="scale(0.83) translate(1.2,1.2)"/>
+                            </svg>
+                        </div>
+                        <div class="mission-metric__body">
+                            <span class="mission-metric__title">Processing Speed</span>
+                            <div class="mission-metric__bar-wrap">
+                                <div class="mission-metric__bar" style="--fill: 88%"></div>
+                            </div>
+                        </div>
+                        <span class="mission-metric__value mission-metric__value--purple">+40%</span>
+                    </div>
+
+                    <div class="mission-metric">
+                        <div class="mission-metric__icon">
+                            <svg fill="none" viewBox="0 0 20 20" stroke-width="1.8">
+                                <defs>
+                                    <linearGradient id="m3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#9069F9"/>
+                                        <stop offset="100%" stop-color="#54F1B7"/>
+                                    </linearGradient>
+                                </defs>
+                                <path stroke="url(#m3)" stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                                    transform="scale(0.83) translate(1.2,1.2)"/>
+                            </svg>
+                        </div>
+                        <div class="mission-metric__body">
+                            <span class="mission-metric__title">Risk Incidents</span>
+                            <div class="mission-metric__bar-wrap">
+                                <div class="mission-metric__bar" style="--fill: 33%"></div>
+                            </div>
+                        </div>
+                        <span class="mission-metric__value mission-metric__value--green">-67%</span>
+                    </div>
+
+                    <div class="mission-card__divider"></div>
+
+                    <div class="mission-card__footer">
+                        <span class="mission-card__footer-label">Overall efficiency gain</span>
+                        <span class="mission-card__footer-value gradient-text">+58%</span>
+                    </div>
+                </div>
+
+                <!-- Small floating chip -->
+                <div class="mission-visual__chip">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#54F1B7" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                    </svg>
+                    500+ importers tracking with CPI
+                </div>
             </div>
         </div>
     </section>
 
-    -->
+    <!-- VISION -->
+    <section class="vision-section">
+        <div class="vision-section__inner">
+            <span class="section-tag">Our Vision</span>
+            <h2 class="vision-section__title">
+                The leading platform for import control<br>
+                <span class="gradient-text">in Latin America</span>
+            </h2>
+            <p class="vision-section__text">
+                To become the leading platform for import control and forecasting in Latin America,
+                recognized for its accuracy in inventory management and its ability to provide data
+                intelligence for strategic decision-making. We aim to transform the way companies
+                handle their logistics processes, driving digitalization and automation to increase
+                their competitiveness in the global market.
+            </p>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="team-section">
+        <div class="team-section__inner">
+            <div class="section-header">
+                <span class="section-tag">The Team</span>
+                <h2 class="section-title">Meet the people <span class="gradient-text">behind CPI</span></h2>
+                <p class="section-subtitle">A passionate team of developers and designers building the future of import management.</p>
+            </div>
+
+            <div class="team-grid">
+
+                <div class="team-card">
+                    <div class="team-avatar">SA</div>
+                    <p class="team-card__name">Santiago A.</p>
+                    <p class="team-card__role">Full Stack Developer</p>
+                    <p class="team-card__desc">Leads backend architecture and API design, ensuring CPI scales reliably for every client.</p>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">JR</div>
+                    <p class="team-card__name">Juliana R.</p>
+                    <p class="team-card__role">Frontend Developer</p>
+                    <p class="team-card__desc">Crafts the user interfaces and design system that make CPI intuitive and beautiful.</p>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">CM</div>
+                    <p class="team-card__name">Carlos M.</p>
+                    <p class="team-card__role">Backend Developer</p>
+                    <p class="team-card__desc">Builds and maintains the data pipelines, reporting engine, and database architecture.</p>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">VL</div>
+                    <p class="team-card__name">Valentina L.</p>
+                    <p class="team-card__role">UX / Product</p>
+                    <p class="team-card__desc">Designs user flows and conducts research to make sure CPI solves real importer problems.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="values-section">
+        <div class="values-section__inner">
+            <div class="section-header">
+                <span class="section-tag">Our Values</span>
+                <h2 class="section-title">What <span class="gradient-text">drives us</span> every day</h2>
+                <p class="section-subtitle">The principles behind every decision we make at CPI.</p>
+            </div>
+
+            <div class="values-grid">
+
+                <div class="value-card">
+                    <div class="value-card__icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="val-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#9069F9"/>
+                                    <stop offset="100%" stop-color="#54F1B7"/>
+                                </linearGradient>
+                            </defs>
+                            <path stroke="url(#val-grad-1)" stroke-linecap="round" stroke-linejoin="round"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-card__title">Innovation</h3>
+                    <p class="value-card__desc">We constantly challenge the status quo to build tools that stay ahead of the industry's needs.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-card__icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="val-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#9069F9"/>
+                                    <stop offset="100%" stop-color="#54F1B7"/>
+                                </linearGradient>
+                            </defs>
+                            <path stroke="url(#val-grad-2)" stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-card__title">Integrity</h3>
+                    <p class="value-card__desc">We are transparent with our clients, our data practices, and the promises we make. Trust is non-negotiable.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-card__icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="val-grad-3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#9069F9"/>
+                                    <stop offset="100%" stop-color="#54F1B7"/>
+                                </linearGradient>
+                            </defs>
+                            <path stroke="url(#val-grad-3)" stroke-linecap="round" stroke-linejoin="round"
+                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-card__title">Customer Focus</h3>
+                    <p class="value-card__desc">Every feature is built for real importers. We listen, iterate, and ship what actually solves your problems.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-card__icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="val-grad-4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#9069F9"/>
+                                    <stop offset="100%" stop-color="#54F1B7"/>
+                                </linearGradient>
+                            </defs>
+                            <path stroke="url(#val-grad-4)" stroke-linecap="round" stroke-linejoin="round"
+                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-card__title">Excellence</h3>
+                    <p class="value-card__desc">We hold ourselves to the highest standards in code quality, reliability, and the experience we deliver.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-section__inner">
+            <span class="section-tag">Join Us</span>
+            <h2 class="cta-section__title">
+                Ready to <span class="gradient-text">transform</span><br>
+                how you manage imports?
+            </h2>
+            <p class="cta-section__desc">
+                Start free today. No credit card required. Be up and running in minutes.
+            </p>
+            <a href="Login.html" class="btn-primary btn-primary--lg">Get Started Free</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <div class="footer__brand-logo">
+                        <img src="../Images/Logo - CPI.png" alt="CPI Logo">
+                        <span class="footer__brand-name">CPI</span>
+                    </div>
+                    <p class="footer__brand-desc">
+                        Control &amp; Projection of Imports — the platform trusted by importers
+                        across all industries.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="footer__col-title">Product</p>
+                    <ul class="footer__links">
+                        <li><a href="Landing.html">Home</a></li>
+                        <li><a href="Pricing.html">Pricing</a></li>
+                        <li><a href="About Us.html">About Us</a></li>
+                        <li><a href="Login.html">Login</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <p class="footer__col-title">Legal</p>
+                    <ul class="footer__links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p class="footer__copy">&copy; 2025 CPI. All rights reserved.</p>
+                <div class="footer__social">
+                    <a href="#" aria-label="LinkedIn">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Twitter / X">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="GitHub">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky header
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
+
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav  = document.getElementById('mobile-nav');
+        hamburger.addEventListener('click', () => {
+            const isOpen = hamburger.classList.toggle('open');
+            mobileNav.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                mobileNav.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
+
 </body>
-
 </html>
