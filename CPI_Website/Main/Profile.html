@@ -65,6 +65,18 @@
                         <ion-icon name="lock-closed-outline"></ion-icon>
                         <span>Security</span>
                     </button>
+                    <button class="pf-tab" data-tab="preferences">
+                        <ion-icon name="color-palette-outline"></ion-icon>
+                        <span>Preferences</span>
+                    </button>
+                    <button class="pf-tab" data-tab="notifications">
+                        <ion-icon name="notifications-outline"></ion-icon>
+                        <span>Notifications</span>
+                    </button>
+                    <button class="pf-tab pf-tab--danger" data-tab="danger">
+                        <ion-icon name="warning-outline"></ion-icon>
+                        <span>Danger Zone</span>
+                    </button>
                 </div>
 
                 <!-- ── Panel: Account ───────────────────────── -->
@@ -166,6 +178,120 @@
 
                 </div><!-- /tab-security -->
 
+                <!-- ── Panel: Preferences ──────────────────── -->
+                <div class="pf-panel hidden" id="tab-preferences">
+
+                    <div class="pf-section">
+                        <h3 class="pf-section-title">Appearance</h3>
+                        <p class="pf-section-desc">Switch between dark and light theme in real time</p>
+                        <div class="pf-seg-track" id="pfThemeSegment">
+                            <button class="pf-seg-btn" data-theme-val="dark">
+                                <ion-icon name="moon-outline"></ion-icon>
+                                <span>Dark</span>
+                            </button>
+                            <button class="pf-seg-btn" data-theme-val="light">
+                                <ion-icon name="sunny-outline"></ion-icon>
+                                <span>Light</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="pf-section-sep"></div>
+
+                    <div class="pf-section">
+                        <h3 class="pf-section-title">Language</h3>
+                        <p class="pf-section-desc">Select the interface language</p>
+                        <div class="pf-seg-track" id="pfLangSegment">
+                            <button class="pf-seg-btn" data-lang-val="en">
+                                <span class="pf-flag"></span>
+                                <span>English</span>
+                            </button>
+                            <button class="pf-seg-btn" data-lang-val="es">
+                                <span class="pf-flag"></span>
+                                <span>Español</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div><!-- /tab-preferences -->
+
+                <!-- ── Panel: Notifications ─────────────────── -->
+                <div class="pf-panel hidden" id="tab-notifications">
+
+                    <div class="pf-section">
+                        <h3 class="pf-section-title">Notifications</h3>
+                        <p class="pf-section-desc">Choose which alerts you receive</p>
+
+                        <div class="pf-toggle-row">
+                            <div class="pf-toggle-info">
+                                <span class="pf-toggle-label">Email notifications</span>
+                                <span class="pf-toggle-desc">Receive updates and summaries via email</span>
+                            </div>
+                            <label class="pf-toggle-switch">
+                                <input type="checkbox" id="notifEmail">
+                                <span class="pf-toggle-track"></span>
+                            </label>
+                        </div>
+
+                        <div class="pf-toggle-row">
+                            <div class="pf-toggle-info">
+                                <span class="pf-toggle-label">System alerts</span>
+                                <span class="pf-toggle-desc">Get notified about system events and updates</span>
+                            </div>
+                            <label class="pf-toggle-switch">
+                                <input type="checkbox" id="notifSystem">
+                                <span class="pf-toggle-track"></span>
+                            </label>
+                        </div>
+
+                        <div class="pf-toggle-row">
+                            <div class="pf-toggle-info">
+                                <span class="pf-toggle-label">Security alerts</span>
+                                <span class="pf-toggle-desc">Be notified of login attempts and suspicious activity</span>
+                            </div>
+                            <label class="pf-toggle-switch">
+                                <input type="checkbox" id="notifSecurity">
+                                <span class="pf-toggle-track"></span>
+                            </label>
+                        </div>
+
+                    </div>
+
+                </div><!-- /tab-notifications -->
+
+                <!-- ── Panel: Danger Zone ───────────────────── -->
+                <div class="pf-panel hidden" id="tab-danger">
+
+                    <div class="pf-section">
+                        <h3 class="pf-section-title pf-danger-section-title">Danger Zone</h3>
+                        <p class="pf-section-desc">These actions are irreversible. Proceed with caution.</p>
+
+                        <div class="pf-danger-item">
+                            <div class="pf-danger-item-info">
+                                <h4 class="pf-danger-item-title">Deactivate account</h4>
+                                <p class="pf-danger-item-desc">Temporarily disable your account. You can reactivate it by logging in again.</p>
+                            </div>
+                            <button class="pf-btn-hazard pf-btn-hazard--soft" id="btnDeactivate">
+                                <ion-icon name="pause-circle-outline"></ion-icon>
+                                Deactivate
+                            </button>
+                        </div>
+
+                        <div class="pf-danger-item pf-danger-item--strong">
+                            <div class="pf-danger-item-info">
+                                <h4 class="pf-danger-item-title pf-danger-item-title--strong">Delete account</h4>
+                                <p class="pf-danger-item-desc">Permanently delete your account and all associated data. This cannot be undone.</p>
+                            </div>
+                            <button class="pf-btn-hazard pf-btn-hazard--hard" id="btnDeleteAccount">
+                                <ion-icon name="trash-outline"></ion-icon>
+                                Delete
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div><!-- /tab-danger -->
+
             </div><!-- /pf-right -->
 
         </div><!-- /pf-page -->
@@ -173,6 +299,38 @@
 
     <!-- Toast container -->
     <div id="pfToasts"></div>
+
+    <!-- ── Deactivate Modal ──────────────────────────────────────── -->
+    <div class="pf-modal-backdrop hidden" id="deactivateBackdrop"></div>
+    <div class="pf-modal hidden" id="deactivateModal">
+        <div class="pf-modal-header pf-modal-header--warn">
+            <div class="pf-modal-icon pf-modal-icon--warn">
+                <ion-icon name="pause-circle-outline"></ion-icon>
+            </div>
+            <h3 class="pf-modal-title">Deactivate account?</h3>
+            <p class="pf-modal-desc">Your account will be temporarily disabled. You can reactivate it by logging in again.</p>
+        </div>
+        <div class="pf-modal-footer">
+            <button class="pf-modal-btn pf-modal-btn--cancel" id="deactivateCancelBtn">Cancel</button>
+            <button class="pf-modal-btn pf-modal-btn--warn" id="deactivateConfirmBtn">Deactivate</button>
+        </div>
+    </div>
+
+    <!-- ── Delete Account Modal ──────────────────────────────────── -->
+    <div class="pf-modal-backdrop hidden" id="deleteAccountBackdrop"></div>
+    <div class="pf-modal hidden" id="deleteAccountModal">
+        <div class="pf-modal-header pf-modal-header--danger">
+            <div class="pf-modal-icon pf-modal-icon--danger">
+                <ion-icon name="trash-outline"></ion-icon>
+            </div>
+            <h3 class="pf-modal-title">Delete account permanently?</h3>
+            <p class="pf-modal-desc">This will delete your account and all associated data. This action <strong>cannot be undone</strong>.</p>
+        </div>
+        <div class="pf-modal-footer">
+            <button class="pf-modal-btn pf-modal-btn--cancel" id="deleteAccountCancelBtn">Cancel</button>
+            <button class="pf-modal-btn pf-modal-btn--danger" id="deleteAccountConfirmBtn">Delete permanently</button>
+        </div>
+    </div>
 
     <script type="module">
         import { loadComponents } from '../Scripts/Components.js';

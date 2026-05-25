@@ -260,11 +260,16 @@
   function initTheme() {
     const theme = localStorage.getItem('cpi-theme') || 'dark';
     document.documentElement.setAttribute('data-theme', theme);
+    // body may not exist yet when called from <head>; apply class once DOM ready
+    const apply = () => document.body.classList.toggle('light-mode', theme === 'light');
+    if (document.body) apply();
+    else document.addEventListener('DOMContentLoaded', apply, { once: true });
   }
 
   function setTheme(theme) {
     localStorage.setItem('cpi-theme', theme);
     document.documentElement.setAttribute('data-theme', theme);
+    document.body.classList.toggle('light-mode', theme === 'light');
   }
 
   // ── Language ─────────────────────────────────────────────────────────────────

@@ -1,6 +1,6 @@
 body {
-    background-color: #121826;
-    color: white;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
@@ -8,7 +8,7 @@ body {
 
 /* ===== HEADER ===== */
 .header {
-    background-color: #1F2937;
+    background-color: var(--bg-card);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,7 +33,7 @@ body {
 .logo-text {
     font-size: 20px;
     font-weight: bold;
-    color: aliceblue;
+    color: var(--text-primary);
 }
 
 /* ===== USER ACTIONS ===== */
@@ -42,7 +42,7 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    background-color: #121826;
+    background-color: var(--bg-primary);
     padding: 10px 20px;
     border-radius: 8px;
 }
@@ -55,7 +55,7 @@ body {
 }
 
 .username {
-    color: #ffffff;
+    color: var(--text-primary);
     font-size: 16px;
     font-weight: bold;
 }
@@ -159,8 +159,8 @@ body {
     position: absolute;
     top: calc(100% + 12px);
     right: 0;
-    background: #1a2233;
-    border: 1px solid rgba(255,255,255,0.08);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
     border-radius: 16px;
     width: 270px;
     display: none;
@@ -207,7 +207,7 @@ body {
 .popup-avatar-section h3 { margin: 0 0 3px; font-size: 15px; font-weight: 700; color: #f9fafb; }
 .popup-avatar-section p  { margin: 0; font-size: 12px; color: rgba(255,255,255,0.5); }
 
-.popup-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 0; }
+.popup-divider { height: 1px; background: var(--border-color); margin: 0; }
 .popup-divider--thin { margin: 4px 12px; }
 
 .popup-body {
@@ -244,7 +244,7 @@ body {
 .popup-body .popup-signout:hover ion-icon { color: #f87171; }
 
 /* Notifications popup */
-.popup-header { text-align: center; padding: 15px; background-color: #2d3a50; }
+.popup-header { text-align: center; padding: 15px; background-color: var(--bg-elevated); }
 .popup-header h3 { margin: 5px 0 2px; }
 .popup-header p { font-size: 12px; color: #ccc; }
 
@@ -252,7 +252,7 @@ body {
     position: absolute;
     top: 60px; right: 20px;
     width: 300px;
-    background-color: #1F2937;
+    background-color: var(--bg-card);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     padding: 15px;
@@ -276,8 +276,8 @@ body {
 
 .notification-item:hover { background-color: rgba(255,255,255,0.1); }
 .notification-item ion-icon { font-size: 24px; color: #9069F9; flex-shrink: 0; }
-.notification-item p { color: #ffffff; margin: 0; }
-.notification-item small { color: rgba(255,255,255,0.6); font-size: 12px; }
+.notification-item p { color: var(--text-primary); margin: 0; }
+.notification-item small { color: var(--text-muted); font-size: 12px; }
 
 /* ===== SIDEBAR FIJO EN DESKTOP ===== */
 .sidebar {
@@ -286,8 +286,8 @@ body {
     left: 0;
     width: 220px;
     height: calc(100vh - 70px);
-    background-color: #1a2233;
-    box-shadow: 4px 0 10px rgba(255,255,255,0.1);
+    background-color: var(--bg-secondary);
+    box-shadow: 4px 0 10px rgba(0,0,0,0.15);
 
     z-index: 1500;
     display: flex;
@@ -296,10 +296,10 @@ body {
     padding: 10px 12px 20px;
     box-sizing: border-box;
     overflow-y: auto;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
 }
 
-.sidebar::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+.sidebar::-webkit-scrollbar { display: none; }
 
 /* ===== NAV BUTTONS ===== */
 .nav-buttons {
@@ -311,7 +311,7 @@ body {
 .nav-buttons button {
     background: none;
     border: 2px solid transparent;
-    color: #ffffff;
+    color: var(--text-primary);
     font-size: 14px;
     padding: 10px 13px;
     text-align: left;
@@ -334,7 +334,7 @@ body {
 
 .nav-buttons button ion-icon {
     font-size: 20px;
-    color: #ffffff;
+    color: var(--text-primary);
     transition: color 0.2s;
 }
 
@@ -351,7 +351,7 @@ body {
 /* ===== ACCOUNT DETAILS ===== */
 .account-details {
     margin-top: 10px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid var(--border-color);
     padding-top: 10px;
     display: flex;
     flex-direction: column;
@@ -361,7 +361,7 @@ body {
 .account-details button {
     background: none;
     border: 2px solid transparent;
-    color: #ffffff;
+    color: var(--text-primary);
     font-size: 14px;
     padding: 8px 12px;
     text-align: left;
@@ -382,7 +382,7 @@ body {
     transform: scale(1.04);
 }
 
-.account-details button ion-icon { font-size: 18px; color: #ffffff; transition: color 0.2s; }
+.account-details button ion-icon { font-size: 18px; color: var(--text-primary); transition: color 0.2s; }
 .account-details button:hover ion-icon { color: #54F1B8; }
 
 .account-details button.active {
@@ -392,7 +392,7 @@ body {
 
 /* ===== HELP SECTION ===== */
 .help-section {
-    background-color: #1F2937;
+    background-color: var(--bg-card);
     border-radius: 10px;
     padding: 10px;
     text-align: center;
@@ -404,10 +404,10 @@ body {
 .help-section p { margin: 2px 0; }
 
 .help-section button {
-    background-color: #384152;
+    background-color: var(--bg-elevated);
     border: none;
     padding: 6px 14px;
-    color: white;
+    color: var(--text-primary);
     cursor: pointer;
     border-radius: 6px;
     font-size: 12px;
@@ -429,8 +429,8 @@ body {
 }
 
 .global-modal-content {
-    background: #121826;
-    color: #fff;
+    background: var(--bg-primary);
+    color: var(--text-primary);
     padding: 30px;
     border-radius: 16px;
     text-align: center;
@@ -452,16 +452,16 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.2s;
-    background-color: #384152;
-    color: #fff;
+    background-color: var(--bg-elevated);
+    color: var(--text-primary);
 }
 
 .global-modal-buttons button#confirm-btn:hover { background-color: #54f1b7; transform: scale(1.1); }
 .global-modal-buttons button#cancel-btn:hover  { background-color: #8f69f9; transform: scale(1.1); }
 
 .global-modal-content button#close-help {
-    background-color: #384152;
-    color: #fff;
+    background-color: var(--bg-elevated);
+    color: var(--text-primary);
     padding: 10px 20px;
     border: none;
     border-radius: 10px;
@@ -491,7 +491,7 @@ body {
     top: 0; left: 0;
     height: 100vh;
     width: 220px;
-    background-color: #121826;
+    background-color: var(--bg-primary);
     z-index: 1500;
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
@@ -534,7 +534,6 @@ body {
 
     .sidebar-overlay { display: none !important; }
 
-    /* Todo el content principal se desplaza a la derecha del sidebar */
     [class*="content-"] {
         margin-left: 220px !important;
         padding-top: 90px !important;

@@ -4,7 +4,7 @@
     flex: 1;
     padding: 20px;
     margin-left: 220px;
-    background-color: #121826;
+    background-color: var(--bg-primary);
     width: 80%;
     padding-top: 90px;
 }
@@ -31,7 +31,7 @@
     align-items: center;
     justify-content: flex-end;
     width: 230px;
-    background-color: #1F2937;
+    background-color: var(--bg-card);
     border-radius: 8px;
     padding: 8px;
     position: relative;
@@ -44,7 +44,7 @@
 }
 
 .search-bar input {
-  background-color: #1f2937;
+  background-color: var(--bg-card);
   border: none;
   padding: 0.5rem 1rem;
   color: white;
@@ -408,7 +408,7 @@ h1 {
 }
 select {
     padding: 0.7rem 1rem;
-    background-color: #384152;
+    background-color: var(--bg-elevated);
     border: none;
     border-radius: 12px;
     color: #F2F2F2;
@@ -464,7 +464,7 @@ input:read-only {
 }
 
 .factura-contenido {
-    background: #121826; /* Fondo de la factura oscuro pero más claro que el body */
+    background: var(--bg-primary); /* Fondo de la factura oscuro pero más claro que el body */
     padding: 30px;
     border-radius: 10px;
     width: 90%;
@@ -656,7 +656,7 @@ input:read-only {
 }
 
 .filtro-panel {
-    background-color: #1A2233;
+    background-color: var(--bg-secondary);
     color: #E0E0E0;
     padding: 25px;
     border-radius: 10px;

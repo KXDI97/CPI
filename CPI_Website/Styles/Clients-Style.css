@@ -2,7 +2,7 @@
     flex: 1;
     padding: 20px;
     margin-left: 220px;
-    background-color: #121826;
+    background-color: var(--bg-primary);
     width: 80%;
     padding-top: 90px;
     color: #e6edf3; /* texto base claro */
@@ -25,7 +25,7 @@
 
 /* ---- Card ---- */
 .cliente-card {
-    background-color: #1F2937;
+    background-color: var(--bg-card);
     padding: 20px;
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -189,7 +189,7 @@ select {
     margin-top: 5px;
     border-radius: 5px;
     border: none;
-    background: #384152;
+    background: var(--bg-elevated);
     color: white;
 }
 
@@ -221,7 +221,7 @@ select {
     position: fixed;
     top: 50%;
     left: 50%;
-    background-color: #121826;
+    background-color: var(--bg-primary);
     transform: translate(-50%, -50%);
     width: 600px;
     padding: 25px;
@@ -269,7 +269,7 @@ select {
 .modal-add-product input,
 select,
 textarea {
-    background: #384152;
+    background: var(--bg-elevated);
     border: none;
     padding: 8px;
     border-radius: 5px;
@@ -309,7 +309,7 @@ textarea {
     align-items: center;
     gap: 8px;
     /* Espaciado entre icono y texto */
-    background-color: #1F2937;
+    background-color: var(--bg-card);
     color: white;
     border: 2px solid transparent;
     padding: 10px 15px;
@@ -342,7 +342,7 @@ textarea {
     align-items: center;
     gap: 8px;
     /* Espaciado entre icono y texto */
-    background-color: #1F2937;
+    background-color: var(--bg-card);
     color: white;
     border: 2px solid transparent;
     padding: 10px 15px;
@@ -382,7 +382,7 @@ textarea {
     align-items: center;
     justify-content: flex-end;
     width: 250px;
-    background-color: #1F2937;
+    background-color: var(--bg-card);
     border-radius: 8px;
     padding: 8px;
     position: relative;

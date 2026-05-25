@@ -38,7 +38,7 @@
 
 /* ===== BOTÓN INVOICE HISTORY ===== */
 #btn-invoice-history {
-    background: #1F2937;
+    background: var(--bg-card);
     color: #e2e8f0;
     border: 1px solid #3a3f5c;
     padding: 8px 14px;
@@ -49,7 +49,7 @@
 }
 
 #btn-invoice-history:hover {
-    background: #2d3748;
+    background: var(--bg-elevated);
     border-color: #6c63ff;
 }
 

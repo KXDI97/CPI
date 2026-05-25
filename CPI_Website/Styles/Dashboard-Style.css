@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #111827;
+    background-color: var(--bg-primary);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -14,7 +14,7 @@ body {
 .content-Dashboard {
     margin-left: 250px;
     padding: 20px;
-    background-color: #121826;
+    background-color: var(--bg-primary);
     width: calc(100% - 280px);
     box-sizing: border-box;
     margin-top:  80px;
@@ -25,7 +25,7 @@ body {
 }
 
 .content-Dashboard p {
-    color: rgba(255, 255, 255, 0.65);
+    color: var(--text-secondary);
 }
 
 
@@ -42,7 +42,7 @@ body {
     flex: 1 1 calc(33.333% - 20px);
     /* 3 por fila considerando el gap */
     min-width: 250px;
-    background-color: #1F2937;
+    background-color: var(--bg-card);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
@@ -77,13 +77,13 @@ body {
     padding: 5px;
     margin-bottom: 5px;
     font-size: medium;
-    color: rgba(255, 255, 255, 0.822);
+    color: var(--text-secondary);
 }
 
 
 .chart-box-dough {
     display: flex;
-    background: #1F2937;
+    background: var(--bg-card);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(188, 190, 206, 0.5);
@@ -114,7 +114,7 @@ body {
     font-size: medium;
     text-align: left;
     padding: 0;
-    color: rgba(255, 255, 255, 0.822);
+    color: var(--text-secondary);
 }
 
 
@@ -122,7 +122,7 @@ body {
 .chart-box-down {
     margin-left: 0;
     margin-top: 35px;
-    background: #1F2937;
+    background: var(--bg-card);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(188, 190, 206, 0.5);
@@ -152,7 +152,7 @@ body {
     padding: 5px;
     margin-bottom: 5px;
     font-size: medium;
-    color: rgba(255, 255, 255, 0.822);
+    color: var(--text-secondary);
 }
 
 .view-more {
@@ -162,10 +162,10 @@ body {
     right: 15px;
     width: 100px;
     height: 30px;
-    background-color: #374555;
+    background-color: var(--bg-elevated);
     border: none;
     border-radius: 25px;
-    color: white;
+    color: var(--text-primary);
     cursor: pointer;
 }
 
@@ -180,10 +180,10 @@ body {
     right: 15px;
     width: 150px;
     height: 30px;
-    background-color: #374555;
+    background-color: var(--bg-elevated);
     border: none;
     border-radius: 25px;
-    color: white;
+    color: var(--text-primary);
     cursor: pointer;
 }
 
@@ -198,9 +198,9 @@ body {
     margin-left: 5px;
     width: 500px;
     height: 300px;
-    background-color: #1F2937;
+    background-color: var(--bg-card);
     border-radius: 10px;
-    border: 5px solid white;
+    border: 5px solid var(--border-color);
     border-radius: 10px;
     padding: 30px;
 }
@@ -362,7 +362,7 @@ canvas {
     max-width: 100%;
     overflow-x: auto;
     /* Añade scroll horizontal si se necesita */
-    background-color: #1F2937;
+    background-color: var(--bg-card);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
@@ -374,7 +374,7 @@ canvas {
 /* Estilo del título */
 .table-container h2 {
     font-size: 18px;
-    color: #fff;
+    color: var(--text-primary);
     margin-bottom: 10px;
 }
 
@@ -389,13 +389,13 @@ thead th {
     text-align: left;
     padding: 12px;
     font-weight: bold;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid var(--border-strong);
 }
 
 /* Celdas de la tabla */
 td {
     padding: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--border-color);
     text-align: left;
 }
 
@@ -436,7 +436,7 @@ td ion-icon {
 
 /* Fondo de las filas */
 tbody tr:nth-child(odd) {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--bg-hover);
 }
 
 /* Paginación */
@@ -446,7 +446,7 @@ tbody tr:nth-child(odd) {
 }
 
 .pagination a {
-    color: #ffffff;
+    color: var(--text-primary);
     text-decoration: none;
     padding: 5px 10px;
     transition: color 0.3s;
@@ -483,9 +483,9 @@ tbody tr:nth-child(odd) {
 
 .filter-box input[type="text"] {
     font-family: 'Poppins', sans-serif;
-    background-color: #1F2937;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.65);
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
     padding: 8px 12px;
     border-radius: 8px;
     outline: none;
@@ -496,14 +496,14 @@ tbody tr:nth-child(odd) {
 
 .filter-box input[type="text"]:focus {
     box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.4);
-    color: rgba(255, 255, 255, 0.65);
+    color: var(--text-secondary);
 }
 
 .filter-box button {
     font-family: 'Poppins', sans-serif;
     background-color: #9069F9;
     border: none;
-    color: rgba(255, 255, 255, 0.918);
+    color: #ffffff;
     padding: 8px 16px;
     border-radius: 8px;
     cursor: pointer;

@@ -15,7 +15,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #1e2130;
+    background: var(--bg-card);
     border-radius: 12px;
     padding: 28px 32px;
     width: 420px;
@@ -69,7 +69,7 @@
     padding: 8px 12px;
     border-radius: 8px;
     border: 1px solid #3a3f5c;
-    background: #252a40;
+    background: var(--bg-elevated);
     color: #e2e8f0;
     box-sizing: border-box;
     font-size: 0.9rem;

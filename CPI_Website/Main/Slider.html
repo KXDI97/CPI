@@ -3,47 +3,58 @@
 
 <!-- Drawer lateral -->
 <div class="sidebar-drawer" id="sidebar-container">
-    <div class="sidebar">
-        <div class="nav-buttons">
-            <button onclick="window.location.href='Dashboard.html'">
-                <ion-icon name="home-outline"></ion-icon> <span data-i18n="nav.dashboard">Dashboard</span>
-            </button>
-            <button onclick="window.location.href='Storage.html'">
-                <ion-icon name="archive-outline"></ion-icon> <span data-i18n="nav.storage">Storage</span>
-            </button>
-            <button onclick="window.location.href='Purchase.html'">
-                <ion-icon name="storefront-outline"></ion-icon> <span data-i18n="nav.purchases">Purchases</span>
-            </button>
-            <button onclick="window.location.href='Savings.html'">
-                <ion-icon name="journal-outline"></ion-icon> <span data-i18n="nav.reports">Reports</span>
-            </button>
-            <button onclick="window.location.href='Sales.html'">
-                <ion-icon name="cash-outline"></ion-icon> <span data-i18n="nav.sales">Sales</span>
-            </button>
-            <button onclick="window.location.href='Clients.html'">
-                <ion-icon name="people-outline"></ion-icon> <span data-i18n="nav.clients">Clients</span>
-            </button>
-        </div>
-
-        <div class="account-details">
-            <button onclick="window.location.href='Profile.html'">
-                <ion-icon name="person-outline"></ion-icon> <span data-i18n="nav.profile">Profile</span>
-            </button>
-            <button id="admin-users-btn" onclick="window.location.href='AdminUsers.html'" style="display:none;">
-                <ion-icon name="shield-checkmark-outline"></ion-icon> <span data-i18n="nav.userManagement">User Management</span>
-            </button>
-            <button onclick="window.location.href='Settings.html'">
-                <ion-icon name="settings-outline"></ion-icon> <span data-i18n="nav.settings">Settings</span>
-            </button>
-            <button onclick="showLogoutModal()">
-                <ion-icon name="enter-outline"></ion-icon> <span data-i18n="nav.signOut">Sign out</span>
-            </button>
-        </div>
-
-        <div class="help-section">
-            <p data-i18n="help.title">Need help?</p>
-            <p data-i18n="help.desc">Check out our help center &amp; forums</p>
-            <button onclick="showHelpModal()" data-i18n="help.btn">Learn more</button>
-        </div>
+  <div class="sidebar">
+    <div class="nav-buttons">
+      <button onclick="window.location.href = 'Dashboard.html'">
+        <ion-icon name="home-outline"></ion-icon>
+        <span data-i18n="nav.dashboard">Dashboard</span>
+      </button>
+      <button onclick="window.location.href = 'Storage.html'">
+        <ion-icon name="archive-outline"></ion-icon>
+        <span data-i18n="nav.storage">Storage</span>
+      </button>
+      <button onclick="window.location.href = 'Purchase.html'">
+        <ion-icon name="storefront-outline"></ion-icon>
+        <span data-i18n="nav.purchases">Purchases</span>
+      </button>
+      <button onclick="window.location.href = 'Savings.html'">
+        <ion-icon name="journal-outline"></ion-icon>
+        <span data-i18n="nav.reports">Reports</span>
+      </button>
+      <button onclick="window.location.href = 'Sales.html'">
+        <ion-icon name="cash-outline"></ion-icon>
+        <span data-i18n="nav.sales">Sales</span>
+      </button>
+      <button onclick="window.location.href = 'Clients.html'">
+        <ion-icon name="people-outline"></ion-icon>
+        <span data-i18n="nav.clients">Clients</span>
+      </button>
     </div>
+
+    <div class="account-details">
+      <button
+        id="admin-users-btn"
+        onclick="window.location.href = 'AdminUsers.html'"
+        style="display: none"
+      >
+        <ion-icon name="shield-checkmark-outline"></ion-icon>
+        <span data-i18n="nav.userManagement">User Management</span>
+      </button>
+      <button onclick="window.location.href = 'Profile.html'">
+        <ion-icon name="person-outline"></ion-icon>
+        <span data-i18n="nav.profile">Settings</span>
+      </button>
+
+      <button onclick="showLogoutModal()">
+        <ion-icon name="enter-outline"></ion-icon>
+        <span data-i18n="nav.signOut">Sign out</span>
+      </button>
+    </div>
+
+    <div class="help-section">
+      <p data-i18n="help.title">Need help?</p>
+      <p data-i18n="help.desc">Check out our help center &amp; forums</p>
+      <button onclick="showHelpModal()" data-i18n="help.btn">Learn more</button>
+    </div>
+  </div>
 </div>

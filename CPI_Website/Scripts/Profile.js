@@ -302,11 +302,146 @@
     } catch { /* ignore */ }
   }
 
+  // ── Preferences tab ───────────────────────────────────────────────────────
+  function initPreferences() {
+    setActiveThemeBtn(localStorage.getItem('cpi-theme') || 'dark');
+    setActiveLangBtn(localStorage.getItem('cpi-lang')   || 'en');
+
+    document.getElementById('pfThemeSegment')?.addEventListener('click', e => {
+      const btn = e.target.closest('[data-theme-val]');
+      if (!btn) return;
+      window.setTheme?.(btn.dataset.themeVal);
+      setActiveThemeBtn(btn.dataset.themeVal);
+    });
+
+    document.getElementById('pfLangSegment')?.addEventListener('click', e => {
+      const btn = e.target.closest('[data-lang-val]');
+      if (!btn) return;
+      window.setLanguage?.(btn.dataset.langVal);
+      setActiveLangBtn(btn.dataset.langVal);
+    });
+  }
+
+  function setActiveThemeBtn(theme) {
+    document.querySelectorAll('#pfThemeSegment .pf-seg-btn').forEach(btn =>
+      btn.classList.toggle('active', btn.dataset.themeVal === theme)
+    );
+  }
+
+  function setActiveLangBtn(lang) {
+    document.querySelectorAll('#pfLangSegment .pf-seg-btn').forEach(btn =>
+      btn.classList.toggle('active', btn.dataset.langVal === lang)
+    );
+  }
+
+  // ── Notifications tab ─────────────────────────────────────────────────────
+  function initNotifications() {
+    const stored   = JSON.parse(localStorage.getItem('cpi-notifications') ?? '{}');
+    const defaults = { notifEmail: true, notifSystem: true, notifSecurity: true };
+
+    ['notifEmail', 'notifSystem', 'notifSecurity'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.checked = stored[id] ?? defaults[id];
+      el.addEventListener('change', () => {
+        const data = JSON.parse(localStorage.getItem('cpi-notifications') ?? '{}');
+        data[id] = el.checked;
+        localStorage.setItem('cpi-notifications', JSON.stringify(data));
+      });
+    });
+  }
+
+  // ── Danger Zone tab ───────────────────────────────────────────────────────
+  function showPfModal(backdropId, modalId) {
+    document.getElementById(backdropId)?.classList.remove('hidden');
+    document.getElementById(modalId)?.classList.remove('hidden');
+  }
+
+  function hidePfModal(backdropId, modalId) {
+    document.getElementById(backdropId)?.classList.add('hidden');
+    document.getElementById(modalId)?.classList.add('hidden');
+  }
+
+  function initDangerZone() {
+    // Deactivate
+    document.getElementById('btnDeactivate')?.addEventListener('click', () =>
+      showPfModal('deactivateBackdrop', 'deactivateModal')
+    );
+    document.getElementById('deactivateCancelBtn')?.addEventListener('click', () =>
+      hidePfModal('deactivateBackdrop', 'deactivateModal')
+    );
+    document.getElementById('deactivateBackdrop')?.addEventListener('click', () =>
+      hidePfModal('deactivateBackdrop', 'deactivateModal')
+    );
+    document.getElementById('deactivateConfirmBtn')?.addEventListener('click', async () => {
+      const btn = document.getElementById('deactivateConfirmBtn');
+      btn.disabled    = true;
+      btn.textContent = 'Processing…';
+      try {
+        const res = await fetch(`${API}/api/users/${userId}/role`, {
+          method:  'PUT',
+          headers: authHeaders(),
+          body:    JSON.stringify({ role: 'Deactivated' })
+        });
+        if (res.ok) {
+          hidePfModal('deactivateBackdrop', 'deactivateModal');
+          toast('Account deactivated. Logging out…');
+          setTimeout(() => window.CPI?.sessionLogout?.(), 2000);
+        } else {
+          toast('Could not deactivate account.', 'error');
+          btn.disabled    = false;
+          btn.textContent = 'Deactivate';
+        }
+      } catch {
+        toast('Network error. Try again.', 'error');
+        btn.disabled    = false;
+        btn.textContent = 'Deactivate';
+      }
+    });
+
+    // Delete
+    document.getElementById('btnDeleteAccount')?.addEventListener('click', () =>
+      showPfModal('deleteAccountBackdrop', 'deleteAccountModal')
+    );
+    document.getElementById('deleteAccountCancelBtn')?.addEventListener('click', () =>
+      hidePfModal('deleteAccountBackdrop', 'deleteAccountModal')
+    );
+    document.getElementById('deleteAccountBackdrop')?.addEventListener('click', () =>
+      hidePfModal('deleteAccountBackdrop', 'deleteAccountModal')
+    );
+    document.getElementById('deleteAccountConfirmBtn')?.addEventListener('click', async () => {
+      const btn = document.getElementById('deleteAccountConfirmBtn');
+      btn.disabled    = true;
+      btn.textContent = 'Deleting…';
+      try {
+        const res = await fetch(`${API}/api/users/${userId}`, {
+          method:  'DELETE',
+          headers: authHeaders()
+        });
+        if (res.ok || res.status === 404) {
+          localStorage.clear();
+          window.location.href = '../Landing Page/Login.html';
+        } else {
+          toast('Could not delete account.', 'error');
+          btn.disabled    = false;
+          btn.textContent = 'Delete permanently';
+        }
+      } catch {
+        toast('Network error. Try again.', 'error');
+        btn.disabled    = false;
+        btn.textContent = 'Delete permanently';
+      }
+    });
+  }
+
   // ── Boot ──────────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', () => {
     loadProfile();
     initTabs();
     initEyeToggles();
+    initPreferences();
+    initNotifications();
+    initDangerZone();
 
     document.getElementById('btnSaveUsername')?.addEventListener('click', saveUsername);
     document.getElementById('btnSaveEmail')   ?.addEventListener('click', saveEmail);

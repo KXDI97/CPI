@@ -2,7 +2,7 @@
 .content-Reports {
     flex: 1;
     margin-left: 240px;
-    background-color: #121826;
+    background-color: var(--bg-primary);
     width: 80%;
     padding: 20px;
     padding-top: 90px;
@@ -12,7 +12,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    background: #1F2937;
+    background: var(--bg-card);
     padding: 15px;
     border-radius: 8px;
     align-items: center;
@@ -31,7 +31,7 @@
 
 .filters input, 
 .filters select {
-    background: #384152;
+    background: var(--bg-elevated);
     border: 1px solid #444;
     padding: 8px;
     color: white;
@@ -91,7 +91,7 @@
     width: 100%;
 }
 .report-viewer {
-    background: #1F2937;
+    background: var(--bg-card);
     color: white;
     padding: 20px;
     border-radius: 8px;
@@ -125,7 +125,7 @@
     padding: 8px;
     border-radius: 5px;
     border: none;
-    background: #384152;
+    background: var(--bg-elevated);
     color: white;
     text-align: left;
 }
@@ -179,7 +179,7 @@ iframe {
 }
 
 .report-sender {
-    background: #1F2937; /*envio de infores*/
+    background: var(--bg-card); /*envio de infores*/
     color: white;
     padding: 20px;
     border-radius: 8px;
