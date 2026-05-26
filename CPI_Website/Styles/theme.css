@@ -6,25 +6,45 @@
 
 :root {
     --bg-primary:    #111827;
-    --bg-secondary:  #1a2233;
-    --bg-card:       #1F2937;
-    --bg-elevated:   #384152;
+    --bg-secondary:  #161b27;
+    --bg-card:       #1a2035;
+    --bg-elevated:   #242b3d;
+
+    --sidebar-bg:     #1a1d2e;
+    --sidebar-border: rgba(255,255,255,0.08);
+
+    --card-glass:        rgba(255,255,255,0.05);
+    --card-glass-border: rgba(255,255,255,0.10);
+    --card-glass-hover:  rgba(255,255,255,0.08);
 
     --text-primary:   #ffffff;
     --text-secondary: rgba(255,255,255,0.65);
     --text-muted:     rgba(255,255,255,0.40);
 
-    --border-color:  rgba(255,255,255,0.08);
-    --border-strong: rgba(255,255,255,0.18);
-    --bg-hover:      rgba(255,255,255,0.05);
+    --border-color:  rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.14);
+    --bg-hover:      rgba(255,255,255,0.04);
+
+    /* Accent */
+    --accent-start:  #9069F9;
+    --accent-end:    #54F1B7;
+    --gradient:      linear-gradient(135deg, #9069F9, #54F1B7);
+    --border-purple: rgba(144, 105, 249, 0.25);
 }
 
 [data-theme="light"],
 body.light-mode {
-    --bg-primary:    #f0f4f8;
+    --bg-primary:    #f0f2f5;
     --bg-secondary:  #f8fafc;
     --bg-card:       #ffffff;
     --bg-elevated:   #e2e8f0;
+
+    --sidebar-bg:     #f8fafc;
+    --sidebar-border: rgba(0,0,0,0.10);
+
+    --card-glass:        #ffffff;
+    --card-glass-border: #e5e7eb;
+    --card-glass-hover:  #f9fafb;
 
     --text-primary:   #111827;
     --text-secondary: #374151;
@@ -121,7 +141,13 @@ body.light-mode .notification-item small { color: #94a3b8; }
 
 /* ── Sidebar nav ─────────────────────────────────────────────────────────── */
 [data-theme="light"] .sidebar,
-body.light-mode .sidebar { box-shadow: 4px 0 10px rgba(0,0,0,0.08); }
+[data-theme="light"] .sidebar-drawer,
+body.light-mode .sidebar,
+body.light-mode .sidebar-drawer {
+    background: var(--sidebar-bg) !important;
+    border-right: 1px solid var(--sidebar-border) !important;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.06);
+}
 
 [data-theme="light"] .nav-buttons button,
 [data-theme="light"] .account-details button,
@@ -453,3 +479,172 @@ body.light-mode .setting:hover { background-color: #f5f3ff; }
 
 [data-theme="light"] .setting-info span,
 body.light-mode .setting-info span { color: #374151; }
+
+/* ── Dashboard glass cards (light mode) ──────────────────────────────────── */
+[data-theme="light"] .kpi-card,
+body.light-mode .kpi-card {
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+[data-theme="light"] .kpi-card:hover,
+body.light-mode .kpi-card:hover {
+    box-shadow: 0 8px 28px rgba(0,0,0,0.10) !important;
+}
+
+[data-theme="light"] .chart-box,
+[data-theme="light"] .chart-box-pay,
+[data-theme="light"] .chart-box-down,
+body.light-mode .chart-box,
+body.light-mode .chart-box-pay,
+body.light-mode .chart-box-down {
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+[data-theme="light"] .chart-box h2,
+[data-theme="light"] .chart-box-pay h2,
+[data-theme="light"] .chart-box-down h2,
+body.light-mode .chart-box h2,
+body.light-mode .chart-box-pay h2,
+body.light-mode .chart-box-down h2 { color: #111827; }
+
+[data-theme="light"] .kpi-label,
+body.light-mode .kpi-label { color: #6b7280; }
+
+[data-theme="light"] .kpi-value,
+body.light-mode .kpi-value { color: #111827; }
+
+[data-theme="light"] .payment-row,
+body.light-mode .payment-row { border-color: transparent; background: rgba(0,0,0,0.02); }
+
+[data-theme="light"] .payment-row:hover,
+body.light-mode .payment-row:hover { background: rgba(144,105,249,0.05); border-color: rgba(144,105,249,0.1); }
+
+[data-theme="light"] .pay-name,
+body.light-mode .pay-name { color: #111827; }
+
+[data-theme="light"] thead th,
+body.light-mode thead th {
+    background: rgba(0,0,0,0.03);
+    color: #6b7280;
+    border-bottom-color: #e5e7eb;
+}
+
+[data-theme="light"] td,
+body.light-mode td { color: #374151; border-bottom-color: #f3f4f6; }
+
+[data-theme="light"] .filter-presets,
+body.light-mode .filter-presets { background: #f3f4f6; border-color: #e5e7eb; }
+
+[data-theme="light"] .preset-btn,
+body.light-mode .preset-btn { color: #6b7280; }
+
+[data-theme="light"] .filter-box input[type="text"],
+body.light-mode .filter-box input[type="text"] {
+    background: #ffffff;
+    border-color: #d1d5db;
+    color: #111827;
+}
+
+[data-theme="light"] .dash-header__titles h1,
+body.light-mode .dash-header__titles h1 { color: #111827; }
+
+[data-theme="light"] .dash-header__titles p,
+body.light-mode .dash-header__titles p { color: #6b7280; }
+
+/* ── Purchase / Storage light mode fixes ─────────────────────────────────── */
+[data-theme="light"] .content-Purchase h1,
+[data-theme="light"] .content-Purchase .purchase-header,
+[data-theme="light"] .content-Purchase .purchase-header h1,
+body.light-mode .content-Purchase h1,
+body.light-mode .content-Purchase .purchase-header,
+body.light-mode .content-Purchase .purchase-header h1 { color: var(--text-primary); }
+
+[data-theme="light"] .filtro-panel,
+body.light-mode .filtro-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .search-bar input,
+body.light-mode .search-bar input { color: var(--text-primary); background: var(--bg-card); }
+
+/* ── Profile light mode fixes ────────────────────────────────────────────── */
+[data-theme="light"] .pf-wrapper,
+body.light-mode .pf-wrapper { background: var(--bg-primary); color: var(--text-primary); }
+
+[data-theme="light"] .pf-profile-name,
+body.light-mode .pf-profile-name { color: var(--text-primary); }
+
+[data-theme="light"] .pf-profile-card,
+body.light-mode .pf-profile-card {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+[data-theme="light"] .pf-banner,
+body.light-mode .pf-banner {
+    background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 45%, #1e40af 100%);
+}
+
+[data-theme="light"] .pf-avatar,
+body.light-mode .pf-avatar { border-color: #ffffff; }
+
+/* ── Purchase cart / inputs light mode ──────────────────────────────────── */
+[data-theme="light"] .carrito-contenido,
+body.light-mode .carrito-contenido {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.12);
+}
+
+[data-theme="light"] .carrito-contenido th,
+body.light-mode .carrito-contenido th {
+    background: var(--bg-elevated);
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .carrito-contenido button,
+[data-theme="light"] .btn-confirmar,
+body.light-mode .carrito-contenido button,
+body.light-mode .btn-confirmar {
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="light"] .product-quantity input,
+body.light-mode .product-quantity input {
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+}
+
+/* ── Storage table light mode ────────────────────────────────────────────── */
+[data-theme="light"] .content-Storage h1,
+body.light-mode .content-Storage h1 { color: var(--text-primary); }
+
+[data-theme="light"] .btn-1,
+[data-theme="light"] .btn-2,
+body.light-mode .btn-1,
+body.light-mode .btn-2 {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="light"] .btn-1:hover,
+[data-theme="light"] .btn-2:hover,
+body.light-mode .btn-1:hover,
+body.light-mode .btn-2:hover {
+    background: var(--bg-hover);
+    border-color: #54F1B8;
+}
