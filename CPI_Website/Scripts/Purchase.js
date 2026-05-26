@@ -1,538 +1,342 @@
 // ==================== CONFIGURACIÓN API ====================
 const API_CONFIG = {
-  purchaseOrderService: 'http://localhost:5116', 
-  purchaseReceiptService: 'http://localhost:5002',
-  inventoryService: 'http://localhost:5166',
-  supplierService: 'http://localhost:5062'
+  purchaseOrderService: 'http://localhost:5300',
+  catalogService:       'http://localhost:5131'
 };
 
-// ==================== UTILIDAD PARA MANEJAR RESPUESTAS ====================
-const handleResponse = async (response) => {
-  if (!response.ok) {
-    const error = await response.text();
-    throw new Error(error || `Error: ${response.status}`);
-  }
-  
-  if (response.status === 204) {
-    return null;
-  }
-  
-  return response.json();
+const handleResponse = async (r) => {
+  if (!r.ok) { const e = await r.text(); throw new Error(e || `Error: ${r.status}`); }
+  if (r.status === 204) return null;
+  return r.json();
 };
 
-// ==================== SUPPLIERS API ====================
+// ==================== APIs ====================
 const suppliersAPI = {
-  getAll: async () => {
-    const response = await fetch(`${API_CONFIG.supplierService}`);
-    return handleResponse(response);
-  },
-
-  getById: async (id) => {
-    const response = await fetch(`${API_CONFIG.supplierService}/${id}`);
-    return handleResponse(response);
-  },
-
-  create: async (data) => {
-    const response = await fetch(`${API_CONFIG.supplierService}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return handleResponse(response);
-  },
-
-  update: async (id, data) => {
-    const response = await fetch(`${API_CONFIG.supplierService}/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return handleResponse(response);
-  },
-
-  delete: async (id) => {
-    const response = await fetch(`${API_CONFIG.supplierService}/${id}`, {
-      method: 'DELETE'
-    });
-    return handleResponse(response);
-  }
+  getAll:   async ()     => handleResponse(await fetch(`${API_CONFIG.catalogService}/api/Suppliers`)),
+  create:   async (data) => handleResponse(await fetch(`${API_CONFIG.catalogService}/api/Suppliers`, {
+    method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data)
+  }))
 };
 
-// ==================== PRODUCTS API ====================
 const productsAPI = {
-  getAll: async () => {
-    const response = await fetch(`${API_CONFIG.inventoryService}/api/Products`);
-    return handleResponse(response);
-  },
-  
-  getById: async (id) => {
-    const response = await fetch(`${API_CONFIG.inventoryService}/api/Products/${id}`);
-    return handleResponse(response);
-  }
+  getAll: async () => handleResponse(await fetch(`${API_CONFIG.catalogService}/api/Products`))
 };
 
-// ==================== PURCHASE ORDERS API ====================
 const purchaseOrdersAPI = {
-  getAll: async () => {
-    const response = await fetch(`${API_CONFIG.purchaseOrderService}/api/PurchaseOrders`);
-    return handleResponse(response);
-  },
-
-  getById: async (id) => {
-    const response = await fetch(`${API_CONFIG.purchaseOrderService}/api/PurchaseOrders/${id}`);
-    return handleResponse(response);
-  },
-
-  create: async (data) => {
-    const response = await fetch(`${API_CONFIG.purchaseOrderService}/api/PurchaseOrders`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return handleResponse(response);
-  },
-
-  update: async (id, data) => {
-    const response = await fetch(`${API_CONFIG.purchaseOrderService}/api/PurchaseOrders/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return handleResponse(response);
-  },
-
-  delete: async (id) => {
-    const response = await fetch(`${API_CONFIG.purchaseOrderService}/api/PurchaseOrders/${id}`, {
-      method: 'DELETE'
-    });
-    return handleResponse(response);
-  }
+  create: async (data) => handleResponse(await fetch(`${API_CONFIG.purchaseOrderService}/api/PurchaseOrders`, {
+    method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data)
+  }))
 };
 
-// ==================== PURCHASE ORDER DETAILS API ====================
-const purchaseOrderDetailsAPI = {
-  getAllByOrder: async (orderId) => {
-    const response = await fetch(`${API_CONFIG.purchaseOrderService}/api/PurchaseOrderDetails/order/${orderId}`);
-    return handleResponse(response);
-  },
+// ==================== ESTADO ====================
+let cart = [], allProducts = [], filteredProducts = [], suppliers = [];
 
-  getById: async (id) => {
-    const response = await fetch(`${API_CONFIG.purchaseOrderService}/api/PurchaseOrderDetails/${id}`);
-    return handleResponse(response);
-  },
-
-  create: async (data) => {
-    const response = await fetch(`${API_CONFIG.purchaseOrderService}/api/PurchaseOrderDetails`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return handleResponse(response);
-  },
-
-  update: async (id, data) => {
-    const response = await fetch(`${API_CONFIG.purchaseOrderService}/api/PurchaseOrderDetails/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return handleResponse(response);
-  },
-
-  delete: async (id) => {
-    const response = await fetch(`${API_CONFIG.purchaseOrderService}/api/PurchaseOrderDetails/${id}`, {
-      method: 'DELETE'
-    });
-    return handleResponse(response);
-  }
-};
-
-// ==================== ESTADO GLOBAL ====================
-let cart = [];
-let allProducts = [];
-let filteredProducts = [];
-let suppliers = [];
-
-// ==================== CARGAR PROVEEDORES ====================
-async function loadSuppliers() {
-  try {
-    suppliers = await suppliersAPI.getAll();
-    renderSupplierSelect();
-  } catch (error) {
-    console.error('Error loading suppliers:', error);
-  }
+// ==================== HELPERS ====================
+function getCategoryIcon(cat) {
+  const m = { Cartuchos:'🖨️', Tintas:'🎨', Papelería:'📄', Computers:'💻',
+              Accessories:'🖱️', Tecnología:'⌨️', default:'📦' };
+  return m[cat] || m.default;
 }
 
-// ==================== RENDERIZAR SELECT DE PROVEEDORES ====================
+function fmt(n) { return Number(n).toLocaleString('es-CO', {minimumFractionDigits:2}); }
+
+function showToast(msg) {
+  let t = document.getElementById('cpi-toast');
+  if (!t) {
+    t = document.createElement('div'); t.id = 'cpi-toast';
+    t.style.cssText = `position:fixed;bottom:110px;left:50%;transform:translateX(-50%);
+      background:#1a2035;border:1px solid rgba(144,105,249,0.3);color:#fff;
+      padding:10px 22px;border-radius:100px;font-size:13px;font-family:'Poppins',sans-serif;
+      z-index:99999;opacity:0;transition:opacity 0.3s;white-space:nowrap;
+      box-shadow:0 4px 20px rgba(0,0,0,0.4);pointer-events:none;`;
+    document.body.appendChild(t);
+  }
+  t.textContent = msg; t.style.opacity = '1';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => { t.style.opacity = '0'; }, 2400);
+}
+
+function updateCartBadge() {
+  const badge = document.getElementById('cart-badge');
+  if (!badge) return;
+  const total = cart.reduce((s, i) => s + i.qty, 0);
+  badge.textContent = total;
+  badge.style.display = total > 0 ? 'flex' : 'none';
+}
+
+// ==================== SUPPLIERS ====================
+async function loadSuppliers() {
+  try { suppliers = await suppliersAPI.getAll(); renderSupplierSelect(); }
+  catch(e) { console.error('Error loading suppliers:', e); }
+}
+
 function renderSupplierSelect() {
-  const select = document.getElementById("supplier-select");
-  if (!select) return;
-  
-  select.innerHTML = '<option value="">Select a supplier</option>';
-  
+  const sel = document.getElementById("supplier-select");
+  if (!sel) return;
+  sel.innerHTML = '<option value="">Select a supplier</option>';
   suppliers.forEach(s => {
-    const option = document.createElement("option");
-    option.value = s.supplierId || s.id;
-    option.textContent = `${s.name} - ${s.document || s.nit || ''}`;
-    select.appendChild(option);
+    const o = document.createElement("option");
+    o.value = s.supplierId ?? s.id;
+    o.textContent = `${s.name}${s.contact ? ' — '+s.contact : ''}`;
+    sel.appendChild(o);
   });
 }
 
-// ==================== CREAR NUEVO PROVEEDOR ====================
-window.abrirModalProveedor = function() {
-  const modal = document.getElementById("modal-nuevo-proveedor");
-  if (modal) {
-    modal.style.display = "block";
-  }
-};
+window.abrirModalProveedor = () => { const m = document.getElementById("modal-nuevo-proveedor"); if(m) m.style.display="flex"; };
+window.cerrarModalProveedor = () => { const m = document.getElementById("modal-nuevo-proveedor"); if(m){ m.style.display="none"; document.getElementById("form-nuevo-proveedor").reset(); } };
 
-window.cerrarModalProveedor = function() {
-  const modal = document.getElementById("modal-nuevo-proveedor");
-  if (modal) {
-    modal.style.display = "none";
-    document.getElementById("form-nuevo-proveedor").reset();
-  }
-};
-
-// ==================== CARGAR PRODUCTOS ====================
+// ==================== PRODUCTS ====================
 async function loadProducts() {
   try {
     allProducts = await productsAPI.getAll();
     filteredProducts = [...allProducts];
     renderCarousel(filteredProducts);
-  } catch (error) {
-    console.error('Error loading products:', error);
-    alert('❌ Error loading products');
+  } catch(e) {
+    console.error(e);
+    const c = document.getElementById("product-carousel");
+    if (c) c.innerHTML = `<div class="swiper-slide"><div class="card" style="align-items:center;justify-content:center;min-height:200px">
+      <div style="font-size:2rem;margin-bottom:12px">⚠️</div>
+      <p style="color:#f87171;font-size:13px;text-align:center">Could not load products.<br>Check CatalogService on port 5131.</p>
+    </div></div>`;
   }
 }
 
-// ==================== RENDERIZAR CARRUSEL ====================
 function renderCarousel(products) {
   const container = document.getElementById("product-carousel");
+  if (!container) return;
   container.innerHTML = "";
 
-  if (products.length === 0) {
-    container.innerHTML = '<div class="swiper-slide"><p>No products found</p></div>';
+  if (!products.length) {
+    container.innerHTML = '<div class="swiper-slide"><div class="card" style="align-items:center;padding:40px;justify-content:center"><p style="color:rgba(255,255,255,0.4)">No products found</p></div></div>';
+    if (window.swiperInstance) { window.swiperInstance.update(); }
     return;
   }
 
   products.forEach(p => {
+    const price    = p.value ?? p.price ?? 0;
+    const stock    = p.stock ?? p.quantityInventory ?? 0;
+    const category = p.category ?? p.categoryName ?? '';
+    const icon     = getCategoryIcon(category);
+    const stockClass = stock === 0 ? 'empty' : stock < 10 ? 'low' : '';
+    const stockLabel = stock === 0 ? '❌ Out of stock' : stock < 10 ? `⚠️ Low: ${stock}` : `✅ Stock: ${stock}`;
+    const pid = String(p.productId ?? p.id ?? '').replace(/'/g, "\\'");
+    const pname = String(p.name ?? '').replace(/'/g, "\\'");
+
     const slide = document.createElement("div");
     slide.classList.add("swiper-slide");
     slide.innerHTML = `
       <div class="card">
-        <h3>${p.name}</h3>
-        <p><strong>$${p.price}</strong></p>
-        <p>Stock: ${p.stock || 0}</p>
-        <button onclick="addToCart('${p.productId}', '${p.name}', ${p.price})">Add to cart</button>
-      </div>
-    `;
+        <div class="card-img">${icon}</div>
+        <div class="card-info">
+          ${category ? `<span class="card-category">${category}</span>` : ''}
+          <h3>${p.name}</h3>
+          <div class="card-price">$${fmt(price)}</div>
+          <div class="card-stock ${stockClass}">${stockLabel}</div>
+        </div>
+        <button onclick="addToCart('${pid}','${pname}',${price})" ${stock===0 ? 'disabled style="opacity:0.35;cursor:not-allowed"' : ''}>
+          <ion-icon name="cart-outline"></ion-icon> Add to cart
+        </button>
+      </div>`;
     container.appendChild(slide);
   });
 
-  if (window.swiperInstance) {
-    window.swiperInstance.update();
-  } else {
-    window.swiperInstance = new Swiper(".mySwiper", {
-      slidesPerView: 3,
-      spaceBetween: 20,
-      navigation: { 
-        nextEl: ".swiper-button-next", 
-        prevEl: ".swiper-button-prev" 
-      },
-      breakpoints: {
-        320: { slidesPerView: 1, spaceBetween: 10 },
-        768: { slidesPerView: 2, spaceBetween: 15 },
-        1024: { slidesPerView: 3, spaceBetween: 20 }
-      }
-    });
-  }
+  if (window.swiperInstance) { window.swiperInstance.destroy(true, true); window.swiperInstance = null; }
+  window.swiperInstance = new Swiper(".mySwiper", {
+    spaceBetween: 20,
+    navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+    breakpoints: {
+      320:  { slidesPerView: 1,   spaceBetween: 12 },
+      600:  { slidesPerView: 2,   spaceBetween: 16 },
+      900:  { slidesPerView: 3,   spaceBetween: 20 },
+      1200: { slidesPerView: 4,   spaceBetween: 20 }
+    }
+  });
 }
 
-// ==================== FUNCIONES DEL CARRITO ====================
+// ==================== CARRITO ====================
 window.addToCart = function(id, name, price) {
-  const existing = cart.find(item => item.id === id);
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({ id, name, price, qty: 1 });
-  }
+  const ex = cart.find(i => i.id === id);
+  if (ex) { ex.qty += 1; } else { cart.push({ id, name, price: Number(price), qty: 1 }); }
   renderCart();
-  alert(`✅ ${name} added to cart`);
+  updateCartBadge();
+  showToast(`✅ ${name} added to cart`);
 };
 
 window.removeFromCart = function(id) {
-  cart = cart.filter(item => item.id !== id);
+  cart = cart.filter(i => i.id !== id);
   renderCart();
+  updateCartBadge();
 };
 
 function renderCart() {
   const table = document.getElementById("tabla-carrito");
   const totalSpan = document.getElementById("total-carrito");
-  
   if (!table || !totalSpan) return;
-  
   table.innerHTML = "";
   let total = 0;
 
   cart.forEach(item => {
-    const subtotal = item.price * item.qty;
-    const iva = subtotal * 0.19;
-    const totalConIva = subtotal + iva;
-    total += totalConIva;
-
+    const sub = item.price * item.qty;
+    const iva = sub * 0.19;
+    const ttl = sub + iva;
+    total += ttl;
     table.innerHTML += `
       <tr>
         <td>${item.id}</td>
-        <td>${item.name}</td>
+        <td style="text-align:left">${item.name}</td>
         <td>${item.qty}</td>
-        <td>$${item.price.toFixed(2)}</td>
+        <td>$${fmt(item.price)}</td>
         <td>19%</td>
         <td>$0.00</td>
-        <td>$${totalConIva.toFixed(2)}</td>
+        <td><strong>$${fmt(ttl)}</strong></td>
         <td><button onclick="removeFromCart('${item.id}')" class="btn-eliminar">❌</button></td>
-      </tr>
-    `;
+      </tr>`;
   });
-
-  totalSpan.textContent = total.toFixed(2);
+  totalSpan.textContent = fmt(total);
 }
 
 // ==================== MODALES ====================
-window.abrirCarrito = function() {
-  const modal = document.getElementById("carrito-modal");
-  if (modal) {
-    modal.style.display = "block";
-  }
-};
+window.abrirCarrito     = () => { const m=document.getElementById("carrito-modal"); if(m) m.style.display="flex"; };
+window.cerrarCarrito    = () => { const m=document.getElementById("carrito-modal"); if(m) m.style.display="none"; };
+window.cerrarModalCompra= () => { const m=document.getElementById("modal-registro"); if(m) m.style.display="none"; };
+window.cerrarFactura    = () => { const m=document.getElementById("factura-modal"); if(m) m.style.display="none"; };
 
-window.cerrarCarrito = function() {
-  const modal = document.getElementById("carrito-modal");
-  if (modal) {
-    modal.style.display = "none";
-  }
-};
+window.abrirModalCompra = function(opciones={}) {
+  const { requiereCarrito = true } = opciones;
+  if (requiereCarrito && cart.length === 0) { showToast("⚠️ The cart is empty"); return; }
 
-window.abrirModalCompra = function() {
-  if (cart.length === 0) {
-    alert("⚠️ The cart is empty");
-    return;
-  }
-  
   const modal = document.getElementById("modal-registro");
-  const totalModal = document.getElementById("total-final-modal");
+  if (!modal) return;
+  modal.style.display = "flex";
+
+  const orderNum = document.getElementById("order-number");
+  if (orderNum && !orderNum.value) orderNum.value = 'ORD-' + Date.now();
+
+  const totalModal   = document.getElementById("total-final-modal");
   const totalCarrito = document.getElementById("total-carrito");
-  
-  if (modal && totalModal && totalCarrito) {
-    modal.style.display = "block";
-    totalModal.textContent = totalCarrito.textContent;
-    
-    const dateInput = document.getElementById("purchase-date");
-    if (dateInput && !dateInput.value) {
-      dateInput.value = new Date().toISOString().split('T')[0];
-    }
-  }
+  if (totalModal) totalModal.textContent = cart.length > 0 && totalCarrito ? totalCarrito.textContent : "0.00";
+
+  const dateInput = document.getElementById("purchase-date");
+  if (dateInput && !dateInput.value) dateInput.value = new Date().toISOString().split('T')[0];
+
+  if (suppliers.length === 0) loadSuppliers();
 };
 
-window.cerrarModalCompra = function() {
-  const modal = document.getElementById("modal-registro");
-  if (modal) {
-    modal.style.display = "none";
-  }
-};
-
-window.cerrarFactura = function() {
-  const modal = document.getElementById("factura-modal");
-  if (modal) {
-    modal.style.display = "none";
-  }
-};
-
-// ==================== FORMULARIO NUEVO PROVEEDOR ====================
-document.addEventListener('DOMContentLoaded', function() {
-  const formProveedor = document.getElementById("form-nuevo-proveedor");
-  
-  if (formProveedor) {
-    formProveedor.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const supplierData = {
-        name: document.getElementById("supplier-name").value,
-        document: document.getElementById("supplier-document").value,
-        email: document.getElementById("supplier-email").value,
-        phone: document.getElementById("supplier-phone").value,
-        address: document.getElementById("supplier-address").value
-      };
-
-      try {
-        const newSupplier = await suppliersAPI.create(supplierData);
-        alert("✅ Supplier created successfully!");
-        
-        suppliers.push(newSupplier);
-        renderSupplierSelect();
-        
-        const select = document.getElementById("supplier-select");
-        if (select) {
-          select.value = newSupplier.supplierId || newSupplier.id;
-        }
-        
-        cerrarModalProveedor();
-      } catch (error) {
-        console.error('Error creating supplier:', error);
-        alert("❌ Error creating supplier: " + error.message);
-      }
-    });
-  }
+// ==================== FORM PROVEEDOR ====================
+document.addEventListener('DOMContentLoaded', () => {
+  const fp = document.getElementById("form-nuevo-proveedor");
+  if (fp) fp.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const data = {
+      name:    document.getElementById("supplier-name").value,
+      contact: document.getElementById("supplier-document").value,
+      email:   document.getElementById("supplier-email").value,
+      phone:   document.getElementById("supplier-phone").value,
+      address: document.getElementById("supplier-address").value
+    };
+    try {
+      const ns = await suppliersAPI.create(data);
+      showToast("✅ Supplier created!");
+      suppliers.push(ns);
+      renderSupplierSelect();
+      const sel = document.getElementById("supplier-select");
+      if (sel) sel.value = ns.supplierId ?? ns.id;
+      cerrarModalProveedor();
+    } catch(err) { showToast("❌ " + err.message); }
+  });
 });
 
-// ==================== PROCESAR COMPRA ====================
-document.addEventListener('DOMContentLoaded', function() {
+// ==================== FORM COMPRA ====================
+document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById("form-compra");
-  
-  if (form) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+  if (form) form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const supplierId = document.getElementById("supplier-select").value;
+    const date       = document.getElementById("purchase-date").value;
+    const method     = document.getElementById("payment-method").value;
 
-      const supplierId = document.getElementById("supplier-select").value;
-      const date = document.getElementById("purchase-date").value;
-      const method = document.getElementById("payment-method").value;
+    if (!supplierId || !date || !method) { showToast("⚠️ Please complete all fields"); return; }
+    if (cart.length === 0) { showToast("⚠️ The cart is empty"); return; }
 
-      if (!supplierId || !date || !method) {
-        alert("⚠️ Please complete all fields");
-        return;
-      }
-
-      if (cart.length === 0) {
-        alert("⚠️ The cart is empty");
-        return;
-      }
-
-      try {
-        const order = await purchaseOrdersAPI.create({
-          supplierId: supplierId,
-          orderDate: date,
-          status: "Pending",
-          paymentMethod: method
-        });
-
-        for (let item of cart) {
-          await purchaseOrderDetailsAPI.create({
-            purchaseOrderId: order.purchaseOrderId,
-            productId: item.id,
-            quantity: item.qty,
-            unitPrice: item.price
-          });
-        }
-
-        const supplier = suppliers.find(s => (s.supplierId || s.id) == supplierId);
-        showInvoice(order.purchaseOrderId, supplier?.name || supplierId, date);
-        
-        cart = [];
-        renderCart();
-        cerrarModalCompra();
-
-      } catch (error) {
-        console.error('Error processing purchase:', error);
-        alert("❌ Error processing purchase: " + error.message);
-      }
-    });
-  }
+    try {
+      const order = await purchaseOrdersAPI.create({
+        supplierId: parseInt(supplierId),
+        details: cart.map(i => ({ productId: i.id, quantity: i.qty, unitPrice: i.price }))
+      });
+      const supplier = suppliers.find(s => (s.supplierId??s.id) == supplierId);
+      const snapshot = [...cart];
+      showInvoice(order.purchaseOrderId, supplier?.name || supplierId, date, snapshot);
+      cart = []; renderCart(); updateCartBadge(); cerrarModalCompra();
+    } catch(err) { showToast("❌ " + err.message); }
+  });
 });
 
-// ==================== MOSTRAR FACTURA ====================
-function showInvoice(orderId, supplierName, date) {
-  document.getElementById("factura-orden").textContent = orderId;
+// ==================== FACTURA ====================
+function showInvoice(orderId, supplierName, date, snapshot) {
+  document.getElementById("factura-orden").textContent   = orderId;
   document.getElementById("factura-cliente").textContent = supplierName;
-  document.getElementById("factura-fecha").textContent = date;
+  document.getElementById("factura-fecha").textContent   = date;
 
   const tbody = document.getElementById("factura-productos");
   tbody.innerHTML = "";
-
   let total = 0;
-
-  cart.forEach(item => {
-    const subtotal = item.price * item.qty;
-    const iva = subtotal * 0.19;
-    const totalConIva = subtotal + iva;
-    total += totalConIva;
-
-    tbody.innerHTML += `
-      <tr>
-        <td>${item.name}</td>
-        <td>${item.qty}</td>
-        <td>$${item.price.toFixed(2)}</td>
-        <td>19%</td>
-        <td>$${totalConIva.toFixed(2)}</td>
-      </tr>
-    `;
+  snapshot.forEach(item => {
+    const sub = item.price * item.qty;
+    const iva = sub * 0.19;
+    const ttl = sub + iva;
+    total += ttl;
+    tbody.innerHTML += `<tr>
+      <td>${item.name}</td><td>${item.qty}</td>
+      <td>$${fmt(item.price)}</td><td>19%</td>
+      <td>$${fmt(ttl)}</td></tr>`;
   });
-
-  document.getElementById("factura-total").textContent = total.toFixed(2);
-  document.getElementById("factura-modal").style.display = "block";
+  document.getElementById("factura-total").textContent = fmt(total);
+  document.getElementById("factura-modal").style.display = "flex";
 }
 
-// ==================== BÚSQUEDA DE PRODUCTOS ====================
+// ==================== BÚSQUEDA ====================
 window.buscarProducto = function() {
-  const input = document.getElementById("search-input");
-  if (!input) return;
-  
-  const query = input.value.toLowerCase().trim();
-  
-  if (query === "") {
-    filteredProducts = [...allProducts];
-  } else {
-    filteredProducts = allProducts.filter(p => 
-      p.name.toLowerCase().includes(query) ||
-      (p.description && p.description.toLowerCase().includes(query))
-    );
-  }
-  
+  const q = (document.getElementById("search-input")?.value || "").toLowerCase().trim();
+  filteredProducts = q === "" ? [...allProducts]
+    : allProducts.filter(p =>
+        p.name.toLowerCase().includes(q) ||
+        (p.description && p.description.toLowerCase().includes(q)) ||
+        (p.category && p.category.toLowerCase().includes(q)));
   renderCarousel(filteredProducts);
 };
 
-document.addEventListener('DOMContentLoaded', function() {
-  const searchInput = document.getElementById("search-input");
-  if (searchInput) {
-    searchInput.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        buscarProducto();
-      }
-    });
-  }
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById("search-input")?.addEventListener('keypress', e => { if(e.key==='Enter') buscarProducto(); });
 });
 
 // ==================== FILTROS ====================
 window.aplicarFiltros = function() {
-  const categoria = document.getElementById("filtro-categoria")?.value || "";
-  const precioMax = parseFloat(document.getElementById("filtro-precio")?.value) || Infinity;
-  const fechaInicio = document.getElementById("filtro-fecha-inicio")?.value || "";
-  const fechaFin = document.getElementById("filtro-fecha-fin")?.value || "";
+  const cat      = document.getElementById("filtro-categoria")?.value || "";
+  const maxPrice = parseFloat(document.getElementById("filtro-precio")?.value) || Infinity;
+  const desde    = document.getElementById("filtro-fecha-inicio")?.value || "";
+  const hasta    = document.getElementById("filtro-fecha-fin")?.value || "";
 
   filteredProducts = allProducts.filter(p => {
-    if (categoria && p.category !== categoria) return false;
-    if (p.price > precioMax) return false;
-    if (fechaInicio && p.createdDate && p.createdDate < fechaInicio) return false;
-    if (fechaFin && p.createdDate && p.createdDate > fechaFin) return false;
+    const price = p.value ?? p.price ?? 0;
+    if (cat && p.category !== cat) return false;
+    if (price > maxPrice) return false;
+    if (desde && p.createdDate && p.createdDate < desde) return false;
+    if (hasta && p.createdDate && p.createdDate > hasta) return false;
     return true;
   });
-
   renderCarousel(filteredProducts);
-  alert(`✅ Filters applied: ${filteredProducts.length} products found`);
+  showToast(`✅ ${filteredProducts.length} products found`);
 };
 
-document.addEventListener('DOMContentLoaded', function() {
-  const filterBtn = document.querySelector('.filter-btn');
-  const filterPanel = document.getElementById('filtro-panel');
-  
-  if (filterBtn && filterPanel) {
-    filterBtn.addEventListener('click', function() {
-      filterPanel.style.display = filterPanel.style.display === 'none' ? 'block' : 'none';
+document.addEventListener('DOMContentLoaded', () => {
+  const btn   = document.getElementById('filter-toggle-btn');
+  const panel = document.getElementById('filtro-panel');
+  if (btn && panel) {
+    btn.addEventListener('click', () => {
+      panel.style.display = panel.style.display === 'none' ? 'flex' : 'none';
     });
   }
 });
 
-// ==================== INICIALIZACIÓN ====================
-window.addEventListener('load', () => {
-  loadProducts();
-  loadSuppliers();
-});
+// ==================== INIT ====================
+window.addEventListener('load', () => { loadProducts(); loadSuppliers(); });
