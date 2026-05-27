@@ -379,6 +379,10 @@ function openEditSaleModal() {
   if (sale.exchangeRate) {
     document.getElementById("ns-exr-custom").checked = true;
     document.getElementById("ns-exr").disabled = false;
+    document.getElementById("ns-exr-wrap")?.classList.add("visible");
+  } else {
+    document.getElementById("ns-exr-today").checked = true;
+    document.getElementById("ns-exr-wrap")?.classList.remove("visible");
   }
 
   // Limpiar y cargar líneas
@@ -401,6 +405,8 @@ function openSaleModal() {
   document.getElementById("ns-date").value = todayISODate();
   document.getElementById("ns-exr").value  = "";
   document.getElementById("ns-exr").disabled = true;
+  document.getElementById("ns-exr-today").checked = true;
+  document.getElementById("ns-exr-wrap")?.classList.remove("visible");
   document.getElementById("ns-lines-body").innerHTML = "";
   document.getElementById("saleModalTitle").textContent = "New Sale";
   document.getElementById("form-new-sale").dataset.editId = "";
@@ -461,11 +467,13 @@ function addLine(prefill = null) {
   tdTotal.appendChild(spanTot);
 
   const tdDel = document.createElement("td");
+  tdDel.style.textAlign = "center";
   const btnDel = document.createElement("button");
-  btnDel.type = "button"; btnDel.className = "btn-secondary";
-  btnDel.textContent = "Quitar";
+  btnDel.type = "button"; btnDel.className = "ns-btn-del";
+  btnDel.innerHTML = '<ion-icon name="trash-outline"></ion-icon>';
   tdDel.appendChild(btnDel);
 
+  tr.classList.add("ns-line-enter");
   tr.append(tdProd, tdPrice, tdQty, tdTotal, tdDel);
   tbody.appendChild(tr);
 
@@ -558,9 +566,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("ns-add-line")?.addEventListener("click", () => addLine());
   document.getElementById("ns-exr-today")?.addEventListener("change", () => {
     document.getElementById("ns-exr").disabled = true;
+    document.getElementById("ns-exr-wrap")?.classList.remove("visible");
   });
   document.getElementById("ns-exr-custom")?.addEventListener("change", () => {
     document.getElementById("ns-exr").disabled = false;
+    document.getElementById("ns-exr-wrap")?.classList.add("visible");
     document.getElementById("ns-exr").focus();
   });
   document.getElementById("form-new-sale")?.addEventListener("submit", submitSale);

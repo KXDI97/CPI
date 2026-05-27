@@ -434,11 +434,21 @@ textarea {
 #modalBackdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
+    background: rgba(43, 43, 93, 0.4);
+    backdrop-filter: blur(2px);
     z-index: 998;
 }
 
+/* ── #clientModal compact sizing ─────────────────────────────────────────── */
 #clientModal {
     z-index: 999;
 }
+#clientModal .erm-header        { padding: 18px 24px 12px; }
+#clientModal .erm-icon-wrap     { width: 44px; height: 44px; font-size: 21px; border-radius: 12px; margin-bottom: 8px; }
+#clientModal .erm-header h2     { font-size: 17px; }
+#clientModal .erm-body          { padding: 14px 22px 8px; }
+#clientModal .erm-label         { margin-bottom: 5px; }
+#clientModal .aum-grid          { gap: 10px 14px; }
+#clientModal .aum-input,
+#clientModal .aum-select        { padding: 8px 12px; }
+#clientModal .erm-footer        { padding: 8px 22px 14px; }

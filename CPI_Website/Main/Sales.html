@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../Styles/theme.css">
     <link rel="stylesheet" href="../Styles/Sales-Style.css">
     <link rel="stylesheet" href="../Styles/Sales-Extras.css">
+    <link rel="stylesheet" href="../Styles/AdminUsers-Style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>body { visibility: hidden }</style>
     <script src="../Scripts/translations.js"></script>
@@ -168,89 +169,117 @@
         </div>
 
         <!-- Backdrop + Modal Nueva Venta -->
-            <div id="saleBackdrop" class="modal-backdrop hidden"></div>
+        <div id="saleBackdrop" class="modal-backdrop hidden"></div>
 
-            <div id="saleModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="saleModalTitle">
-            <div class="modal-card">
-                <div class="modal-header">
-                <h3 id="saleModalTitle">New Sale</h3>
-                <button type="button" class="modal-close" id="ns-close" aria-label="Cerrar">×</button>
+        <div id="saleModal" class="edit-role-modal hidden" style="width:90%;max-width:600px;" role="dialog" aria-modal="true" aria-labelledby="saleModalTitle">
+            <div class="erm-header">
+                <div class="erm-icon-wrap">
+                    <ion-icon name="cash-outline"></ion-icon>
                 </div>
+                <h2 id="saleModalTitle">New Sale</h2>
+                <p class="erm-subtitle">Fill in the sale details</p>
+                <button type="button" class="erm-close-btn" id="ns-close" aria-label="Close">
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
+            </div>
 
-                <div class="modal-body">
-                <form id="form-new-sale">
-                    <!-- Cliente + Fecha -->
-                    <div class="grid-2">
-                    <label class="fld">
-                        <span>Cliente</span>
-                        <select id="ns-client" required>
-                        <option value="">Seleccione…</option>
-                        <!-- JS inyecta opciones -->
-                        </select>
-                    </label>
+            <form id="form-new-sale">
+                <div class="erm-body">
 
-                    <label class="fld">
-                        <span>Fecha</span>
-                        <input type="date" id="ns-date" required>
-                    </label>
+                    <!-- Customer + Date -->
+                    <div class="aum-grid">
+                        <div class="aum-col">
+                            <p class="erm-label">Customer *</p>
+                            <select id="ns-client" class="aum-select" required>
+                                <option value="">Select customer…</option>
+                                <!-- JS injects options -->
+                            </select>
+                        </div>
+                        <div class="aum-col">
+                            <p class="erm-label">Date *</p>
+                            <input type="date" id="ns-date" class="aum-input" required>
+                        </div>
+
+                        <!-- TRM -->
+                        <div class="aum-col aum-col--full">
+                            <p class="erm-label">Exchange Rate (TRM)</p>
+                            <div class="ns-trm-cards">
+                                <label class="ns-trm-card" for="ns-exr-today">
+                                    <input type="radio" name="ns-exr-mode" id="ns-exr-today" checked>
+                                    <span class="ns-trm-icon"><ion-icon name="calendar-outline"></ion-icon></span>
+                                    <div>
+                                        <span class="ns-trm-title">Today's TRM</span>
+                                        <span class="ns-trm-sub">Loaded automatically</span>
+                                    </div>
+                                </label>
+                                <label class="ns-trm-card" for="ns-exr-custom">
+                                    <input type="radio" name="ns-exr-mode" id="ns-exr-custom">
+                                    <span class="ns-trm-icon"><ion-icon name="create-outline"></ion-icon></span>
+                                    <div>
+                                        <span class="ns-trm-title">Custom</span>
+                                        <span class="ns-trm-sub">Enter manually</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="ns-exr-wrap" id="ns-exr-wrap">
+                                <input type="number" id="ns-exr" class="aum-input" style="margin-top:10px;" step="0.0001" placeholder="e.g. 4050.1234" disabled>
+                                <small id="ns-exr-hint" class="erm-muted" style="margin-top:4px;">Enter the exchange rate manually.</small>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- TRM -->
-                    <div class="fld">
-                    <span>TRM</span>
-                    <div class="trm-row">
-                        <label class="radio">
-                        <input type="radio" name="ns-exr-mode" id="ns-exr-today" checked>
-                        <span>Usar TRM del día</span>
-                        </label>
-                        <label class="radio">
-                        <input type="radio" name="ns-exr-mode" id="ns-exr-custom">
-                        <span>Personalizada</span>
-                        </label>
-                        <input type="number" id="ns-exr" step="0.0001" placeholder="p.ej. 4050.1234" disabled>
-                        <small id="ns-exr-hint" class="muted">Se intentará cargar automáticamente; puedes cambiarla.</small>
-                    </div>
+                    <!-- Product lines -->
+                    <div class="ns-products-section">
+                        <div class="ns-products-header">
+                            <div class="ns-products-title">
+                                <ion-icon name="cart-outline"></ion-icon>
+                                <span>Products</span>
+                            </div>
+                            <button type="button" id="ns-add-line" class="ns-btn-add-line">
+                                <ion-icon name="add-circle-outline"></ion-icon>
+                                Add product
+                            </button>
+                        </div>
+
+                        <table class="tbl tbl-lines">
+                            <thead>
+                                <tr>
+                                    <th style="width:42%">Product</th>
+                                    <th style="width:17%">Price</th>
+                                    <th style="width:14%">Qty</th>
+                                    <th style="width:17%" class="ta-right">Total</th>
+                                    <th style="width:10%"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="ns-lines-body">
+                                <!-- JS injects rows -->
+                            </tbody>
+                        </table>
                     </div>
 
-                    <!-- Líneas -->
-                    <div class="lines">
-                    <div class="lines-header">
-                        <h4>Productos</h4>
-                        <button type="button" id="ns-add-line" class="btn-secondary">+ Agregar producto</button>
+                    <!-- Totals -->
+                    <div class="ns-totals-box">
+                        <div class="ns-totals-row">
+                            <span>Subtotal</span>
+                            <strong id="ns-subtotal">$0</strong>
+                        </div>
+                        <div class="ns-totals-row">
+                            <span>IVA</span>
+                            <strong id="ns-iva">$0</strong>
+                        </div>
+                        <div class="ns-totals-row ns-totals-main">
+                            <span>Total</span>
+                            <strong id="ns-total">$0</strong>
+                        </div>
                     </div>
 
-                    <table class="tbl tbl-lines">
-                        <thead>
-                        <tr>
-                            <th style="width:42%">Producto</th>
-                            <th style="width:16%">Precio</th>
-                            <th style="width:16%">Cantidad</th>
-                            <th style="width:16%" class="ta-right">Total</th>
-                            <th style="width:10%"></th>
-                        </tr>
-                        </thead>
-                        <tbody id="ns-lines-body">
-                        <!-- JS inyecta filas -->
-                        </tbody>
-                    </table>
-                    </div>
-
-                    <!-- Totales -->
-                    <div class="totals">
-                    <div><span>Subtotal</span><strong id="ns-subtotal">$0</strong></div>
-                    <div><span>IVA</span><strong id="ns-iva">$0</strong></div>
-                    <div class="total"><span>Total</span><strong id="ns-total">$0</strong></div>
-                    </div>
-
-                    <!-- Acciones -->
-                    <div class="actions mt">
-                    <button type="button" class="btn-secondary" id="ns-cancel">Cancelar</button>
-                    <button type="submit" class="btn-primary">Crear venta</button>
-                    </div>
-                </form>
                 </div>
-            </div>
-            </div>
+                <div class="erm-footer">
+                    <button type="submit" class="erm-btn-save">Create Sale</button>
+                    <button type="button" class="erm-btn-cancel" id="ns-cancel">Cancel</button>
+                </div>
+            </form>
+        </div>
 
 
     <script type="module">
