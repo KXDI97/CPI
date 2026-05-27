@@ -765,7 +765,8 @@ body {
 
     [class*="content-"] {
         margin-left: 220px !important;
-        padding-top: 90px !important;
+        margin-top: 0 !important;
+        padding: 90px 40px 40px !important;
         width: calc(100% - 220px) !important;
         box-sizing: border-box !important;
         position: relative !important;
@@ -799,7 +800,8 @@ body {
 
     [class*="content-"] {
         margin-left: 0 !important;
-        padding-top: 72px !important;
+        margin-top: 0 !important;
+        padding: 72px 20px 24px !important;
         width: 100% !important;
     }
 }
