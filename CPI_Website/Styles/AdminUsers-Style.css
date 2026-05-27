@@ -152,14 +152,33 @@
     position: fixed;
     top: 50%;
     left: 50%;
+    /* sizing — individual modals override width via inline style */
     width: 420px;
-    background: var(--bg-secondary);
-    border: 1px solid rgba(144,105,249,0.22);
-    border-radius: 18px;
-    box-shadow: 0 28px 64px rgba(0,0,0,0.65), 0 0 0 1px rgba(144,105,249,0.08);
-    z-index: 999;
+    max-width: 95vw;
+    max-height: 85vh;
+    /* flex column so header/footer stay visible and body scrolls */
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
+    background: var(--bg-secondary);
+    border: 1px solid rgba(144,105,249,0.38);
+    border-radius: 18px;
+    box-shadow:
+        0 28px 64px rgba(0,0,0,0.65),
+        0 0 0 1px rgba(144,105,249,0.12),
+        0 0 40px rgba(144,105,249,0.15),
+        0 0 80px rgba(144,105,249,0.08);
+    z-index: 999;
     font-family: 'Poppins', sans-serif;
+}
+
+/* form used in Sales modal as passthrough flex wrapper */
+.edit-role-modal > form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .edit-role-modal:not(.hidden) {
@@ -176,9 +195,13 @@
     flex-direction: column;
     align-items: center;
     padding: 30px 28px 18px;
-    background: linear-gradient(160deg, rgba(122,90,248,0.14) 0%, transparent 70%);
+    /* solid base so header masks body content when it scrolls under */
+    background: linear-gradient(160deg, rgba(122,90,248,0.14) 0%, var(--bg-secondary) 70%);
     border-bottom: 1px solid var(--border-color);
     text-align: center;
+    /* stays visible at top — handled by flex-shrink:0 */
+    flex-shrink: 0;
+    position: relative;
 }
 
 .erm-icon-wrap {
@@ -209,7 +232,18 @@
     font-weight: 600;
 }
 
-.erm-body { padding: 22px 28px 14px; }
+.erm-body {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    padding: 22px 28px 14px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(144,105,249,0.3) transparent;
+}
+
+.erm-body::-webkit-scrollbar        { width: 5px; }
+.erm-body::-webkit-scrollbar-track  { background: transparent; }
+.erm-body::-webkit-scrollbar-thumb  { background: rgba(144,105,249,0.3); border-radius: 4px; }
 
 .erm-label {
     color: var(--text-muted);
@@ -275,6 +309,9 @@
     display: flex;
     gap: 10px;
     padding: 8px 28px 26px;
+    flex-shrink: 0;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
 }
 
 .erm-btn-save {
@@ -312,6 +349,163 @@
 
 .erm-btn-cancel:hover { border-color: var(--border-strong); color: var(--text-primary); }
 
+/* ── Shared helpers (used by Clients & Sales too) ────────────────────────── */
+.erm-header { position: relative; }
+
+.aum-col--full {
+    grid-column: 1 / -1;
+}
+
+.erm-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1.15rem;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    font-family: inherit;
+}
+
+.erm-close-btn:hover {
+    background: rgba(248,113,113,0.12);
+    color: #f87171;
+    border-color: rgba(248,113,113,0.25);
+}
+
+.erm-body--scroll {
+    max-height: 54vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(144,105,249,0.3) transparent;
+}
+
+.erm-body--scroll::-webkit-scrollbar        { width: 5px; }
+.erm-body--scroll::-webkit-scrollbar-track  { background: transparent; }
+.erm-body--scroll::-webkit-scrollbar-thumb  { background: rgba(144,105,249,0.3); border-radius: 4px; }
+
+/* Section divider inside modal body */
+.erm-section-sep {
+    grid-column: 1 / -1;
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 4px 0 2px;
+}
+
+/* Inline labels for radio/TRM rows */
+.erm-inline-group {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.erm-radio {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+}
+
+.erm-radio input[type="radio"] {
+    accent-color: #9069F9;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.erm-muted {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin: 4px 0 0;
+    display: block;
+}
+
+/* Product lines section */
+.erm-lines-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.erm-lines-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin: 0;
+}
+
+.erm-btn-add-line {
+    padding: 6px 14px;
+    border-radius: 7px;
+    border: 1px solid rgba(144,105,249,0.3);
+    background: rgba(144,105,249,0.1);
+    color: #c4aaff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.erm-btn-add-line:hover {
+    background: rgba(144,105,249,0.18);
+    border-color: rgba(144,105,249,0.5);
+}
+
+/* Totals row */
+.erm-totals {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-color);
+}
+
+.erm-totals > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.erm-totals > div strong {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.erm-totals .erm-total-row {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    padding-top: 8px;
+    border-top: 1px solid var(--border-color);
+    margin-top: 4px;
+}
+
+.erm-totals .erm-total-row strong {
+    color: #9069F9;
+    font-size: 16px;
+}
+
 /* ── Light mode overrides ────────────────────────────────────────────────── */
 [data-theme="light"] .aum-select,
 body.light-mode .aum-select {
@@ -323,3 +517,17 @@ body.light-mode .erm-header { border-bottom-color: var(--border-color); }
 
 [data-theme="light"] .erm-label,
 body.light-mode .erm-label { color: var(--text-muted); }
+
+/* ── Mobile ──────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+    .edit-role-modal {
+        width: 95% !important;
+        max-height: 90vh;
+    }
+    .aum-grid {
+        grid-template-columns: 1fr;
+    }
+    .aum-col--full {
+        grid-column: 1;
+    }
+}

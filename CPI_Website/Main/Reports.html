@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - CPI</title>
+    <link rel="icon" type="image/png" href="../Images/logo.png">
+    <link rel="stylesheet" href="../Styles/HeaderSlider-Style.css">
+    <link rel="stylesheet" href="../Styles/theme.css">
+    <link rel="stylesheet" href="../Styles/Reports-Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>body { visibility: hidden }</style>
+    <script src="../Scripts/translations.js"></script>
+    <script src="../Scripts/ui-helpers.js"></script>
+    <script>initTheme(); checkAuth();</script>
+</head>
+<body>
+    <div id="header-container"></div>
+    <div id="sidebar-container"></div>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <!-- Toast container -->
+    <div id="rp-toast-container"></div>
+
+    <main class="content-Reports">
+
+        <!-- ── Page Header ─────────────────────────────────────────────── -->
+        <div class="rp-page-header rp-anim-slide">
+            <div class="rp-page-header__left">
+                <h1>Reports <span class="rp-title-amp">&amp;</span> Analytics</h1>
+                <p id="rp-date-label">Select a report type to get started</p>
+            </div>
+            <div class="rp-page-header__actions">
+                <button class="rp-export-btn rp-export-btn--csv" id="btnExportCSV" disabled>
+                    <ion-icon name="document-outline"></ion-icon>
+                    <span>Export CSV</span>
+                </button>
+                <button class="rp-export-btn rp-export-btn--pdf" id="btnExportPDF" disabled>
+                    <ion-icon name="cloud-download-outline"></ion-icon>
+                    <span>Export PDF</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ── Filters Card ────────────────────────────────────────────── -->
+        <div class="rp-card rp-filters rp-anim-slide" style="animation-delay:.07s">
+            <div class="rp-filters__row">
+
+                <div class="rp-field rp-field--type">
+                    <label>Report Type</label>
+                    <div class="rp-select-wrap">
+                        <span class="rp-select-icon" id="rp-type-icon">
+                            <ion-icon name="bar-chart-outline"></ion-icon>
+                        </span>
+                        <select id="rp-type">
+                            <option value="">Select type…</option>
+                            <option value="sales">Sales Report</option>
+                            <option value="purchases">Purchase Report</option>
+                            <option value="inventory">Inventory Report</option>
+                            <option value="users" class="rp-admin-only" style="display:none">User Activity</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="rp-field">
+                    <label>From</label>
+                    <div class="rp-date-wrap">
+                        <ion-icon name="calendar-outline"></ion-icon>
+                        <input type="date" id="rp-from">
+                    </div>
+                </div>
+
+                <div class="rp-field">
+                    <label>To</label>
+                    <div class="rp-date-wrap">
+                        <ion-icon name="calendar-outline"></ion-icon>
+                        <input type="date" id="rp-to">
+                    </div>
+                </div>
+
+                <div class="rp-field rp-field--presets">
+                    <label>Quick Range</label>
+                    <div class="rp-presets">
+                        <button class="rp-preset" data-days="7">7d</button>
+                        <button class="rp-preset" data-days="30">30d</button>
+                        <button class="rp-preset" data-days="90">3m</button>
+                        <button class="rp-preset" data-days="365">1yr</button>
+                    </div>
+                </div>
+
+                <div class="rp-field rp-field--action">
+                    <label>&nbsp;</label>
+                    <button class="rp-generate-btn" id="btnGenerate">
+                        <ion-icon name="analytics-outline"></ion-icon>
+                        Generate Report
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ── Results Area ─────────────────────────────────────────────── -->
+
+        <!-- State: empty / preview -->
+        <div id="rp-state-empty" class="rp-anim-slide" style="animation-delay:.14s">
+            <div class="rp-empty-hero">
+                <div class="rp-empty-icon">
+                    <div class="rp-chart-anim">
+                        <div class="rp-bar rp-bar--1"></div>
+                        <div class="rp-bar rp-bar--2"></div>
+                        <div class="rp-bar rp-bar--3"></div>
+                        <div class="rp-bar rp-bar--4"></div>
+                        <div class="rp-bar rp-bar--5"></div>
+                    </div>
+                </div>
+                <h2>Ready to generate insights</h2>
+                <p>Choose a report type, set your date range, and click <strong>Generate Report</strong></p>
+            </div>
+
+            <div class="rp-preview-grid" id="rp-preview-grid">
+                <!-- Filled by JS based on selected type -->
+                <div class="rp-preview-card" data-type="sales">
+                    <div class="rp-preview-card__icon" style="--pc:var(--accent-purple)">
+                        <ion-icon name="trending-up-outline"></ion-icon>
+                    </div>
+                    <div class="rp-preview-card__body">
+                        <span class="rp-preview-card__label">Sales Report</span>
+                        <span class="rp-preview-card__desc">Revenue, orders, clients &amp; payment status</span>
+                    </div>
+                </div>
+                <div class="rp-preview-card" data-type="purchases">
+                    <div class="rp-preview-card__icon" style="--pc:#54F1B7">
+                        <ion-icon name="cart-outline"></ion-icon>
+                    </div>
+                    <div class="rp-preview-card__body">
+                        <span class="rp-preview-card__label">Purchase Report</span>
+                        <span class="rp-preview-card__desc">Spending by supplier, orders &amp; status</span>
+                    </div>
+                </div>
+                <div class="rp-preview-card" data-type="inventory">
+                    <div class="rp-preview-card__icon" style="--pc:#F59E0B">
+                        <ion-icon name="cube-outline"></ion-icon>
+                    </div>
+                    <div class="rp-preview-card__body">
+                        <span class="rp-preview-card__label">Inventory Report</span>
+                        <span class="rp-preview-card__desc">Stock levels, entries, exits &amp; low stock alerts</span>
+                    </div>
+                </div>
+                <div class="rp-preview-card rp-admin-card" id="rp-preview-users" style="display:none" data-type="users">
+                    <div class="rp-preview-card__icon" style="--pc:#3B82F6">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </div>
+                    <div class="rp-preview-card__body">
+                        <span class="rp-preview-card__label">User Activity</span>
+                        <span class="rp-preview-card__desc">Access logs, roles &amp; active users</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- State: skeleton loader -->
+        <div id="rp-state-loading" style="display:none">
+            <div class="rp-skeleton-wrap">
+                <div class="rp-sk-row">
+                    <div class="rp-sk rp-sk--kpi"></div>
+                    <div class="rp-sk rp-sk--kpi"></div>
+                    <div class="rp-sk rp-sk--kpi"></div>
+                    <div class="rp-sk rp-sk--kpi"></div>
+                </div>
+                <div class="rp-sk rp-sk--chart"></div>
+                <div class="rp-sk rp-sk--table"></div>
+            </div>
+        </div>
+
+        <!-- State: no data -->
+        <div id="rp-state-nodata" style="display:none" class="rp-card rp-state rp-state--nodata">
+            <ion-icon name="search-outline"></ion-icon>
+            <p>No data found for the selected period</p>
+        </div>
+
+        <!-- State: output -->
+        <div id="rp-output" style="display:none">
+
+            <!-- KPI row -->
+            <div class="rp-kpi-row" id="rp-kpi-row">
+                <!-- 4 cards rendered by JS -->
+            </div>
+
+            <!-- Chart card (hidden for users report) -->
+            <div class="rp-card rp-chart-card" id="rp-chart-card">
+                <div class="rp-chart-header">
+                    <h3 id="rp-chart-title">Chart</h3>
+                    <span class="rp-output-range" id="rp-output-range"></span>
+                </div>
+                <div class="rp-chart-body">
+                    <canvas id="rp-chart" height="90"></canvas>
+                </div>
+            </div>
+
+            <!-- Table card -->
+            <div class="rp-card rp-table-card">
+                <div class="rp-table-header">
+                    <h3 id="rp-output-title">Report</h3>
+                    <span class="rp-row-count" id="rp-row-count"></span>
+                </div>
+
+                <div class="rp-table-wrap">
+                    <table class="rp-table" id="rp-table">
+                        <thead id="rp-thead"></thead>
+                        <tbody id="rp-tbody"></tbody>
+                    </table>
+                </div>
+
+                <!-- Table footer: pagination + totals -->
+                <div class="rp-table-footer">
+                    <div class="rp-summary" id="rp-summary"></div>
+                    <div class="rp-pagination">
+                        <button class="rp-pg-btn" id="rp-pg-prev">
+                            <ion-icon name="chevron-back-outline"></ion-icon>
+                        </button>
+                        <span id="rp-pg-info">Page 1 of 1</span>
+                        <button class="rp-pg-btn" id="rp-pg-next">
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script type="module">
+        import { loadComponents } from '../Scripts/Components.js';
+        loadComponents();
+    </script>
+    <script type="module" src="../Scripts/Main.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="../Scripts/Session.js"></script>
+    <script src="../Scripts/Reports-Script.js"></script>
+</body>
+</html>

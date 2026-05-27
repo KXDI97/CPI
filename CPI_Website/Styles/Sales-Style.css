@@ -134,8 +134,8 @@
 .modal-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
+    background: rgba(43, 43, 93, 0.4);
+    backdrop-filter: blur(2px);
     z-index: 998;
 }
 
@@ -265,4 +265,274 @@
 .totals .total { background: #1e3a5f; color: #60a5fa; font-weight: 700; }
 
 .mt { margin-top: 12px; }
+
+/* ── Sale Modal: TRM cards ───────────────────────────────────────────────── */
+.ns-trm-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 2px;
+}
+
+.ns-trm-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--bg-primary);
+    border: 1.5px solid var(--border-color);
+    border-radius: 10px;
+    cursor: pointer;
+    user-select: none;
+    transition: border-color 0.17s, background 0.17s, box-shadow 0.17s;
+}
+
+.ns-trm-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ns-trm-card:has(input:checked) {
+    border-color: #9069F9;
+    background: rgba(144,105,249,0.1);
+    box-shadow: 0 0 0 3px rgba(144,105,249,0.12);
+}
+
+.ns-trm-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(144,105,249,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    color: #9069F9;
+    flex-shrink: 0;
+    transition: background 0.17s;
+}
+
+.ns-trm-card:has(input:checked) .ns-trm-icon {
+    background: rgba(144,105,249,0.25);
+}
+
+.ns-trm-title {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.25;
+}
+
+.ns-trm-sub {
+    display: block;
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* Slide-down wrapper for custom TRM input */
+.ns-exr-wrap {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.25s ease, margin-top 0.25s ease;
+    margin-top: 0;
+}
+
+.ns-exr-wrap.visible {
+    max-height: 80px;
+    opacity: 1;
+    margin-top: 10px;
+}
+
+/* ── Sale Modal: Products section ────────────────────────────────────────── */
+.ns-products-section {
+    margin-top: 14px;
+}
+
+.ns-products-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 12px;
+    background: rgba(144,105,249,0.06);
+    border: 1px solid rgba(144,105,249,0.14);
+    border-radius: 10px;
+    margin-bottom: 8px;
+}
+
+.ns-products-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.ns-products-title ion-icon {
+    font-size: 15px;
+    color: #9069F9;
+}
+
+.ns-btn-add-line {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    border-radius: 7px;
+    border: 1px solid rgba(144,105,249,0.35);
+    background: rgba(144,105,249,0.1);
+    color: #c4aaff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.15s;
+}
+
+.ns-btn-add-line:hover {
+    background: rgba(144,105,249,0.2);
+    border-color: rgba(144,105,249,0.55);
+    transform: translateY(-1px);
+}
+
+.ns-btn-add-line ion-icon { font-size: 14px; }
+
+/* Table rows as mini-cards */
+#saleModal .tbl-lines {
+    border-collapse: separate;
+    border-spacing: 0 4px;
+}
+
+#saleModal .tbl-lines thead th {
+    background: transparent;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-muted);
+    padding: 2px 8px 6px;
+    border-bottom: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+#saleModal .tbl-lines tbody tr {
+    background: var(--bg-primary);
+}
+
+#saleModal .tbl-lines tbody td {
+    padding: 6px 8px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    border-left: none;
+    border-right: none;
+}
+
+#saleModal .tbl-lines tbody td:first-child {
+    border-left: 1px solid var(--border-color);
+    border-radius: 8px 0 0 8px;
+}
+
+#saleModal .tbl-lines tbody td:last-child {
+    border-right: 1px solid var(--border-color);
+    border-radius: 0 8px 8px 0;
+}
+
+#saleModal .tbl-lines tbody tr:hover td {
+    background: rgba(144,105,249,0.04);
+}
+
+/* Highlight total cell in green */
+#saleModal .tbl-lines .ta-right span {
+    color: #34d399;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+/* Delete button as icon */
+.ns-btn-del {
+    background: rgba(248,113,113,0.1);
+    border: 1px solid rgba(248,113,113,0.18);
+    border-radius: 6px;
+    color: #f87171;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.15s;
+    padding: 0;
+    font-family: inherit;
+}
+
+.ns-btn-del:hover {
+    background: rgba(248,113,113,0.22);
+    border-color: rgba(248,113,113,0.4);
+    transform: scale(1.1);
+}
+
+/* Row enter animation */
+@keyframes ns-line-in {
+    from { opacity: 0; transform: translateY(-5px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.ns-line-enter { animation: ns-line-in 0.2s ease-out forwards; }
+
+/* ── Sale Modal: Totals ───────────────────────────────────────────────────── */
+.ns-totals-box {
+    margin-top: 10px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ns-totals-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.ns-totals-row strong {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.ns-totals-main {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    padding-top: 8px;
+    border-top: 1px solid var(--border-color);
+    margin-top: 3px;
+}
+
+.ns-totals-main strong {
+    color: #9069F9;
+    font-size: 16px;
+}
+
+/* ── #saleModal compact sizing ───────────────────────────────────────────── */
+#saleModal .erm-header          { padding: 18px 24px 12px; }
+#saleModal .erm-icon-wrap       { width: 44px; height: 44px; font-size: 21px; border-radius: 12px; margin-bottom: 8px; }
+#saleModal .erm-header h2       { font-size: 17px; }
+#saleModal .erm-body            { padding: 14px 22px 8px; }
+#saleModal .erm-label           { margin-bottom: 5px; }
+#saleModal .aum-grid            { gap: 10px 14px; }
+#saleModal .aum-input,
+#saleModal .aum-select          { padding: 8px 12px; }
+#saleModal .erm-footer          { padding: 8px 22px 14px; }
+#saleModal .erm-lines-title     { font-size: 11px; }
+#saleModal .erm-totals          { margin-top: 10px; padding-top: 10px; gap: 4px; }
 .hidden { display: none !important; }

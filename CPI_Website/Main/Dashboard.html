@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="../Styles/Dashboard-Style.css">
     <link rel="icon" type="image/png" href="../Images/logo.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="stylesheet" href="../Styles/HeaderSlider-Style.css">
     <link rel="stylesheet" href="../Styles/theme.css">
     <style>body { visibility: hidden }</style>
@@ -26,72 +26,162 @@
 
     <div class="content-Dashboard">
 
-        <div class="filter-box">
-            <input type="text" id="date-range" placeholder="Select dates range">
-            <button class="filter-text" onclick="filtrarFechas()">Filter</button>
+        <!-- Dashboard header row -->
+        <div class="dash-header">
+            <div class="dash-header__titles">
+                <h1>Informs Dashboard</h1>
+                <p>Hello Bryams, let's look at informs and imports performance.</p>
+            </div>
+            <div class="filter-box">
+                <div class="filter-presets">
+                    <button class="preset-btn" data-days="7">7d</button>
+                    <button class="preset-btn" data-days="30">30d</button>
+                    <button class="preset-btn" data-days="90">3mo</button>
+                    <button class="preset-btn" data-days="365">1yr</button>
+                </div>
+                <input type="text" id="date-range" placeholder="Custom range">
+                <button class="filter-text" onclick="aplicarFiltro()">Apply</button>
+                <button class="filter-clear" onclick="limpiarFiltro()">Clear</button>
+            </div>
         </div>
-        <h1>Informs Dashboard</h1>
-        <p>Hello Bryams, let's look at informs and imports performance:</p>
 
+        <!-- KPI Cards -->
+        <div class="kpi-grid">
+            <div class="kpi-card" data-href="Purchase.html">
+                <div class="kpi-icon kpi-icon--purple">
+                    <ion-icon name="cart-outline"></ion-icon>
+                </div>
+                <div class="kpi-body">
+                    <span class="kpi-label">Total Orders</span>
+                    <span class="kpi-value" data-count="142">0</span>
+                    <span class="kpi-delta kpi-delta--up">↑ 12.5% this month</span>
+                </div>
+            </div>
+            <div class="kpi-card" data-href="Purchase.html">
+                <div class="kpi-icon kpi-icon--green">
+                    <ion-icon name="cash-outline"></ion-icon>
+                </div>
+                <div class="kpi-body">
+                    <span class="kpi-label">Total Spending</span>
+                    <span class="kpi-value" data-count="19285" data-prefix="$">$0</span>
+                    <span class="kpi-delta kpi-delta--up">↑ 8.2% this month</span>
+                </div>
+            </div>
+            <div class="kpi-card" data-href="Purchase.html">
+                <div class="kpi-icon kpi-icon--orange">
+                    <ion-icon name="time-outline"></ion-icon>
+                </div>
+                <div class="kpi-body">
+                    <span class="kpi-label">Pending Payments</span>
+                    <span class="kpi-value" data-count="2411" data-prefix="$">$0</span>
+                    <span class="kpi-delta kpi-delta--down">↓ 3.1% vs last month</span>
+                </div>
+            </div>
+            <div class="kpi-card" data-href="Storage.html">
+                <div class="kpi-icon kpi-icon--blue">
+                    <ion-icon name="cube-outline"></ion-icon>
+                </div>
+                <div class="kpi-body">
+                    <span class="kpi-label">Active Products</span>
+                    <span class="kpi-value" data-count="48">0</span>
+                    <span class="kpi-delta kpi-delta--up">↑ 4 new this month</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts grid -->
         <div class="chart-container">
 
             <div class="chart-box">
-                <h2>Purchase Order</h2>
+                <h2 class="card-title-icon"><ion-icon name="trending-up-outline"></ion-icon> Purchase Orders</h2>
+                <p class="chart-date-label">Jan 14 – Mar 14, 2024</p>
                 <button class="view-more" id="purchasego">View more</button>
-                <p>From 14 Jan, 2024 - 14 Mar, 2024</p>
                 <canvas id="purchaseChart"></canvas>
             </div>
+
             <div class="chart-box">
-                <h2>Spending</h2>
+                <h2 class="card-title-icon"><ion-icon name="pie-chart-outline"></ion-icon> Spending</h2>
+                <p class="chart-date-label">Jan 14 – Mar 14, 2024</p>
                 <button class="view-more" id="statsgo">View more</button>
-                <p>From 14 Jan, 2024 - 14 Mar, 2024</p>
                 <canvas id="doughnutChart"></canvas>
             </div>
-            <div class="chart-box-pay">
-                <h2>Upcoming Payments</h2>
+
+            <div class="chart-box chart-box-pay">
+                <h2 class="card-title-icon"><ion-icon name="calendar-outline"></ion-icon> Upcoming Payments</h2>
+                <p class="chart-date-label">Jan 14 – Mar 14, 2024</p>
                 <button class="view-more">See all</button>
-                <p>From 14 Jan, 2024 - 14 Mar, 2024</p>
                 <div class="payments-list">
                     <div class="payment-row">
                         <div class="pay-info">
-                            <span class="pay-date">31 Jan</span>
-                            <span class="pay-name">Dayning</span>
+                            <div class="pay-avatar">DY</div>
+                            <div class="pay-meta">
+                                <span class="pay-name">Dayning</span>
+                                <span class="pay-date">31 Jan</span>
+                            </div>
                         </div>
-                        <span class="pay-amount negative">-$29.90</span>
+                        <div class="pay-right">
+                            <span class="pay-amount negative">-$29.90</span>
+                            <span class="pay-status pay-status--pending">Pending</span>
+                        </div>
                     </div>
                     <div class="payment-row">
                         <div class="pay-info">
-                            <span class="pay-date">15 Feb</span>
-                            <span class="pay-name">Independent</span>
+                            <div class="pay-avatar">IN</div>
+                            <div class="pay-meta">
+                                <span class="pay-name">Independent</span>
+                                <span class="pay-date">15 Feb</span>
+                            </div>
                         </div>
-                        <span class="pay-amount negative">-$269.00</span>
+                        <div class="pay-right">
+                            <span class="pay-amount negative">-$269.00</span>
+                            <span class="pay-status pay-status--pending">Pending</span>
+                        </div>
                     </div>
                     <div class="payment-row">
                         <div class="pay-info">
-                            <span class="pay-date">28 Feb</span>
-                            <span class="pay-name">DNP</span>
+                            <div class="pay-avatar">DN</div>
+                            <div class="pay-meta">
+                                <span class="pay-name">DNP</span>
+                                <span class="pay-date">28 Feb</span>
+                            </div>
                         </div>
-                        <span class="pay-amount negative">-$2,100.00</span>
+                        <div class="pay-right">
+                            <span class="pay-amount negative">-$2,100.00</span>
+                            <span class="pay-status pay-status--overdue">Overdue</span>
+                        </div>
                     </div>
                     <div class="payment-row">
                         <div class="pay-info">
-                            <span class="pay-date">05 Mar</span>
-                            <span class="pay-name">Sojet</span>
+                            <div class="pay-avatar">SJ</div>
+                            <div class="pay-meta">
+                                <span class="pay-name">Sojet</span>
+                                <span class="pay-date">05 Mar</span>
+                            </div>
                         </div>
-                        <span class="pay-amount negative">-$11.99</span>
+                        <div class="pay-right">
+                            <span class="pay-amount negative">-$11.99</span>
+                            <span class="pay-status pay-status--pending">Pending</span>
+                        </div>
                     </div>
                     <div class="payment-row">
                         <div class="pay-info">
-                            <span class="pay-date">10 Mar</span>
-                            <span class="pay-name">Qualiprint</span>
+                            <div class="pay-avatar">QP</div>
+                            <div class="pay-meta">
+                                <span class="pay-name">Qualiprint</span>
+                                <span class="pay-date">10 Mar</span>
+                            </div>
                         </div>
-                        <span class="pay-amount positive">+$480.00</span>
+                        <div class="pay-right">
+                            <span class="pay-amount positive">+$480.00</span>
+                            <span class="pay-status pay-status--paid">Paid</span>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="chart-box-down">
-                <h2>Recent Informs</h2>
-                <p>From 14 Jan, 2024 - 14 Mar, 2024</p>
+                <h2 class="card-title-icon"><ion-icon name="document-text-outline"></ion-icon> Recent Informs</h2>
+                <p class="chart-date-label">Jan 14 – Mar 14, 2024</p>
                 <button class="view-more-down" id="storagego">View Full History</button>
                 <table>
                     <thead>
@@ -109,7 +199,7 @@
                         <tr>
                             <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
                             <td>Mar 14</td>
-                            <td>Additive</td>
+                            <td><span class="category-badge category-badge--additive">Additive</span></td>
                             <td>Qualiprint</td>
                             <td>24</td>
                             <td>12</td>
@@ -118,7 +208,7 @@
                         <tr>
                             <td><ion-icon name="color-fill-outline"></ion-icon> LA 0056</td>
                             <td>Mar 12</td>
-                            <td>Ink</td>
+                            <td><span class="category-badge category-badge--ink">Ink</span></td>
                             <td>Qualiprint</td>
                             <td>34</td>
                             <td>0</td>
@@ -127,7 +217,7 @@
                         <tr>
                             <td><ion-icon name="radio-outline"></ion-icon> TVSA 33x700</td>
                             <td>Mar 10</td>
-                            <td>Tape</td>
+                            <td><span class="category-badge category-badge--tape">Tape</span></td>
                             <td>Qualiprint</td>
                             <td>10</td>
                             <td>5</td>
@@ -136,7 +226,7 @@
                         <tr>
                             <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
                             <td>Mar 09</td>
-                            <td>Device</td>
+                            <td><span class="category-badge category-badge--device">Device</span></td>
                             <td>Qualiprint</td>
                             <td>1</td>
                             <td>2</td>
@@ -145,7 +235,7 @@
                         <tr>
                             <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
                             <td>Mar 14</td>
-                            <td>Additive</td>
+                            <td><span class="category-badge category-badge--additive">Additive</span></td>
                             <td>Qualiprint</td>
                             <td>24</td>
                             <td>12</td>
@@ -154,7 +244,7 @@
                         <tr>
                             <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
                             <td>Mar 09</td>
-                            <td>Device</td>
+                            <td><span class="category-badge category-badge--device">Device</span></td>
                             <td>Qualiprint</td>
                             <td>1</td>
                             <td>2</td>
@@ -163,14 +253,14 @@
                     </tbody>
                 </table>
             </div>
-        </div>
 
+        </div>
     </div>
+
     <script type="module">
         import { loadComponents } from '../Scripts/Components.js';
         loadComponents();
     </script>
-    
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="../Scripts/Dashboard-Script.js"></script>
