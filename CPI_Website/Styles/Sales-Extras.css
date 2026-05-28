@@ -1,63 +1,107 @@
 /* ===== BADGES DE ESTADO ===== */
 .badge.status-paid {
-    background: #d4f5dd;
-    color: #2d7a42;
+    background: rgba(52, 211, 153, 0.12);
+    color: #34d399;
+    border: 1px solid rgba(52, 211, 153, 0.25);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 100px;
 }
 
 .badge.status-emitida {
-    background: #dbeafe;
-    color: #1e40af;
+    background: rgba(59, 130, 246, 0.12);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 100px;
 }
 
 .badge.status-pending {
-    background: #fff1c2;
-    color: #8a6d00;
+    background: rgba(245, 158, 11, 0.12);
+    color: #F59E0B;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 100px;
 }
 
 .badge.status-overdue {
-    background: #fddddd;
-    color: #a94442;
+    background: rgba(248, 113, 113, 0.12);
+    color: #f87171;
+    border: 1px solid rgba(248, 113, 113, 0.25);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 100px;
+    animation: overdue-pulse 2s ease-in-out infinite;
+}
+
+@keyframes overdue-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(248, 113, 113, 0); }
+    50%       { box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.2); }
 }
 
 /* ===== FILAS DE VENTAS ===== */
-.sale-row:hover {
-    background: rgba(255, 255, 255, 0.06);
-    transition: background 0.2s;
+.sale-row {
+    transition: background 0.15s;
+}
+
+.sale-row:hover td {
+    background: rgba(144, 105, 249, 0.045);
 }
 
 /* ===== CARD CLIENT DETAILS - TOTAL HISTÓRICO ===== */
 #cd-client-total {
     color: #54f1b8;
     font-size: 1.1rem;
+    font-weight: 700;
 }
 
 #cd-client-count {
     font-size: 0.85rem;
-    opacity: 0.75;
+    color: var(--text-muted, #7a7490);
 }
 
 /* ===== BOTÓN INVOICE HISTORY ===== */
 #btn-invoice-history {
-    background: var(--bg-card);
-    color: #e2e8f0;
-    border: 1px solid #3a3f5c;
+    background: var(--card-glass, rgba(255,255,255,0.05));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--text-primary, #f1f0ff);
+    border: 1px solid var(--card-glass-border, rgba(255,255,255,0.10));
     padding: 8px 14px;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     margin-left: 10px;
-    transition: background 0.2s, border-color 0.2s;
+    font-size: 0.825rem;
+    font-weight: 600;
+    transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
 }
 
 #btn-invoice-history:hover {
-    background: var(--bg-elevated);
-    border-color: #6c63ff;
+    background: rgba(144, 105, 249, 0.08);
+    border-color: rgba(144, 105, 249, 0.45);
+    box-shadow: 0 4px 14px rgba(144, 105, 249, 0.15);
 }
 
 /* ===== MODAL HISTORIAL ===== */
 #historyBackdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(43, 43, 93, 0.4);
+    backdrop-filter: blur(2px);
     z-index: 950;
 }
 
@@ -71,38 +115,139 @@
 }
 
 #historyModal .modal-card {
+    background: var(--card-glass, rgba(255,255,255,0.05));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--card-glass-border, rgba(255,255,255,0.10));
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
     max-width: 750px;
     width: 92vw;
 }
 
-#tbl-history th,
-#tbl-history td {
-    padding: 10px 8px;
+/* Línea superior degradada */
+#historyModal .modal-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #9069F9, #54F1B7);
+    border-radius: 16px 16px 0 0;
+}
+
+#tbl-history th {
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text-muted, #7a7490);
+    background: rgba(0,0,0,0.18);
     border-bottom: 1px solid rgba(255,255,255,0.08);
+    white-space: nowrap;
 }
 
-#tbl-history tbody tr:hover {
-    background: rgba(255,255,255,0.04);
+#tbl-history th:first-child { border-radius: 8px 0 0 8px; }
+#tbl-history th:last-child  { border-radius: 0 8px 8px 0; }
+
+#tbl-history td {
+    padding: 11px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.86rem;
+    color: var(--text-primary, #f1f0ff);
 }
 
+#tbl-history tbody tr:last-child td { border-bottom: none; }
+
+#tbl-history tbody tr { transition: background 0.15s; }
+
+#tbl-history tbody tr:hover td {
+    background: rgba(144, 105, 249, 0.045);
+}
+
+/* ===== BOTÓN DESCARGAR PDF ===== */
 .btn-dl-pdf {
     padding: 4px 12px !important;
-    font-size: 0.8rem !important;
-    background: #6c63ff !important;
-    border: none !important;
-    color: #fff !important;
-    border-radius: 6px !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    background: rgba(144, 105, 249, 0.15) !important;
+    border: 1px solid rgba(144, 105, 249, 0.3) !important;
+    color: #c4aaff !important;
+    border-radius: 20px !important;
     cursor: pointer;
-    transition: background 0.2s;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
 }
 
 .btn-dl-pdf:hover {
-    background: #574fd6 !important;
+    background: rgba(144, 105, 249, 0.28) !important;
+    border-color: rgba(144, 105, 249, 0.55) !important;
+    transform: translateY(-1px);
 }
 
 /* ===== TOTALES CARD ===== */
 #iv-total {
     color: #54f1b8;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 1.05rem;
+    letter-spacing: -0.01em;
+}
+
+/* ===== SEARCH BAR — INVOICE HISTORY MODAL ===== */
+.history-search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--card-glass-border, rgba(255,255,255,0.10));
+    border-radius: 10px;
+    padding: 8px 14px;
+    margin-bottom: 16px;
+    transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.history-search-wrap:focus-within {
+    border-color: rgba(144, 105, 249, 0.5);
+    box-shadow: 0 0 0 3px rgba(144, 105, 249, 0.1);
+}
+
+.history-search-wrap ion-icon {
+    font-size: 17px;
+    color: var(--text-muted, #7a7490);
+    flex-shrink: 0;
+    transition: color 0.25s;
+}
+
+.history-search-wrap:focus-within ion-icon {
+    color: #9069F9;
+}
+
+.history-search-wrap input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary, #f1f0ff);
+    font-size: 0.875rem;
+    font-family: 'Montserrat', 'Poppins', sans-serif;
+}
+
+.history-search-wrap input::placeholder {
+    color: var(--text-muted, #7a7490);
+}
+
+/* Fila oculta por el filtro */
+#tbl-history tbody tr.hidden-row {
+    display: none;
+}
+
+/* Mensaje sin resultados */
+#history-no-results {
+    text-align: center;
+    padding: 24px;
+    font-size: 0.85rem;
+    color: var(--text-muted, #7a7490);
+    display: none;
 }

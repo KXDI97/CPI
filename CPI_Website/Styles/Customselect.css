@@ -1,0 +1,207 @@
+/* ── CustomSelect — Glassmorphism dropdown ──────────────────────────────── */
+
+.cs-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    font-family: 'Montserrat', 'Poppins', sans-serif;
+}
+
+/* ── Trigger (campo visible) ── */
+.cs-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--card-glass, rgba(255,255,255,0.05));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--card-glass-border, rgba(255,255,255,0.10));
+    border-radius: 10px;
+    color: var(--text-primary, #f1f0ff);
+    font-size: 0.875rem;
+    font-family: inherit;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+}
+
+.cs-trigger:hover {
+    border-color: rgba(144, 105, 249, 0.35);
+    background: rgba(255,255,255,0.07);
+}
+
+.cs-wrapper.cs-open .cs-trigger {
+    border-color: rgba(144, 105, 249, 0.55);
+    box-shadow: 0 0 0 3px rgba(144, 105, 249, 0.12);
+    background: rgba(255,255,255,0.07);
+    border-radius: 10px 10px 0 0;
+}
+
+.cs-trigger-text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.4;
+}
+
+.cs-trigger-text--placeholder {
+    color: var(--text-muted, #7a7490);
+}
+
+/* Flecha */
+.cs-trigger-arrow {
+    flex-shrink: 0;
+    color: var(--text-muted, #7a7490);
+    display: flex;
+    align-items: center;
+    transition: transform 0.22s ease, color 0.2s;
+}
+
+.cs-wrapper.cs-open .cs-trigger-arrow {
+    transform: rotate(180deg);
+    color: #9069F9;
+}
+
+/* ── Dropdown panel ── */
+.cs-dropdown {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 9999;
+    background: rgba(18, 24, 38, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(144, 105, 249, 0.25);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(144,105,249,0.08);
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height 0.22s ease, opacity 0.18s ease;
+}
+
+.cs-wrapper.cs-open .cs-dropdown {
+    max-height: 260px;
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Dropdown arriba */
+.cs-dropdown--up {
+    top: auto;
+    bottom: 100%;
+    border-top: 1px solid rgba(144, 105, 249, 0.25);
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+}
+
+.cs-wrapper.cs-open .cs-trigger:has(+ .cs-dropdown--up) {
+    border-radius: 0 0 10px 10px;
+}
+
+/* ── Search dentro del dropdown ── */
+.cs-search-wrap {
+    padding: 8px 10px 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    position: sticky;
+    top: 0;
+    background: rgba(18, 24, 38, 0.98);
+    z-index: 1;
+}
+
+.cs-search-input {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(144, 105, 249, 0.2);
+    border-radius: 7px;
+    padding: 6px 10px;
+    color: var(--text-primary, #f1f0ff);
+    font-size: 0.8rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.cs-search-input:focus {
+    border-color: rgba(144, 105, 249, 0.5);
+    box-shadow: 0 0 0 2px rgba(144, 105, 249, 0.1);
+}
+
+.cs-search-input::placeholder {
+    color: var(--text-muted, #7a7490);
+}
+
+/* ── Lista de opciones ── */
+.cs-list {
+    overflow-y: auto;
+    max-height: 220px;
+    padding: 4px 0;
+}
+
+.cs-list::-webkit-scrollbar { width: 4px; }
+.cs-list::-webkit-scrollbar-track { background: transparent; }
+.cs-list::-webkit-scrollbar-thumb {
+    background: rgba(144, 105, 249, 0.25);
+    border-radius: 4px;
+}
+
+/* ── Opción ── */
+.cs-option {
+    padding: 9px 14px;
+    font-size: 0.855rem;
+    color: var(--text-secondary, #b8b0d8);
+    cursor: pointer;
+    border-radius: 0;
+    transition: background 0.12s, color 0.12s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+}
+
+.cs-option:hover {
+    background: rgba(144, 105, 249, 0.1);
+    color: var(--text-primary, #f1f0ff);
+}
+
+.cs-option--selected {
+    background: rgba(144, 105, 249, 0.18);
+    color: #c4aaff;
+    font-weight: 600;
+}
+
+.cs-option--selected::after {
+    content: '✓';
+    float: right;
+    color: #9069F9;
+    font-size: 0.8rem;
+    margin-left: 8px;
+}
+
+.cs-option--placeholder {
+    color: var(--text-muted, #7a7490);
+    font-style: italic;
+}
+
+.cs-option--disabled {
+    color: var(--text-muted, #7a7490);
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.cs-option--empty {
+    color: var(--text-muted, #7a7490);
+    font-style: italic;
+    text-align: center;
+    cursor: default;
+    padding: 14px;
+}
+
+.cs-option--empty:hover { background: none; }

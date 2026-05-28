@@ -358,7 +358,7 @@
 
 .btn-nuevo-proveedor-float {
     bottom: 104px; right: 28px;
-    background: linear-gradient(135deg, #9069F9, #0EA5E9);
+    background: linear-gradient(135deg, #54F1B8, #9069F9);
     box-shadow: 0 4px 20px rgba(144,105,249,0.45);
 }
 .btn-nuevo-proveedor-float:hover {
@@ -672,3 +672,182 @@
     .carrito-contenido { padding: 24px 16px; }
     .modal-content { padding: 28px 20px; }
 }
+
+/* ===== BOTÓN VER ÓRDENES ===== */
+.btn-ver-ordenes {
+    position: fixed;
+    bottom: 182px; right: 28px;
+    width: 54px; height: 54px;
+    border: none; border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; color: #fff;
+    z-index: 1000;
+    background: linear-gradient(135deg, #f59e0b, #f97316);
+    box-shadow: 0 4px 20px rgba(245,158,11,0.4);
+    transition: all 0.3s ease;
+}
+.btn-ver-ordenes:hover {
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 8px 30px rgba(245,158,11,0.5);
+}
+.btn-ver-ordenes ion-icon { font-size: 24px; color:#fff; }
+
+/* ===== ORDER ACTION BUTTONS ===== */
+.order-action-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0 2px;
+    transition: all 0.2s;
+}
+.order-action-btn:hover {
+    background: rgba(144,105,249,0.15);
+    border-color: rgba(144,105,249,0.4);
+}
+
+/* ===== ORDER DETAIL FIELDS ===== */
+.od-field {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.od-field span {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+}
+.od-field strong {
+    font-size: 14px;
+    color: #e2e8f0;
+}
+
+/* ===== ORDERS LIST TABLE ===== */
+#orders-list-tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.2s;
+}
+#orders-list-tbody tr:hover { background: rgba(255,255,255,0.03); }
+#orders-list-tbody td { padding: 12px 10px; font-size: 13px; color: #e2e8f0; }
+
+/* ===== BOTÓN VER ÓRDENES ===== */
+.btn-ver-ordenes {
+    position: fixed; bottom: 182px; right: 28px;
+    width: 54px; height: 54px; border: none; border-radius: 50%;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    color: #fff; z-index: 1000; transition: all 0.3s ease;
+    background: linear-gradient(135deg, #54F1B8, #9069F9);
+    box-shadow: 0 4px 20px rgba(245,158,11,0.4);
+}
+.btn-ver-ordenes:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 8px 30px rgba(245,158,11,0.5); }
+.btn-ver-ordenes ion-icon { font-size: 24px; color: #fff; }
+
+/* ===== QTY BUTTONS ===== */
+.qty-btn {
+    width: 26px; height: 26px; border-radius: 6px;
+    background: rgba(144,105,249,0.15); border: 1px solid rgba(144,105,249,0.3);
+    color: #9069F9; font-size: 16px; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; line-height: 1; padding: 0;
+}
+.qty-btn:hover { background: rgba(144,105,249,0.3); color: #fff; }
+
+/* ===== ORDER ACTION BUTTONS ===== */
+.order-action-btn {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    color: white; padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    font-size: 14px; margin: 0 2px; transition: all 0.2s;
+}
+.order-action-btn:hover { background: rgba(144,105,249,0.15); border-color: rgba(144,105,249,0.4); }
+
+/* ===== ORDER DETAIL FIELDS ===== */
+.od-field {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px; padding: 10px 14px; display: flex; flex-direction: column; gap: 4px;
+}
+.od-field span { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
+.od-field strong { font-size: 14px; color: #e2e8f0; }
+
+/* ===== ORDERS LIST TABLE ===== */
+#orders-list-tbody tr { border-bottom: 1px solid rgba(255,255,255,0.05); transition: background 0.2s; }
+#orders-list-tbody tr:hover { background: rgba(255,255,255,0.03); }
+#orders-list-tbody td { padding: 12px 10px; font-size: 13px; color: #e2e8f0; }
+
+/* ===== CREDIT CARD ===== */
+.credit-card {
+    width: 100%; max-width: 360px; height: 200px; margin: 0 auto 24px;
+    perspective: 1000px; display: none;
+}
+.card-front, .card-back {
+    position: absolute; width: 100%; height: 100%; border-radius: 16px;
+    backface-visibility: hidden; padding: 24px;
+    box-sizing: border-box; transition: transform 0.6s ease;
+}
+.card-front {
+    background: linear-gradient(135deg, #1a0533 0%, #2d1b69 50%, #0f2a1e 100%);
+    border: 1px solid rgba(144,105,249,0.3);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(144,105,249,0.15);
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+.card-back {
+    background: linear-gradient(135deg, #1a0533, #2d1b69);
+    border: 1px solid rgba(144,105,249,0.2);
+    transform: rotateY(180deg);
+    display: flex; flex-direction: column; justify-content: center;
+}
+.credit-card.flipped .card-front { transform: rotateY(-180deg); }
+.credit-card.flipped .card-back  { transform: rotateY(0deg); }
+
+.card-chip {
+    width: 40px; height: 30px; background: linear-gradient(135deg, #d4af37, #f0c040);
+    border-radius: 6px; display: flex; flex-direction: column;
+    justify-content: space-around; padding: 5px; gap: 3px;
+}
+.chip-line { height: 3px; background: rgba(0,0,0,0.3); border-radius: 2px; }
+
+.card-brand {
+    position: absolute; top: 20px; right: 24px;
+    font-size: 16px; font-weight: 800; color: rgba(255,255,255,0.9);
+    letter-spacing: 0.05em;
+}
+.card-number-preview {
+    font-size: 20px; letter-spacing: 0.2em; color: #fff;
+    font-family: 'Courier New', monospace; text-align: center; margin-top: 8px;
+}
+.card-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+.card-label { font-size: 9px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 3px; }
+.card-holder-preview { font-size: 13px; color: #fff; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+.card-expiry-preview { font-size: 13px; color: #fff; font-weight: 600; font-family: 'Courier New', monospace; }
+
+.card-stripe { height: 44px; background: rgba(0,0,0,0.7); margin: 0 -24px; }
+.card-cvv-area { display: flex; flex-direction: column; align-items: flex-end; padding-right: 8px; margin-top: 16px; }
+.card-cvv-box {
+    background: #fff; color: #000; font-family: 'Courier New', monospace;
+    font-size: 15px; font-weight: 700; padding: 6px 16px; border-radius: 4px;
+    letter-spacing: 0.2em; min-width: 60px; text-align: center;
+}
+
+/* ===== BOTÓN NUEVO PRODUCTO ===== */
+.btn-nuevo-producto {
+    position: fixed; bottom: 260px; right: 28px;
+    width: 54px; height: 54px; border: none; border-radius: 50%;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    color: #fff; z-index: 1000; transition: all 0.3s ease;
+    background: linear-gradient(135deg, #54F1B8, #9069F9);
+    box-shadow: 0 4px 20px rgba(52,211,153,0.4);
+}
+.btn-nuevo-producto:hover {
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 8px 30px rgba(52,211,153,0.5);
+}
+.btn-nuevo-producto ion-icon { font-size: 24px; color: #fff; }

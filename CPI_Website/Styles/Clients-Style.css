@@ -5,7 +5,7 @@
     background-color: var(--bg-primary);
     width: 80%;
     padding-top: 90px;
-    color: #e6edf3; /* texto base claro */
+    color: #e6edf3;
 }
 
 .clientes-grid {
@@ -25,37 +25,66 @@
 
 /* ---- Card ---- */
 .cliente-card {
-    background-color: var(--bg-card);
-    padding: 20px;
+    background: var(--card-glass, rgba(255,255,255,0.05));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--card-glass-border, rgba(255,255,255,0.10));
     border-radius: 16px;
+<<<<<<< HEAD
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     overflow: hidden;
 }
 
+=======
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s, background 0.25s;
+    animation: fadeInUp 0.5s ease both;
+    cursor: pointer;
+}
+
+/* Línea superior degradada igual que el dashboard */
+>>>>>>> 075ade19c221d96091433492c9c85a1ada2728b8
 .cliente-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 2px;
+<<<<<<< HEAD
     background: linear-gradient(to right, #9069F9, #54F1B7);
     border-radius: 16px 16px 0 0;
     opacity: 0.7;
+=======
+    background: linear-gradient(90deg, #9069F9, #54F1B7);
+    border-radius: 16px 16px 0 0;
+    opacity: 0.6;
+>>>>>>> 075ade19c221d96091433492c9c85a1ada2728b8
     transition: opacity 0.25s;
 }
 
 .cliente-card:hover {
+<<<<<<< HEAD
     transform: translateY(-3px);
     box-shadow: 0 10px 24px rgba(144, 105, 249, 0.2);
+=======
+    border-color: rgba(144, 105, 249, 0.35);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 36px rgba(144, 105, 249, 0.18);
+    background: var(--card-glass-hover, rgba(255,255,255,0.08));
+>>>>>>> 075ade19c221d96091433492c9c85a1ada2728b8
 }
 
 .cliente-card:hover::before { opacity: 1; }
 
 .cliente-card h3 {
     margin: 0;
-    color: #e6edf3;            /* antes #2c3e50 (oscuro) */
-    font-weight: 700;
+    color: var(--text-primary, #f1f0ff);
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
     max-width: 460px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -65,14 +94,18 @@
 .cliente-card p {
     margin: 6px 0;
     font-size: 14px;
-    color: #c9d1d9;
+    color: var(--text-muted, #7a7490);
 }
 
 .cliente-card a {
-    color: #66b3ff;
+    color: #9069F9;
     text-decoration: none;
+    font-weight: 600;
 }
-.cliente-card a:hover { text-decoration: underline; }
+.cliente-card a:hover {
+    color: #c4aaff;
+    text-decoration: underline;
+}
 
 /* ---- Header ---- */
 .cliente-header {
@@ -82,7 +115,9 @@
     margin-bottom: 12px;
 }
 
+/* ---- Avatar — igual que kpi-icon ---- */
 .cliente-avatar {
+<<<<<<< HEAD
     width: 48px;
     height: 48px;
     min-width: 48px;
@@ -91,64 +126,93 @@
     font-weight: 700;
     font-size: 18px;
     border-radius: 50%;
+=======
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: rgba(144, 105, 249, 0.15);
+    border: 1px solid rgba(144, 105, 249, 0.25);
+    color: #9069F9;
+    font-weight: 800;
+    font-size: 16px;
+>>>>>>> 075ade19c221d96091433492c9c85a1ada2728b8
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+<<<<<<< HEAD
     overflow: hidden;
     user-select: none;
+=======
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    transition: background 0.25s, transform 0.25s;
+}
+
+.cliente-card:hover .cliente-avatar {
+    background: rgba(144, 105, 249, 0.25);
+    transform: scale(1.08);
+>>>>>>> 075ade19c221d96091433492c9c85a1ada2728b8
 }
 
 /* ---- Menú de 3 puntos ---- */
 .menu-container {
-    margin-left: auto;    /* a la derecha */
+    margin-left: auto;
     position: relative;
-    z-index: 5;           /* por encima del contenido de la card */
+    z-index: 5;
 }
 
 .menu-btn {
     background: none;
     border: none;
-    color: #c9d1d9;
+    color: var(--text-muted, #7a7490);
     font-size: 18px;
     cursor: pointer;
-    padding: 4px;
+    padding: 4px 6px;
     border-radius: 8px;
     line-height: 1;
+    transition: background 0.2s, color 0.2s;
 }
-.menu-btn:hover { background: rgba(255,255,255,0.06); }
+.menu-btn:hover {
+    background: rgba(144, 105, 249, 0.12);
+    color: #9069F9;
+}
 .menu-btn:focus-visible {
-    outline: 2px solid #3b82f6;
+    outline: 2px solid #9069F9;
     outline-offset: 2px;
 }
 
 .menu-options {
     position: absolute;
-    top: 28px;    /* justo debajo del botón */
+    top: 28px;
     right: 0;
     background: #131826;
-    border: 1px solid #2b2f3a;
-    border-radius: 8px;
+    border: 1px solid rgba(144, 105, 249, 0.2);
+    border-radius: 10px;
     list-style: none;
     padding: 4px 0;
     margin: 0;
-    min-width: 120px;
-    z-index: 30;  /* sobre todo */
-    box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+    min-width: 130px;
+    z-index: 30;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.4);
 }
 
 .menu-options li {
-    padding: 8px 12px;
+    padding: 8px 14px;
     cursor: pointer;
-    color: #e6edf3;
+    color: var(--text-secondary, #b8b0d8);
     white-space: nowrap;
     font-size: 14px;
+    transition: background 0.15s, color 0.15s;
 }
-.menu-options li:hover { background: #22283a; }
+.menu-options li:hover {
+    background: rgba(144, 105, 249, 0.10);
+    color: #c4aaff;
+}
 
 .hidden { display: none !important; }
 
-/* ---- Responsive card padding (opcional) ---- */
+/* ---- Responsive card padding ---- */
 @media (max-width: 600px) {
     .cliente-card { padding: 16px; }
 }
@@ -250,16 +314,13 @@ select {
 
 .modal-add-product .modal-content2 {
     background: #181818;
-    /* Fondo oscuro */
     color: #fff;
-    /* Texto blanco */
     padding: 20px;
     width: 500px;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Estilos de los títulos */
 .modal-add-product.modal-content h2 {
     font-size: 22px;
     font-weight: bold;
@@ -270,7 +331,6 @@ select {
     margin-bottom: 10px;
 }
 
-/* Estilos de los grupos de formularios */
 .modal-add-product .form-group {
     display: flex;
     justify-content: space-between;
@@ -283,7 +343,6 @@ select {
     width: 48%;
 }
 
-/* Inputs y selects */
 .modal-add-product input,
 select,
 textarea {
@@ -301,7 +360,6 @@ textarea {
     resize: none;
 }
 
-/* Para el campo de descripción que ocupa todo el ancho */
 .modal-add-product .full-width {
     width: 100%;
 }
@@ -316,17 +374,14 @@ textarea {
     display: flex;
     align-items: center;
     gap: 12px;
-    /* Espaciado entre elementos */
     margin-bottom: 15px;
 }
-
 
 /* Estilos base para los botones */
 .btn-1 {
     display: flex;
     align-items: center;
     gap: 8px;
-    /* Espaciado entre icono y texto */
     background-color: var(--bg-card);
     color: white;
     border: 2px solid transparent;
@@ -338,18 +393,15 @@ textarea {
     transition: all 0.3s ease-in-out;
 }
 
-/* Íconos con degradado sólido */
 .btn-1 ion-icon {
     font-size: 18px;
 }
 
-/* Hover para los botones */
 .btn-1:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: #54F1B8;
 }
 
-/* Hover para los íconos (ligera escala) */
 .btn-1:hover ion-icon {
     transform: scale(1.1);
     color: #9069F9;
@@ -359,7 +411,6 @@ textarea {
     display: flex;
     align-items: center;
     gap: 8px;
-    /* Espaciado entre icono y texto */
     background-color: var(--bg-card);
     color: white;
     border: 2px solid transparent;
@@ -371,18 +422,15 @@ textarea {
     transition: all 0.3s ease-in-out;
 }
 
-/* Íconos con degradado sólido */
 .btn-2 ion-icon {
     font-size: 18px;
 }
 
-/* Hover para los botones */
 .btn-2:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: #9069F9;
 }
 
-/* Hover para los íconos (ligera escala) */
 .btn-2:hover ion-icon {
     transform: scale(1.1);
     color: #54F1B8;
@@ -392,7 +440,6 @@ textarea {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* Espaciado entre elementos */
 }
 
 .search-bar {
@@ -436,7 +483,6 @@ textarea {
     color: #54F1B8;
 }
 
-/* Animar el placeholder con un pseudo-elemento */
 .search-bar input::placeholder {
     color: gray;
     transition: all 0.3s ease;
