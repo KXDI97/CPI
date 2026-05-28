@@ -341,9 +341,36 @@ tbody tr:nth-child(odd) {
 }
 
 
+/* ── Add Product button ─────────────────────────────────────────────────── */
+.btn-add-product {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 18px;
+    border-radius: 9px;
+    border: none;
+    background: linear-gradient(135deg, #7A5AF8, #9069F9);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(122,90,248,0.35);
+    transition: opacity 0.17s, transform 0.15s;
+    white-space: nowrap;
+    margin-left: auto;
+}
+
+.btn-add-product:hover  { opacity: .88; transform: translateY(-1px); }
+.btn-add-product:active { transform: translateY(0); opacity: 1; }
+.btn-add-product ion-icon { font-size: 16px; }
+
 /*MODAL JS*/
 
 /*PRUEBA*/
+
+/* Required by modal JS — AdminUsers-Style uses this class but doesn't define it */
+.hidden { display: none !important; }
 
 /* Fondo borroso */
 .backdrop {

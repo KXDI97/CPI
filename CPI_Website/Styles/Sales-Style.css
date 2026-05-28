@@ -38,8 +38,22 @@
     box-shadow: 0 4px 16px rgba(0,0,0,0.3);
     overflow: hidden;
     transition: box-shadow 0.2s;
+    position: relative;
 }
-.card:hover { box-shadow: 0 6px 24px rgba(144, 105, 249, 0.15); }
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, #9069F9, #54F1B7);
+    opacity: 0.7;
+    transition: opacity 0.25s;
+    z-index: 1;
+}
+
+.card:hover { box-shadow: 0 6px 24px rgba(144, 105, 249, 0.2); }
+.card:hover::before { opacity: 1; }
 
 .card-title {
     background: var(--bg-primary);
@@ -536,3 +550,55 @@
 #saleModal .erm-lines-title     { font-size: 11px; }
 #saleModal .erm-totals          { margin-top: 10px; padding-top: 10px; gap: 4px; }
 .hidden { display: none !important; }
+
+/* ── Sales pagination ────────────────────────────────────────────────────── */
+.sales-pag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 0 4px;
+    flex-wrap: wrap;
+}
+
+.spag-btn {
+    min-width: 30px;
+    height: 30px;
+    padding: 0 8px;
+    border-radius: 7px;
+    border: 1px solid #2b2f3a;
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.82rem;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spag-btn:hover:not([disabled]) {
+    background: rgba(144,105,249,0.12);
+    border-color: rgba(144,105,249,0.4);
+    color: #c4aaff;
+}
+
+.spag-btn.active {
+    background: rgba(144,105,249,0.22);
+    border-color: #9069F9;
+    color: #e2d9ff;
+    font-weight: 700;
+}
+
+.spag-btn[disabled] {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.spag-dots {
+    color: rgba(255,255,255,0.3);
+    font-size: 0.78rem;
+    padding: 0 2px;
+    line-height: 30px;
+}

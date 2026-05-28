@@ -30,13 +30,27 @@
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    position: relative; /* para menu absoluto */
+    position: relative;
+    overflow: hidden;
+}
+
+.cliente-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, #9069F9, #54F1B7);
+    border-radius: 16px 16px 0 0;
+    opacity: 0.7;
+    transition: opacity 0.25s;
 }
 
 .cliente-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+    box-shadow: 0 10px 24px rgba(144, 105, 249, 0.2);
 }
+
+.cliente-card:hover::before { opacity: 1; }
 
 .cliente-card h3 {
     margin: 0;
@@ -71,7 +85,8 @@
 .cliente-avatar {
     width: 48px;
     height: 48px;
-    background: linear-gradient(135deg,#3b82f6,#0ea5e9);
+    min-width: 48px;
+    background: linear-gradient(135deg,#9069F9,#54F1B7);
     color: white;
     font-weight: 700;
     font-size: 18px;
@@ -79,6 +94,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    user-select: none;
 }
 
 /* ---- Menú de 3 puntos ---- */

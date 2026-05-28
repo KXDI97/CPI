@@ -59,6 +59,9 @@ const MOCK_USERS = [
     { user: 'javier.p@cpi.com',    role: 'Viewer',  lastAccess: '2026-05-20 09:00', status: 'inactive' },
 ];
 
+// ── API ────────────────────────────────────────────────────────────────────
+const REPORTS_API = 'http://localhost:5035/api/reports';
+
 // ── TYPE ICONS ─────────────────────────────────────────────────────────────
 const TYPE_ICONS = {
     sales:     'trending-up-outline',
@@ -72,13 +75,14 @@ const SCHEMAS = {
     sales: {
         title: 'Sales Report',
         chartTitle: 'Revenue by Date',
-        columns: ['Date', 'Client', 'Products', 'Total', 'Status'],
+        fetchUrl: `${REPORTS_API}/sales`,
+        columns: ['Date', 'Client', 'Items', 'Total', 'Status'],
         row: r => [
             r.date,
             r.client,
-            `<span style="max-width:220px;display:inline-block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.products}</span>`,
-            `<strong>$${r.total.toLocaleString('en-US', { minimumFractionDigits: 2 })}</strong>`,
-            badge(r.status, { paid: 'green', pending: 'yellow', overdue: 'red' })
+            `<span style="color:rgba(255,255,255,0.5)">${r.itemCount ?? (r.products ? '—' : 0)} items</span>`,
+            `<strong>$${Number(r.total).toLocaleString('en-US', { minimumFractionDigits: 2 })}</strong>`,
+            badge(r.status, { paid: 'green', issued: 'blue', pending: 'yellow', overdue: 'red' })
         ],
         data: MOCK_SALES,
         kpis: rows => {
@@ -127,12 +131,13 @@ const SCHEMAS = {
     purchases: {
         title: 'Purchases Report',
         chartTitle: 'Spending by Supplier',
-        columns: ['Date', 'Supplier', 'Products', 'Total', 'Status'],
+        fetchUrl: `${REPORTS_API}/purchases`,
+        columns: ['Date', 'Supplier', 'Items', 'Total', 'Status'],
         row: r => [
             r.date,
             r.supplier,
-            `<span style="max-width:220px;display:inline-block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.products}</span>`,
-            `<strong>$${r.total.toLocaleString('en-US', { minimumFractionDigits: 2 })}</strong>`,
+            `<span style="color:rgba(255,255,255,0.5)">${r.itemCount ?? (r.products ? '—' : 0)} items</span>`,
+            `<strong>$${Number(r.total).toLocaleString('en-US', { minimumFractionDigits: 2 })}</strong>`,
             badge(r.status, { received: 'green', pending: 'yellow', cancelled: 'red' })
         ],
         data: MOCK_PURCHASES,
@@ -184,6 +189,7 @@ const SCHEMAS = {
     inventory: {
         title: 'Inventory Report',
         chartTitle: 'Entries vs Exits by Product',
+        fetchUrl: `${REPORTS_API}/inventory`,
         columns: ['Product', 'Category', 'Entries', 'Exits', 'Stock'],
         row: r => [
             `<strong>${r.product}</strong>`,
@@ -416,9 +422,9 @@ function highlightPreviewCard(val) {
 }
 
 // ── GENERATE ───────────────────────────────────────────────────────────────
-function generateReport() {
+async function generateReport() {
     const type = document.getElementById('rp-type').value;
-    if (!type) { toast('loading', 'Please select a report type'); setTimeout(() => {}, 0); return; }
+    if (!type) { toast('loading', 'Please select a report type'); return; }
 
     STATE.type   = type;
     STATE.from   = document.getElementById('rp-from').value;
@@ -429,43 +435,60 @@ function generateReport() {
     showState('loading');
     setExportEnabled(false);
 
-    // Simulate async API call — replace with fetch() when backend is ready
-    setTimeout(() => {
-        let data = [...STATE.schema.data];
+    let data;
 
-        // Filter by date range if both dates are provided
-        // When connecting to API: pass from/to as query params instead
+    if (STATE.schema.fetchUrl) {
+        try {
+            const params = new URLSearchParams();
+            if (STATE.from) params.set('dateFrom', STATE.from);
+            if (STATE.to)   params.set('dateTo',   STATE.to);
+            const qs  = params.toString() ? '?' + params.toString() : '';
+            const res = await fetch(STATE.schema.fetchUrl + qs);
+            if (!res.ok) throw new Error(res.status);
+            data = await res.json();
+        } catch (e) {
+            console.warn('API unavailable, falling back to mock data.', e);
+            data = [...STATE.schema.data];
+            if (STATE.from && STATE.to) {
+                data = data.filter(r => {
+                    const d = (r.date || r.lastAccess || '').slice(0, 10);
+                    return d >= STATE.from && d <= STATE.to;
+                });
+            }
+        }
+    } else {
+        data = [...STATE.schema.data];
         if (STATE.from && STATE.to) {
             data = data.filter(r => {
                 const d = (r.date || r.lastAccess || '').slice(0, 10);
                 return d >= STATE.from && d <= STATE.to;
             });
         }
+    }
 
-        STATE.data = data;
+    STATE.data = data;
 
-        if (data.length === 0) {
-            showState('nodata');
-            return;
-        }
+    if (data.length === 0) {
+        showState('nodata');
+        return;
+    }
 
-        const rangeLabel = (STATE.from && STATE.to)
-            ? `${fmt(STATE.from)} – ${fmt(STATE.to)}`
-            : 'All time';
+    const rangeLabel = (STATE.from && STATE.to)
+        ? `${fmt(STATE.from)} – ${fmt(STATE.to)}`
+        : 'All time';
 
-        document.getElementById('rp-date-label').textContent  = `${STATE.schema.title} · ${rangeLabel}`;
-        document.getElementById('rp-output-title').textContent = STATE.schema.title;
-        document.getElementById('rp-output-range').textContent = rangeLabel;
-        document.getElementById('rp-row-count').textContent   = `${data.length} records`;
+    document.getElementById('rp-date-label').textContent   = `${STATE.schema.title} · ${rangeLabel}`;
+    document.getElementById('rp-output-title').textContent = STATE.schema.title;
+    document.getElementById('rp-output-range').textContent = rangeLabel;
+    document.getElementById('rp-row-count').textContent    = `${data.length} records`;
 
-        renderKPIs(data);
-        renderChart(data);
-        renderTable();
-        renderSummary();
+    renderKPIs(data);
+    renderChart(data);
+    renderTable();
+    renderSummary();
 
-        showState('output');
-        setExportEnabled(true);
-    }, 800);
+    showState('output');
+    setExportEnabled(true);
 }
 
 // ── KPI CARDS ──────────────────────────────────────────────────────────────

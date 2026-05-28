@@ -13,16 +13,29 @@ const COMPANY = {
 
 // ===== Helpers =====
 function fmtMoney(n) {
-  return new Intl.NumberFormat("es-CO", {
-    style: "currency", currency: "COP", maximumFractionDigits: 0
+  return new Intl.NumberFormat("en-US", {
+    style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2
   }).format(Number(n || 0));
 }
 
 function fmtDate(iso) {
   if (!iso) return "—";
-  return new Date(iso).toLocaleDateString("es-CO", {
+  return new Date(iso).toLocaleDateString("en-US", {
     year: "numeric", month: "short", day: "2-digit"
   });
+}
+
+function statusLabel(status) {
+  if (status === "Emitida") return "Issued";
+  return status || "Pending";
+}
+
+function statusClass(status) {
+  if (status === "Paid")    return "status-paid";
+  if (status === "Emitida") return "status-emitida";
+  if (status === "Issued")  return "status-emitida";
+  if (status === "Overdue") return "status-overdue";
+  return "status-pending";
 }
 
 function todayISODate() {
@@ -58,40 +71,89 @@ async function loadInitialData() {
   }
 }
 
-// ===== Sales Summary =====
+// ===== Sales Summary (paginated) =====
+const SALES_PAGE_SIZE = 10;
+let salesPage = 1;
+
 async function loadSalesSummary() {
   const tbody = document.getElementById("sales-summary-rows");
   if (!tbody) return;
 
   try {
     allSales = await apiFetch(`${SALES_API}/sales`);
-
-    if (!allSales.length) {
-      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;opacity:.5">Sin ventas</td></tr>`;
-      return;
-    }
-
-    tbody.innerHTML = allSales.map(s => {
-      const client = allClients.find(c => c.clientId === s.clientId);
-      const name   = client ? client.name : `Cliente #${s.clientId}`;
-      const cls    = s.status === "Paid" ? "status-paid"
-                   : s.status === "Emitida" ? "status-emitida"
-                   : s.status === "Overdue" ? "status-overdue"
-                   : "status-pending";
-      return `<tr class="sale-row" data-id="${s.invoiceId}" style="cursor:pointer">
-        <td>${fmtDate(s.invoiceDate)}</td>
-        <td>${name}</td>
-        <td class="ta-right">${fmtMoney(s.total)}</td>
-        <td><span class="badge ${cls}">${s.status}</span></td>
-      </tr>`;
-    }).join("");
-
-    tbody.querySelectorAll(".sale-row").forEach(row =>
-      row.addEventListener("click", () => loadSaleDetail(Number(row.dataset.id)))
-    );
+    salesPage = 1;
+    renderSalesPage(tbody);
   } catch (e) {
     tbody.innerHTML = `<tr><td colspan="4" style="color:red">Error cargando ventas</td></tr>`;
   }
+}
+
+function renderSalesPage(tbody) {
+  if (!tbody) tbody = document.getElementById("sales-summary-rows");
+  if (!tbody) return;
+
+  if (!allSales.length) {
+    tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;opacity:.5">No sales found</td></tr>`;
+    renderSalesPagination();
+    return;
+  }
+
+  const start = (salesPage - 1) * SALES_PAGE_SIZE;
+  const page  = allSales.slice(start, start + SALES_PAGE_SIZE);
+
+  tbody.innerHTML = page.map(s => {
+    const client = allClients.find(c => c.clientId === s.clientId);
+    const name   = client ? client.name : `Client #${s.clientId}`;
+    return `<tr class="sale-row" data-id="${s.invoiceId}" style="cursor:pointer">
+      <td>${fmtDate(s.invoiceDate)}</td>
+      <td>${name}</td>
+      <td class="ta-right">${fmtMoney(s.total)}</td>
+      <td><span class="badge ${statusClass(s.status)}">${statusLabel(s.status)}</span></td>
+    </tr>`;
+  }).join("");
+
+  tbody.querySelectorAll(".sale-row").forEach(row =>
+    row.addEventListener("click", () => loadSaleDetail(Number(row.dataset.id)))
+  );
+
+  renderSalesPagination();
+}
+
+function renderSalesPagination() {
+  let pag = document.getElementById("sales-pagination");
+  if (!pag) {
+    const card = document.getElementById("card-sales-summary");
+    if (!card) return;
+    pag = document.createElement("div");
+    pag.id = "sales-pagination";
+    pag.className = "sales-pag";
+    card.querySelector(".card-body")?.appendChild(pag);
+  }
+
+  const total = Math.ceil(allSales.length / SALES_PAGE_SIZE);
+  if (total <= 1) { pag.innerHTML = ""; return; }
+
+  let html = `<button class="spag-btn" data-p="prev" ${salesPage === 1 ? "disabled" : ""}>‹</button>`;
+  const from = Math.max(1, salesPage - 2);
+  const to   = Math.min(total, salesPage + 2);
+  if (from > 1) html += `<button class="spag-btn" data-p="1">1</button>${from > 2 ? '<span class="spag-dots">…</span>' : ''}`;
+  for (let i = from; i <= to; i++) {
+    html += `<button class="spag-btn${i === salesPage ? ' active' : ''}" data-p="${i}">${i}</button>`;
+  }
+  if (to < total) html += `${to < total - 1 ? '<span class="spag-dots">…</span>' : ''}<button class="spag-btn" data-p="${total}">${total}</button>`;
+  html += `<button class="spag-btn" data-p="next" ${salesPage === total ? "disabled" : ""}>›</button>`;
+  pag.innerHTML = html;
+
+  pag.querySelectorAll(".spag-btn:not([disabled])").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const p = btn.dataset.p;
+      const max = Math.ceil(allSales.length / SALES_PAGE_SIZE);
+      if      (p === "prev") salesPage = Math.max(1, salesPage - 1);
+      else if (p === "next") salesPage = Math.min(max, salesPage + 1);
+      else                   salesPage = Number(p);
+      renderSalesPage();
+    });
+  });
 }
 
 // ===== Detalle de venta =====
@@ -337,7 +399,7 @@ async function openHistoryModal() {
         <td>${fmtDate(s.invoiceDate)}</td>
         <td>${name}</td>
         <td class="ta-right">${fmtMoney(s.total)}</td>
-        <td>${s.status}</td>
+        <td>${statusLabel(s.status)}</td>
         <td>
           <button class="btn-primary btn-dl-pdf" data-id="${s.invoiceId}"
             style="padding:4px 12px;font-size:.8rem">

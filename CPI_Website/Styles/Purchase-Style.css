@@ -201,16 +201,18 @@
     color: #e5e7eb;
     overflow: hidden;
     height: 100%;
+    position: relative;
 }
 
-.card::after {
+.card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 2px;
-    background: linear-gradient(90deg, #9069F9, #54F1B8);
-    opacity: 0;
+    background: linear-gradient(to right, #9069F9, #54F1B7);
+    opacity: 0.7;
     transition: opacity 0.25s;
+    z-index: 1;
 }
 
 .card:hover {
@@ -219,7 +221,7 @@
     box-shadow: 0 12px 40px rgba(144,105,249,0.18);
 }
 
-.card:hover::after { opacity: 1; }
+.card:hover::before { opacity: 1; }
 
 /* Imagen */
 .card-img {

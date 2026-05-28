@@ -110,7 +110,7 @@
                 <h2 class="card-title-icon"><ion-icon name="calendar-outline"></ion-icon> Upcoming Payments</h2>
                 <p class="chart-date-label">Jan 14 – Mar 14, 2024</p>
                 <button class="view-more">See all</button>
-                <div class="payments-list">
+                <div class="payments-list" id="upcoming-payments-list">
                     <div class="payment-row">
                         <div class="pay-info">
                             <div class="pay-avatar">DY</div>
@@ -180,76 +180,21 @@
             </div>
 
             <div class="chart-box-down">
-                <h2 class="card-title-icon"><ion-icon name="document-text-outline"></ion-icon> Recent Informs</h2>
-                <p class="chart-date-label">Jan 14 – Mar 14, 2024</p>
-                <button class="view-more-down" id="storagego">View Full History</button>
+                <h2 class="card-title-icon"><ion-icon name="cube-outline"></ion-icon> Recent Storage</h2>
+                <p class="chart-date-label" id="storage-date-label">Loading...</p>
+                <button class="view-more-down" id="storagego">View Full Storage</button>
                 <table>
                     <thead>
                         <tr>
-                            <th>Description</th>
-                            <th>Date</th>
+                            <th>Product</th>
                             <th>Category</th>
-                            <th>Provider</th>
-                            <th>Quantity</th>
-                            <th>Pending</th>
-                            <th>Amount</th>
+                            <th>Stock</th>
+                            <th>Supplier</th>
+                            <th>Value</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
-                            <td>Mar 14</td>
-                            <td><span class="category-badge category-badge--additive">Additive</span></td>
-                            <td>Qualiprint</td>
-                            <td>24</td>
-                            <td>12</td>
-                            <td>$2,320.00</td>
-                        </tr>
-                        <tr>
-                            <td><ion-icon name="color-fill-outline"></ion-icon> LA 0056</td>
-                            <td>Mar 12</td>
-                            <td><span class="category-badge category-badge--ink">Ink</span></td>
-                            <td>Qualiprint</td>
-                            <td>34</td>
-                            <td>0</td>
-                            <td>$1,450.00</td>
-                        </tr>
-                        <tr>
-                            <td><ion-icon name="radio-outline"></ion-icon> TVSA 33x700</td>
-                            <td>Mar 10</td>
-                            <td><span class="category-badge category-badge--tape">Tape</span></td>
-                            <td>Qualiprint</td>
-                            <td>10</td>
-                            <td>5</td>
-                            <td>$576.00</td>
-                        </tr>
-                        <tr>
-                            <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
-                            <td>Mar 09</td>
-                            <td><span class="category-badge category-badge--device">Device</span></td>
-                            <td>Qualiprint</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>$15,000.00</td>
-                        </tr>
-                        <tr>
-                            <td><ion-icon name="infinite-outline"></ion-icon> LAMU 5009</td>
-                            <td>Mar 14</td>
-                            <td><span class="category-badge category-badge--additive">Additive</span></td>
-                            <td>Qualiprint</td>
-                            <td>24</td>
-                            <td>12</td>
-                            <td>$2,320.00</td>
-                        </tr>
-                        <tr>
-                            <td><ion-icon name="desktop-outline"></ion-icon> POLY TU</td>
-                            <td>Mar 09</td>
-                            <td><span class="category-badge category-badge--device">Device</span></td>
-                            <td>Qualiprint</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>$15,000.00</td>
-                        </tr>
+                    <tbody id="recent-storage-body">
+                        <tr><td colspan="5" style="text-align:center;opacity:0.5">Loading...</td></tr>
                     </tbody>
                 </table>
             </div>

@@ -65,12 +65,25 @@ document.addEventListener("DOMContentLoaded", () => {
   // Render helpers
   const initials = (name="C") => name.split(" ").filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join("");
 
+  const AVATAR_GRADIENTS = [
+    'linear-gradient(135deg,#9069F9,#54F1B7)',
+    'linear-gradient(135deg,#3b82f6,#0ea5e9)',
+    'linear-gradient(135deg,#8b5cf6,#ec4899)',
+    'linear-gradient(135deg,#f59e0b,#ef4444)',
+    'linear-gradient(135deg,#10b981,#3b82f6)',
+    'linear-gradient(135deg,#6366f1,#a78bfa)',
+  ];
+  const avatarGradient = (name="") => {
+    const h = [...name].reduce((acc, c) => (acc * 31 + c.charCodeAt(0)) & 0xffff, 7);
+    return AVATAR_GRADIENTS[h % AVATAR_GRADIENTS.length];
+  };
+
   const card = (c) => {
     const web = c.website ? `<a href="${c.website}" target="_blank">${c.website.replace(/^https?:\/\//,'')}</a>` : "";
     return `
       <div class="cliente-card" data-id="${c.clientId}">
         <div class="cliente-header">
-          <div class="cliente-avatar">${initials(c.name)}</div>
+          <div class="cliente-avatar" style="background:${avatarGradient(c.name)}">${initials(c.name)}</div>
           <div><h3>${c.name}</h3><p>${c.clientType || ""}</p></div>
           <div class="menu-container">
             <button class="menu-btn"><ion-icon name="ellipsis-vertical"></ion-icon></button>
