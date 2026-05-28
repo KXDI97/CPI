@@ -30,14 +30,6 @@
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--card-glass-border, rgba(255,255,255,0.10));
     border-radius: 16px;
-<<<<<<< HEAD
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-=======
     padding: 20px;
     position: relative;
     overflow: hidden;
@@ -47,34 +39,22 @@
 }
 
 /* Línea superior degradada igual que el dashboard */
->>>>>>> 075ade19c221d96091433492c9c85a1ada2728b8
 .cliente-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 2px;
-<<<<<<< HEAD
-    background: linear-gradient(to right, #9069F9, #54F1B7);
-    border-radius: 16px 16px 0 0;
-    opacity: 0.7;
-=======
     background: linear-gradient(90deg, #9069F9, #54F1B7);
     border-radius: 16px 16px 0 0;
     opacity: 0.6;
->>>>>>> 075ade19c221d96091433492c9c85a1ada2728b8
     transition: opacity 0.25s;
 }
 
 .cliente-card:hover {
-<<<<<<< HEAD
-    transform: translateY(-3px);
-    box-shadow: 0 10px 24px rgba(144, 105, 249, 0.2);
-=======
     border-color: rgba(144, 105, 249, 0.35);
     transform: translateY(-5px);
     box-shadow: 0 12px 36px rgba(144, 105, 249, 0.18);
     background: var(--card-glass-hover, rgba(255,255,255,0.08));
->>>>>>> 075ade19c221d96091433492c9c85a1ada2728b8
 }
 
 .cliente-card:hover::before { opacity: 1; }
@@ -117,7 +97,6 @@
 
 /* ---- Avatar — igual que kpi-icon ---- */
 .cliente-avatar {
-<<<<<<< HEAD
     width: 48px;
     height: 48px;
     min-width: 48px;
@@ -126,33 +105,19 @@
     font-weight: 700;
     font-size: 18px;
     border-radius: 50%;
-=======
-    width: 46px;
-    height: 46px;
-    border-radius: 12px;
-    background: rgba(144, 105, 249, 0.15);
-    border: 1px solid rgba(144, 105, 249, 0.25);
-    color: #9069F9;
-    font-weight: 800;
-    font-size: 16px;
->>>>>>> 075ade19c221d96091433492c9c85a1ada2728b8
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-<<<<<<< HEAD
     overflow: hidden;
     user-select: none;
-=======
     text-transform: uppercase;
     letter-spacing: 0.02em;
-    transition: background 0.25s, transform 0.25s;
+    transition: transform 0.25s;
 }
 
 .cliente-card:hover .cliente-avatar {
-    background: rgba(144, 105, 249, 0.25);
     transform: scale(1.08);
->>>>>>> 075ade19c221d96091433492c9c85a1ada2728b8
 }
 
 /* ---- Menú de 3 puntos ---- */

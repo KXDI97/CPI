@@ -39,33 +39,17 @@
     border: 1px solid var(--card-glass-border, rgba(255,255,255,0.10));
     border-radius: 16px;
     overflow: hidden;
-<<<<<<< HEAD
-    transition: box-shadow 0.2s;
-    position: relative;
-}
-
-=======
     position: relative;
     transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
     animation: fadeInUp 0.5s ease both;
 }
 
 /* Línea superior degradada */
->>>>>>> 075ade19c221d96091433492c9c85a1ada2728b8
 .card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 2px;
-<<<<<<< HEAD
-    background: linear-gradient(to right, #9069F9, #54F1B7);
-    opacity: 0.7;
-    transition: opacity 0.25s;
-    z-index: 1;
-}
-
-.card:hover { box-shadow: 0 6px 24px rgba(144, 105, 249, 0.2); }
-=======
     background: linear-gradient(90deg, #9069F9, #54F1B7);
     border-radius: 16px 16px 0 0;
     opacity: 0.6;
@@ -78,7 +62,7 @@
     background: var(--card-glass-hover, rgba(255,255,255,0.08));
 }
 
->>>>>>> 075ade19c221d96091433492c9c85a1ada2728b8
+
 .card:hover::before { opacity: 1; }
 
 .card-title {
@@ -530,7 +514,6 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 
-<<<<<<< HEAD
 /* ── #saleModal compact sizing ───────────────────────────────────────────── */
 #saleModal .erm-header          { padding: 18px 24px 12px; }
 #saleModal .erm-icon-wrap       { width: 44px; height: 44px; font-size: 21px; border-radius: 12px; margin-bottom: 8px; }
@@ -596,6 +579,3 @@
     padding: 0 2px;
     line-height: 30px;
 }
-=======
-.hidden { display: none !important; }
->>>>>>> 075ade19c221d96091433492c9c85a1ada2728b8

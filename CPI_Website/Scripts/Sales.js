@@ -85,32 +85,8 @@ async function loadSalesSummary() {
   if (!tbody) return;
   try {
     allSales = await apiFetch(`${SALES_API}/sales`);
-<<<<<<< HEAD
     salesPage = 1;
     renderSalesPage(tbody);
-=======
-    if (!allSales.length) {
-      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;opacity:.5">Sin ventas</td></tr>`;
-      return;
-    }
-    tbody.innerHTML = allSales.map(s => {
-      const client = allClients.find(c => c.clientId === s.clientId);
-      const name   = client ? client.name : `Cliente #${s.clientId}`;
-      const cls    = s.status === "Paid"    ? "status-paid"
-                   : s.status === "Emitida" ? "status-emitida"
-                   : s.status === "Overdue" ? "status-overdue"
-                   : "status-pending";
-      return `<tr class="sale-row" data-id="${s.invoiceId}" style="cursor:pointer">
-        <td>${fmtDate(s.invoiceDate)}</td>
-        <td>${name}</td>
-        <td class="ta-right">${fmtMoney(s.total)}</td>
-        <td><span class="badge ${cls}">${s.status}</span></td>
-      </tr>`;
-    }).join("");
-    tbody.querySelectorAll(".sale-row").forEach(row =>
-      row.addEventListener("click", () => loadSaleDetail(Number(row.dataset.id)))
-    );
->>>>>>> 075ade19c221d96091433492c9c85a1ada2728b8
   } catch (e) {
     tbody.innerHTML = `<tr><td colspan="4" style="color:red">Error cargando ventas</td></tr>`;
   }
@@ -335,7 +311,6 @@ async function openHistoryModal() {
         <td>${fmtDate(s.invoiceDate)}</td>
         <td>${client ? client.name : `#${s.clientId}`}</td>
         <td class="ta-right">${fmtMoney(s.total)}</td>
-<<<<<<< HEAD
         <td>${statusLabel(s.status)}</td>
         <td>
           <button class="btn-primary btn-dl-pdf" data-id="${s.invoiceId}"
@@ -343,10 +318,6 @@ async function openHistoryModal() {
             ⬇ PDF
           </button>
         </td>
-=======
-        <td><span class="badge ${cls}">${s.status}</span></td>
-        <td><button class="btn-dl-pdf" data-id="${s.invoiceId}">⬇ PDF</button></td>
->>>>>>> 075ade19c221d96091433492c9c85a1ada2728b8
       </tr>`;
     }).join("");
     tbody.querySelectorAll(".btn-dl-pdf").forEach(btn =>

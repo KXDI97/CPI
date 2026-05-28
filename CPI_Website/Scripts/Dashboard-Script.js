@@ -109,19 +109,16 @@ function categoryBadge(cat) {
 
 // ── FETCH DASHBOARD DATA ────────────────────────────────────────────────────
 async function fetchDashboardData() {
-    try {
-        const [kpis, storage, ordersChart, spendingChart, upcomingPayments] = await Promise.all([
-            fetch(`${INVENTORY_API}/api/dashboard/kpis`).then(r => r.json()),
-            fetch(`${INVENTORY_API}/api/dashboard/recent-storage`).then(r => r.json()),
-            fetch(`${INVENTORY_API}/api/dashboard/purchase-orders-chart`).then(r => r.json()),
-            fetch(`${INVENTORY_API}/api/dashboard/spending-chart`).then(r => r.json()),
-            fetch(`${INVENTORY_API}/api/dashboard/upcoming-payments`).then(r => r.json()),
-        ]);
-        return { kpis, storage, ordersChart, spendingChart, upcomingPayments };
-    } catch (e) {
-        console.warn('Dashboard API unavailable, using fallback data.', e);
-        return null;
-    }
+    const safe = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).catch(() => null);
+    const [kpis, storage, ordersChart, spendingChart, upcomingPayments] = await Promise.all([
+        safe(`${INVENTORY_API}/api/dashboard/kpis`),
+        safe(`${INVENTORY_API}/api/dashboard/recent-storage`),
+        safe(`${INVENTORY_API}/api/dashboard/purchase-orders-chart`),
+        safe(`${INVENTORY_API}/api/dashboard/spending-chart`),
+        safe(`${INVENTORY_API}/api/dashboard/upcoming-payments`),
+    ]);
+    if (!kpis && !storage) { console.warn('Dashboard API unavailable.'); return null; }
+    return { kpis, storage, ordersChart, spendingChart, upcomingPayments };
 }
 
 async function fetchChartData(from, to) {
