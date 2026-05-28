@@ -356,7 +356,7 @@
 
 .btn-nuevo-proveedor-float {
     bottom: 104px; right: 28px;
-    background: linear-gradient(135deg, #9069F9, #0EA5E9);
+    background: linear-gradient(135deg, #54F1B8, #9069F9);
     box-shadow: 0 4px 20px rgba(144,105,249,0.45);
 }
 .btn-nuevo-proveedor-float:hover {
@@ -744,14 +744,12 @@
     width: 54px; height: 54px; border: none; border-radius: 50%;
     cursor: pointer; display: flex; align-items: center; justify-content: center;
     color: #fff; z-index: 1000; transition: all 0.3s ease;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
-    box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+    background: linear-gradient(135deg, #54F1B8, #9069F9);
+    box-shadow: 0 4px 20px rgba(245,158,11,0.4);
 }
-.btn-ver-ordenes:hover {
-    transform: scale(1.1) translateY(-2px);
-    box-shadow: 0 8px 30px rgba(99,102,241,0.5);
-}
+.btn-ver-ordenes:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 8px 30px rgba(245,158,11,0.5); }
 .btn-ver-ordenes ion-icon { font-size: 24px; color: #fff; }
+
 /* ===== QTY BUTTONS ===== */
 .qty-btn {
     width: 26px; height: 26px; border-radius: 6px;
@@ -836,3 +834,18 @@
     font-size: 15px; font-weight: 700; padding: 6px 16px; border-radius: 4px;
     letter-spacing: 0.2em; min-width: 60px; text-align: center;
 }
+
+/* ===== BOTÓN NUEVO PRODUCTO ===== */
+.btn-nuevo-producto {
+    position: fixed; bottom: 260px; right: 28px;
+    width: 54px; height: 54px; border: none; border-radius: 50%;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    color: #fff; z-index: 1000; transition: all 0.3s ease;
+    background: linear-gradient(135deg, #54F1B8, #9069F9);
+    box-shadow: 0 4px 20px rgba(52,211,153,0.4);
+}
+.btn-nuevo-producto:hover {
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 8px 30px rgba(52,211,153,0.5);
+}
+.btn-nuevo-producto ion-icon { font-size: 24px; color: #fff; }
