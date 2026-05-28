@@ -52,7 +52,7 @@
                     </div>
                 </article>
 
-                    <!-- Card 2: Customer Details (read-only) -->
+                <!-- Card 2: Customer Details (read-only) -->
                 <article class="card" id="card-customer-details" data-card="customer-details">
                     <div class="card-title"><h3>Client Details</h3></div>
                     <div class="card-body">
@@ -83,19 +83,23 @@
                         </div>
                         </dl>
 
+                        <div class="actions" style="margin-top: 1rem;">
+                            <button id="btn-invoice-history" type="button">
+                                <ion-icon name="time-outline"></ion-icon>
+                                Invoice History
+                            </button>
+                        </div>
+
                         <!-- ocultos para contexto -->
                         <input type="hidden" id="cd-invoiceId">
                         <input type="hidden" id="cd-clientId">
                     </div>
                 </article>
 
-                
-                
-                <!-- Card 3: Sale Status (ver datos + cambiar estado) -->
+                <!-- Card 3: Sale Status -->
                 <article class="card" id="card-sale-detail-edit" data-card="sale-detail-edit">
                     <div class="card-title"><h3>Sale Status</h3></div>
                     <div class="card-body">
-                        <!-- Datos solo lectura -->
                         <dl class="read">
                         <div>
                             <dt>Customer</dt>
@@ -115,7 +119,6 @@
                         </div>
                         </dl>
 
-                        <!-- Solo cambiar estado -->
                         <form id="form-sale-status" style="margin-top:.75rem;">
                         <label class="fld">
                             <span>Status</span>
@@ -132,7 +135,6 @@
                         </form>
                     </div>
                 </article>
-
 
                 <!-- Card 4: Invoice Totals (read-only) -->
                 <article class="card" id="card-invoice-details" data-card="invoice-details">
@@ -165,10 +167,11 @@
 
             </div>
             </section>
-
         </div>
 
-        <!-- Backdrop + Modal Nueva Venta -->
+        <!-- ═══════════════════════════════════════════════════
+             MODAL: NUEVA VENTA
+        ════════════════════════════════════════════════════ -->
         <div id="saleBackdrop" class="modal-backdrop hidden"></div>
 
         <div id="saleModal" class="edit-role-modal hidden" style="width:90%;max-width:600px;" role="dialog" aria-modal="true" aria-labelledby="saleModalTitle">
@@ -192,7 +195,6 @@
                             <p class="erm-label">Customer *</p>
                             <select id="ns-client" class="aum-select" required>
                                 <option value="">Select customer…</option>
-                                <!-- JS injects options -->
                             </select>
                         </div>
                         <div class="aum-col">
@@ -282,6 +284,66 @@
         </div>
 
 
+        <!-- ═══════════════════════════════════════════════════
+             MODAL: INVOICE HISTORY
+        ════════════════════════════════════════════════════ -->
+        <div id="historyBackdrop" class="hidden"></div>
+
+        <div id="historyModal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="historyModalTitle">
+            <div class="modal-card">
+
+                <!-- Header -->
+                <div class="erm-header">
+                    <div class="erm-icon-wrap">
+                        <ion-icon name="receipt-outline"></ion-icon>
+                    </div>
+                    <h2 id="historyModalTitle">Invoice History</h2>
+                    <p class="erm-subtitle">Historial de facturas del cliente</p>
+                    <button type="button" class="erm-close-btn" id="history-close" aria-label="Close">
+                        <ion-icon name="close-outline"></ion-icon>
+                    </button>
+                </div>
+
+                <div class="erm-body">
+
+                    <!-- Search bar -->
+                    <div class="history-search-wrap">
+                        <ion-icon name="search-outline"></ion-icon>
+                        <input
+                            type="text"
+                            id="history-search"
+                            placeholder="Buscar por # de factura..."
+                            autocomplete="off"
+                        />
+                    </div>
+
+                    <!-- Tabla -->
+                    <div style="overflow-x: auto;">
+                        <table class="tbl" id="tbl-history">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date</th>
+                                    <th>Customer</th>
+                                    <th class="ta-right">Total</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-rows">
+                                <!-- JS inyecta filas -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Sin resultados -->
+                    <p id="history-no-results">No se encontraron facturas.</p>
+
+                </div>
+            </div>
+        </div>
+
+
     <script type="module">
         import { loadComponents } from '../Scripts/Components.js';
         loadComponents();
@@ -291,6 +353,59 @@
     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="../Scripts/Session.js"></script>
     <script src="../Scripts/Sales.js"></script>
+
+    <script>
+        // ── Invoice History: abrir / cerrar ────────────────────────────────
+        const historyBackdrop = document.getElementById('historyBackdrop');
+        const historyModal    = document.getElementById('historyModal');
+        const historyClose    = document.getElementById('history-close');
+        const btnHistory      = document.getElementById('btn-invoice-history');
+
+        function openHistoryModal() {
+            historyBackdrop.classList.remove('hidden');
+            historyModal.classList.remove('hidden');
+        }
+
+        function closeHistoryModal() {
+            historyBackdrop.classList.add('hidden');
+            historyModal.classList.add('hidden');
+            clearHistorySearch();
+        }
+
+        if (btnHistory)     btnHistory.addEventListener('click', openHistoryModal);
+        if (historyClose)   historyClose.addEventListener('click', closeHistoryModal);
+        if (historyBackdrop) historyBackdrop.addEventListener('click', closeHistoryModal);
+
+        // Cerrar con Escape
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeHistoryModal();
+        });
+
+        // ── Filtro search por # de factura ─────────────────────────────────
+        document.getElementById('history-search').addEventListener('input', function () {
+            const query = this.value.trim().toLowerCase();
+            const rows  = document.querySelectorAll('#tbl-history tbody tr');
+            let visible = 0;
+
+            rows.forEach(row => {
+                const invoiceNum = row.cells[0]?.textContent.trim().toLowerCase() ?? '';
+                const match = invoiceNum.includes(query);
+                row.classList.toggle('hidden-row', !match);
+                if (match) visible++;
+            });
+
+            const noResults = document.getElementById('history-no-results');
+            if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
+        });
+
+        function clearHistorySearch() {
+            const input = document.getElementById('history-search');
+            if (!input) return;
+            input.value = '';
+            input.dispatchEvent(new Event('input'));
+        }
+    </script>
+
 </body>
 
 </html>
