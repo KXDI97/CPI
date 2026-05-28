@@ -302,10 +302,6 @@ async function openHistoryModal() {
     }
     tbody.innerHTML = sales.map(s => {
       const client = allClients.find(c => c.clientId === s.clientId);
-      const cls    = s.status === "Paid"    ? "status-paid"
-                   : s.status === "Emitida" ? "status-emitida"
-                   : s.status === "Overdue" ? "status-overdue"
-                   : "status-pending";
       return `<tr>
         <td>#${s.invoiceId}</td>
         <td>${fmtDate(s.invoiceDate)}</td>
