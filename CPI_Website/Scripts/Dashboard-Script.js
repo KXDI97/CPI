@@ -121,45 +121,46 @@ async function fetchDashboardData() {
     return { kpis, storage, ordersChart, spendingChart, upcomingPayments };
 }
 
-async function fetchChartData(from, to) {
-    try {
-        const params = new URLSearchParams();
-        if (from) params.set('dateFrom', from);
-        if (to)   params.set('dateTo',   to);
-        const qs = params.toString() ? '?' + params.toString() : '';
+async function fetchAllWithRange(from, to) {
+    const safe = url => fetch(url).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).catch(() => null);
+    const params = new URLSearchParams();
+    if (from) params.set('dateFrom', from);
+    if (to)   params.set('dateTo',   to);
+    const qs = params.toString() ? '?' + params.toString() : '';
 
-        const [ordersChart, spendingChart] = await Promise.all([
-            fetch(`${INVENTORY_API}/api/dashboard/purchase-orders-chart${qs}`).then(r => r.json()),
-            fetch(`${INVENTORY_API}/api/dashboard/spending-chart${qs}`).then(r => r.json()),
-        ]);
-        return { ordersChart, spendingChart };
-    } catch (e) {
-        console.warn('Failed to refresh chart data.', e);
-        return null;
-    }
+    const [kpis, ordersChart, spendingChart, upcomingPayments] = await Promise.all([
+        safe(`${INVENTORY_API}/api/dashboard/kpis${qs}`),
+        safe(`${INVENTORY_API}/api/dashboard/purchase-orders-chart${qs}`),
+        safe(`${INVENTORY_API}/api/dashboard/spending-chart${qs}`),
+        safe(`${INVENTORY_API}/api/dashboard/upcoming-payments${qs}`),
+    ]);
+    return { kpis, ordersChart, spendingChart, upcomingPayments };
 }
 
-async function refreshCharts(from, to) {
-    const result = await fetchChartData(from, to);
+async function refreshDashboard(from, to) {
+    const result = await fetchAllWithRange(from, to);
     if (!result) return;
 
-    if (purchaseChartInstance) {
-        purchaseChartInstance.data.labels              = result.ordersChart?.labels ?? [];
-        purchaseChartInstance.data.datasets[0].data    = result.ordersChart?.data   ?? [];
+    if (result.kpis) applyKpis(result.kpis);
+
+    if (purchaseChartInstance && result.ordersChart) {
+        purchaseChartInstance.data.labels           = result.ordersChart.labels ?? [];
+        purchaseChartInstance.data.datasets[0].data = result.ordersChart.data   ?? [];
         purchaseChartInstance.update();
     }
 
-    if (doughnutChartInstance) {
+    if (doughnutChartInstance && result.spendingChart) {
         const catColors = { Ink: '#38ff9a', Additives: '#8a48ff', Tapes: '#ff4a4a', Devices: '#4295ff' };
-        const labels = result.spendingChart?.labels ?? [];
-        const data   = result.spendingChart?.data   ?? [];
+        const labels = result.spendingChart.labels ?? [];
+        const data   = result.spendingChart.data   ?? [];
         const colors = labels.map((l, i) => catColors[l] ?? ['#38ff9a','#8a48ff','#ff4a4a','#4295ff'][i % 4]);
-
-        doughnutChartInstance.data.labels              = labels;
-        doughnutChartInstance.data.datasets[0].data    = data;
-        doughnutChartInstance.data.datasets[0].backgroundColor = colors;
+        doughnutChartInstance.data.labels                       = labels;
+        doughnutChartInstance.data.datasets[0].data             = data;
+        doughnutChartInstance.data.datasets[0].backgroundColor  = colors;
         doughnutChartInstance.update();
     }
+
+    if (result.upcomingPayments) applyUpcomingPayments(result.upcomingPayments);
 }
 
 function applyKpis(kpis) {
@@ -250,7 +251,7 @@ function aplicarFiltro() {
         activeFrom = a;
         activeTo   = b;
         setChartSubtitles(`${formatShort(new Date(a))} – ${formatShort(new Date(b))}`);
-        refreshCharts(activeFrom, activeTo);
+        refreshDashboard(activeFrom, activeTo);
     }
 }
 
@@ -260,7 +261,7 @@ function limpiarFiltro() {
     activeFrom = null;
     activeTo   = null;
     setChartSubtitles('All time');
-    refreshCharts(null, null);
+    refreshDashboard(null, null);
 }
 
 function filtrarFechas() { aplicarFiltro(); }
@@ -304,7 +305,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             activeFrom = fromStr;
             activeTo   = toStr;
             setChartSubtitles(`${formatShort(start)} – ${formatShort(end)}`);
-            refreshCharts(fromStr, toStr);
+            refreshDashboard(fromStr, toStr);
         });
     });
 
@@ -329,11 +330,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     const doughnutData   = dash?.spendingChart?.data   ?? [36, 42, 15, 5];
     const catColors      = { Ink: '#38ff9a', Additives: '#8a48ff', Tapes: '#ff4a4a', Devices: '#4295ff' };
     const doughnutColors = doughnutLabels.map((l, i) => catColors[l] ?? ['#38ff9a','#8a48ff','#ff4a4a','#4295ff'][i % 4]);
-
-    const totalSpend = doughnutData.reduce((s, v) => s + v, 0);
-    const totalLabel = totalSpend >= 1000
-        ? '$' + Math.round(totalSpend).toLocaleString('en-US')
-        : '$' + totalSpend.toFixed(0);
 
     doughnutChartInstance = new Chart(document.getElementById('doughnutChart'), {
         type: 'doughnut',
@@ -369,24 +365,26 @@ document.addEventListener('DOMContentLoaded', async function () {
         plugins: [{
             afterDraw(chart) {
                 const { ctx, width, height } = chart;
+                const total = chart.data.datasets[0].data.reduce((s, v) => s + (v || 0), 0);
+                const label = total >= 1000
+                    ? '$' + Math.round(total).toLocaleString('en-US')
+                    : '$' + total.toFixed(0);
                 ctx.save();
                 const fontSize = (height / 10).toFixed(2);
-                document.fonts.load(`bold ${fontSize}px Poppins`).then(() => {
-                    ctx.font = `${fontSize}px 'Poppins', sans-serif`;
-                    ctx.textBaseline = 'middle';
-                    ctx.textAlign = 'center';
-                    ctx.fillStyle = '#ffffff';
-                    ctx.fillText(totalLabel, width / 2, height / 2 - 10);
-                    ctx.font = `bold ${fontSize / 1.5}px 'Poppins', sans-serif`;
-                    ctx.fillStyle = '#54F1B7';
-                    ctx.fillText('Total', width / 2, height / 2 + 15);
-                });
+                ctx.font = `${fontSize}px 'Poppins', sans-serif`;
+                ctx.textBaseline = 'middle';
+                ctx.textAlign = 'center';
+                ctx.fillStyle = '#ffffff';
+                ctx.fillText(label, width / 2, height / 2 - 10);
+                ctx.font = `bold ${fontSize / 1.5}px 'Poppins', sans-serif`;
+                ctx.fillStyle = '#54F1B7';
+                ctx.fillText('Total', width / 2, height / 2 + 15);
                 ctx.restore();
             }
         }]
     });
 
-    // ── Purchase Orders Line Chart ────────────────────────────────────────
+    // ── Purchase Spending Line Chart ──────────────────────────────────────
     const chartLabels = dash?.ordersChart?.labels ?? ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
     const chartCounts = dash?.ordersChart?.data   ?? [0, 0, 0, 0, 0];
 
@@ -395,7 +393,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         data: {
             labels: chartLabels,
             datasets: [{
-                label: 'Purchase Orders',
+                label: 'Spending (USD)',
                 data: chartCounts,
                 borderColor: '#9069F9',
                 backgroundColor: 'rgba(144,105,249,0.08)',
@@ -426,7 +424,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             },
             scales: {
                 x: { ticks: { color: 'rgba(255,255,255,0.45)', font: { family: 'Montserrat', size: 11 } }, grid: { color: 'rgba(255,255,255,0.05)' }, border: { color: 'rgba(255,255,255,0.08)' } },
-                y: { ticks: { color: 'rgba(255,255,255,0.45)', font: { family: 'Montserrat', size: 11 } }, grid: { color: 'rgba(255,255,255,0.05)' }, border: { color: 'rgba(255,255,255,0.08)' }, beginAtZero: true }
+                y: { ticks: { color: 'rgba(255,255,255,0.45)', font: { family: 'Montserrat', size: 11 }, callback: v => '$' + Number(v).toLocaleString('en-US') }, grid: { color: 'rgba(255,255,255,0.05)' }, border: { color: 'rgba(255,255,255,0.08)' }, beginAtZero: true }
             }
         }
     });

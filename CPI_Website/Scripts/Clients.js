@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modal           = document.getElementById("clientModal");
   const openBtn         = document.getElementById("openClientModal");
   const cancelBtn       = document.getElementById("btn-cancel-client");
+  const closeBtn        = document.getElementById("btn-close-client");
   const saveBtn         = document.getElementById("btn-save-client");
   const errorBox        = document.getElementById("client-error");
 
@@ -49,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     openModal();
   });
   cancelBtn?.addEventListener("click", closeModal);
+  closeBtn?.addEventListener("click", closeModal);
   backdrop?.addEventListener("click", closeModal);
 
   const clearForm = () => {

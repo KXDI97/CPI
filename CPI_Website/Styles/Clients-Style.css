@@ -463,8 +463,9 @@ textarea {
 #modalBackdrop {
     position: fixed;
     inset: 0;
-    background: rgba(43, 43, 93, 0.4);
-    backdrop-filter: blur(2px);
+    background: rgba(15,10,40,0.85);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     z-index: 998;
 }
 
