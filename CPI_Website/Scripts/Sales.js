@@ -85,10 +85,10 @@ async function loadSalesSummary() {
   if (!tbody) return;
   try {
     allSales = await apiFetch(`${SALES_API}/sales`);
-<<<<<<< HEAD
+
     salesPage = 1;
     renderSalesPage(tbody);
-=======
+
     if (!allSales.length) {
       tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;opacity:.5">Sin ventas</td></tr>`;
       return;
@@ -110,7 +110,7 @@ async function loadSalesSummary() {
     tbody.querySelectorAll(".sale-row").forEach(row =>
       row.addEventListener("click", () => loadSaleDetail(Number(row.dataset.id)))
     );
->>>>>>> 075ade19c221d96091433492c9c85a1ada2728b8
+
   } catch (e) {
     tbody.innerHTML = `<tr><td colspan="4" style="color:red">Error cargando ventas</td></tr>`;
   }
