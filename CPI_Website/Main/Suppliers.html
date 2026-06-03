@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suppliers CPI</title>
+    <link rel="icon" type="image/png" href="../Images/logo.png">
+    <link rel="stylesheet" href="../Styles/HeaderSlider-Style.css">
+    <link rel="stylesheet" href="../Styles/theme.css">
+    <link rel="stylesheet" href="../Styles/Clients-Style.css">
+    <link rel="stylesheet" href="../Styles/AdminUsers-Style.css">
+    <link rel="stylesheet" href="../Styles/Suppliers-Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>body { visibility: hidden }</style>
+    <script src="../Scripts/translations.js"></script>
+    <script src="../Scripts/ui-helpers.js"></script>
+    <script>initTheme(); checkAuth();</script>
+</head>
+<body>
+    <div id="header-container"></div>
+    <div id="sidebar-container"></div>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <div class="content-Clients">
+        <h1>Suppliers</h1>
+
+        <div class="controls">
+            <button id="openSupplierModal" class="btn-1">
+                <ion-icon name="add-circle"></ion-icon> Add Supplier
+            </button>
+            <div class="search-bar">
+                <input type="text" id="search-supplier" placeholder="Search Supplier..." />
+                <ion-icon name="search-outline"></ion-icon>
+            </div>
+        </div>
+
+        <!-- Grid de cards -->
+        <div class="clientes-grid" id="suppliersGrid"></div>
+
+        <!-- Backdrop -->
+        <div id="modalBackdrop" class="backdrop hidden"></div>
+
+        <!-- ===== MODAL SUPPLIER ===== -->
+        <div id="supplierModal" class="edit-role-modal hidden" style="width:90%;max-width:640px;">
+            <div class="erm-header">
+                <div class="erm-icon-wrap" style="background:linear-gradient(135deg,#9069F9,#54F1B8)">
+                    <ion-icon name="business-outline"></ion-icon>
+                </div>
+                <h2 id="supplier-modal-title">Add Supplier</h2>
+                <p class="erm-subtitle">Fill in the supplier information</p>
+                <button class="erm-close-btn" id="btn-close-supplier">×</button>
+            </div>
+            <div class="erm-body">
+                <div class="aum-grid">
+                    <div class="aum-col">
+                        <p class="erm-label">Company Name *</p>
+                        <input type="text" id="sup-name" class="aum-input" placeholder="e.g. Tech Distribution S.A." required autocomplete="off"/>
+                    </div>
+                    <div class="aum-col">
+                        <p class="erm-label">Document / NIT *</p>
+                        <input type="text" id="sup-contact" class="aum-input" placeholder="e.g. 900123456-7" required autocomplete="off"/>
+                    </div>
+                    <div class="aum-col">
+                        <p class="erm-label">Contact Person</p>
+                        <input type="text" id="sup-person" class="aum-input" placeholder="e.g. Juan Pérez" autocomplete="off"/>
+                    </div>
+                    <div class="aum-col">
+                        <p class="erm-label">Phone</p>
+                        <input type="text" id="sup-phone" class="aum-input" placeholder="+57 300 000 0000" autocomplete="off"/>
+                    </div>
+                    <div class="aum-col aum-col--full">
+                        <p class="erm-label">Email</p>
+                        <input type="email" id="sup-email" class="aum-input" placeholder="contact@supplier.com" autocomplete="off"/>
+                    </div>
+                    <div class="aum-col aum-col--full">
+                        <p class="erm-label">Address</p>
+                        <input type="text" id="sup-address" class="aum-input" placeholder="Calle 123 #45-67, Bogotá" autocomplete="off"/>
+                    </div>
+                </div>
+                <p id="supplier-error" class="modal-error" style="margin-top:10px;"></p>
+            </div>
+            <div class="erm-footer">
+                <button class="erm-btn-save" id="btn-save-supplier">Save Supplier</button>
+                <button class="erm-btn-cancel" id="btn-cancel-supplier">Cancel</button>
+            </div>
+        </div>
+
+        <!-- ===== MODAL PRODUCTOS DEL SUPPLIER ===== -->
+        <div id="productsModal" class="edit-role-modal hidden" style="width:90%;max-width:700px;max-height:85vh;overflow-y:auto;">
+            <div class="erm-header">
+                <div class="erm-icon-wrap" style="background:linear-gradient(135deg,#34d399,#0ea5e9)">
+                    <ion-icon name="cube-outline"></ion-icon>
+                </div>
+                <h2>Products of <span id="prod-supplier-name" style="color:#9069F9"></span></h2>
+                <p class="erm-subtitle">Manage products linked to this supplier</p>
+                <button class="erm-close-btn" id="btn-close-products">×</button>
+            </div>
+            <div class="erm-body">
+
+                <!-- Lista de productos existentes -->
+                <div id="products-list" style="margin-bottom:20px;display:flex;flex-direction:column;gap:10px;max-height:250px;overflow-y:auto"></div>
+
+                <!-- Separador -->
+                <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:16px;margin-bottom:12px">
+                    <p class="erm-label">➕ Add New Product</p>
+                </div>
+
+                <!-- Form nuevo producto -->
+                <div class="aum-grid">
+                    <div class="aum-col">
+                        <p class="erm-label">Product ID / Code *</p>
+                        <input type="text" id="np-id" class="aum-input" placeholder="e.g. PROD-007" autocomplete="off"/>
+                    </div>
+                    <div class="aum-col">
+                        <p class="erm-label">Name *</p>
+                        <input type="text" id="np-name" class="aum-input" placeholder="Product name" autocomplete="off"/>
+                    </div>
+                    <div class="aum-col">
+                        <p class="erm-label">Category</p>
+                        <select id="np-category" class="aum-select">
+                            <option value="">Select category</option>
+                            <option value="Computers">Computers</option>
+                            <option value="Accessories">Accessories</option>
+                            <option value="Cartuchos">Cartuchos</option>
+                            <option value="Tintas">Tintas</option>
+                            <option value="Papelería">Papelería</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    <div class="aum-col">
+                        <p class="erm-label">Value / Price *</p>
+                        <input type="number" id="np-value" class="aum-input" min="0" step="0.01" placeholder="0.00" autocomplete="off"/>
+                    </div>
+                    <div class="aum-col">
+                        <p class="erm-label">Initial Stock</p>
+                        <input type="number" id="np-stock" class="aum-input" min="0" value="0" autocomplete="off"/>
+                    </div>
+                    <div class="aum-col aum-col--full">
+                        <p class="erm-label">Description</p>
+                        <input type="text" id="np-description" class="aum-input" placeholder="Brief product description" autocomplete="off"/>
+                    </div>
+                </div>
+                <p id="product-error" class="modal-error" style="margin-top:10px;"></p>
+            </div>
+            <div class="erm-footer">
+                <button class="erm-btn-save" id="btn-save-product">+ Add Product</button>
+                <button class="erm-btn-cancel" id="btn-close-products-footer">Close</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="module">
+        import { loadComponents } from '../Scripts/Components.js';
+        loadComponents();
+    </script>
+    <script type="module" src="../Scripts/Main.js"></script>
+    <script src="../Scripts/Suppliers.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="../Scripts/Session.js"></script>
+</body>
+</html>

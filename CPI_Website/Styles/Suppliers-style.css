@@ -1,0 +1,30 @@
+/* Suppliers page — extiende Clients-Style.css */
+
+/* Columna única full-width en el grid del modal */
+.aum-col--full {
+    grid-column: 1 / -1;
+}
+
+/* Ajuste de la cabecera del modal para supplier */
+.erm-close-btn {
+    position: absolute;
+    top: 16px; right: 20px;
+    background: none; border: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 22px; cursor: pointer;
+    transition: color 0.2s; line-height: 1;
+}
+.erm-close-btn:hover { color: #f87171; }
+
+/* Products list scroll */
+#products-list::-webkit-scrollbar { width: 4px; }
+#products-list::-webkit-scrollbar-track { background: transparent; }
+#products-list::-webkit-scrollbar-thumb { background: rgba(144,105,249,0.3); border-radius: 4px; }
+
+/* Card action buttons override */
+.cliente-card .btn-1,
+.cliente-card .btn-2 {
+    font-size: 12px;
+    padding: 7px 10px;
+    gap: 5px;
+}

@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="../Styles/HeaderSlider-Style.css">
     <link rel="stylesheet" href="../Styles/theme.css">
     <link rel="stylesheet" href="../Styles/Savings-Style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../Styles/Purchase-Style.css">
     <style>body{visibility:hidden}</style>
     <script src="../Scripts/translations.js"></script>
@@ -23,205 +23,192 @@
 
 <div class="content-Purchase">
 
-  <!-- HEADER -->
+  <!-- ===== HEADER ===== -->
   <section class="purchase-header">
-    <h1>Purchase</h1>
-    <div class="search-filter-group">
-      <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Search product..."/>
-        <button onclick="buscarProducto()"><ion-icon name="search-outline"></ion-icon></button>
-      </div>
-      <button class="filter-btn" id="filter-toggle-btn"><ion-icon name="options-outline"></ion-icon></button>
+    <div class="ph-left">
+      <h1>Purchase</h1>
+      <p class="ph-sub">Select products and create purchase orders</p>
     </div>
-    <div id="filtro-panel" class="filtro-panel" style="display:none">
-      <label>Category:
-        <select id="filtro-categoria">
-          <option value="">All</option>
-          <option value="Cartuchos">Cartuchos</option>
-          <option value="Tintas">Tintas</option>
-          <option value="Papelería">Papelería</option>
-          <option value="Computers">Computers</option>
-          <option value="Accessories">Accessories</option>
-        </select>
-      </label>
-      <label>Max price: <input type="number" id="filtro-precio" placeholder="e.g. 50000"/></label>
-      <button onclick="aplicarFiltros()">Apply filters</button>
+    <div class="ph-right">
+      <div class="search-bar">
+        <ion-icon name="search-outline"></ion-icon>
+        <input type="text" id="search-input" placeholder="Search products..."/>
+      </div>
+      <button class="filter-toggle-btn" id="filter-toggle-btn">
+        <ion-icon name="options-outline"></ion-icon>
+        <span>Filters</span>
+      </button>
     </div>
   </section>
 
-  <!-- CARRUSEL -->
-  <div class="swiper-container-wrapper">
-    <div class="swiper-button-prev"></div>
-    <section class="swiper mySwiper"><div class="swiper-wrapper" id="product-carousel"></div></section>
-    <div class="swiper-button-next"></div>
+  <!-- ===== FILTER BAR ===== -->
+  <div id="filter-bar" class="filter-bar" style="display:none">
+    <div class="filter-group">
+      <label>Category</label>
+      <select id="f-category">
+        <option value="">All categories</option>
+        <option value="Computers">💻 Computers</option>
+        <option value="Accessories">🖱️ Accessories</option>
+        <option value="Cartuchos">🖨️ Cartuchos</option>
+        <option value="Tintas">🎨 Tintas</option>
+        <option value="Papelería">📄 Papelería</option>
+        <option value="Others">📦 Others</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Supplier</label>
+      <select id="f-supplier">
+        <option value="">All suppliers</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Min price</label>
+      <input type="number" id="f-min" placeholder="$0" min="0"/>
+    </div>
+    <div class="filter-group">
+      <label>Max price</label>
+      <input type="number" id="f-max" placeholder="No limit" min="0"/>
+    </div>
+    <div class="filter-group">
+      <label>Stock</label>
+      <select id="f-stock">
+        <option value="">All</option>
+        <option value="in">In stock</option>
+        <option value="low">Low stock (&lt;10)</option>
+        <option value="out">Out of stock</option>
+      </select>
+    </div>
+    <div class="filter-group filter-actions">
+      <button onclick="aplicarFiltros()" class="btn-apply-filter">Apply</button>
+      <button onclick="limpiarFiltros()" class="btn-clear-filter">Clear</button>
+    </div>
   </div>
 
-  <!-- BOTONES FLOTANTES -->
-  <button onclick="abrirModalProducto()" class="btn-nuevo-producto" title="New Product"><ion-icon name="cube-outline"></ion-icon></button>
-  <button onclick="abrirModalProveedor()" class="btn-nuevo-proveedor-float" title="New Supplier"><ion-icon name="person-add-outline"></ion-icon></button>
-  <button onclick="abrirOrdersList()" class="btn-ver-ordenes" title="Purchase Orders"><ion-icon name="list-outline"></ion-icon></button>
-  <button onclick="abrirCarrito()" class="btn-ver-carrito" title="Shopping Cart">
+  <!-- ===== PRODUCTOS: carrusel grande ===== -->
+  <div class="products-section">
+    <div class="products-meta">
+      <span id="products-count" class="products-count"></span>
+      <div class="sort-group">
+        <label>Sort by</label>
+        <select id="sort-select" onchange="sortProducts(this.value)">
+          <option value="name">Name A–Z</option>
+          <option value="price-asc">Price ↑</option>
+          <option value="price-desc">Price ↓</option>
+          <option value="stock">Stock</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="swiper-container-wrapper">
+      <div class="swiper-button-prev"></div>
+      <section class="swiper mySwiper">
+        <div class="swiper-wrapper" id="product-carousel"></div>
+      </section>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+
+  <!-- ===== BOTONES FLOTANTES ===== -->
+  <button onclick="abrirOrdersList()" class="fab fab-orders" title="Purchase Orders">
+    <ion-icon name="list-outline"></ion-icon>
+    <span class="fab-label">Orders</span>
+  </button>
+  <button onclick="abrirCarrito()" class="fab fab-cart" title="Cart">
     <ion-icon name="cart-outline"></ion-icon>
+    <span class="fab-label">Cart</span>
     <span id="cart-badge" class="cart-badge" style="display:none">0</span>
   </button>
 
-  <!-- ===== MODAL CARRITO ===== -->
-  <div id="carrito-modal" class="modal-carrito">
-    <div class="carrito-contenido">
-      <span class="cerrar-modal" onclick="cerrarCarrito()">×</span>
-      <h2>🛒 Shopping Cart</h2>
-      <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px;margin-bottom:16px">
-        <p style="font-size:11px;color:rgba(255,255,255,0.4);margin:0 0 10px;text-transform:uppercase;letter-spacing:.06em;font-weight:700">➕ Add Product</p>
-        <div style="display:grid;grid-template-columns:1fr auto auto auto;gap:8px;align-items:end">
-          <select id="cart-product-select" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:8px 10px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:13px;outline:none">
-            <option value="">Select product</option>
-          </select>
-          <input id="cart-qty" type="number" min="1" value="1"
-            style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:8px 10px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:13px;outline:none;width:72px"/>
-          <input id="cart-price" type="number" min="0" step="0.01" placeholder="Price"
-            style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:8px 10px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:13px;outline:none;width:100px"/>
-          <button onclick="addToCartFromSelect()"
-            style="background:linear-gradient(135deg,#9069F9,#54F1B8);color:#fff;border:none;padding:9px 14px;border-radius:8px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;font-size:13px">+ Add</button>
-        </div>
+  <!-- ===== CARRITO (panel lateral) ===== -->
+  <div id="cart-panel" class="cart-panel">
+    <div class="cart-panel-header">
+      <h3>🛒 Shopping Cart</h3>
+      <button onclick="cerrarCarrito()" class="cart-close">×</button>
+    </div>
+
+    <!-- Add product manually -->
+    <div class="cart-add-section">
+      <p class="cart-add-title">Add product manually</p>
+      <select id="cart-product-select" class="cart-input">
+        <option value="">Select product</option>
+      </select>
+      <div class="cart-add-row">
+        <input id="cart-qty" type="number" min="1" value="1" placeholder="Qty" class="cart-input cart-input-sm"/>
+        <input id="cart-price" type="number" min="0" step="0.01" placeholder="Price" class="cart-input cart-input-sm"/>
+        <button onclick="addToCartFromSelect()" class="cart-add-btn">+ Add</button>
       </div>
-      <table class="factura-tabla">
-        <thead><tr><th>Code</th><th>Product</th><th>Qty</th><th>Price</th><th>VAT</th><th>Total</th><th></th></tr></thead>
-        <tbody id="tabla-carrito"></tbody>
-        <tfoot><tr>
-          <td colspan="5" style="text-align:right;padding-right:16px">Total:</td>
-          <td colspan="2"><strong>$<span id="total-carrito">0.00</span></strong></td>
-        </tr></tfoot>
-      </table>
-      <button type="button" onclick="cerrarCarrito();abrirModalCompra()">Register Purchase</button>
+    </div>
+
+    <!-- Cart items -->
+    <div class="cart-items" id="cart-items-list">
+      <div class="cart-empty">Your cart is empty</div>
+    </div>
+
+    <!-- Cart footer -->
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Subtotal</span>
+        <strong>$<span id="cart-subtotal">0.00</span></strong>
+      </div>
+      <div class="cart-total-row">
+        <span>VAT (19%)</span>
+        <strong>$<span id="cart-iva">0.00</span></strong>
+      </div>
+      <div class="cart-total-row cart-grand">
+        <span>Total</span>
+        <strong>$<span id="cart-total">0.00</span></strong>
+      </div>
+      <button onclick="cerrarCarrito();abrirModalCompra()" class="btn-checkout">
+        <ion-icon name="receipt-outline"></ion-icon> Register Purchase
+      </button>
     </div>
   </div>
+  <div id="cart-overlay" class="cart-overlay" onclick="cerrarCarrito()"></div>
 
-  <!-- ===== MODAL NUEVO PRODUCTO ===== -->
-  <div id="modal-nuevo-producto" class="modal" style="display:none">
-    <form id="form-nuevo-producto" class="modal-content">
-      <span class="close-modal" onclick="cerrarModalProducto()">×</span>
-      <h2>📦 New Product</h2>
-      <label>Product ID / Code:
-        <input type="text" id="prod-id" required placeholder="e.g. PROD-007"/>
-      </label>
-      <label>Name:
-        <input type="text" id="prod-name" required placeholder="Product name"/>
-      </label>
-      <label>Category:
-        <select id="prod-category">
-          <option value="">Select category</option>
-          <option value="Computers">Computers</option>
-          <option value="Accessories">Accessories</option>
-          <option value="Cartuchos">Cartuchos</option>
-          <option value="Tintas">Tintas</option>
-          <option value="Papelería">Papelería</option>
-          <option value="Others">Others</option>
-        </select>
-      </label>
-      <label>Description:
-        <input type="text" id="prod-description" placeholder="Brief description"/>
-      </label>
-      <label>Value / Price:
-        <input type="number" id="prod-value" min="0" step="0.01" required placeholder="0.00"/>
-      </label>
-      <label>Initial Stock:
-        <input type="number" id="prod-stock" min="0" value="0"/>
-      </label>
-      <label>Supplier:
-        <select id="prod-supplier">
-          <option value="">Select supplier (optional)</option>
-        </select>
-      </label>
-      <button type="submit" class="btn-confirmar">✅ Create Product</button>
-    </form>
-  </div>
-
-  <!-- ===== MODAL NUEVO PROVEEDOR ===== -->
-  <div id="modal-nuevo-proveedor" class="modal" style="display:none">
-    <form id="form-nuevo-proveedor" class="modal-content">
-      <span class="close-modal" onclick="cerrarModalProveedor()">×</span>
-      <h2>New Supplier</h2>
-      <label>Company Name: <input type="text" id="supplier-name" required/></label>
-      <label>Document/NIT: <input type="text" id="supplier-document" required/></label>
-      <label>Contact Person: <input type="text" id="supplier-contact-person"/></label>
-      <label>Email: <input type="email" id="supplier-email" required/></label>
-      <label>Phone: <input type="text" id="supplier-phone" required/></label>
-      <label>Address: <input type="text" id="supplier-address"/></label>
-      <label>City: <input type="text" id="supplier-city"/></label>
-      <label>Country: <input type="text" id="supplier-country" value="Colombia"/></label>
-      <button type="submit" class="btn-confirmar">Create Supplier</button>
-    </form>
-  </div>
-
-  <!-- ===== MODAL REGISTRO DE COMPRA ===== -->
+<!-- ===== MODAL REGISTRO DE COMPRA ===== -->
   <div id="modal-registro" class="modal" style="display:none">
-    <form id="form-compra" class="modal-content">
+    <form id="form-compra" class="modal-content" style="max-width:500px">
       <span class="close-modal" onclick="cerrarModalCompra()">×</span>
       <h2>Register Purchase</h2>
-      <label>Order Number: <input type="text" id="order-number" readonly/></label>
-      <label>Supplier:
-        <select id="supplier-select" required><option value="">Select a supplier</option></select>
-      </label>
-      <label>Purchase Date: <input type="date" id="purchase-date" required/></label>
-      <p class="total-row"><strong>Total:</strong> $<span id="total-final-modal">0.00</span></p>
-      <button type="submit" class="btn-confirmar">Process Purchase</button>
-    </form>
-  </div>
 
-  <!-- ===== MODAL LISTA ÓRDENES ===== -->
-  <div id="modal-orders-list" class="modal" style="display:none">
-    <div class="modal-content" style="max-width:900px;width:95%">
-      <span class="close-modal" onclick="cerrarOrdersList()">×</span>
-      <h2>📋 Purchase Orders</h2>
-
-      <!-- Búsqueda mejorada -->
-      <div style="display:flex;gap:8px;margin-bottom:16px;align-items:center">
-        <div style="flex:1;display:flex;align-items:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:9px 14px;gap:8px;transition:border-color .2s"
-          onfocusin="this.style.borderColor='#9069F9'" onfocusout="this.style.borderColor='rgba(255,255,255,0.1)'">
-          <ion-icon name="search-outline" style="color:#9069F9;font-size:16px;flex-shrink:0"></ion-icon>
-          <input id="order-search" type="text" placeholder="Search by # or supplier..."
-            oninput="filtrarOrdenes(this.value)"
-            style="background:transparent;border:none;color:#e2e8f0;font-family:'Poppins',sans-serif;font-size:13px;outline:none;width:100%"/>
+      <!-- Info de la orden -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px">
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:10px 14px">
+          <span style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:3px">Order #</span>
+          <strong id="order-number-display" style="font-size:13px;color:#e2e8f0">—</strong>
         </div>
-        <select id="order-status-filter" onchange="filtrarOrdenes(document.getElementById('order-search').value)"
-          style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:#e2e8f0;
-          padding:9px 12px;border-radius:10px;font-family:'Poppins',sans-serif;font-size:13px;outline:none;
-          flex-shrink:0;width:140px">
-          <option value="">All status</option>
-          <option value="Pendiente">Pendiente</option>
-          <option value="Confirmed">Confirmed</option>
-          <option value="Received">Received</option>
-          <option value="Partial">Partial</option>
-          <option value="Completed">Completed</option>
-          <option value="Cancelled">Cancelled</option>
-        </select>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:10px 14px">
+          <span style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:3px">Date</span>
+          <strong id="order-date-display" style="font-size:13px;color:#e2e8f0">—</strong>
+        </div>
       </div>
 
-      <div style="max-height:420px;overflow-y:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.06)">
-        <table style="width:100%;border-collapse:collapse">
-          <thead style="position:sticky;top:0;z-index:1">
-            <tr style="background:#0f1117">
-              <th style="padding:10px 12px;font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;text-align:left;border-bottom:1px solid rgba(255,255,255,0.08)">#</th>
-              <th style="padding:10px 12px;font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;text-align:left;border-bottom:1px solid rgba(255,255,255,0.08)">Supplier</th>
-              <th style="padding:10px 12px;font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;text-align:left;border-bottom:1px solid rgba(255,255,255,0.08)">Date</th>
-              <th style="padding:10px 12px;font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;text-align:left;border-bottom:1px solid rgba(255,255,255,0.08)">Status</th>
-              <th style="padding:10px 12px;font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;text-align:left;border-bottom:1px solid rgba(255,255,255,0.08)">Actions</th>
-            </tr>
-          </thead>
-          <tbody id="orders-list-tbody"></tbody>
-        </table>
-      </div>
-      <p id="orders-count" style="font-size:12px;color:rgba(255,255,255,0.3);margin:10px 0 0;text-align:right"></p>
-    </div>
-  </div>
+      <!-- Supplier oculto (se detecta automáticamente) -->
+      <input type="hidden" id="supplier-select"/>
+      <input type="hidden" id="order-number"/>
+      <input type="hidden" id="purchase-date"/>
 
-  <!-- ===== MODAL DETALLE ORDEN ===== -->
-  <div id="modal-order-detail" class="modal" style="display:none">
-    <div class="modal-content" style="max-width:820px;width:95%;max-height:90vh;overflow-y:auto">
-      <span class="close-modal" onclick="cerrarOrderDetail()">×</span>
-      <h2>🧾 Order Detail</h2>
-      <div id="order-detail-body"></div>
-    </div>
+      <!-- Resumen de productos -->
+      <p style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin:0 0 10px">🛍️ Products</p>
+      <div id="cart-summary-list" style="margin-bottom:16px;display:flex;flex-direction:column;gap:6px;max-height:180px;overflow-y:auto"></div>
+
+      <!-- Totales -->
+      <div style="background:rgba(144,105,249,0.06);border:1px solid rgba(144,105,249,0.12);border-radius:10px;padding:14px;margin-bottom:16px">
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:6px">
+          <span>Subtotal</span><span>$<span id="modal-subtotal">0.00</span></span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:8px">
+          <span>VAT (19%)</span><span>$<span id="modal-iva">0.00</span></span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:17px;font-weight:800;color:#54F1B8;border-top:1px solid rgba(255,255,255,0.08);padding-top:10px">
+          <span>Total</span><span>$<span id="total-final-modal">0.00</span></span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-confirmar">
+        <ion-icon name="receipt-outline"></ion-icon> Process Purchase
+      </button>
+    </form>
   </div>
 
   <!-- ===== MODAL RECEPCIÓN ===== -->
@@ -233,84 +220,218 @@
     </div>
   </div>
 
-  <!-- ===== MODAL PAGO ===== -->
-  <div id="modal-payment" class="modal" style="display:none">
-    <div class="modal-content" style="max-width:640px;width:95%;max-height:90vh;overflow-y:auto">
-      <span class="close-modal" onclick="cerrarPayment()">×</span>
-      <h2>💳 Register Payment</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px">
-        <div class="od-field"><span>Order</span><strong id="payment-order-id">—</strong></div>
-        <div class="od-field"><span>Amount</span><strong id="payment-amount" style="color:#54F1B8">—</strong></div>
-        <div class="od-field"><span>Date</span><strong id="payment-date-display">—</strong></div>
+  <!-- ===== CHECKOUT (pantalla completa) ===== -->
+  <div id="checkout-screen" class="checkout-screen" style="display:none">
+    <div class="checkout-header">
+      <button onclick="cerrarCheckout()" class="checkout-back">
+        <ion-icon name="arrow-back-outline"></ion-icon> Back
+      </button>
+      <h2>💳 Payment & Checkout</h2>
+      <div class="checkout-steps">
+        <span class="step active" data-step="1">1 · Summary</span>
+        <span class="step-sep">›</span>
+        <span class="step" data-step="2">2 · Costs</span>
+        <span class="step-sep">›</span>
+        <span class="step" data-step="3">3 · Payment</span>
       </div>
-      <div id="card-preview" class="credit-card" style="display:none">
-        <div class="card-front">
-          <div class="card-chip"><div class="chip-line"></div><div class="chip-line"></div><div class="chip-line"></div></div>
-          <div class="card-brand" id="card-brand-icon">💳</div>
-          <div class="card-number-preview" id="preview-card-number">•••• •••• •••• ••••</div>
-          <div class="card-bottom">
-            <div><span class="card-label">Card Holder</span><div class="card-holder-preview" id="preview-card-holder">CARD HOLDER NAME</div></div>
-            <div><span class="card-label">Expires</span><div class="card-expiry-preview" id="preview-card-expiry">MM/YY</div></div>
+    </div>
+
+    <div class="checkout-body">
+      <!-- STEP 1: Resumen de orden -->
+      <div id="checkout-step-1" class="checkout-step active">
+        <div class="checkout-grid">
+          <div class="checkout-main">
+            <div class="checkout-card">
+              <h3>📋 Order Summary</h3>
+              <div id="co-order-info" class="co-info-grid"></div>
+            </div>
+            <div class="checkout-card">
+              <h3>🛍️ Products Ordered</h3>
+              <table class="co-table">
+                <thead><tr><th>Product</th><th>Qty</th><th>Unit Price</th><th>Subtotal</th></tr></thead>
+                <tbody id="co-products-body"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="checkout-side">
+            <div class="checkout-card co-totals-card">
+              <h3>💰 Order Totals</h3>
+              <div class="co-total-line"><span>Products</span><span id="co-sub">$0.00</span></div>
+              <div class="co-total-line"><span>Logical Costs</span><span id="co-lc-preview">$0.00</span></div>
+              <div class="co-total-line co-grand"><span>Grand Total</span><span id="co-grand">$0.00</span></div>
+            </div>
+            <button onclick="checkoutNext(2)" class="btn-checkout-next">
+              Next: Add Costs <ion-icon name="arrow-forward-outline"></ion-icon>
+            </button>
           </div>
         </div>
-        <div class="card-back">
-          <div class="card-stripe"></div>
-          <div class="card-cvv-area"><span class="card-label">CVV</span><div class="card-cvv-box" id="preview-cvv">•••</div></div>
+      </div>
+
+      <!-- STEP 2: Logical Costs -->
+      <div id="checkout-step-2" class="checkout-step">
+        <div class="checkout-grid">
+          <div class="checkout-main">
+            <div class="checkout-card">
+              <h3>🧮 Logical Costs</h3>
+              <p style="font-size:13px;color:rgba(255,255,255,0.5);margin:0 0 20px">Add the additional costs associated with this purchase order.</p>
+              <div class="lc-grid">
+                <div class="lc-item">
+                  <div class="lc-icon">🚢</div>
+                  <label>International Transport</label>
+                  <div class="lc-input-wrap">
+                    <span class="lc-currency">$</span>
+                    <input type="number" id="lc-internationalTransport" min="0" step="0.01" value="0" class="lc-input"/>
+                  </div>
+                </div>
+                <div class="lc-item">
+                  <div class="lc-icon">🚛</div>
+                  <label>Local Transport</label>
+                  <div class="lc-input-wrap">
+                    <span class="lc-currency">$</span>
+                    <input type="number" id="lc-localTransport" min="0" step="0.01" value="0" class="lc-input"/>
+                  </div>
+                </div>
+                <div class="lc-item">
+                  <div class="lc-icon">🏛️</div>
+                  <label>Nationalization</label>
+                  <div class="lc-input-wrap">
+                    <span class="lc-currency">$</span>
+                    <input type="number" id="lc-nationalization" min="0" step="0.01" value="0" class="lc-input"/>
+                  </div>
+                </div>
+                <div class="lc-item">
+                  <div class="lc-icon">🛡️</div>
+                  <label>Cargo Insurance</label>
+                  <div class="lc-input-wrap">
+                    <span class="lc-currency">$</span>
+                    <input type="number" id="lc-cargoInsurance" min="0" step="0.01" value="0" class="lc-input"/>
+                  </div>
+                </div>
+                <div class="lc-item">
+                  <div class="lc-icon">🏭</div>
+                  <label>Storage</label>
+                  <div class="lc-input-wrap">
+                    <span class="lc-currency">$</span>
+                    <input type="number" id="lc-storage" min="0" step="0.01" value="0" class="lc-input"/>
+                  </div>
+                </div>
+                <div class="lc-item">
+                  <div class="lc-icon">📦</div>
+                  <label>Others</label>
+                  <div class="lc-input-wrap">
+                    <span class="lc-currency">$</span>
+                    <input type="number" id="lc-others" min="0" step="0.01" value="0" class="lc-input"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="checkout-side">
+            <div class="checkout-card co-totals-card">
+              <h3>💰 Updated Totals</h3>
+              <div class="co-total-line"><span>Products</span><span id="co-sub-2">$0.00</span></div>
+              <div class="co-total-line lc-breakdown" id="lc-breakdown"></div>
+              <div class="co-total-line"><span>Logical Costs</span><span id="co-lc-total">$0.00</span></div>
+              <div class="co-total-line co-grand"><span>Grand Total</span><span id="co-grand-2">$0.00</span></div>
+            </div>
+            <button onclick="guardarLC()" class="btn-checkout-save">
+              <ion-icon name="save-outline"></ion-icon> Save Costs
+            </button>
+            <button onclick="checkoutNext(3)" class="btn-checkout-next" style="margin-top:10px">
+              Next: Payment <ion-icon name="arrow-forward-outline"></ion-icon>
+            </button>
+            <button onclick="checkoutNext(1)" class="btn-checkout-back-step">
+              <ion-icon name="arrow-back-outline"></ion-icon> Back
+            </button>
+          </div>
         </div>
       </div>
-      <label style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.06em;display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
-        Payment Method *
-        <select id="payment-method-select" onchange="toggleCardFields(this.value)"
-          style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:10px 14px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:14px;outline:none">
-          <option value="">Select method</option>
-          <option value="card">💳 Credit / Debit Card</option>
-          <option value="transfer">🏦 Bank Transfer</option>
-          <option value="cash">💵 Cash</option>
-          <option value="check">📋 Check</option>
-        </select>
-      </label>
-      <div id="card-fields" style="display:none">
-        <label style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.06em;display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
-          Card Number
-          <input id="card-number-input" type="text" maxlength="19" placeholder="1234 5678 9012 3456"
-            style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:10px 14px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:14px;outline:none;letter-spacing:.1em"/>
-        </label>
-        <label style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.06em;display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
-          Card Holder Name
-          <input id="card-holder-input" type="text" placeholder="JOHN DOE"
-            style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:10px 14px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:14px;outline:none;text-transform:uppercase"/>
-        </label>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
-          <label style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.06em;display:flex;flex-direction:column;gap:6px">
-            Expiry Date
-            <input id="card-expiry-input" type="text" maxlength="5" placeholder="MM/YY"
-              style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:10px 14px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:14px;outline:none"/>
-          </label>
-          <label style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.06em;display:flex;flex-direction:column;gap:6px">
-            CVV
-            <input id="card-cvv-input" type="password" maxlength="4" placeholder="•••"
-              style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:10px 14px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:14px;outline:none"/>
-          </label>
+
+      <!-- STEP 3: Pago -->
+      <div id="checkout-step-3" class="checkout-step">
+        <div class="checkout-grid">
+          <div class="checkout-main">
+            <!-- Tarjeta animada -->
+            <div id="card-preview" class="credit-card">
+              <div class="card-front">
+                <div class="card-chip"><div class="chip-line"></div><div class="chip-line"></div><div class="chip-line"></div></div>
+                <div class="card-brand" id="card-brand-icon">💳</div>
+                <div class="card-number-preview" id="preview-card-number">•••• •••• •••• ••••</div>
+                <div class="card-bottom">
+                  <div><span class="card-label">Card Holder</span><div class="card-holder-preview" id="preview-card-holder">CARD HOLDER NAME</div></div>
+                  <div><span class="card-label">Expires</span><div class="card-expiry-preview" id="preview-card-expiry">MM/YY</div></div>
+                </div>
+              </div>
+              <div class="card-back">
+                <div class="card-stripe"></div>
+                <div class="card-cvv-area"><span class="card-label">CVV</span><div class="card-cvv-box" id="preview-cvv">•••</div></div>
+              </div>
+            </div>
+
+            <div class="checkout-card">
+              <h3>💳 Payment Details</h3>
+              <div class="pay-method-tabs">
+                <button class="pay-tab active" onclick="selectPayMethod('card',this)">💳 Card</button>
+                <button class="pay-tab" onclick="selectPayMethod('transfer',this)">🏦 Transfer</button>
+                <button class="pay-tab" onclick="selectPayMethod('cash',this)">💵 Cash</button>
+                <button class="pay-tab" onclick="selectPayMethod('check',this)">📋 Check</button>
+              </div>
+
+              <div id="card-fields">
+                <div class="pay-field">
+                  <label>Card Number</label>
+                  <input id="card-number-input" type="text" maxlength="19" placeholder="1234 5678 9012 3456" class="pay-input"/>
+                </div>
+                <div class="pay-field">
+                  <label>Card Holder Name</label>
+                  <input id="card-holder-input" type="text" placeholder="JOHN DOE" class="pay-input" style="text-transform:uppercase"/>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                  <div class="pay-field">
+                    <label>Expiry Date</label>
+                    <input id="card-expiry-input" type="text" maxlength="5" placeholder="MM/YY" class="pay-input"/>
+                  </div>
+                  <div class="pay-field">
+                    <label>CVV</label>
+                    <input id="card-cvv-input" type="password" maxlength="4" placeholder="•••" class="pay-input"/>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+                <div class="pay-field">
+                  <label>Invoice Number *</label>
+                  <input id="invoice-number-input" type="text" class="pay-input"/>
+                </div>
+                <div class="pay-field">
+                  <label>Payment Date</label>
+                  <input id="payment-date-input" type="date" class="pay-input"/>
+                </div>
+              </div>
+              <div class="pay-field" style="margin-top:12px">
+                <label>Notes / Reminder</label>
+                <input id="payment-reminder" type="text" placeholder="Optional notes..." class="pay-input"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout-side">
+            <div class="checkout-card co-totals-card">
+              <h3>🧾 Final Summary</h3>
+              <div id="co-final-products" style="margin-bottom:12px;font-size:12px;color:rgba(255,255,255,0.5)"></div>
+              <div class="co-total-line"><span>Products</span><span id="co-sub-3">$0.00</span></div>
+              <div class="co-total-line"><span>Logical Costs</span><span id="co-lc-3">$0.00</span></div>
+              <div class="co-total-line co-grand" style="font-size:20px"><span>Total to Pay</span><span id="co-grand-3">$0.00</span></div>
+            </div>
+            <button onclick="procesarPago()" class="btn-checkout-next" style="background:linear-gradient(135deg,#34d399,#059669)">
+              <ion-icon name="checkmark-circle-outline"></ion-icon> Confirm Payment
+            </button>
+            <button onclick="checkoutNext(2)" class="btn-checkout-back-step">
+              <ion-icon name="arrow-back-outline"></ion-icon> Back
+            </button>
+          </div>
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
-        <label style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.06em;display:flex;flex-direction:column;gap:6px">
-          Invoice Number *
-          <input id="invoice-number-input" type="text"
-            style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:10px 14px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:14px;outline:none"/>
-        </label>
-        <label style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.06em;display:flex;flex-direction:column;gap:6px">
-          Payment Date
-          <input id="payment-date-input" type="date"
-            style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:10px 14px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:14px;outline:none"/>
-        </label>
-      </div>
-      <label style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.06em;display:flex;flex-direction:column;gap:6px;margin-bottom:20px">
-        Reminder / Notes
-        <input id="payment-reminder" type="text" placeholder="Optional notes..."
-          style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;padding:10px 14px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:14px;outline:none"/>
-      </label>
-      <button onclick="procesarPago()" class="btn-confirmar">💳 Confirm Payment</button>
     </div>
   </div>
 
@@ -330,6 +451,58 @@
       <button onclick="window.print()" class="btn-imprimir">🖨️ Print invoice</button>
     </div>
   </div>
+  <!-- ===== OVERLAY ORDERS PANEL ===== -->
+<div id="orders-panel-overlay" class="orders-panel-overlay" onclick="cerrarOrdersList()"></div>
+
+<!-- ===== PANEL LISTA DE ÓRDENES ===== -->
+<div id="orders-panel" class="orders-panel">
+  <div class="orders-panel-header">
+    <h3>📋 Purchase Orders</h3>
+    <button class="orders-panel-close" onclick="cerrarOrdersList()">×</button>
+  </div>
+
+  <div class="orders-panel-search">
+    <div class="orders-panel-search-wrap">
+      <ion-icon name="search-outline"></ion-icon>
+      <input type="text" placeholder="Search by # or supplier..." oninput="filtrarOrdenes(this.value)"/>
+    </div>
+    <select id="order-status-filter" class="orders-panel-status" onchange="filtrarOrdenes(document.querySelector('.orders-panel-search-wrap input').value)">
+      <option value="">All</option>
+      <option value="Pendiente">Pendiente</option>
+      <option value="Confirmed">Confirmed</option>
+      <option value="Received">Received</option>
+      <option value="Partial">Partial</option>
+      <option value="Completed">Completed</option>
+      <option value="Cancelled">Cancelled</option>
+    </select>
+  </div>
+
+  <div class="orders-panel-list">
+    <table class="orders-panel-table">
+      <thead><tr>
+        <th>#</th><th>Supplier</th><th>Date</th><th>Status</th>
+      </tr></thead>
+      <tbody id="orders-list-tbody"></tbody>
+    </table>
+  </div>
+
+  <div class="orders-panel-footer">
+    <p id="orders-count"></p>
+  </div>
+</div>
+
+<!-- ===== PANEL DETALLE DE ORDEN ===== -->
+<div id="order-detail-panel" class="order-detail-panel">
+  <div class="odp-header-bar">
+    <button class="odp-back-btn" onclick="cerrarOrderDetail()">
+      <ion-icon name="arrow-back-outline"></ion-icon> Back to orders
+    </button>
+    <p class="odp-panel-title">Order Detail</p>
+  </div>
+  <div class="order-detail-panel-body" id="order-detail-panel-body">
+    <div style="text-align:center;padding:40px;color:rgba(255,255,255,0.3)">Select an order</div>
+  </div>
+</div>
 
 </div>
 
@@ -340,11 +513,5 @@
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="../Scripts/Session.js"></script>
-<script>
-function toggleCardFields(v){
-  document.getElementById('card-fields').style.display=v==='card'?'block':'none';
-  document.getElementById('card-preview').style.display=v==='card'?'block':'none';
-}
-</script>
 </body>
 </html>
